@@ -9,14 +9,20 @@ extends CharacterBody3D
 @export var recoil_strength := deg_to_rad(25.0)   # how hard the kick is
 @export var recoil_return_speed := 0.04          # how fast it settles back
 
-var recoil_offset := 0.0
+@export var aim_x := 0.0
+@export var normal_x := 0.6
+@export var pull_speed := 10.0
 
+var recoil_offset := 0.0 
+var cocked := true
+var cocking := false
+
+var rounds := 6
 
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
 @onready var revolver_anim: AnimationPlayer = revolver.get_node("AnimationPlayer")
 @onready var cylinder: Node3D = $Camera3D/Revolver/MainCylinder
-
 
 var pitch := 0.0
 
@@ -31,18 +37,41 @@ func _unhandled_input(event):
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
 
+
+
 func _physics_process(delta: float) -> void:
-	# Cock
-	if Input.is_action_just_pressed("cock"):
-		revolver_anim.play("CockAction")
-		var tween = get_tree().create_tween()
-		tween.tween_property(cylinder, "rotation_degrees:x", cylinder.rotation_degrees.x + 60, 0.5)
+	
+	# Aim
+	var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
+	revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
 
 
 	# Fire
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire") and cocked and not cocking:
+		cocking = true
+		cocked = false
+
 		revolver_anim.play("FireAction")
-		recoil_offset += recoil_strength
+		if rounds > 0:
+			rounds -= 1
+			recoil_offset += recoil_strength
+			$FireSound.play()
+		else:
+			$DryFireSound.play()
+
+		await revolver_anim.animation_finished
+
+		revolver_anim.play("CockAction")
+		$CockSound.play()
+
+		var tween = get_tree().create_tween()
+		var length := revolver_anim.get_animation("CockAction").length
+		tween.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,length)
+
+		await revolver_anim.animation_finished
+		cocked = true
+		cocking = false
+
 		
 
 	# Gravity

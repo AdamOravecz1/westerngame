@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=7 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://Revolver.blend" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://dbeiln8kythrt" path="res://Sounds/cocking-a-revolver-6279.wav" id="3_vgqql"]
+[ext_resource type="AudioStream" uid="uid://cvxyyt6ow30ir" path="res://Sounds/single-pistol-gunshot-33-37187.wav" id="4_fkybt"]
+[ext_resource type="AudioStream" uid="uid://d27jpun7546f3" path="res://Sounds/double-dry-fire-364847.wav" id="5_fkybt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 
@@ -16,4 +19,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 0.1)
 current = true
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
-transform = Transform3D(-1.31134e-08, -0.3, 0, -1.31134e-08, 5.73206e-16, -0.3, 0.3, -1.31134e-08, -1.31134e-08, 0.590739, -0.116443, -0.883995)
+transform = Transform3D(-1.31134e-08, -0.3, 0, -1.31134e-08, 5.73206e-16, -0.3, 0.3, -1.31134e-08, -1.31134e-08, 0.6, -0.239263, -0.884)
+
+[node name="CockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vgqql")
+volume_db = 10.0
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fkybt")
+
+[node name="DryFireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fkybt")
