@@ -11,11 +11,14 @@ extends CharacterBody3D
 
 @export var aim_x := 0.0
 @export var normal_x := 0.6
+@export var reload_rotate := 60
+@export var normal_rotate := 89
 @export var pull_speed := 10.0
 
 var recoil_offset := 0.0 
 var cocked := true
 var cocking := false
+var reloading := false
 
 var rounds := 6
 
@@ -23,11 +26,18 @@ var rounds := 6
 @onready var revolver: Node3D = $Camera3D/Revolver
 @onready var revolver_anim: AnimationPlayer = revolver.get_node("AnimationPlayer")
 @onready var cylinder: Node3D = $Camera3D/Revolver/MainCylinder
+@onready var live45: Node3D = $"Camera3D/Revolver/45Live"
+@onready var dead45: Node3D = $"Camera3D/Revolver/45Dead"
+@onready var fakes: Node3D = $Camera3D/Revolver/Fakes
 
 var pitch := 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	print(fakes.rotation.x)
+	fakes.visible = false
+	dead45.visible = false
+	
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -40,14 +50,65 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta: float) -> void:
+	#Reload
+	if Input.is_action_just_pressed("reload") and not reloading:
+		if revolver_anim.current_animation:
+			await revolver_anim.animation_finished
+		reloading = true
+		var cylinder_length := revolver_anim.get_animation("CockAction").length
+		var length := 0.2
+		
+		var tween_in := get_tree().create_tween()
+		tween_in.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x - 60,cylinder_length)
+		tween_in.parallel().tween_property(revolver, "position:x", aim_x, length)
+		tween_in.parallel().tween_property(revolver, "rotation_degrees:x", reload_rotate, length)
+		await tween_in.finished
+		fakes.visible = true
+		dead45.visible = true
+
+		revolver_anim.play("OpenAction")
+		await revolver_anim.animation_finished
+
+		revolver_anim.play("LoadAction")
+		await revolver_anim.animation_finished
+		
+		for i in range(3):
+			
+			
+			var tween = get_tree().create_tween()
+			tween.parallel().tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,cylinder_length)
+			tween.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
+			tween.parallel().tween_property(live45,"rotation_degrees:x",live45.rotation_degrees.x + 60,cylinder_length)
+			await tween.finished
+			fakes.rotation_degrees.x = 60
+			live45.rotation_degrees.x = 0
+			
+			revolver_anim.play("LoadAction")
+			await revolver_anim.animation_finished
+
+			
+
+		revolver_anim.play("CloseAction")
+		await revolver_anim.animation_finished
+
+		var tween_out := get_tree().create_tween()
+		tween_out.parallel().tween_property(revolver, "position:x", normal_x, length)
+		tween_out.parallel().tween_property(revolver, "rotation_degrees:x", normal_rotate, length)
+		await tween_out.finished
+
+		reloading = false
+		fakes.visible = false
+		dead45.visible = false
+		
 	
 	# Aim
-	var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
-	revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
+	if not reloading:
+		var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
+		revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
 
 
 	# Fire
-	if Input.is_action_just_pressed("fire") and cocked and not cocking:
+	if Input.is_action_just_pressed("fire") and cocked and not cocking and not reloading:
 		cocking = true
 		cocked = false
 
@@ -66,7 +127,7 @@ func _physics_process(delta: float) -> void:
 
 		var tween = get_tree().create_tween()
 		var length := revolver_anim.get_animation("CockAction").length
-		tween.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,length)
+		tween.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x - 60,length)
 
 		await revolver_anim.animation_finished
 		cocked = true

@@ -19,7 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 0.1)
 current = true
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
-transform = Transform3D(-1.31134e-08, -0.3, 0, -1.31134e-08, 5.73206e-16, -0.3, 0.3, -1.31134e-08, -1.31134e-08, 0.6, -0.239263, -0.884)
+transform = Transform3D(3.93363e-08, -0.3, -4.57721e-10, -0.00523571, -2.2886e-10, -0.299954, 0.299954, 3.93382e-08, -0.00523571, 0.6, -0.239263, -0.884)
 
 [node name="CockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vgqql")
