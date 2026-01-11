@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=10 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://Revolver.blend" id="2_cvnsp"]
 [ext_resource type="AudioStream" uid="uid://dbeiln8kythrt" path="res://Sounds/cocking-a-revolver-6279.wav" id="3_vgqql"]
 [ext_resource type="AudioStream" uid="uid://cvxyyt6ow30ir" path="res://Sounds/single-pistol-gunshot-33-37187.wav" id="4_fkybt"]
 [ext_resource type="AudioStream" uid="uid://d27jpun7546f3" path="res://Sounds/double-dry-fire-364847.wav" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://ccwnm6fbeu414" path="res://Sounds/HalfDeCock.wav" id="6_3smsa"]
+[ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
+[ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 
@@ -21,12 +24,35 @@ current = true
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
 transform = Transform3D(3.93363e-08, -0.3, -4.57721e-10, -0.00523571, -2.2886e-10, -0.299954, 0.299954, 3.93382e-08, -0.00523571, 0.6, -0.239263, -0.884)
 
-[node name="CockSound" type="AudioStreamPlayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BulletCount" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 64
+text = "0/0"
+
+[node name="Sounds" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CockSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_vgqql")
 volume_db = 10.0
 
-[node name="FireSound" type="AudioStreamPlayer" parent="."]
+[node name="FireSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_fkybt")
 
-[node name="DryFireSound" type="AudioStreamPlayer" parent="."]
+[node name="DryFireSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_fkybt")
+
+[node name="HalfDeCockSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_3smsa")
+
+[node name="HalfCockSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_8erm5")
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_8erm5")

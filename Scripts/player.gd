@@ -20,7 +20,9 @@ var cocked := true
 var cocking := false
 var reloading := false
 
-var rounds := 6
+var chamber := [1,1,1,1,1,1]
+var chamber_pointer := 0
+var free_bullets := 6
 
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
@@ -29,6 +31,7 @@ var rounds := 6
 @onready var live45: Node3D = $"Camera3D/Revolver/45Live"
 @onready var dead45: Node3D = $"Camera3D/Revolver/45Dead"
 @onready var fakes: Node3D = $Camera3D/Revolver/Fakes
+@onready var bullet_count: Label = $CanvasLayer/BulletCount
 
 var pitch := 0.0
 
@@ -37,6 +40,9 @@ func _ready():
 	print(fakes.rotation.x)
 	fakes.visible = false
 	dead45.visible = false
+	RefreshBulletCount()
+	
+	
 	
 
 func _unhandled_input(event):
@@ -47,11 +53,9 @@ func _unhandled_input(event):
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
 
-
-
 func _physics_process(delta: float) -> void:
 	#Reload
-	if Input.is_action_just_pressed("reload") and not reloading:
+	if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0:
 		if revolver_anim.current_animation:
 			await revolver_anim.animation_finished
 		reloading = true
@@ -59,7 +63,6 @@ func _physics_process(delta: float) -> void:
 		var length := 0.2
 		
 		var tween_in := get_tree().create_tween()
-		tween_in.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x - 60,cylinder_length)
 		tween_in.parallel().tween_property(revolver, "position:x", aim_x, length)
 		tween_in.parallel().tween_property(revolver, "rotation_degrees:x", reload_rotate, length)
 		await tween_in.finished
@@ -67,13 +70,21 @@ func _physics_process(delta: float) -> void:
 		dead45.visible = true
 
 		revolver_anim.play("OpenAction")
+		$Sounds/HalfDeCockSound.play()
 		await revolver_anim.animation_finished
 
-		revolver_anim.play("LoadAction")
-		await revolver_anim.animation_finished
 		
-		for i in range(3):
-			
+		while chamber.reduce(func(a, b): return a + b, 0) != 6 and free_bullets > 0:
+			if chamber[chamber_pointer%6 - 1] == 0:
+				revolver_anim.play("LoadAction")
+				$Sounds/ReloadSound.play()
+				free_bullets -= 1
+				chamber[chamber_pointer%6 - 1] = 1
+				chamber_pointer -= 1
+				RefreshBulletCount()
+				print(chamber)
+				print(chamber_pointer)
+				await revolver_anim.animation_finished
 			
 			var tween = get_tree().create_tween()
 			tween.parallel().tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,cylinder_length)
@@ -83,12 +94,12 @@ func _physics_process(delta: float) -> void:
 			fakes.rotation_degrees.x = 60
 			live45.rotation_degrees.x = 0
 			
-			revolver_anim.play("LoadAction")
-			await revolver_anim.animation_finished
+
 
 			
 
 		revolver_anim.play("CloseAction")
+		$Sounds/HalfCockSound.play()
 		await revolver_anim.animation_finished
 
 		var tween_out := get_tree().create_tween()
@@ -113,17 +124,20 @@ func _physics_process(delta: float) -> void:
 		cocked = false
 
 		revolver_anim.play("FireAction")
-		if rounds > 0:
-			rounds -= 1
+		if chamber[chamber_pointer%6] == 1:
+			chamber[chamber_pointer%6] = 0
 			recoil_offset += recoil_strength
-			$FireSound.play()
+			$Sounds/FireSound.play()
+			chamber_pointer += 1
+			RefreshBulletCount()
 		else:
-			$DryFireSound.play()
+			$Sounds/DryFireSound.play()
+			chamber_pointer += 1
 
 		await revolver_anim.animation_finished
 
 		revolver_anim.play("CockAction")
-		$CockSound.play()
+		$Sounds/CockSound.play()
 
 		var tween = get_tree().create_tween()
 		var length := revolver_anim.get_animation("CockAction").length
@@ -165,6 +179,14 @@ func _physics_process(delta: float) -> void:
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
 	camera.rotation.x = pitch + recoil_offset
+	
+	# Debug Add Bullet:
+	if Input.is_action_just_pressed("addbullet"):
+		free_bullets += 1
+		RefreshBulletCount()
 
 
 	move_and_slide()
+
+func RefreshBulletCount():
+	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
