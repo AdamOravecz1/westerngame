@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=4 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://18wixqsvofsr" path="res://Saloon.blend" id="2_bo1nx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
 size = Vector3(17.5042, 1, 23.7229)
@@ -9,7 +10,6 @@ size = Vector3(17.5042, 1, 23.7229)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 15.1301, 0)
-light_color = Color(0.423651, 0.423651, 0.423651, 1)
 shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -20,3 +20,6 @@ debug_color = Color(0.981387, 0, 0.371502, 0.42)
 
 [node name="Player" parent="." instance=ExtResource("1_jjgbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, 9)
+
+[node name="Saloon" parent="." instance=ExtResource("2_bo1nx")]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 2.81082, 0.710161, 5.15138)
