@@ -125,6 +125,7 @@ func _physics_process(delta: float) -> void:
 
 		revolver_anim.play("FireAction")
 		if chamber[chamber_pointer%6] == 1:
+			await get_tree().create_timer(0.08).timeout
 			chamber[chamber_pointer%6] = 0
 			recoil_offset += recoil_strength
 			$Sounds/FireSound.play()
