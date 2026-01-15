@@ -36,8 +36,8 @@ var free_bullets := 6
 var pitch := 0.0
 
 func _ready():
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	print(fakes.rotation.x)
 	fakes.visible = false
 	dead45.visible = false
 	RefreshBulletCount()
@@ -53,6 +53,7 @@ func _unhandled_input(event):
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
 
+
 func _physics_process(delta: float) -> void:
 	#Reload
 	if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0:
@@ -65,6 +66,8 @@ func _physics_process(delta: float) -> void:
 		var tween_in := get_tree().create_tween()
 		tween_in.parallel().tween_property(revolver, "position:x", aim_x, length)
 		tween_in.parallel().tween_property(revolver, "rotation_degrees:x", reload_rotate, length)
+		tween_in.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
+		
 		await tween_in.finished
 		fakes.visible = true
 		dead45.visible = true
@@ -125,7 +128,7 @@ func _physics_process(delta: float) -> void:
 
 		revolver_anim.play("FireAction")
 		if chamber[chamber_pointer%6] == 1:
-			await get_tree().create_timer(0.08).timeout
+			await get_tree().create_timer(0.04).timeout
 			chamber[chamber_pointer%6] = 0
 			recoil_offset += recoil_strength
 			$Sounds/FireSound.play()
