@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var recoil_return_speed := 0.04          # how fast it settles back
 
 @export var aim_x := 0.0
-@export var normal_x := 0.6
+@export var normal_x := 0.082
 @export var reload_rotate := 60
 @export var normal_rotate := 89
 @export var pull_speed := 10.0

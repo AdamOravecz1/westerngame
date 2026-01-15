@@ -19,65 +19,11 @@ script = ExtResource("1_v0iea")
 shape = SubResource("CapsuleShape3D_f60y1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389774, 0.0978236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43073007, 0.18838778)
 current = true
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
-transform = Transform3D(3.93363e-08, -0.3, -4.57721e-10, -0.00523571, -2.2886e-10, -0.299954, 0.299954, 3.93382e-08, -0.00523571, 0.5, -0.257733, -0.784)
-
-[node name="Cylinder" parent="Camera3D/Revolver" index="0"]
-layers = 2
-
-[node name="Cylinder_001" parent="Camera3D/Revolver" index="1"]
-layers = 2
-
-[node name="Cylinder_002" parent="Camera3D/Revolver" index="2"]
-layers = 2
-
-[node name="MainCylinder" parent="Camera3D/Revolver" index="3"]
-layers = 2
-
-[node name="Sphere" parent="Camera3D/Revolver" index="4"]
-layers = 2
-
-[node name="Cylinder_004" parent="Camera3D/Revolver" index="5"]
-transform = Transform3D(4.7915e-08, 0.582186, 0.000817026, -0.156268, -0.000117644, 0.00605776, 0.00605784, -0.00303936, 0.156266, 0.966781, -0.163017, -0.293486)
-layers = 2
-
-[node name="Cube" parent="Camera3D/Revolver" index="6"]
-layers = 2
-
-[node name="Cube_001" parent="Camera3D/Revolver" index="7"]
-layers = 2
-
-[node name="Cylinder_005" parent="Camera3D/Revolver" index="8"]
-layers = 2
-
-[node name="Cube_002" parent="Camera3D/Revolver" index="9"]
-layers = 2
-
-[node name="Cube_003" parent="Camera3D/Revolver" index="10"]
-layers = 2
-
-[node name="Cube_004" parent="Camera3D/Revolver" index="11"]
-layers = 2
-
-[node name="Trigger" parent="Camera3D/Revolver" index="12"]
-layers = 2
-
-[node name="Hammer" parent="Camera3D/Revolver" index="13"]
-transform = Transform3D(-0.00979001, 0, 0.0594263, 0, -0.0318097, 0, -0.0594263, 0, -0.00979001, 1.0836, -0.00196158, -0.100926)
-layers = 2
-
-[node name="45Dead" parent="Camera3D/Revolver" index="14"]
-layers = 2
-
-[node name="45Live" parent="Camera3D/Revolver" index="15"]
-layers = 2
-
-[node name="Fakes" parent="Camera3D/Revolver" index="16"]
-transform = Transform3D(-3.82944e-09, -0.0177684, 1.16332e-09, 0.0187566, -3.73204e-10, 0.0342328, -0.0342328, 1.78317e-09, 0.0187566, 0.542605, -0.00148446, -0.341634)
-layers = 2
+transform = Transform3D(9.73421e-09, -0.05, -1.3175554e-10, -0.0008725775, -3.814157e-11, -0.049992386, 0.049992386, 9.735027e-09, -0.0008725775, 0.08248153, -0.036652297, -0.13146469)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -111,5 +57,3 @@ stream = ExtResource("7_8erm5")
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_8erm5")
-
-[editable path="Camera3D/Revolver"]
