@@ -1,16 +1,206 @@
-[gd_scene load_steps=10 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=36 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="3_f1ek2"]
 [ext_resource type="AudioStream" uid="uid://dbeiln8kythrt" path="res://Sounds/cocking-a-revolver-6279.wav" id="3_vgqql"]
 [ext_resource type="AudioStream" uid="uid://cvxyyt6ow30ir" path="res://Sounds/single-pistol-gunshot-33-37187.wav" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://c3r31512qkaqw" path="res://Textures/Revolver_close-up-wooden-surface-texture.jpg" id="4_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://d27jpun7546f3" path="res://Sounds/double-dry-fire-364847.wav" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://bvoy683wbk4hv" path="res://Textures/Revolver_golden-wall-background.jpg" id="5_gymyn"]
+[ext_resource type="Texture2D" uid="uid://sc2qnxf6dgrf" path="res://Textures/Revolver_everytexture.com-stock-metal-texture-00185.jpg" id="5_pu2lt"]
 [ext_resource type="AudioStream" uid="uid://ccwnm6fbeu414" path="res://Sounds/HalfDeCock.wav" id="6_3smsa"]
 [ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
 [ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 1.77196
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tx1dd"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gymyn"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu2lt"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukyrk"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dp3o"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4iuc"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fd4e3"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqcod"]
+resource_name = "Wood"
+cull_mode = 2
+albedo_texture = ExtResource("4_tx1dd")
+use_z_clip_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igrcy"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs7ks"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6n3p"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olqyp"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpjfl"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bi64h"]
+load_path = "res://.godot/imported/Revolver_photo-metal-texture-pattern(1).jpg-e2041f76c975fb0beac5e6d8e640ac17.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ijsl"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_bi64h")
+metallic = 0.75
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bi64h"]
+resource_name = "Steel"
+cull_mode = 2
+albedo_texture = ExtResource("5_pu2lt")
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1odr"]
+resource_name = "Brass"
+cull_mode = 2
+albedo_texture = ExtResource("5_gymyn")
+metallic = 0.5
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gysh"]
+resource_name = "Brass"
+cull_mode = 2
+albedo_texture = ExtResource("5_gymyn")
+metallic = 0.5
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfarp"]
+resource_name = "lead"
+cull_mode = 2
+albedo_texture = ExtResource("3_f1ek2")
+metallic = 0.5
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6uwr"]
+resource_name = "Steel"
+cull_mode = 2
+albedo_texture = ExtResource("5_pu2lt")
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83xs0"]
+resource_name = "Steel.003"
+cull_mode = 2
+albedo_texture = ExtResource("5_pu2lt")
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypfnu"]
+resource_name = "Brass.003"
+cull_mode = 2
+albedo_texture = ExtResource("5_gymyn")
+metallic = 0.5
+roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_v0iea")
@@ -23,7 +213,62 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43073007, 0.18838778)
 current = true
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
-transform = Transform3D(9.73421e-09, -0.05, -1.3175554e-10, -0.0008725775, -3.814157e-11, -0.049992386, 0.049992386, 9.735027e-09, -0.0008725775, 0.08248153, -0.036652297, -0.13146469)
+transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0.6, -0.22763059, -0.906713)
+
+[node name="Cylinder" parent="Camera3D/Revolver" index="0"]
+material_override = SubResource("StandardMaterial3D_tx1dd")
+
+[node name="Cylinder_001" parent="Camera3D/Revolver" index="1"]
+material_override = SubResource("StandardMaterial3D_gymyn")
+
+[node name="Cylinder_002" parent="Camera3D/Revolver" index="2"]
+material_override = SubResource("StandardMaterial3D_pu2lt")
+
+[node name="MainCylinder" parent="Camera3D/Revolver" index="3"]
+material_override = SubResource("StandardMaterial3D_ukyrk")
+
+[node name="Sphere" parent="Camera3D/Revolver" index="4"]
+material_override = SubResource("StandardMaterial3D_7dp3o")
+
+[node name="Cylinder_004" parent="Camera3D/Revolver" index="5"]
+material_override = SubResource("StandardMaterial3D_h4iuc")
+
+[node name="Cube" parent="Camera3D/Revolver" index="6"]
+material_override = SubResource("StandardMaterial3D_fd4e3")
+
+[node name="Cube_001" parent="Camera3D/Revolver" index="7"]
+material_override = SubResource("StandardMaterial3D_qqcod")
+
+[node name="Cylinder_005" parent="Camera3D/Revolver" index="8"]
+material_override = SubResource("StandardMaterial3D_igrcy")
+
+[node name="Cube_002" parent="Camera3D/Revolver" index="9"]
+material_override = SubResource("StandardMaterial3D_fs7ks")
+
+[node name="Cube_003" parent="Camera3D/Revolver" index="10"]
+material_override = SubResource("StandardMaterial3D_l6n3p")
+
+[node name="Cube_004" parent="Camera3D/Revolver" index="11"]
+material_override = SubResource("StandardMaterial3D_olqyp")
+
+[node name="Trigger" parent="Camera3D/Revolver" index="12"]
+material_override = SubResource("StandardMaterial3D_wpjfl")
+
+[node name="Hammer" parent="Camera3D/Revolver" index="13"]
+material_override = SubResource("StandardMaterial3D_2ijsl")
+
+[node name="45Dead" parent="Camera3D/Revolver" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bi64h")
+surface_material_override/1 = SubResource("StandardMaterial3D_p1odr")
+
+[node name="45Live" parent="Camera3D/Revolver" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0gysh")
+surface_material_override/1 = SubResource("StandardMaterial3D_vfarp")
+surface_material_override/2 = SubResource("StandardMaterial3D_y6uwr")
+
+[node name="Fakes" parent="Camera3D/Revolver" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_83xs0")
+surface_material_override/1 = SubResource("StandardMaterial3D_ypfnu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -57,3 +302,5 @@ stream = ExtResource("7_8erm5")
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_8erm5")
+
+[editable path="Camera3D/Revolver"]
