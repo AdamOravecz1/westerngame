@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=37 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://ccwnm6fbeu414" path="res://Sounds/HalfDeCock.wav" id="6_3smsa"]
 [ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
 [ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
+[ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 1.77196
@@ -84,6 +85,7 @@ resource_name = "Wood"
 cull_mode = 2
 albedo_texture = ExtResource("4_tx1dd")
 use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igrcy"]
 resource_name = "Metal"
@@ -237,7 +239,7 @@ material_override = SubResource("StandardMaterial3D_h4iuc")
 material_override = SubResource("StandardMaterial3D_fd4e3")
 
 [node name="Cube_001" parent="Camera3D/Revolver" index="7"]
-material_override = SubResource("StandardMaterial3D_qqcod")
+surface_material_override/0 = SubResource("StandardMaterial3D_qqcod")
 
 [node name="Cylinder_005" parent="Camera3D/Revolver" index="8"]
 material_override = SubResource("StandardMaterial3D_igrcy")
@@ -302,5 +304,9 @@ stream = ExtResource("7_8erm5")
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_8erm5")
+
+[node name="StepSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_ukyrk")
+volume_db = -10.0
 
 [editable path="Camera3D/Revolver"]
