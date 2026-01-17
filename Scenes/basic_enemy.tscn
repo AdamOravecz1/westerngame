@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpvimjxc4obem"]
+
+[ext_resource type="Script" uid="uid://d0u76i8q3uo4q" path="res://Scripts/basic_enemy.gd" id="1_fecjr"]
+[ext_resource type="PackedScene" uid="uid://dsdlvsihy8gqs" path="res://3D/BasicEnemy.blend" id="1_mbxfi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fecjr"]
+radius = 0.38165015
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbxfi"]
+radius = 0.6123047
+height = 4.608851
+
+[node name="BasicEnemy" type="CharacterBody3D"]
+script = ExtResource("1_fecjr")
+
+[node name="BasicEnemy" parent="." instance=ExtResource("1_mbxfi")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Head" type="Area3D" parent="."]
+
+[node name="Head" type="CollisionShape3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8823233, 0)
+shape = SubResource("SphereShape3D_fecjr")
+
+[node name="Body" type="Area3D" parent="."]
+
+[node name="Body" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3062437, 0)
+shape = SubResource("CapsuleShape3D_mbxfi")

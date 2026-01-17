@@ -272,6 +272,11 @@ surface_material_override/2 = SubResource("StandardMaterial3D_y6uwr")
 surface_material_override/0 = SubResource("StandardMaterial3D_83xs0")
 surface_material_override/1 = SubResource("StandardMaterial3D_ypfnu")
 
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.025038183, -0.18838778)
+target_position = Vector3(0, -100, -1)
+collide_with_areas = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]

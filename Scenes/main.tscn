@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=11 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://18wixqsvofsr" path="res://3D/Saloon.blend" id="2_bo1nx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cpvimjxc4obem" path="res://Scenes/basic_enemy.tscn" id="7_6bp64"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kry3j"]
 
@@ -45,3 +46,6 @@ mesh = SubResource("PlaneMesh_344ge")
 
 [node name="Saloon2" parent="." instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -7.458)
+
+[node name="BasicEnemy" parent="." instance=ExtResource("7_6bp64")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 9.702592, 0, -2.106574)
