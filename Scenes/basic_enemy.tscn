@@ -1,29 +1,61 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpvimjxc4obem"]
 
 [ext_resource type="Script" uid="uid://d0u76i8q3uo4q" path="res://Scripts/basic_enemy.gd" id="1_fecjr"]
-[ext_resource type="PackedScene" uid="uid://dsdlvsihy8gqs" path="res://3D/BasicEnemy.blend" id="1_mbxfi"]
+[ext_resource type="PackedScene" uid="uid://x8waxcb3floy" path="res://3D/BasicEnemy2.blend" id="2_fecjr"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_fecjr"]
-radius = 0.38165015
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lal1l"]
+radius = 0.080566406
+height = 0.46722412
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbxfi"]
-radius = 0.6123047
-height = 4.608851
+radius = 0.2084961
+height = 1.5690739
 
 [node name="BasicEnemy" type="CharacterBody3D"]
 script = ExtResource("1_fecjr")
 
-[node name="BasicEnemy" parent="." instance=ExtResource("1_mbxfi")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-
 [node name="Head" type="Area3D" parent="."]
 
 [node name="Head" type="CollisionShape3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8823233, 0)
-shape = SubResource("SphereShape3D_fecjr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6899977, 0)
+shape = SubResource("CapsuleShape3D_lal1l")
 
 [node name="Body" type="Area3D" parent="."]
 
 [node name="Body" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3062437, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78635514, 0)
 shape = SubResource("CapsuleShape3D_mbxfi")
+
+[node name="BasicEnemy2" parent="." instance=ExtResource("2_fecjr")]
+
+[node name="Skeleton3D" parent="BasicEnemy2/Armature" index="0"]
+bones/0/position = Vector3(0, 0.97974527, 0)
+bones/0/rotation = Quaternion(0.051871896, 0, 4.449809e-18, 0.99865377)
+bones/1/rotation = Quaternion(0.121605426, 1.1881201e-07, 9.724023e-09, 0.9925786)
+bones/2/rotation = Quaternion(-0.04624135, -0.31938323, 0.9356505, -0.14287859)
+bones/3/rotation = Quaternion(0.13315503, 0.0029387926, -0.1764663, 0.9752542)
+bones/4/rotation = Quaternion(0.104019605, 0.33509007, 0.9356696, -0.037644833)
+bones/4/scale = Vector3(1.0000482, 0.99999326, 1.0000342)
+bones/5/rotation = Quaternion(-0.25403818, 0.00011216878, -0.009290331, 0.96714956)
+bones/6/rotation = Quaternion(0.540326, 0.079993814, -0.05972122, 0.8355132)
+bones/6/scale = Vector3(1.0000402, 0.99999624, 0.99998915)
+bones/7/rotation = Quaternion(-0.036652476, 0.19623235, 0.9654661, 0.1674064)
+bones/8/rotation = Quaternion(0.16335385, 0.004806866, 0.15656556, 0.97405326)
+bones/9/rotation = Quaternion(-0.046193056, 0.045953996, 0.9923046, 0.10529044)
+bones/9/scale = Vector3(1.0000485, 1.0000024, 1.0000267)
+bones/10/rotation = Quaternion(-0.581041, -9.40411e-05, 0.021249108, 0.81359684)
+bones/10/scale = Vector3(0.99999833, 0.9999843, 1.0000136)
+bones/11/rotation = Quaternion(0.3647019, -0.14841016, 0.03996724, 0.91835153)
+bones/11/scale = Vector3(1.00004, 0.99999887, 0.9999866)
+bones/12/position = Vector3(0.21303345, 0.59517395, 0.42647362)
+bones/12/rotation = Quaternion(-0.028027061, 0.70655113, 0.7065512, -0.028027058)
+bones/13/position = Vector3(0.17388502, 0.1670658, 0.21898566)
+bones/13/rotation = Quaternion(-0.028951675, 0.62715286, -0.77800804, 0.023337966)
+bones/14/position = Vector3(-0.22375919, 0.59517395, 0.42647362)
+bones/15/position = Vector3(-0.17388502, 0.4287162, -0.4926491)
+bones/15/rotation = Quaternion(0.0013612797, 0.9986386, -0.036581337, -0.03716191)
+
+[node name="AnimationPlayer" parent="BasicEnemy2" index="3"]
+autoplay = "Run"
+
+[editable path="BasicEnemy2"]

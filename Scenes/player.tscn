@@ -204,7 +204,7 @@ roughness = 0.0
 use_z_clip_scale = true
 z_clip_scale = 0.5
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_v0iea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
