@@ -136,9 +136,11 @@ func _physics_process(delta: float) -> void:
 			RefreshBulletCount()
 			if $Camera3D/RayCast3D.is_colliding():
 				var collider = $Camera3D/RayCast3D.get_collider()
+
 				if collider is Area3D:
-					var enemy = collider.get_parent() # CharacterBody3D
-					enemy.hit(collider.name)
+					var enemy = collider.get_owner()
+					if enemy and enemy.has_method("hit"):
+						enemy.hit(collider.name)
 		else:
 			$Sounds/DryFireSound.play()
 			chamber_pointer += 1

@@ -21,11 +21,9 @@ func _physics_process(delta):
 
 	direction = direction.normalized()
 
-	# 🔥 IMPORTANT: invert direction for rotation
 	var target_basis = Basis.looking_at(-direction, Vector3.UP)
 	global_basis = global_basis.slerp(target_basis, rotation_speed * delta)
 
-	# 🔥 Mesh forward is +Z
 	var forward = global_basis.z
 	velocity.x = forward.x * speed
 	velocity.z = forward.z * speed
