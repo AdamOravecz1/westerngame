@@ -54,6 +54,7 @@ func die():
 	enemy_anim.stop()
 
 	# Disable character collision
+	$CollisionShape3D.disabled = true
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():

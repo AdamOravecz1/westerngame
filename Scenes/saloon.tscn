@@ -30,6 +30,8 @@ points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_w6ir6")
@@ -38,36 +40,50 @@ shape = SubResource("ConvexPolygonShape3D_w6ir6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 36.9342, -13.5166, 2.25472, 0.185261)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_2ubgp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_005/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ib4qw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_007" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_007/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_ib4qw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_5aqd4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_009" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_009/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_54rxr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_m1260")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_011" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_011/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_0122m")
