@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
-@onready var enemy_anim: AnimationPlayer = $BasicEnemy3.get_node("AnimationPlayer")
+@onready var enemy_anim: AnimationPlayer = $BasicConnectedDude.get_node("AnimationPlayer")
 
 @export var speed: float = 2.0
 @export var rotation_speed: float = 6.0
 
-@onready var skeleton := $BasicEnemy3/Armature/Skeleton3D/PhysicalBoneSimulator3D
+@onready var skeleton := $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
 
 var is_ragdoll := false
 
@@ -37,10 +37,8 @@ func _physics_process(delta):
 
 func hit(hitbox_type: String):
 	print("Hit:", hitbox_type)
-	if is_ragdoll:
-		apply_ragdoll_impulse(hitbox_type)
-	else:
-		die()
+
+	die()
 	
 func die():
 	if is_ragdoll:
@@ -48,30 +46,37 @@ func die():
 
 	is_ragdoll = true
 
+	# Stop character motion
+	velocity = Vector3.ZERO
+	global_basis = global_basis.orthonormalized()
+
 	# Stop animations
 	enemy_anim.stop()
 
-	# Enable physics on bones
+	# Disable character collision
+	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
+		if bone is BoneAttachment3D:
+			for shape in bone.get_children():
+				print(shape)
+				if shape is Area3D:
+					print("ok")
+					shape.monitoring = false
+
+
+	# Let pose settle
+	await get_tree().physics_frame
+
+	# Enable ragdoll
 	skeleton.physical_bones_start_simulation()
 
-	# Disable character movement
+	# Stabilize bones
+	for bone in skeleton.get_children():
+		if bone is PhysicalBone3D:
+			bone.linear_damp = 4.0
+			bone.angular_damp = 6.0
+			bone.apply_central_impulse(Vector3.DOWN * 0.5)
+
+	# Stop logic
 	set_physics_process(false)
+
 	
-func apply_ragdoll_impulse(hitbox_type: String):
-	var impulse_dir = -global_basis.z
-	impulse_dir.y += 0.8
-	impulse_dir = impulse_dir.normalized()
-
-	var impulse_strength := 6.0
-
-	# Try to hit a specific bone (e.g. head), fallback to all
-	var bone_name := hitbox_type.capitalize()
-
-	var bone := skeleton.get_node_or_null(bone_name)
-	if bone and bone is PhysicalBone3D:
-		bone.apply_impulse(impulse_dir * impulse_strength)
-	else:
-		# Fallback: apply impulse to all bones
-		for child in skeleton.get_children():
-			if child is PhysicalBone3D:
-				child.apply_impulse(impulse_dir * impulse_strength * 0.3)
