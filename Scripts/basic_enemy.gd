@@ -57,14 +57,9 @@ func die():
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():
-				print(shape)
 				if shape is Area3D:
-					print("ok")
 					shape.monitoring = false
-
-
-	# Let pose settle
-	await get_tree().physics_frame
+					shape.get_child(0).queue_free()
 
 	# Enable ragdoll
 	skeleton.physical_bones_start_simulation()
