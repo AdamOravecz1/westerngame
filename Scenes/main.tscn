@@ -49,4 +49,4 @@ mesh = SubResource("PlaneMesh_344ge")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -7.458)
 
 [node name="BasicEnemy" parent="." instance=ExtResource("7_6bp64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.703, 0.01, -2.107)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.259333, 0.01, -2.107)
