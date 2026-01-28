@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var enemy_anim: AnimationPlayer = $BasicConnectedDude.get_node("AnimationPlayer")
 
-
+@export var health: float = 5
 @export var speed: float = 2.0
 @export var rotation_speed: float = 6.0
 @export var blend_speed := 5.0
@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var skeleton := $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
 @onready var model: Node3D = $BasicConnectedDude
 
+const blood_burst_scene := preload("res://Scenes/blood_burst.tscn")
 
 var is_ragdoll := false
 
@@ -87,13 +88,22 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 
 	move_and_slide()
-	
 
 
-func hit(hitbox_type: String):
+func hit(hitbox_type: String, pos):
+	var blood_burst = blood_burst_scene.instantiate()
+	$".".add_child(blood_burst)
+	blood_burst.emitting = true
+	blood_burst.global_position = pos
 	print("Hit:", hitbox_type)
-
-	die()
+	if hitbox_type == "Head":
+		health -= 100
+	elif hitbox_type == "Body":
+		health -= 3
+	else:
+		health -= 1
+	if health<=0:
+		die()
 	
 func die():
 	if is_ragdoll:

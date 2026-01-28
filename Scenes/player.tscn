@@ -212,7 +212,7 @@ script = ExtResource("1_v0iea")
 shape = SubResource("CapsuleShape3D_f60y1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43073007, 0.18838778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6131607, 0.18838778)
 current = true
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
