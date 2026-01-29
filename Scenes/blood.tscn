@@ -99,6 +99,7 @@ _data = {
 
 [node name="BloodBurst" parent="." instance=ExtResource("1_p1b8m")]
 layers = 512
+lifetime = 1.0
 local_coords = true
 
 [node name="Decal" type="Decal" parent="."]
