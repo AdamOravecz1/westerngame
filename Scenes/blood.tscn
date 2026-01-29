@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://1evi6b1amfk3"]
+
+[ext_resource type="PackedScene" uid="uid://ylsocnjblena" path="res://Scenes/blood_burst.tscn" id="1_p1b8m"]
+[ext_resource type="Texture2D" uid="uid://bwi1qylv2684d" path="res://Textures/BloodSpatterBaseMask.png" id="2_4ftc1"]
+[ext_resource type="Texture2D" uid="uid://ok3iidrcfy0x" path="res://Textures/BloodSpatterNormal.png" id="3_06hgh"]
+
+[sub_resource type="Gradient" id="Gradient_p1b8m"]
+offsets = PackedFloat32Array(0.54588234)
+colors = PackedColorArray(0, 7.7769446, 7.2040105, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ftc1"]
+gradient = SubResource("Gradient_p1b8m")
+
+[sub_resource type="Animation" id="Animation_06hgh"]
+resource_name = "Init"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodBurst:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decal:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.14, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.5229772, 0, 0, 0), Color(2.0331757, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decal:albedo_mix")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.14, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qpbeo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodBurst:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decal:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.5229772, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decal:albedo_mix")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eui2f"]
+_data = {
+&"Init": SubResource("Animation_06hgh"),
+&"RESET": SubResource("Animation_qpbeo")
+}
+
+[node name="Blood" type="Node3D"]
+
+[node name="BloodBurst" parent="." instance=ExtResource("1_p1b8m")]
+layers = 512
+local_coords = true
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0300293, 0)
+layers = 1048575
+size = Vector3(0.5, 5.9399414, 0.5)
+texture_albedo = ExtResource("2_4ftc1")
+texture_normal = ExtResource("3_06hgh")
+texture_orm = SubResource("GradientTexture1D_4ftc1")
+modulate = Color(1.5229772, 0, 0, 0)
+albedo_mix = 0.0
+cull_mask = 262144
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eui2f")
+}
+autoplay = "Init"

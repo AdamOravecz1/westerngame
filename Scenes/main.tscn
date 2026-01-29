@@ -43,6 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.37985, 1.0874374, -1.99368
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 2.811, 0, 5.151)
 
 [node name="Ground" type="MeshInstance3D" parent="."]
+layers = 262144
 mesh = SubResource("PlaneMesh_344ge")
 
 [node name="Saloon2" parent="." instance=ExtResource("6_21xkr")]

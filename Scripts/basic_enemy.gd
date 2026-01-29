@@ -10,7 +10,7 @@ extends CharacterBody3D
 @onready var skeleton := $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
 @onready var model: Node3D = $BasicConnectedDude
 
-const blood_burst_scene := preload("res://Scenes/blood_burst.tscn")
+const blood_scene := preload("res://Scenes/blood.tscn")
 
 var is_ragdoll := false
 
@@ -91,10 +91,10 @@ func _physics_process(delta):
 
 
 func hit(hitbox_type: String, pos):
-	var blood_burst = blood_burst_scene.instantiate()
-	$".".add_child(blood_burst)
-	blood_burst.emitting = true
+	var blood_burst = blood_scene.instantiate()
+	get_tree().current_scene.add_child(blood_burst)
 	blood_burst.global_position = pos
+	
 	print("Hit:", hitbox_type)
 	if hitbox_type == "Head":
 		health -= 100

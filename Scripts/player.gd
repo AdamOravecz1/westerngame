@@ -40,6 +40,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	fakes.visible = false
 	dead45.visible = false
+	live45.visible = false
 	RefreshBulletCount()
 	
 	
@@ -71,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		await tween_in.finished
 		fakes.visible = true
 		dead45.visible = true
+		live45.visible = true
 
 		revolver_anim.play("OpenAction")
 		$Sounds/HalfDeCockSound.play()
@@ -113,6 +115,7 @@ func _physics_process(delta: float) -> void:
 		reloading = false
 		fakes.visible = false
 		dead45.visible = false
+		live45.visible = false
 		
 	
 	# Aim
@@ -181,7 +184,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction != Vector3.ZERO and not $Sounds/StepSound.playing:
+	if direction != Vector3.ZERO and not $Sounds/StepSound.playing and is_on_floor():
 		$Sounds/StepSound.pitch_scale = randf_range(0.7, 1)
 		$Sounds/StepSound.play()
 
