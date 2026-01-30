@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=13 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://18wixqsvofsr" path="res://3D/Saloon.blend" id="2_bo1nx"]
@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cpvimjxc4obem" path="res://Scenes/basic_enemy.tscn" id="7_6bp64"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://bxpj88w0vul0c" path="res://Scenes/barrier_broken.tscn" id="9_ynf5e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bp64"]
 albedo_texture = ExtResource("3_kry3j")
@@ -21,6 +21,9 @@ uv1_scale = Vector3(60, 60, 60)
 material = SubResource("StandardMaterial3D_6bp64")
 size = Vector2(300, 300)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_344ge"]
+size = Vector3(20, 1, 20)
+
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -28,16 +31,8 @@ transform = Transform3D(-0.722874, 0.598407, -0.345489, 2.83079e-08, 0.499998, 0
 layers = 3
 shadow_enabled = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_kry3j")
-debug_color = Color(0.981387, 0, 0.371502, 0.42)
-
 [node name="Player" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.37985, 1.0874374, -1.993686)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.37985, 1.0874374, -1.993686)
 
 [node name="Saloon" parent="." instance=ExtResource("2_bo1nx")]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 2.811, 0, 5.151)
@@ -46,8 +41,21 @@ transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 
 layers = 262144
 mesh = SubResource("PlaneMesh_344ge")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+collision_layer = 11
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -7.4926, 0)
+shape = SubResource("BoxShape3D_344ge")
+debug_color = Color(0.981387, 0, 0.371502, 0.42)
+
 [node name="Saloon2" parent="." instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -7.458)
 
 [node name="BasicEnemy" parent="." instance=ExtResource("7_6bp64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.259333, 0.01, -2.107)
+
+[node name="Barrier" parent="." instance=ExtResource("8_344ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8290052, 0.7786007, -2.326416)
+broken_model = ExtResource("9_ynf5e")

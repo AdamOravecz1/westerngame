@@ -145,6 +145,10 @@ func _physics_process(delta: float) -> void:
 					var enemy = collider.get_owner()
 					if enemy and enemy.has_method("hit"):
 						enemy.hit(collider.name, hit_pos)
+				if collider is RigidBody3D:
+					var enemy = collider.get_owner()
+					if enemy and enemy.has_method("hit"):
+						enemy.hit()
 		else:
 			$Sounds/DryFireSound.play()
 			chamber_pointer += 1
