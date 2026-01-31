@@ -7,9 +7,8 @@ func _ready() -> void:
 	for pieces:RigidBody3D in self.get_children():
 		pieces.apply_impulse(pieces.get_child(0).position * INTENSITY, self.global_position)
 	
-	await get_tree().create_timer(1.5).timeout
-	
+
 	nav_mesh.bake_navigation_mesh()
-	await  get_tree().create_timer(1.5).timeout
+	await  get_tree().create_timer(3).timeout
 	
 	queue_free()

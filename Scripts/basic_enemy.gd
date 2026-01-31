@@ -25,13 +25,24 @@ func _physics_process(delta):
 	if player == null:
 		return
 		
+
+	# Move the navigation agent
 	navigation_agent_3d.set_target_position(player.global_position)
-	
 	var destination = navigation_agent_3d.get_next_path_position()
-	var local_destination = destination - global_position
-	var direction = local_destination.normalized()
-	
+	var direction = (destination - global_position)
+	direction.y = 0  # prevent tilting
+	direction = direction.normalized()
+
+	# Move the character
 	velocity = direction * speed
+
+	# Smooth rotation toward movement direction
+	if direction.length() > 0.01:
+		
+		# Simplest smooth Y rotation
+		var target_yaw = atan2(direction.x, direction.z)
+		var current_yaw = model.rotation.y
+		model.rotation.y = lerp_angle(current_yaw, target_yaw, rotation_speed * delta)
 	
 
 	# Rotate ray to face player (Y axis only)
