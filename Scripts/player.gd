@@ -43,8 +43,7 @@ func _ready():
 	live45.visible = false
 	RefreshBulletCount()
 	
-	
-	
+
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -53,6 +52,14 @@ func _unhandled_input(event):
 		pitch -= event.relative.y * mouse_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
+		
+
+	if event.is_action_pressed("cancel"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 
 func _physics_process(delta: float) -> void:
@@ -145,7 +152,7 @@ func _physics_process(delta: float) -> void:
 					var enemy = collider.get_owner()
 					if enemy and enemy.has_method("hit"):
 						enemy.hit(collider.name, hit_pos)
-				if collider is RigidBody3D:
+				if collider is CSGBox3D:
 					var enemy = collider.get_owner()
 					if enemy and enemy.has_method("hit"):
 						enemy.hit()

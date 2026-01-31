@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
 [ext_resource type="Texture2D" uid="uid://dy8dib6g3o8v5" path="res://Textures/weathered_brown_planks_rough_4k.png" id="2_1olmg"]
+[ext_resource type="PackedScene" uid="uid://bxpj88w0vul0c" path="res://Scenes/barrier_broken.tscn" id="2_megwv"]
 [ext_resource type="Texture2D" uid="uid://bbfl0imsswmi" path="res://Textures/weathered_brown_planks_nor_gl_4k.png" id="3_megwv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwnac"]
@@ -144,11 +145,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2q4rf")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
-size = Vector3(0.18762207, 1.1049805, 1)
-
 [node name="Barrier" type="Node3D"]
 script = ExtResource("1_1olmg")
+broken_model = ExtResource("2_megwv")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25635314, -0.03791714, 0, 0.029980775, 0.3242137, 0, 0, 0, 0.25810033, -0.15782389, -0.22972822, 0)
@@ -170,8 +169,8 @@ transform = Transform3D(0.011426348, -0.0058074775, 0, 0.0013363238, 0.049657322
 mesh = SubResource("ArrayMesh_5jjcx")
 skeleton = NodePath("")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16363525, -0.22700256, 0)
-shape = SubResource("BoxShape3D_megwv")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, -0.2758152, 0)
+visible = false
+use_collision = true
+size = Vector3(0.19458008, 1, 1)
