@@ -9,6 +9,11 @@ extends CharacterBody3D
 @export var rotation_speed: float = 6.0
 @export var blend_speed := 5.0
 
+var strafe_target: Vector3
+var has_strafe_target := false
+@export var strafe_radius := 3.0
+@export var strafe_reach_distance := 0.5
+
 @onready var skeleton := $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
 @onready var model: Node3D = $BasicConnectedDude
 
@@ -17,97 +22,91 @@ const blood_scene := preload("res://Scenes/blood.tscn")
 var is_ragdoll := false
 
 @onready var player = get_tree().get_first_node_in_group("Player")
+var sees_player := false
+var player_in_range := false
 
-@onready var run_ray: RayCast3D = $RunRay
-@onready var aim_ray: RayCast3D = $AimRay
 
 func _physics_process(delta):
+	print(global_position.distance_to(player.global_position))
 	if player == null:
 		return
-		
-
-	# Move the navigation agent
-	navigation_agent_3d.set_target_position(player.global_position)
-	var destination = navigation_agent_3d.get_next_path_position()
-	var direction = (destination - global_position)
-	direction.y = 0  # prevent tilting
-	direction = direction.normalized()
-
-	# Move the character
-	velocity = direction * speed
-
-	# Smooth rotation toward movement direction
-	if direction.length() > 0.01:
-		
-		# Simplest smooth Y rotation
-		var target_yaw = atan2(direction.x, direction.z)
-		var current_yaw = model.rotation.y
-		model.rotation.y = lerp_angle(current_yaw, target_yaw, rotation_speed * delta)
 	
+	var current = $BasicConnectedDude/AnimationTree.get("parameters/Blend3/blend_amount")
+	
+	if player_in_range:
+		if speed == 2:
+			$BasicConnectedDude/AnimationTree.set("parameters/TimeSeek/seek_request", 0)
+			$Fire.start()
+			$PlayerShoot/CollisionShape3D.shape.radius = 10
+			speed = 0.5
+		#Set animation
+		ChangeAnimation(-1.0, current, delta)
+		# Pick a new strafe target if needed
+		if not has_strafe_target:
+			strafe_target = get_random_point_around_self()
+			has_strafe_target = true
+			navigation_agent_3d.set_target_position(strafe_target)
 
-	# Rotate ray to face player (Y axis only)
-	#var ray_pos = run_ray.global_position
-	#var player_pos = player.global_position
-#
-	#var dir = player_pos - ray_pos
-	#dir.y = 0
-#
-	#var target_y = atan2(dir.x, dir.z)
-	#run_ray.global_rotation.y = target_y
-	#aim_ray.global_rotation.y = target_y
-	#
-	## === Check if player is visible ===
-	#var sees_player := run_ray.is_colliding() and run_ray.get_collider() == player
-	#
-	#var current = $BasicConnectedDude/AnimationTree.get("parameters/Blend3/blend_amount")
-#
-	#if sees_player:
-		#
-		## Movement direction
-		#var direction = player.global_position - global_position
-		#direction.y = 0
-#
-		#if direction.length() < 0.1:
-			#velocity = Vector3.ZERO
-			#move_and_slide()
-			#return
-#
-		#direction = direction.normalized()
-#
-		## Desired Y rotation
-		#var modell_target_y = atan2(direction.x, direction.z)
-#
-		## Smoothly rotate only around Y, handling -PI <-> PI properly
-		#model.rotation.y = lerp_angle(model.rotation.y, modell_target_y, rotation_speed * delta)
-		#
-		#if aim_ray.is_colliding():
-			#if speed == 2:
-				#$BasicConnectedDude/AnimationTree.set("parameters/TimeSeek/seek_request", 0)
-				#$Fire.start()
-			#var target = -1.0
-			#var new_value = lerp(current, target, blend_speed * delta)
-			#$BasicConnectedDude/AnimationTree.set("parameters/Blend3/blend_amount", new_value)
-			#speed = 0.5
-			#aim_ray.target_position.z = 11
-			## STRAFE LEFT
-			#var left_dir = -model.global_transform.basis.x
-			#velocity.x = left_dir.x * speed
-			#velocity.z = left_dir.z * speed
-		#else:
-			#var target = 0.0
-			#var new_value = lerp(current, target, blend_speed * delta)
-			#$BasicConnectedDude/AnimationTree.set("parameters/Blend3/blend_amount", new_value)
-			#speed = 2
-			#aim_ray.target_position.z = 10
-			#$Fire.stop()
-			## Move the physics body forward
-			#velocity.x = direction.x * speed
-			#velocity.z = direction.z * speed
-	#else:
-		#var target = 1.0
-		#var new_value = lerp(current, target, blend_speed * delta)
-		#$BasicConnectedDude/AnimationTree.set("parameters/Blend3/blend_amount", new_value)
-		#velocity = Vector3.ZERO
+		# Move toward strafe target
+		var destination = navigation_agent_3d.get_next_path_position()
+		var direction = destination - global_position
+		direction.y = 0
+
+		# If reached → choose another random point
+		if direction.length() < strafe_reach_distance:
+			has_strafe_target = false
+			velocity = Vector3.ZERO
+		else:
+			direction = direction.normalized()
+			velocity = direction * speed
+		
+		# Look at player
+		var look_dir = player.global_position - global_position
+		look_dir.y = 0
+
+		if look_dir.length() > 0.01:
+			var target_yaw = atan2(look_dir.x, look_dir.z)
+			model.rotation.y = lerp_angle(
+				model.rotation.y,
+				target_yaw,
+				rotation_speed * delta
+			)
+
+	
+	elif sees_player:
+		
+		# Set animation
+		ChangeAnimation(0.0, current, delta)
+		$Fire.stop()
+		speed = 2
+		has_strafe_target = false
+		$PlayerShoot/CollisionShape3D.shape.radius = 8
+		
+		# Move the navigation agent
+		navigation_agent_3d.set_target_position(player.global_position)
+		var destination = navigation_agent_3d.get_next_path_position()
+		var direction = (destination - global_position)
+		direction.y = 0  # prevent tilting
+		direction = direction.normalized()
+
+		# Move the character
+		velocity = direction * speed
+
+		# Smooth rotation toward movement direction
+		if direction.length() > 0.01:
+			
+			# Simplest smooth Y rotation
+			var target_yaw = atan2(direction.x, direction.z)
+			var current_yaw = model.rotation.y
+			model.rotation.y = lerp_angle(current_yaw, target_yaw, rotation_speed * delta)
+			
+	else:
+		# Set animation
+		ChangeAnimation(1.0, current, delta)
+		
+		speed = 0
+		velocity = Vector3.ZERO
+	
 
 	move_and_slide()
 
@@ -144,8 +143,8 @@ func die():
 	enemy_anim.stop()
 
 	# Disable character collision
-	$RunRay.queue_free()
-	$AimRay.queue_free()
+	$PlayerSearch.queue_free()
+	$PlayerShoot.queue_free()
 	$Fire.queue_free()
 	$CollisionShape3D.disabled = true
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
@@ -168,6 +167,27 @@ func die():
 	# Stop logic
 	set_physics_process(false)
 	
+func ChangeAnimation(target, current, delta):
+	var new_value = lerp(current, target, blend_speed * delta)
+	$BasicConnectedDude/AnimationTree.set("parameters/Blend3/blend_amount", new_value)
+	
+func get_random_point_around_self() -> Vector3:
+	# Random angle between -90° and +90°
+	var angle = randf_range(-PI * 0.5, PI * 0.5)
+
+	# Forward direction of the enemy
+	var forward = model.global_transform.basis.z
+	if global_position.distance_to(player.global_position) <= 3:
+		forward = -model.global_transform.basis.z
+
+	forward.y = 0
+	forward = forward.normalized()
+
+	# Rotate forward vector around Y
+	var dir = forward.rotated(Vector3.UP, angle)
+
+	return global_position + dir * strafe_radius
+
 
 
 func _on_fire_timeout() -> void:
@@ -176,3 +196,25 @@ func _on_fire_timeout() -> void:
 	$BasicConnectedDude/AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 	print("fire")
+
+
+func _on_player_search_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		sees_player = true
+		
+
+
+func _on_player_search_body_exited(body: Node3D) -> void:
+	if body.name == "Player":
+		sees_player = false
+
+
+func _on_player_shoot_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		player_in_range = true
+
+
+func _on_player_shoot_body_exited(body: Node3D) -> void:
+	if body.name == "Player":
+		player_in_range = false
+		
