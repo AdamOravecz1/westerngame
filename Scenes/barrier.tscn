@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dsesj1gvyb4ha"]
+[gd_scene load_steps=16 format=4 uid="uid://dsesj1gvyb4ha"]
 
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
@@ -145,6 +145,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2q4rf")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
+size = Vector3(0.8359375, 1, 1)
+
 [node name="Barrier" type="Node3D"]
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
@@ -174,3 +177,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, -0.2224063, 0)
 visible = false
 use_collision = true
 size = Vector3(0.19458008, 1, 1)
+
+[node name="HideArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5575299, -0.77849233, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047183275, 0.5420926, 0)
+shape = SubResource("BoxShape3D_megwv")
+
+[connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
