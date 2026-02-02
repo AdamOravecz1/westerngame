@@ -27,7 +27,6 @@ var player_in_range := false
 
 
 func _physics_process(delta):
-	print(global_position.distance_to(player.global_position))
 	if player == null:
 		return
 	
