@@ -25,10 +25,10 @@ size = Vector2(300, 300)
 size = Vector3(20, 1, 20)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_344ge"]
-vertices = PackedVector3Array(1.75, 0.00999999, -3.25, 2.25, 0.00999999, -3.5, 2.25, 0.00999999, -99.75, -99.75, 0.00999999, -99.75, -99.75, 0.00999999, -2.5, 1.75, 0.00999999, -2.5, 2.75, 0.00999999, -3.25, 99.75, 0.00999999, -2.5, 99.75, 0.00999999, -99.75, 2.75, 0.00999999, -2.5, 2.25, 0.00999999, -1.75, -99.75, 0.00999999, 99.75, 2.25, 0.00999999, 99.75, 99.75, 0.00999999, 99.75)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(7, 9, 6), PackedInt32Array(5, 10, 4), PackedInt32Array(4, 10, 12), PackedInt32Array(4, 12, 11), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 12), PackedInt32Array(12, 7, 13)]
+vertices = PackedVector3Array(-1.25, 0.00999999, -4.25, -1, 0.00999999, -4.25, -1, 0.00999999, -4.5, 0, 0.00999999, -4.5, 0, 0.00999999, -4.25, 0.25, 0.00999999, -4.25, 0.25, 0.00999999, -6, 0.5, 0.00999999, -6, 0.5, 0.00999999, -6.25, 1, 0.00999999, -7.5, 1.25, 0.00999999, -7.5, 1.25, 0.00999999, -7.75, 1, 0.00999999, -6.25, -99.5, 0.00999999, -3.25, -1.25, 0.00999999, -3.25, 1.75, 0.00999999, -99.5, -99.5, 0.00999999, -99.5, 1.75, 0.00999999, -7.75, 2.25, 0.00999999, -7.75, 2.5, 0.00999999, -7.25, 99.5, 0.00999999, -7.25, 99.5, 0.00999999, -99.5, 2.75, 0.00999999, -3.75, 2.75, 0.00999999, -3.5, 3, 0.00999999, -3.5, 2.5, 0.00999999, -5.75, 2.25, 0.00999999, -5.75, 2.25, 0.00999999, -5.5, 1.75, 0.00999999, -4.25, 1.5, 0.00999999, -4.25, 1.5, 0.00999999, -4, 1.75, 0.00999999, -3.75, 3, 0.00999999, -2.5, 99.5, 0.00999999, -2.5, 1.75, 0.00999999, -5.5, 1.75, 0.00999999, -1.5, 1.75, 0.00999999, -1.75, 1.5, 0.00999999, -1.75, 1.5, 0.00999999, -3.5, 1.75, 0.00999999, -3.5, 0.5, 0.00999999, -4, 0.5, 0.00999999, -4.25, 0.25, 0.00999999, -2.5, 0, 0.00999999, -2.5, 0, 0.00999999, -2.25, -1, 0.00999999, -2.25, -1, 0.00999999, -2.5, -1.25, 0.00999999, -2.5, -99.5, 0.00999999, 99.5, 2.25, 0.00999999, 99.5, 2.25, 0.00999999, -1.5, 3, 0.00999999, -1.75, 2.75, 0.00999999, -1.75, 2.75, 0.00999999, -1.5, 99.5, 0.00999999, 99.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 12, 8), PackedInt32Array(0, 14, 13), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 3, 2), PackedInt32Array(6, 2, 0), PackedInt32Array(6, 0, 9), PackedInt32Array(9, 0, 15), PackedInt32Array(15, 0, 13), PackedInt32Array(15, 13, 16), PackedInt32Array(15, 17, 11), PackedInt32Array(15, 11, 9), PackedInt32Array(18, 17, 15), PackedInt32Array(18, 15, 19), PackedInt32Array(19, 15, 20), PackedInt32Array(20, 15, 21), PackedInt32Array(24, 23, 22), PackedInt32Array(27, 26, 25), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(33, 32, 24), PackedInt32Array(31, 28, 22), PackedInt32Array(22, 28, 27), PackedInt32Array(22, 27, 25), PackedInt32Array(28, 34, 27), PackedInt32Array(22, 25, 24), PackedInt32Array(24, 25, 19), PackedInt32Array(24, 19, 20), PackedInt32Array(24, 20, 33), PackedInt32Array(37, 36, 35), PackedInt32Array(39, 38, 31), PackedInt32Array(31, 38, 30), PackedInt32Array(30, 38, 40), PackedInt32Array(41, 40, 5), PackedInt32Array(5, 40, 42), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 37), PackedInt32Array(47, 46, 45), PackedInt32Array(13, 14, 47), PackedInt32Array(13, 47, 45), PackedInt32Array(45, 35, 13), PackedInt32Array(13, 35, 49), PackedInt32Array(13, 49, 48), PackedInt32Array(40, 38, 42), PackedInt32Array(42, 38, 37), PackedInt32Array(35, 50, 49), PackedInt32Array(37, 35, 44), PackedInt32Array(44, 35, 45), PackedInt32Array(53, 52, 51), PackedInt32Array(51, 32, 33), PackedInt32Array(51, 33, 53), PackedInt32Array(53, 33, 54), PackedInt32Array(53, 54, 49), PackedInt32Array(49, 50, 53)]
 cell_height = 0.01
-agent_radius = 0.25
+edge_max_error = 0.5
 
 [node name="Main" type="Node3D" groups=["Main"]]
 script = ExtResource("1_ynf5e")
@@ -39,7 +39,7 @@ layers = 3
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.37985, 1.0874374, -1.993686)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.683865, 1.0874374, -2.2423682)
 
 [node name="Saloon" parent="." instance=ExtResource("2_bo1nx")]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 2.811, 0, 5.151)
@@ -61,7 +61,7 @@ debug_color = Color(0.981387, 0, 0.371502, 0.42)
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -7.458)
 
 [node name="BasicEnemy" parent="." instance=ExtResource("7_6bp64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.381089, 0.01, -2.107)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.891653, 0.01, -4.8646774)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["NavigationRegion"]]
 navigation_mesh = SubResource("NavigationMesh_344ge")
@@ -73,3 +73,12 @@ size = Vector3(200, 1, 200)
 
 [node name="Barrier" parent="NavigationRegion3D" instance=ExtResource("8_344ge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.459467, 0.7786007, -2.6084175)
+
+[node name="Barrier2" parent="NavigationRegion3D" instance=ExtResource("8_344ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1353416, 0.7786007, -5.224862)
+
+[node name="Barrier3" parent="NavigationRegion3D" instance=ExtResource("8_344ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2679162, 0.7786007, -3.4073288)
+
+[node name="Barrier4" parent="NavigationRegion3D" instance=ExtResource("8_344ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9579701, 0.7786007, -6.5952253)
