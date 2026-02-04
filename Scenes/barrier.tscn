@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dsesj1gvyb4ha"]
+[gd_scene load_steps=17 format=4 uid="uid://dsesj1gvyb4ha"]
 
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
@@ -148,6 +148,9 @@ shadow_mesh = SubResource("ArrayMesh_2q4rf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
 size = Vector3(0.46076584, 1, 0.069244385)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig2pw"]
+size = Vector3(0.5380249, 1, 0.067871094)
+
 [node name="Barrier" type="Node3D"]
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
@@ -181,18 +184,22 @@ size = Vector3(0.19458008, 1, 1)
 [node name="HideArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85136503, -0.6758473, 0)
 collision_layer = 4
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24867338, 0.5420926, -0.021011353)
 shape = SubResource("BoxShape3D_megwv")
 
 [node name="HideArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33085102, -0.6758473, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5054805, 0, 0)
 collision_layer = 4
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05941862, 0.5420926, -0.021011353)
-shape = SubResource("BoxShape3D_megwv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18777752, 0, -0.021240234)
+shape = SubResource("BoxShape3D_ig2pw")
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
-[connection signal="body_entered" from="HideArea2" to="." method="_on_hide_area_body_entered"]
+[connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]
+[connection signal="body_entered" from="HideArea2" to="." method="_on_hide_area_2_body_entered"]
+[connection signal="body_exited" from="HideArea2" to="." method="_on_hide_area_2_body_exited"]

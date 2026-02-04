@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var enemy_anim: AnimationPlayer = $BasicConnectedDude.get_node("AnimationPlayer")
 @onready var animation_tree: AnimationTree = $BasicConnectedDude/AnimationTree
 
-
 @export var health: float = 5
 @export var speed: float = 2.0
 @export var rotation_speed: float = 6.0
@@ -23,6 +22,8 @@ const blood_scene := preload("res://Scenes/blood.tscn")
 
 var is_ragdoll := false
 
+var enemies = []
+
 @onready var player = get_tree().get_first_node_in_group("Player")
 var sees_player := false
 var player_in_range := false
@@ -36,7 +37,9 @@ var hiding_spots = {}
 
 
 func _physics_process(delta):
-	#print(hiding_spot_blocker)
+	enemies = get_tree().current_scene.get_child(0).get_children()
+	enemies.erase(self)
+	
 	var closest := INF
 
 	for parent in hiding_spots:
@@ -54,7 +57,14 @@ func _physics_process(delta):
 		)
 
 		var dist := global_position.distance_to(further_area.global_position)
-		if dist < closest:
+		var can_hide_there = true
+
+		for enemy in enemies:
+			if enemy.global_position.distance_to(further_area.global_position) < dist:
+				can_hide_there = false
+				break
+
+		if can_hide_there and dist < closest:
 			closest = dist
 			cover_location = further_area.global_position
 			hiding_spot_blocker = further_area.get_parent().get_child(4)
@@ -219,6 +229,9 @@ func die():
 	# Stop logic
 	set_physics_process(false)
 	
+	await get_tree().create_timer(5).timeout
+	queue_free()
+	
 func ChangeAnimation(target, current, delta):
 	var new_value = lerp(current, target, blend_speed * delta)
 	animation_tree.set("parameters/Blend3/blend_amount", new_value)
@@ -287,7 +300,7 @@ func look_at_player(delta):
 			)
 
 func _on_fire_timeout() -> void:
-
+	$Fire.wait_time = randf_range(3.0, 5.0)
 	if animation_tree.get("parameters/Blend3/blend_amount") <= -0.9:
 		if in_cover and player_in_range:
 			shooting_from_cover = true
@@ -297,14 +310,14 @@ func _on_fire_timeout() -> void:
 				$Sounds/FireSound.play()
 				await get_tree().create_timer(1).timeout
 				shooting_from_cover = false
-				print("shot_from_cover")
+				#print("shot_from_cover")
 			
 		elif player_in_range:
 			$Sounds/FireSound.play()
 			animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			print("just_shot")
+			#print("just_shot")
 
-		print("fire")
+		#print("fire")
 
 
 func _on_player_search_body_entered(body: Node3D) -> void:
