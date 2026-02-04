@@ -191,12 +191,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24867338, 0.5420926, -0.021
 shape = SubResource("BoxShape3D_megwv")
 
 [node name="HideArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5054805, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5054805, -0.6263146, 0)
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18777752, 0, -0.021240234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18777752, 0.48713362, -0.021240234)
 shape = SubResource("BoxShape3D_ig2pw")
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]

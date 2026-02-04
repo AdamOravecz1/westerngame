@@ -35,6 +35,8 @@ var cover_location := Vector3.ZERO
 var hiding_spot_blocker = Area3D
 var hiding_spots = {}
 
+func _ready() -> void:
+	$Fire.wait_time = randf_range(3.0, 5.0)
 
 func _physics_process(delta):
 	enemies = get_tree().current_scene.get_child(0).get_children()
@@ -43,6 +45,7 @@ func _physics_process(delta):
 	var closest := INF
 
 	for parent in hiding_spots:
+
 		var areas = hiding_spots[parent]
 		if areas.size() != 2:
 			continue
@@ -60,23 +63,26 @@ func _physics_process(delta):
 		var can_hide_there = true
 
 		for enemy in enemies:
-			if enemy.global_position.distance_to(further_area.global_position) < dist:
+			if enemy.cover_location == further_area.global_position:
 				can_hide_there = false
 				break
+				
 
 		if can_hide_there and dist < closest:
 			closest = dist
 			cover_location = further_area.global_position
 			hiding_spot_blocker = further_area.get_parent().get_child(4)
-			
+	
 	
 	if cover_location != Vector3.ZERO and not in_cover:
 		$PlayerChecker.global_position = cover_location
 		if $PlayerChecker.get_collider() == hiding_spot_blocker:
 			sees_cover = true
+		else:
+			hiding_spot_blocker = Area3D
+			cover_location = Vector3.ZERO
 	
 	$PlayerChecker.look_at(player.global_position, Vector3.UP)
-		
 		
 
 	var current = animation_tree.get("parameters/Blend3/blend_amount")
@@ -123,7 +129,8 @@ func _physics_process(delta):
 			
 		#Set animation
 		ChangeAnimation(-1.0, current, delta)
-		animation_tree.set("parameters/Blend3 2/blend_amount", -1.0)
+		var new_value = lerp(current2, -1.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
 		animation_tree.set("parameters/Blend2/blend_amount", 1.0)
 		
 		# Pick a new strafe target if needed
