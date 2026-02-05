@@ -152,6 +152,7 @@ size = Vector3(0.46076584, 1, 0.069244385)
 size = Vector3(0.5380249, 1, 0.067871094)
 
 [node name="Barrier" type="Node3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
 
@@ -179,25 +180,42 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, -0.2224063, 0)
 visible = false
 use_collision = true
+collision_layer = 17
 size = Vector3(0.19458008, 1, 1)
 
 [node name="HideArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85136503, -0.6758473, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.851, -0.675, 0)
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24867338, 0.5420926, -0.021011353)
 shape = SubResource("BoxShape3D_megwv")
+debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
 [node name="HideArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5054805, -0.6263146, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505, -0.675, 0)
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18777752, 0.48713362, -0.021240234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188, 0.542, -0.021)
 shape = SubResource("BoxShape3D_ig2pw")
+debug_color = Color(0.9584171, 0, 0.53013366, 1)
+
+[node name="PlayerChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7955177, -0.5614718, 0)
+target_position = Vector3(0, 0, -50)
+collision_mask = 16
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="PlayerChecker2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, -0.561, 0)
+target_position = Vector3(0, 0, -50)
+collision_mask = 16
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]

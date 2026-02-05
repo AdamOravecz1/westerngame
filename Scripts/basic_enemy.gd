@@ -31,9 +31,8 @@ var sees_cover := false
 var in_cover := false
 var shooting_from_cover := false
 
-var cover_location := Vector3.ZERO
-var hiding_spot_blocker = Area3D
-var hiding_spots = {}
+var cover_location := Vector3.INF
+var hiding_spots = []
 
 func _ready() -> void:
 	$Fire.wait_time = randf_range(3.0, 5.0)
@@ -44,52 +43,26 @@ func _physics_process(delta):
 	
 	var closest := INF
 
-	for parent in hiding_spots:
-
-		var areas = hiding_spots[parent]
-		if areas.size() != 2:
-			continue
-
-		var a = areas[0]
-		var b = areas[1]
-
-		var further_area = (
-		a if a.global_position.distance_to(player.global_position)
-		> b.global_position.distance_to(player.global_position)
-		else b
-		)
-
-		var dist := global_position.distance_to(further_area.global_position)
+	for area in hiding_spots:
+		
+		var dist := global_position.distance_to(area.global_position)
 		var can_hide_there = true
-
 		for enemy in enemies:
-			if enemy.cover_location == further_area.global_position:
+			if enemy.cover_location == area.global_position:
 				can_hide_there = false
 				break
-				
 
-		if can_hide_there and dist < closest:
+		if can_hide_there and dist < closest and not in_cover:
 			closest = dist
-			cover_location = further_area.global_position
-			hiding_spot_blocker = further_area.get_parent().get_child(4)
-	
-	
-	if cover_location != Vector3.ZERO and not in_cover:
-		$PlayerChecker.global_position = cover_location
-		if $PlayerChecker.get_collider() == hiding_spot_blocker:
+			cover_location = area.global_position
 			sees_cover = true
-		else:
-			hiding_spot_blocker = Area3D
-			cover_location = Vector3.ZERO
-	
-	$PlayerChecker.look_at(player.global_position, Vector3.UP)
-		
+
 
 	var current = animation_tree.get("parameters/Blend3/blend_amount")
 	var current2 = animation_tree.get("parameters/Blend3 2/blend_amount")
 	var current3 = animation_tree.get("parameters/Blend2/blend_amount")
 	
-	if shooting_from_cover and $PlayerChecker.get_collider() == hiding_spot_blocker:
+	if shooting_from_cover:
 		var new_value = lerp(current2, 1.0, blend_speed * delta)
 		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
 		var new_value2 = lerp(current3, 1.0, blend_speed * delta)
@@ -97,7 +70,7 @@ func _physics_process(delta):
 		look_at_player(delta)
 		#print("shooting_from_cover")
 	
-	elif in_cover and sees_player and $PlayerChecker.get_collider() == hiding_spot_blocker and global_position.distance_to(player.global_position) >= 2:
+	elif in_cover and sees_player:
 		ChangeAnimation(-1.0, current, delta)
 		#print($BasicConnectedDude/PlayerChecker.get_collider())
 		var new_value = lerp(current2, 0.0, blend_speed * delta)
@@ -111,7 +84,7 @@ func _physics_process(delta):
 		look_at_player(delta)
 		#print("in_cover")
 
-	elif sees_cover and sees_player and $PlayerChecker.get_collider() == hiding_spot_blocker and global_position.distance_to(player.global_position) >= 2:
+	elif sees_cover and sees_player:
 		# Set animation
 		ChangeAnimation(0.0, current, delta)
 		speed = 2
@@ -260,15 +233,6 @@ func get_random_point_around_self() -> Vector3:
 	dir.y = 0
 	dir = dir.normalized()
 
-	# ---- COVER CONSTRAINT (ONLY WHEN IN COVER) ----
-	if cover_location != Vector3.ZERO:
-		var away_from_cover = (global_position - cover_location).normalized()
-		away_from_cover.y = 0
-		away_from_cover = away_from_cover.normalized()
-
-		# If dir points toward cover, flip it
-		if dir.dot(away_from_cover) < 0:
-			dir = -dir
 
 	return global_position + dir * strafe_radius
 
@@ -358,26 +322,15 @@ func _on_cover_checker_area_exited(area: Area3D) -> void:
 		shooting_from_cover = false
 
 func _on_player_shoot_area_entered(area: Area3D) -> void:
-	if area.name.begins_with("HideArea") and hiding_spot_blocker == Area3D:
-		var parent = area.get_parent()
+	if area.name.begins_with("HideArea"):
 
-		if not hiding_spots.has(parent):
-			hiding_spots[parent] = []
-
-		hiding_spots[parent].append(area)
-
-
+		hiding_spots.append(area)
 		
 func _on_player_shoot_area_exited(area: Area3D) -> void:
 	if area.name.begins_with("HideArea"):
-		var parent = area.get_parent()
-		if hiding_spots.has(parent):
-			hiding_spots[parent].erase(area)
+		hiding_spots.erase(area)
 		if area.global_position == cover_location:
 			shooting_from_cover = false
-			$PlayerShoot.monitoring = false
-			$PlayerShoot.monitoring = true
-			
-		cover_location = Vector3.ZERO
+
+
 		sees_cover = false
-		hiding_spot_blocker = Area3D
