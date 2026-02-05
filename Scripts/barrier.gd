@@ -10,19 +10,21 @@ func _process(delta: float) -> void:
 	$PlayerChecker2.look_at(player.global_position, Vector3.UP)
 	if $PlayerChecker.get_collider() == $Barrier and Vector2($HideArea.global_position.x, $HideArea.global_position.z) \
 	.distance_to(Vector2(player.global_position.x, player.global_position.z)) >= 3:
-		if snapped($HideArea.position.y, 0.001) == -100.675:
-			$HideArea.position.y += 100
-	else:
-		if snapped($HideArea.position.y, 0.001) == -0.675:
+
+		if snapped($HideArea.position.y, 0.01) == 100.05:
 			$HideArea.position.y -= 100
+	else:
+
+		if snapped($HideArea.position.y, 0.01) == 0.05:
+			$HideArea.position.y += 100
 
 	if $PlayerChecker2.get_collider() == $Barrier and Vector2($HideArea2.global_position.x, $HideArea2.global_position.z) \
 	.distance_to(Vector2(player.global_position.x, player.global_position.z)) >= 3:
-		if snapped($HideArea2.position.y, 0.001) == -100.675:
-			$HideArea2.position.y += 100
-	else: 
-		if snapped($HideArea2.position.y, 0.001) == -0.675:
+		if snapped($HideArea2.position.y, 0.001) == 100.05:
 			$HideArea2.position.y -= 100
+	else: 
+		if snapped($HideArea2.position.y, 0.001) == 0.05:
+			$HideArea2.position.y += 100
 
 
 func hit():

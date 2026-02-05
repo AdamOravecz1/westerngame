@@ -19,7 +19,7 @@ normal_texture = ExtResource("3_megwv")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_petd2"]
 _surfaces = [{
-"aabb": AABB(-0.06879392, -1.7158551, -1.6973202, 0.13758785, 3.4317102, 3.394641),
+"aabb": AABB(-0.42208567, 0.057919383, -1.6973202, 0.13758785, 3.4317102, 3.394641),
 "format": 34896613377,
 "index_count": 216,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYACAAJAAoACAALAAkADAAKAAkACwAMAAkADQAIAAoACwAIAA0ADAAOAAoADQAKAA4ACwAPAAwACwANAA8ADwAOAAwADwANAA4AEAARABIAEAATABEAFAASABEAEwAUABEAFQAQABIAEwAQABUAFAAWABIAFQASABYAEwAXABQAEwAVABcAFwAWABQAFwAVABYAGAAZABoAGAAbABkAHAAaABkAGwAcABkAHQAYABoAGwAYAB0AHAAeABoAHQAaAB4AGwAfABwAGwAdAB8AHwAeABwAHwAdAB4AIAAhACIAIAAjACEAJAAiACEAIwAkACEAJQAgACIAIwAgACUAJAAmACIAJQAiACYAIwAnACQAIwAlACcAJwAmACQAJwAlACYAKAApACoAKAArACkALAAqACkAKwAsACkALQAoACoAKwAoAC0ALAAuACoALQAqAC4AKwAvACwAKwAtAC8ALwAuACwALwAtAC4A"),
@@ -31,10 +31,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ljm7j"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_megwv"]
 resource_name = "Barrier_Cube_001"
 _surfaces = [{
-"aabb": AABB(-0.06879392, -1.7158551, -1.6973202, 0.13758785, 3.4317102, 3.394641),
+"aabb": AABB(-0.42208567, 0.057919383, -1.6973202, 0.13758785, 3.4317102, 3.394641),
 "attribute_data": PackedByteArray("YYDbt3L56q1y+du3YYDqrdOGLdTtwo7R7cIt1NOGjtF/gGPrbvly4W75Y+t/gHLh04aC0O3C483twoLQ04bjzcaybtzruwzfxrIM3+u7btypqG7cz7EM36moDN/PsW7cU4AawmT5KLhk+RrCU4AouNOG18ztwjjK7cLXzNOGOMp4gH/guvmO1rr5f+B4gI7W04Ysye3CjsbtwizJ04aOxp7bw9jE5GHbntth28Tkw9iC0cPYp9ph24LRYdun2sPYBoCXrRf5pqMX+ZetBoCmo9OGgcXtwuPC7cKBxdOG48J9gBvWvvkqzL75G9Z9gCrM5MMyvv//k7v//zK+5MOTu2XHw9iL0GHbZcdh24vQw9hJvcPYbsZh20m9YdtuxsPYFIBYoyb5Z5km+VijFIBnmdOGMr7twpO77cIyvtOGk7s5gOn1q/n466v56fU5gPjr5MOHuv//6Lf//4e65MPot42ebtyypwzfjZ4M37KnbtxxlG7clp0M33GUDN+WnW7cFIB9jyb5jIUm+X2PFICMhdOGh7rtwui37cKHutOG6LdggP//0vkN9tL5//9ggA325MPctv//PbT//9y25MM9tFSKbtx6kwzfVIoM33qTbtw4gG7cXYkM3ziADN9diW7cO4CGmUz5lY9M+YaZO4CVj9OG3Lbtwj207cLcttOGPbT+fzrMoflJwqH5Osz+f0nC5MMxs///k7D//zGz5MOTsNfvw9j8+GHb1+9h2/z4w9i65cPY4O5h27rlYdvg7sPY"),
 "format": 34896613399,
 "index_count": 216,
@@ -51,7 +51,7 @@ shadow_mesh = SubResource("ArrayMesh_petd2")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_apgys"]
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-9.034938, -0.09680474, 18.44366, 2, 2, 2),
 "format": 34896613377,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
@@ -63,10 +63,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3yl7i"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ig2pw"]
 resource_name = "Barrier_Cube_002"
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-9.034938, -0.09680474, 18.44366, 2, 2, 2),
 "attribute_data": PackedByteArray("01SR0YEAF9mBAJHR01QX2bP/Fm1ZAF5/WQAWbbP/Xn8oqoDR1lUo2dZVgNEoqijZev+Cf4QAiJOEAIJ/ev+Ik1gwWDD8JPwkWDD8JPwkWDCTeT4ka4YWMZN5FjFrhj4k"),
 "format": 34896613399,
 "index_count": 36,
@@ -83,7 +83,7 @@ shadow_mesh = SubResource("ArrayMesh_apgys")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_my6xl"]
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-9.034938, -0.0968048, 18.443663, 2, 2, 2),
 "format": 34896613377,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
@@ -95,10 +95,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bxaak"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rkote"]
 resource_name = "Barrier_Cube_004"
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-9.034938, -0.0968048, 18.443663, 2, 2, 2),
 "attribute_data": PackedByteArray("01SR0YEAF9mBAJHR01QX2bP/Fm1ZAF5/WQAWbbP/Xn8oqoDR1lUo2dZVgNEoqijZev+Cf4QAiJOEAIJ/ev+Ik1gwWDD8JPwkWDD8JPwkWDCTeT4ka4YWMZN5FjFrhj4k"),
 "format": 34896613399,
 "index_count": 36,
@@ -115,7 +115,7 @@ shadow_mesh = SubResource("ArrayMesh_my6xl")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2q4rf"]
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-11.647897, 11.891314, -0.99999994, 2, 2, 2),
 "format": 34896613377,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
@@ -127,10 +127,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5jjcx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0cgl3"]
 resource_name = "Barrier_Cube_005"
 _surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"aabb": AABB(-11.647897, 11.891314, -0.99999994, 2, 2, 2),
 "attribute_data": PackedByteArray("DYAu9cr///8NgP//yv8u9W6qjrBAgEHgQICOsG6qQeBBgPTp///F9EGAxfT///TpHdWOsO+qQeDvqo6wHdVB4K6p7JGAf0CZrqlAmYB/7JFd1OyRL6pAmV3UQJkvquyR"),
 "format": 34896613399,
 "index_count": 36,
@@ -152,39 +152,38 @@ size = Vector3(0.46076584, 1, 0.069244385)
 size = Vector3(0.5380249, 1, 0.067871094)
 
 [node name="Barrier" type="Node3D"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
 
-[node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25635314, -0.03791714, 0, 0.029980775, 0.3242137, 0, 0, 0, 0.25810033, -0.15782389, -0.22972822, 0)
-mesh = SubResource("ArrayMesh_ljm7j")
+[node name="Cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3007527, -0.04448427, 0, 0.03517335, 0.3803665, 0, 0, 0, 0.3028025, 0, -0.010123298, 0)
+mesh = SubResource("ArrayMesh_megwv")
 skeleton = NodePath("")
 
-[node name="Cube_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0372518, 0.056505267, 0, -0.005809372, 0.36233225, 0, 0, 0, 0.02396767, -0.24828061, -0.42028356, 0.46601927)
-mesh = SubResource("ArrayMesh_3yl7i")
+[node name="Cube_004" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.043703694, 0.06629181, 0, -0.006815537, 0.42508712, 0, 0, 0, 0.028118797, 0, -0.010123298, 0)
+mesh = SubResource("ArrayMesh_ig2pw")
 skeleton = NodePath("")
 
-[node name="Cube_002" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.037251804, 0.05650527, 0, -0.0058093723, 0.36233228, 0, 0, 0, -0.02396767, -0.24828061, -0.42028356, -0.46601927)
-mesh = SubResource("ArrayMesh_bxaak")
+[node name="Cube_005" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.043703698, 0.06629182, 0, -0.0068155373, 0.42508718, 0, 0, 0, -0.028118797, 0, -0.010123298, 0)
+mesh = SubResource("ArrayMesh_rkote")
 skeleton = NodePath("")
 
-[node name="Cube_003" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.011426348, -0.0058074775, 0, 0.0013363238, 0.049657322, 0, 0, 0, 0.44008768, -0.19653259, -0.1682992, 0)
-mesh = SubResource("ArrayMesh_5jjcx")
+[node name="Cube_006" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0134053575, -0.0068133147, 0, 0.0015677708, 0.058257822, 0, 0, 0, 0.5163095, 0, -0.010123298, 0)
+mesh = SubResource("ArrayMesh_0cgl3")
 skeleton = NodePath("")
 
 [node name="Barrier" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, -0.2224063, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, 0.64248115, 0)
 visible = false
 use_collision = true
 collision_layer = 17
-size = Vector3(0.19458008, 1, 1)
+size = Vector3(0.19458008, 1.2811279, 1)
 
 [node name="HideArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.851, -0.675, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9320932, 0.05, 0)
 collision_layer = 4
 collision_mask = 5
 
@@ -194,7 +193,7 @@ shape = SubResource("BoxShape3D_megwv")
 debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
 [node name="HideArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505, -0.675, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505, 0.05, 0)
 collision_layer = 4
 collision_mask = 5
 
@@ -204,14 +203,14 @@ shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
 [node name="PlayerChecker" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7955177, -0.5614718, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8766109, 0.16285165, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 16
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="PlayerChecker2" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, -0.561, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.16332348, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 16
 collide_with_areas = true
