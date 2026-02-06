@@ -4,7 +4,7 @@ extends Node3D
 @onready var nav_mesh = get_tree().get_first_node_in_group("NavigationRegion")
 
 func _ready() -> void:
-	for pieces:RigidBody3D in self.get_children():
+	for pieces:RigidBody3D in self.get_children().slice(0, 30):
 		pieces.apply_impulse(pieces.get_child(0).position * INTENSITY, self.global_position)
 	
 

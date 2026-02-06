@@ -90,3 +90,6 @@ transform = Transform3D(0.61969686, 0, -0.7848413, 0, 1, 0, 0.7848413, 0, 0.6196
 
 [node name="Barrier4" parent="NavigationRegion3D" instance=ExtResource("8_344ge")]
 transform = Transform3D(0.8100928, 0, 0.5863017, 0, 1, 0, -0.5863017, 0, 0.8100928, 4.968656, 0.03197676, -6.648885)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.6028042, 0, 0.7978891, 0, 1, 0, -0.7978891, 0, 0.6028042, 0, 2.6305578, 0)

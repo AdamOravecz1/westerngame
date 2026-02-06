@@ -22,6 +22,8 @@ const blood_scene := preload("res://Scenes/blood.tscn")
 
 var is_ragdoll := false
 
+@onready var gun_ray := $BasicConnectedDude/Armature/Skeleton3D/Gun/RayCast3D
+
 var enemies = []
 
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -38,6 +40,7 @@ func _ready() -> void:
 	$Fire.wait_time = randf_range(3.0, 5.0)
 
 func _physics_process(delta):
+	gun_ray.target_position = gun_ray.to_local(player.get_child(1).global_position)
 	enemies = get_tree().current_scene.get_child(0).get_children()
 	enemies.erase(self)
 	
@@ -148,8 +151,6 @@ func _physics_process(delta):
 		speed = 0
 		velocity = Vector3.ZERO
 		#print("else")
-	
-
 	move_and_slide()
 
 
@@ -210,7 +211,9 @@ func die():
 	set_physics_process(false)
 	
 	await get_tree().create_timer(5).timeout
-	queue_free()
+	queue_free()	
+
+
 	
 func ChangeAnimation(target, current, delta):
 	var new_value = lerp(current, target, blend_speed * delta)
@@ -279,12 +282,16 @@ func _on_fire_timeout() -> void:
 			if in_cover:
 				animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				$Sounds/FireSound.play()
+				if gun_ray.get_collider() == player:
+					player.take_damage()
 				await get_tree().create_timer(1).timeout
 				shooting_from_cover = false
 				#print("shot_from_cover")
 			
 		elif player_in_range:
 			$Sounds/FireSound.play()
+			if gun_ray.get_collider() == player:
+				player.take_damage()
 			animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			#print("just_shot")
 

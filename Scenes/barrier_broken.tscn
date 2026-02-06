@@ -1,9 +1,10 @@
-[gd_scene load_steps=96 format=4 uid="uid://bxpj88w0vul0c"]
+[gd_scene load_steps=97 format=4 uid="uid://bxpj88w0vul0c"]
 
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
 [ext_resource type="Script" uid="uid://bii3upqsgvqgg" path="res://Scripts/barrier_broken.gd" id="1_whemb"]
 [ext_resource type="Texture2D" uid="uid://dy8dib6g3o8v5" path="res://Textures/weathered_brown_planks_rough_4k.png" id="2_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bbfl0imsswmi" path="res://Textures/weathered_brown_planks_nor_gl_4k.png" id="3_megwv"]
+[ext_resource type="AudioStream" uid="uid://kfi5rfmak407" path="res://Sounds/freesound_community-wood-crate-destory-2-97263.wav" id="5_vfydy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwnac"]
 resource_name = "Plank"
@@ -1487,3 +1488,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D30"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020012707, -0.015688717, -0.20334238)
 shape = SubResource("ConvexPolygonShape3D_s7kko")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_vfydy")
+autoplay = true

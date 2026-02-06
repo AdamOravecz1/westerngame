@@ -6,6 +6,13 @@ extends CharacterBody3D
 @export var terminal_velocity: float = 55.0
 @export var jump_velocity: float = 4.5
 
+@export var health := 100
+
+var duck := false
+@onready var capsule: CapsuleShape3D = $CollisionShape3D.shape
+var stand_height := 2.0
+var duck_height := 1.8
+
 @export var recoil_strength := deg_to_rad(25.0)   # how hard the kick is
 @export var recoil_return_speed := 0.04          # how fast it settles back
 
@@ -206,6 +213,32 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 		
+
+
+	# Duck
+	if Input.is_action_just_pressed("duck"):
+		duck = true
+
+		var tween = get_tree().create_tween()
+		tween.tween_property($Camera3D, "position:y", 0.1, 0.15)
+
+		var diff = stand_height - duck_height
+		capsule.height = duck_height
+		$CollisionShape3D.position.y -= diff / 2.0
+
+
+	elif Input.is_action_just_released("duck"):
+		duck = false
+
+		var tween = get_tree().create_tween()
+		tween.tween_property($Camera3D, "position:y", 0.615, 0.15)
+
+		var diff = stand_height - duck_height
+		capsule.height = stand_height
+		$CollisionShape3D.position.y += diff / 2.0
+
+
+		
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
 	camera.rotation.x = pitch + recoil_offset
@@ -220,3 +253,7 @@ func _physics_process(delta: float) -> void:
 
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
+	
+func take_damage():
+	health -= 5
+	$CanvasLayer/ProgressBar.value = health
