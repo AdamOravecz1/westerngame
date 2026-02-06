@@ -180,7 +180,6 @@ func _physics_process(delta: float) -> void:
 		cocked = true
 		cocking = false
 
-		
 
 	# Gravity
 	if not is_on_floor():
@@ -217,7 +216,7 @@ func _physics_process(delta: float) -> void:
 
 	# Duck
 	if Input.is_action_just_pressed("duck"):
-		duck = true
+		speed = 3.0
 
 		var tween = get_tree().create_tween()
 		tween.tween_property($Camera3D, "position:y", 0.1, 0.15)
@@ -228,7 +227,7 @@ func _physics_process(delta: float) -> void:
 
 
 	elif Input.is_action_just_released("duck"):
-		duck = false
+		speed = 6.0
 
 		var tween = get_tree().create_tween()
 		tween.tween_property($Camera3D, "position:y", 0.615, 0.15)
@@ -254,6 +253,20 @@ func _physics_process(delta: float) -> void:
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
 	
-func take_damage():
+func take_damage(enemy_position):
 	health -= 5
 	$CanvasLayer/ProgressBar.value = health
+	var indicator := Sprite2D.new()
+	indicator.texture = preload("res://Pictures/DamageIndicator.png") 
+	indicator.modulate = Color(1, 0, 0, 1) # red
+	indicator.scale = Vector2(0.5, 0.5)
+	indicator.position = Vector2.ZERO
+
+	$CanvasLayer/UI_Center.add_child(indicator)
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(indicator, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(indicator.queue_free)
+	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
+	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
+	

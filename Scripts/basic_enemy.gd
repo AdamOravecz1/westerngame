@@ -283,7 +283,7 @@ func _on_fire_timeout() -> void:
 				animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				$Sounds/FireSound.play()
 				if gun_ray.get_collider() == player:
-					player.take_damage()
+					player.take_damage(global_position)
 				await get_tree().create_timer(1).timeout
 				shooting_from_cover = false
 				#print("shot_from_cover")
@@ -291,7 +291,7 @@ func _on_fire_timeout() -> void:
 		elif player_in_range:
 			$Sounds/FireSound.play()
 			if gun_ray.get_collider() == player:
-				player.take_damage()
+				player.take_damage(global_position)
 			animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			#print("just_shot")
 
