@@ -189,7 +189,7 @@ func die():
 	$PlayerSearch.queue_free()
 	$PlayerShoot.queue_free()
 	$Fire.stop()
-	$CollisionShape3D.disabled = true
+	#$CollisionShape3D.disabled = true
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():
@@ -279,7 +279,7 @@ func _on_fire_timeout() -> void:
 		if in_cover and player_in_range:
 			shooting_from_cover = true
 			await get_tree().create_timer(1).timeout
-			if in_cover:
+			if in_cover and health > 0:
 				animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				$Sounds/FireSound.play()
 				if gun_ray.get_collider() == player:

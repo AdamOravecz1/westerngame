@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=57 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
@@ -14,8 +14,201 @@
 [ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
 [ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
+[ext_resource type="PackedScene" uid="uid://8q3vm4wn8qth" path="res://3D/BowieKnife.blend" id="15_h4iuc"]
+[ext_resource type="AudioStream" uid="uid://bsbeosg516ste" path="res://Sounds/Sounds_KnifeSlash.wav" id="16_fd4e3"]
+[ext_resource type="AudioStream" uid="uid://c8hf00twgctqe" path="res://Sounds/Sounds_Hit.wav" id="17_qqcod"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4iuc"]
+load_path = "res://.godot/imported/blue_metal_plate_diff_4k.png-3df9c095eb2b3dbfc6de517324ad4b90.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fd4e3"]
+load_path = "res://.godot/imported/blue_metal_plate_rough_4k.png-8bbd41718229e43add42082d71048e45.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqcod"]
+load_path = "res://.godot/imported/blue_metal_plate_nor_gl_4k.png-c4daa0757675055554426062e3b04cf9.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_igrcy"]
+load_path = "res://.godot/imported/blue_metal_plate_rough_4k.png-8bbd41718229e43add42082d71048e45.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuaoq"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_color = Color(0.49747804, 0.49747804, 0.49747804, 1)
+albedo_texture = SubResource("CompressedTexture2D_h4iuc")
+metallic_texture = SubResource("CompressedTexture2D_fd4e3")
+metallic_texture_channel = 2
+roughness = 0.0
+roughness_texture = SubResource("CompressedTexture2D_igrcy")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_qqcod")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wohnl"]
+load_path = "res://.godot/imported/blue_metal_plate_diff_4k.png-3df9c095eb2b3dbfc6de517324ad4b90.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_36dho"]
+load_path = "res://.godot/imported/blue_metal_plate_rough_4k.png-8bbd41718229e43add42082d71048e45.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yh6i2"]
+load_path = "res://.godot/imported/blue_metal_plate_nor_gl_4k.png-c4daa0757675055554426062e3b04cf9.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nv4vc"]
+load_path = "res://.godot/imported/blue_metal_plate_rough_4k.png-8bbd41718229e43add42082d71048e45.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gxox"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_color = Color(0.49747804, 0.49747804, 0.49747804, 1)
+albedo_texture = SubResource("CompressedTexture2D_wohnl")
+metallic_texture = SubResource("CompressedTexture2D_36dho")
+metallic_texture_channel = 2
+roughness = 0.0
+roughness_texture = SubResource("CompressedTexture2D_nv4vc")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_yh6i2")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11gg7"]
+load_path = "res://.godot/imported/rosewood_veneer1_diff_4k.png-5e5fdc8f1afffda05d91a2256f45062e.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpa8y"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_11gg7")
+roughness = 0.5
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="Animation" id="Animation_h4iuc"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.228, -0.907), Vector3(0.7291981, -0.22799999, -0.90699995), Vector3(-1.0928725, -0.6694766, -0.90699995), Vector3(0.6, -0.228, -0.907)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4664359, -2.804681, -1.3317997), Vector3(0.19230205, -2.8360553, -1.4278239), Vector3(1.2615373, -1.0639002, -0.13349979), Vector3(0.4664359, -2.804681, -1.3317997)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Sounds/KnifeSlashSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.21),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KnifeHitBox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_knife_swing"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fd4e3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, -0.775, 0.146)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4664359, -2.804681, -1.3317997)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Sounds/KnifeSlashSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KnifeHitBox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qqcod"]
+_data = {
+&"RESET": SubResource("Animation_fd4e3"),
+&"hit": SubResource("Animation_h4iuc")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fd4e3"]
+size = Vector3(3.109375, 0.23730469, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tx1dd"]
 resource_name = "Metal"
@@ -215,6 +408,32 @@ shape = SubResource("CapsuleShape3D_f60y1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615, 0.188)
 current = true
 
+[node name="BowieKnife" parent="Camera3D" instance=ExtResource("15_h4iuc")]
+transform = Transform3D(-0.028828997, -0.34753323, -0.107770205, -0.31674284, 0.07717549, -0.16414258, 0.1790746, 0.08055721, -0.30768123, 0.6, -0.775, 0.146)
+
+[node name="Cube" parent="Camera3D/BowieKnife" index="1"]
+material_override = SubResource("StandardMaterial3D_xuaoq")
+
+[node name="Cube_001" parent="Camera3D/BowieKnife" index="2"]
+material_override = SubResource("StandardMaterial3D_8gxox")
+
+[node name="Cube_002" parent="Camera3D/BowieKnife" index="3"]
+material_override = SubResource("StandardMaterial3D_qpa8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/BowieKnife"]
+libraries = {
+&"": SubResource("AnimationLibrary_qqcod")
+}
+
+[node name="KnifeHitBox" type="Area3D" parent="Camera3D/BowieKnife"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/BowieKnife/KnifeHitBox"]
+transform = Transform3D(1.0000185, -1.7136335e-07, 5.9604645e-08, 4.7311187e-06, 1.0000017, -1.4901161e-08, -2.9802322e-08, -1.0430813e-07, 1.0000002, -1.0483217, -0.010505438, 0.023846984)
+shape = SubResource("BoxShape3D_fd4e3")
+debug_color = Color(0.9647059, 0, 0.49019608, 1)
+
 [node name="Revolver" parent="Camera3D" instance=ExtResource("2_cvnsp")]
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0.6, -0.22763059, -0.906713)
 
@@ -279,6 +498,12 @@ target_position = Vector3(0, -100, -1)
 collision_mask = 3
 collide_with_areas = true
 
+[node name="OffWeaponPos" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 0.14625812)
+
+[node name="OnWeaponPos" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]
@@ -341,6 +566,16 @@ stream = ExtResource("8_8erm5")
 stream = ExtResource("13_ukyrk")
 volume_db = -10.0
 
+[node name="KnifeSlashSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("16_fd4e3")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_qqcod")
+
 [node name="Damage_Indicator_LookAt" type="Node3D" parent="."]
 
+[connection signal="area_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_area_entered"]
+[connection signal="body_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_body_entered"]
+
+[editable path="Camera3D/BowieKnife"]
 [editable path="Camera3D/Revolver"]
