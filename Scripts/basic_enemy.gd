@@ -40,6 +40,16 @@ func _ready() -> void:
 	$Fire.wait_time = randf_range(3.0, 5.0)
 
 func _physics_process(delta):
+	var dir = (player.global_position - $PlayerShoot.global_position).normalized()
+
+	$PlayerShoot.rotation.y = atan2(dir.x, dir.z) # left/right
+	$PlayerShoot.rotation.x = asin(-dir.y)        # up/down
+	
+	if $PlayerShoot.get_collider() == player:
+		player_in_range = true
+	else:
+		player_in_range = false
+	
 	gun_ray.target_position = gun_ray.to_local(player.get_child(1).global_position)
 	enemies = get_tree().current_scene.get_child(0).get_children()
 	enemies.erase(self)
@@ -71,7 +81,7 @@ func _physics_process(delta):
 		var new_value2 = lerp(current3, 1.0, blend_speed * delta)
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 		look_at_player(delta)
-		#print("shooting_from_cover")
+		print("shooting_from_cover")
 	
 	elif in_cover and sees_player:
 		ChangeAnimation(-1.0, current, delta)
@@ -85,22 +95,22 @@ func _physics_process(delta):
 		speed = 0
 		velocity = Vector3.ZERO
 		look_at_player(delta)
-		#print("in_cover")
+		print("in_cover")
 
 	elif sees_cover and sees_player:
 		# Set animation
 		ChangeAnimation(0.0, current, delta)
 		speed = 2
 		has_strafe_target = false
-		$PlayerShoot/CollisionShape3D.shape.radius = 8
+		#$PlayerShoot/CollisionShape3D.shape.radius = 8
 		
 		follow_path(cover_location, delta)
-		#print("sees_cover")
+		print("sees_cover")
 	
 	elif player_in_range:
 		if speed != 0.5:
 			animation_tree.set("parameters/TimeSeek/seek_request", 0)
-			$PlayerShoot/CollisionShape3D.shape.radius = 10
+			#$PlayerShoot/CollisionShape3D.shape.radius = 10
 			speed = 0.5
 			
 		#Set animation
@@ -129,7 +139,7 @@ func _physics_process(delta):
 			velocity = direction * speed
 			
 		look_at_player(delta)
-		#print("player_in_range")
+		print("player_in_range")
 		
 
 	elif sees_player:
@@ -138,10 +148,10 @@ func _physics_process(delta):
 		ChangeAnimation(0.0, current, delta)
 		speed = 2
 		has_strafe_target = false
-		$PlayerShoot/CollisionShape3D.shape.radius = 8
+		#$PlayerShoot/CollisionShape3D.shape.radius = 8
 		
 		follow_path(player.global_position, delta)
-		#print("sees_player")
+		print("sees_player")
 		
 
 			
@@ -150,7 +160,7 @@ func _physics_process(delta):
 		ChangeAnimation(1.0, current, delta)
 		speed = 0
 		velocity = Vector3.ZERO
-		#print("else")
+		print("else")
 	move_and_slide()
 
 
@@ -187,7 +197,8 @@ func die():
 
 	# Disable character collision
 	$PlayerSearch.queue_free()
-	$PlayerShoot.queue_free()
+	$CoverFinder.queue_free()
+	$CoverChecker.queue_free()
 	$Fire.stop()
 	#$CollisionShape3D.disabled = true
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
@@ -308,16 +319,6 @@ func _on_player_search_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
 		sees_player = false
 
-
-func _on_player_shoot_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
-		player_in_range = true
-
-
-func _on_player_shoot_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
-		player_in_range = false
-
 func _on_cover_checker_area_entered(area: Area3D) -> void:
 	if area.name.begins_with("HideArea") and area.global_position == cover_location:
 		in_cover = true
@@ -328,16 +329,13 @@ func _on_cover_checker_area_exited(area: Area3D) -> void:
 		in_cover = false
 		shooting_from_cover = false
 
-func _on_player_shoot_area_entered(area: Area3D) -> void:
+func _on_cover_finder_area_entered(area: Area3D) -> void:
 	if area.name.begins_with("HideArea"):
-
 		hiding_spots.append(area)
 		
-func _on_player_shoot_area_exited(area: Area3D) -> void:
+func _on_cover_finder_area_exited(area: Area3D) -> void:
 	if area.name.begins_with("HideArea"):
 		hiding_spots.erase(area)
 		if area.global_position == cover_location:
 			shooting_from_cover = false
-
-
 		sees_cover = false

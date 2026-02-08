@@ -196,7 +196,6 @@ func _physics_process(delta: float) -> void:
 		
 		# Knife
 		elif not switching_weapon and weapons[selected_weapon] == bowie_knife:
-			
 			$Camera3D/BowieKnife/AnimationPlayer.play("hit")
 
 
@@ -309,11 +308,9 @@ func take_damage(enemy_position):
 func start_knife_swing():
 	knife_has_hit = false
 
-
 func _on_knife_hit_box_area_entered(area: Area3D) -> void:
+	print("valami")
 	if area.get_owner().has_method("hit") and not knife_has_hit:
 		knife_has_hit = true
-
-
 		$Sounds/HitSound.play()
 		area.get_owner().hit("UpperArm", $Camera3D/BowieKnife/Cube.global_position)
