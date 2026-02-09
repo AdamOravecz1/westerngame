@@ -5,6 +5,9 @@ extends Node3D
 @onready var main = get_tree().get_first_node_in_group("Main")
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+func _ready():
+	add_to_group("barrier")
+
 func _process(delta: float) -> void:
 	$PlayerChecker.look_at(player.global_position, Vector3.UP)
 	$PlayerChecker2.look_at(player.global_position, Vector3.UP)

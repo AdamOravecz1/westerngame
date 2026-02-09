@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var main = get_tree().get_first_node_in_group("Main")
+
 @export var speed: float = 6.0
 @export var mouse_sensitivity: float = 0.002
 @export var gravity: float = 9.81
@@ -348,3 +350,7 @@ func _on_health_pressed() -> void:
 		AddMoney(-1)
 		health += 5
 		$CanvasLayer/HealthBar.value = health
+
+
+func _on_next_wave_pressed() -> void:
+	main.next_wave()

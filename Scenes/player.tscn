@@ -619,6 +619,7 @@ stream = ExtResource("17_qqcod")
 [connection signal="body_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]
 
 [editable path="Camera3D/BowieKnife"]
 [editable path="Camera3D/Revolver"]
