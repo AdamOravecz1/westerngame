@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var jump_velocity: float = 4.5
 
 @export var health := 100
+var money := 0
 
 var duck := false
 @onready var capsule: CapsuleShape3D = $CollisionShape3D.shape
@@ -40,6 +41,8 @@ var free_bullets := 6
 @onready var dead45: Node3D = $"Camera3D/Revolver/45Dead"
 @onready var fakes: Node3D = $Camera3D/Revolver/Fakes
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
+@onready var money_count: Label = $CanvasLayer/MoneyCount
+
 
 @onready var weapons := [bowie_knife, revolver]
 var selected_weapon := 1
@@ -49,8 +52,9 @@ var knife_has_hit := false
 
 var pitch := 0.0
 
+var in_shop := false
+
 func _ready():
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	fakes.visible = false
 	dead45.visible = false
@@ -60,7 +64,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not in_shop:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 
 		pitch -= event.relative.y * mouse_sensitivity
@@ -77,185 +81,196 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta: float) -> void:
-	#Switch weapons
-	if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon:
-		switch_weapon(1)
-		
-	if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon:
-		switch_weapon(-1)
-
-	
-	#Reload
-	if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] == revolver:
-		if revolver_anim.current_animation:
-			await revolver_anim.animation_finished
-		reloading = true
-		var cylinder_length := revolver_anim.get_animation("CockAction").length
-		var length := 0.2
-		
-		var tween_in := get_tree().create_tween()
-		tween_in.parallel().tween_property(revolver, "position:x", aim_x, length)
-		tween_in.parallel().tween_property(revolver, "rotation_degrees:x", reload_rotate, length)
-		tween_in.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
-		
-		await tween_in.finished
-		fakes.visible = true
-		dead45.visible = true
-		live45.visible = true
-
-		revolver_anim.play("OpenAction")
-		$Sounds/HalfDeCockSound.play()
-		await revolver_anim.animation_finished
+	if not in_shop:
+		#Switch weapons
+		if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon:
+			switch_weapon(1)
+			
+		if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon:
+			switch_weapon(-1)
 
 		
-		while chamber.reduce(func(a, b): return a + b, 0) != 6 and free_bullets > 0:
-			if chamber[chamber_pointer%6 - 1] == 0:
-				revolver_anim.play("LoadAction")
-				$Sounds/ReloadSound.play()
-				free_bullets -= 1
-				chamber[chamber_pointer%6 - 1] = 1
-				chamber_pointer -= 1
-				RefreshBulletCount()
-				print(chamber)
-				print(chamber_pointer)
+		#Reload
+		if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] == revolver:
+			if revolver_anim.current_animation:
 				await revolver_anim.animation_finished
+			reloading = true
+			var cylinder_length := revolver_anim.get_animation("CockAction").length
+			var length := 0.2
 			
-			var tween = get_tree().create_tween()
-			tween.parallel().tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,cylinder_length)
-			tween.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
-			tween.parallel().tween_property(live45,"rotation_degrees:x",live45.rotation_degrees.x + 60,cylinder_length)
-			await tween.finished
-			fakes.rotation_degrees.x = 60
-			live45.rotation_degrees.x = 0
+			var tween_in := get_tree().create_tween()
+			tween_in.parallel().tween_property(revolver, "position:x", aim_x, length)
+			tween_in.parallel().tween_property(revolver, "rotation_degrees:x", reload_rotate, length)
+			tween_in.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
 			
+			await tween_in.finished
+			fakes.visible = true
+			dead45.visible = true
+			live45.visible = true
 
-		revolver_anim.play("CloseAction")
-		$Sounds/HalfCockSound.play()
-		await revolver_anim.animation_finished
-
-		var tween_out := get_tree().create_tween()
-		tween_out.parallel().tween_property(revolver, "position:x", normal_x, length)
-		tween_out.parallel().tween_property(revolver, "rotation_degrees:x", normal_rotate, length)
-		await tween_out.finished
-
-		reloading = false
-		fakes.visible = false
-		dead45.visible = false
-		live45.visible = false
-		
-	
-	# Aim
-	if not reloading:
-		var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
-		revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
-
-
-	# Fire
-	if Input.is_action_just_pressed("fire"):
-		# Revolver
-		if cocked and not cocking and not reloading and not switching_weapon and weapons[selected_weapon] == revolver:
-			cocking = true
-			cocked = false
-
-			revolver_anim.play("FireAction")
-			if chamber[chamber_pointer%6] == 1:
-				await get_tree().create_timer(0.04).timeout
-				chamber[chamber_pointer%6] = 0
-				recoil_offset += recoil_strength
-				$Sounds/FireSound.play()
-				chamber_pointer += 1
-				RefreshBulletCount()
-				if $Camera3D/RayCast3D.is_colliding():
-					var collider = $Camera3D/RayCast3D.get_collider()
-					var hit_pos = $Camera3D/RayCast3D.get_collision_point()
-
-					if collider is Area3D:
-						var enemy = collider.get_owner()
-						if enemy and enemy.has_method("hit"):
-							enemy.hit(collider.name, hit_pos)
-					if collider is CSGBox3D:
-						var enemy = collider.get_owner()
-						if enemy and enemy.has_method("hit"):
-							enemy.hit()
-			else:
-				$Sounds/DryFireSound.play()
-				chamber_pointer += 1
-
+			revolver_anim.play("OpenAction")
+			$Sounds/HalfDeCockSound.play()
 			await revolver_anim.animation_finished
 
-			revolver_anim.play("CockAction")
-			$Sounds/CockSound.play()
+			
+			while chamber.reduce(func(a, b): return a + b, 0) != 6 and free_bullets > 0:
+				if chamber[chamber_pointer%6 - 1] == 0:
+					revolver_anim.play("LoadAction")
+					$Sounds/ReloadSound.play()
+					free_bullets -= 1
+					chamber[chamber_pointer%6 - 1] = 1
+					chamber_pointer -= 1
+					RefreshBulletCount()
+					print(chamber)
+					print(chamber_pointer)
+					await revolver_anim.animation_finished
+				
+				var tween = get_tree().create_tween()
+				tween.parallel().tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x + 60,cylinder_length)
+				tween.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
+				tween.parallel().tween_property(live45,"rotation_degrees:x",live45.rotation_degrees.x + 60,cylinder_length)
+				await tween.finished
+				fakes.rotation_degrees.x = 60
+				live45.rotation_degrees.x = 0
+				
+
+			revolver_anim.play("CloseAction")
+			$Sounds/HalfCockSound.play()
+			await revolver_anim.animation_finished
+
+			var tween_out := get_tree().create_tween()
+			tween_out.parallel().tween_property(revolver, "position:x", normal_x, length)
+			tween_out.parallel().tween_property(revolver, "rotation_degrees:x", normal_rotate, length)
+			await tween_out.finished
+
+			reloading = false
+			fakes.visible = false
+			dead45.visible = false
+			live45.visible = false
+			
+		
+		# Aim
+		if not reloading:
+			var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
+			revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
+
+
+		# Fire
+		if Input.is_action_just_pressed("fire"):
+			# Revolver
+			if cocked and not cocking and not reloading and not switching_weapon and weapons[selected_weapon] == revolver:
+				cocking = true
+				cocked = false
+
+				revolver_anim.play("FireAction")
+				if chamber[chamber_pointer%6] == 1:
+					await get_tree().create_timer(0.04).timeout
+					chamber[chamber_pointer%6] = 0
+					recoil_offset += recoil_strength
+					$Sounds/FireSound.play()
+					chamber_pointer += 1
+					RefreshBulletCount()
+					if $Camera3D/RayCast3D.is_colliding():
+						var collider = $Camera3D/RayCast3D.get_collider()
+						var hit_pos = $Camera3D/RayCast3D.get_collision_point()
+
+						if collider is Area3D:
+							var enemy = collider.get_owner()
+							if enemy and enemy.has_method("hit"):
+								enemy.hit(collider.name, hit_pos)
+						if collider is CSGBox3D:
+							var enemy = collider.get_owner()
+							if enemy and enemy.has_method("hit"):
+								enemy.hit()
+				else:
+					$Sounds/DryFireSound.play()
+					chamber_pointer += 1
+
+				await revolver_anim.animation_finished
+
+				revolver_anim.play("CockAction")
+				$Sounds/CockSound.play()
+
+				var tween = get_tree().create_tween()
+				var length := revolver_anim.get_animation("CockAction").length
+				tween.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x - 60,length)
+
+				await revolver_anim.animation_finished
+				cocked = true
+				cocking = false
+			
+			# Knife
+			elif not switching_weapon and weapons[selected_weapon] == bowie_knife:
+				$Camera3D/BowieKnife/AnimationPlayer.play("hit")
+
+
+		# Gravity
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+			velocity.y = max(velocity.y, -terminal_velocity)
+		else:
+			if velocity.y < 0:
+				velocity.y = 0
+
+		# Jump
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = jump_velocity
+
+		# Movement input
+		var input_dir = Vector2(
+			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+			Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+		)
+
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		if direction != Vector3.ZERO and not $Sounds/StepSound.playing and is_on_floor():
+			$Sounds/StepSound.pitch_scale = randf_range(0.7, 1)
+			$Sounds/StepSound.play()
+
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+		
+
+			
+
+		# Duck
+		if Input.is_action_just_pressed("duck"):
+			speed = 3.0
 
 			var tween = get_tree().create_tween()
-			var length := revolver_anim.get_animation("CockAction").length
-			tween.tween_property(cylinder,"rotation_degrees:x",cylinder.rotation_degrees.x - 60,length)
+			tween.tween_property($Camera3D, "position:y", 0.1, 0.15)
 
-			await revolver_anim.animation_finished
-			cocked = true
-			cocking = false
-		
-		# Knife
-		elif not switching_weapon and weapons[selected_weapon] == bowie_knife:
-			$Camera3D/BowieKnife/AnimationPlayer.play("hit")
+			var diff = stand_height - duck_height
+			capsule.height = duck_height
+			$CollisionShape3D.position.y -= diff / 2.0
 
 
-	# Gravity
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-		velocity.y = max(velocity.y, -terminal_velocity)
-	else:
-		if velocity.y < 0:
-			velocity.y = 0
+		elif Input.is_action_just_released("duck"):
+			speed = 6.0
 
-	# Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+			var tween = get_tree().create_tween()
+			tween.tween_property($Camera3D, "position:y", 0.615, 0.15)
 
-	# Movement input
-	var input_dir = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
-	)
+			var diff = stand_height - duck_height
+			capsule.height = stand_height
+			$CollisionShape3D.position.y += diff / 2.0
 
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if direction != Vector3.ZERO and not $Sounds/StepSound.playing and is_on_floor():
-		$Sounds/StepSound.pitch_scale = randf_range(0.7, 1)
-		$Sounds/StepSound.play()
+	# Interact
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Shop":
+		print("shop")
+		$CanvasLayer/Shop.visible = !$CanvasLayer/Shop.visible
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			in_shop = true
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			in_shop = false
 
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
-		
-
-
-	# Duck
-	if Input.is_action_just_pressed("duck"):
-		speed = 3.0
-
-		var tween = get_tree().create_tween()
-		tween.tween_property($Camera3D, "position:y", 0.1, 0.15)
-
-		var diff = stand_height - duck_height
-		capsule.height = duck_height
-		$CollisionShape3D.position.y -= diff / 2.0
-
-
-	elif Input.is_action_just_released("duck"):
-		speed = 6.0
-
-		var tween = get_tree().create_tween()
-		tween.tween_property($Camera3D, "position:y", 0.615, 0.15)
-
-		var diff = stand_height - duck_height
-		capsule.height = stand_height
-		$CollisionShape3D.position.y += diff / 2.0
-
-
-		
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
 	camera.rotation.x = pitch + recoil_offset
@@ -270,6 +285,12 @@ func _physics_process(delta: float) -> void:
 
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
+	
+func AddMoney(amount):
+	money += amount
+	print(money)
+	money_count.text = str(money)
+	
 	
 func switch_weapon(dir):
 	switching_weapon = true
@@ -290,7 +311,7 @@ func switch_weapon(dir):
 	
 func take_damage(enemy_position):
 	health -= 5
-	$CanvasLayer/ProgressBar.value = health
+	$CanvasLayer/HealthBar.value = health
 	var indicator := Sprite2D.new()
 	indicator.texture = preload("res://Pictures/DamageIndicator.png") 
 	indicator.modulate = Color(1, 0, 0, 1) # red
@@ -314,3 +335,16 @@ func _on_knife_hit_box_area_entered(area: Area3D) -> void:
 		knife_has_hit = true
 		$Sounds/HitSound.play()
 		area.get_owner().hit("UpperArm", $Camera3D/BowieKnife/Cube.global_position)
+
+
+func _on_ammo_pressed() -> void:
+	if money >= 1:
+		AddMoney(-1)
+		free_bullets += 1
+		RefreshBulletCount()
+
+func _on_health_pressed() -> void:
+	if money >= 1 and health < 100:
+		AddMoney(-1)
+		health += 5
+		$CanvasLayer/HealthBar.value = health

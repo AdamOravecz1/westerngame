@@ -65,7 +65,7 @@ func _physics_process(delta):
 				can_hide_there = false
 				break
 
-		if can_hide_there and dist < closest and not in_cover:
+		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 3:
 			closest = dist
 			cover_location = area.global_position
 			sees_cover = true
@@ -180,6 +180,7 @@ func hit(hitbox_type: String, pos):
 		die()
 	
 func die():
+	player.AddMoney(5)
 	if is_ragdoll:
 		return
 

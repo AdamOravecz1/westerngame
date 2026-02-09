@@ -499,6 +499,10 @@ target_position = Vector3(0, -100, -1)
 collision_mask = 19
 collide_with_areas = true
 
+[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.025038183, -0.18838778)
+target_position = Vector3(0, -2, 0)
+
 [node name="OffWeaponPos" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 0.14625812)
 
@@ -508,16 +512,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 45.0
+offset_right = 98.0
+offset_bottom = 133.0
 theme_override_font_sizes/font_size = 64
 text = "0/0"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="MoneyCount" type="Label" parent="CanvasLayer"]
+offset_left = 1055.0
+offset_top = -10.0
+offset_right = 1153.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(1, 0, 0, 1)
-offset_top = 85.0
+offset_top = 21.0
 offset_right = 167.0
-offset_bottom = 112.0
+offset_bottom = 48.0
 value = 100.0
 
 [node name="UI_Center" type="Control" parent="CanvasLayer"]
@@ -530,6 +543,40 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Shop" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Shop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Shop/GridContainer"]
+layout_mode = 2
+
+[node name="Ammo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buy ammo"
+
+[node name="Health" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buy health"
+
+[node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Next wave"
 
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3
@@ -570,6 +617,8 @@ stream = ExtResource("17_qqcod")
 
 [connection signal="area_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_area_entered"]
 [connection signal="body_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
 
 [editable path="Camera3D/BowieKnife"]
 [editable path="Camera3D/Revolver"]
