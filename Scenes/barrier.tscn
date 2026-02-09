@@ -179,7 +179,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16003418, 0.64248115, 0)
 visible = false
 use_collision = true
-collision_layer = 17
+collision_layer = 16
 size = Vector3(0.19458008, 1.2811279, 1)
 
 [node name="HideArea" type="Area3D" parent="."]

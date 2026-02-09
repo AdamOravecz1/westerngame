@@ -81,7 +81,7 @@ func _physics_process(delta):
 		var new_value2 = lerp(current3, 1.0, blend_speed * delta)
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 		look_at_player(delta)
-		print("shooting_from_cover")
+		#print("shooting_from_cover")
 	
 	elif in_cover and sees_player:
 		ChangeAnimation(-1.0, current, delta)
@@ -95,7 +95,7 @@ func _physics_process(delta):
 		speed = 0
 		velocity = Vector3.ZERO
 		look_at_player(delta)
-		print("in_cover")
+		#print("in_cover")
 
 	elif sees_cover and sees_player:
 		# Set animation
@@ -105,7 +105,7 @@ func _physics_process(delta):
 		#$PlayerShoot/CollisionShape3D.shape.radius = 8
 		
 		follow_path(cover_location, delta)
-		print("sees_cover")
+		#print("sees_cover")
 	
 	elif player_in_range:
 		if speed != 0.5:
@@ -139,7 +139,7 @@ func _physics_process(delta):
 			velocity = direction * speed
 			
 		look_at_player(delta)
-		print("player_in_range")
+		#print("player_in_range")
 		
 
 	elif sees_player:
@@ -151,7 +151,7 @@ func _physics_process(delta):
 		#$PlayerShoot/CollisionShape3D.shape.radius = 8
 		
 		follow_path(player.global_position, delta)
-		print("sees_player")
+		#print("sees_player")
 		
 
 			
@@ -160,7 +160,7 @@ func _physics_process(delta):
 		ChangeAnimation(1.0, current, delta)
 		speed = 0
 		velocity = Vector3.ZERO
-		print("else")
+		#print("else")
 	move_and_slide()
 
 
