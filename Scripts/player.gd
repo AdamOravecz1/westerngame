@@ -304,6 +304,7 @@ func take_damage(enemy_position):
 	tween.tween_callback(indicator.queue_free)
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
+	#hfevsufbersubf
 
 func start_knife_swing():
 	knife_has_hit = false

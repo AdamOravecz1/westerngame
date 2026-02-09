@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b003fb1330ih1"]
+
+[ext_resource type="PackedScene" uid="uid://6gcmmovp5cpw" path="res://3D/Shop.blend" id="1_a0mxf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2shtd"]
+size = Vector3(1, 2.1571045, 1.7368164)
+
+[node name="Shop" instance=ExtResource("1_a0mxf")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57855225, 0.008056641)
+shape = SubResource("BoxShape3D_2shtd")
