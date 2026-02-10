@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://sn12olb5f8fe"]
+
+[ext_resource type="PackedScene" uid="uid://b416pqt4rj6eg" path="res://3D/Dynamite.blend" id="1_ujmlp"]
+[ext_resource type="Script" uid="uid://bymtqxlgwdmf3" path="res://Scripts/dynamite.gd" id="2_1khne"]
+[ext_resource type="Shader" uid="uid://ckut1i85geg1n" path="res://Shaders/Spark.tres" id="3_1khne"]
+[ext_resource type="Texture2D" uid="uid://cn18ou6k63sbk" path="res://Pictures/T_circle42.PNG" id="4_ddau6"]
+
+[sub_resource type="Curve3D" id="Curve3D_s7eqe"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.0045624, 0, 0, 0, 0, 0, 0, 0, 0, -0.6427219, 0, -0.22077535, 0, 0, 0, 0, 0, 0, 0.050763547, 0, -0.14864035, 0, 0, 0, 0, 0, 0, 0.8969862, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxj8c"]
+render_priority = 0
+shader = ExtResource("3_1khne")
+shader_parameter/SparkTexture = ExtResource("4_ddau6")
+
+[sub_resource type="Curve" id="Curve_s7eqe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ey2vc"]
+curve = SubResource("Curve_s7eqe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mnorm"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(18.892157, 13.328268, 0.9696924, 1)
+alpha_curve = SubResource("CurveTexture_ey2vc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rjy64"]
+size = Vector2(0.05, 0.3)
+
+[sub_resource type="Animation" id="Animation_jih8c"]
+resource_name = "Spark"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_iwc6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flc4w"]
+_data = {
+&"RESET": SubResource("Animation_iwc6v"),
+&"Spark": SubResource("Animation_jih8c")
+}
+
+[node name="Dynamite" instance=ExtResource("1_ujmlp")]
+script = ExtResource("2_1khne")
+
+[node name="Path3D" type="Path3D" parent="." index="3"]
+curve = SubResource("Curve3D_s7eqe")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" index="0"]
+transform = Transform3D(0.5208478, 0, -0.853645, 0, 1, 0, 0.853645, 0, 0.5208478, -1.0045624, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Path3D/PathFollow3D" index="0"]
+material_override = SubResource("ShaderMaterial_gxj8c")
+amount = 50
+lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_mnorm")
+draw_pass_1 = SubResource("QuadMesh_rjy64")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": SubResource("AnimationLibrary_flc4w")
+}
+autoplay = "Spark"
