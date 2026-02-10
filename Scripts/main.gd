@@ -3,12 +3,13 @@ extends Node3D
 var barrier_scene = preload("res://Scenes/barrier.tscn")
 var enemy_scene = preload("res://Scenes/basic_enemy.tscn")
 
+
 const MIN_BARRIERS := 10
 const MAX_BARRIERS := 20
 const MIN_DISTANCE := 3.0
 
-const X_MIN := -10.0
-const X_MAX := 10.0
+const X_MIN := -9.0
+const X_MAX := 9.0
 const Z_MIN := -25.0
 const Z_MAX := 0.0
 
@@ -20,6 +21,7 @@ var rng := RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
+
 	
 func next_wave():
 	spawn_barriers()

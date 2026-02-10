@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var main = get_tree().get_first_node_in_group("Main")
+var dynamite_scene = preload("res://Scenes/dynamite.tscn")
 
 @export var speed: float = 6.0
 @export var mouse_sensitivity: float = 0.002
@@ -24,6 +25,7 @@ var duck_height := 1.8
 @export var reload_rotate := 60
 @export var normal_rotate := 89
 @export var pull_speed := 10.0
+@export var throw_force: float = 10.0
 
 var recoil_offset := 0.0 
 var cocked := true
@@ -261,6 +263,18 @@ func _physics_process(delta: float) -> void:
 			var diff = stand_height - duck_height
 			capsule.height = stand_height
 			$CollisionShape3D.position.y += diff / 2.0
+			
+		# Throw
+		if Input.is_action_just_pressed("throw"):
+			var dynamite = dynamite_scene.instantiate()
+			var dynamites_container = get_tree().current_scene.get_node("Dynamites")
+			dynamites_container.add_child(dynamite)
+			
+			dynamite.global_transform = $Camera3D.global_transform
+			dynamite.rotation_degrees = Vector3(0, 180, 270)
+			var forward_dir = -$Camera3D.global_transform.basis.z.normalized()
+			dynamite.apply_impulse(forward_dir * throw_force)
+
 
 	# Interact
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Shop":

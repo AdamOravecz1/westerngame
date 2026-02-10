@@ -8,7 +8,8 @@ size = Vector3(1, 2.1571045, 1.7368164)
 [node name="Shop" instance=ExtResource("1_a0mxf")]
 
 [node name="Shop" type="StaticBody3D" parent="." index="10"]
-collision_mask = 17
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57855225, 0.008056641)

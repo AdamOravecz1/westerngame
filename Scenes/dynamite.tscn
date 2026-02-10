@@ -1,45 +1,47 @@
 [gd_scene load_steps=14 format=3 uid="uid://sn12olb5f8fe"]
 
 [ext_resource type="PackedScene" uid="uid://b416pqt4rj6eg" path="res://3D/Dynamite.blend" id="1_ujmlp"]
-[ext_resource type="Script" uid="uid://bymtqxlgwdmf3" path="res://Scripts/dynamite.gd" id="2_1khne"]
 [ext_resource type="Shader" uid="uid://ckut1i85geg1n" path="res://Shaders/Spark.tres" id="3_1khne"]
 [ext_resource type="Texture2D" uid="uid://cn18ou6k63sbk" path="res://Pictures/T_circle42.PNG" id="4_ddau6"]
 
-[sub_resource type="Curve3D" id="Curve3D_s7eqe"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujmlp"]
+size = Vector3(0.284, 0.045, 0.045)
+
+[sub_resource type="Curve3D" id="Curve3D_1khne"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.0045624, 0, 0, 0, 0, 0, 0, 0, 0, -0.6427219, 0, -0.22077535, 0, 0, 0, 0, 0, 0, 0.050763547, 0, -0.14864035, 0, 0, 0, 0, 0, 0, 0.8969862, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.38147527, 0, 0, 0, 0, 0, 0, 0, 0, -0.3025728, 0, -0.032424852, 0, 0, 0, 0, 0, 0, -0.22472066, 0, -0.019463018, 0, 0, 0, 0, 0, 0, -0.1300677, 0, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxj8c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddau6"]
 render_priority = 0
 shader = ExtResource("3_1khne")
 shader_parameter/SparkTexture = ExtResource("4_ddau6")
 
-[sub_resource type="Curve" id="Curve_s7eqe"]
+[sub_resource type="Curve" id="Curve_gxj8c"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_ey2vc"]
-curve = SubResource("Curve_s7eqe")
+curve = SubResource("Curve_gxj8c")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mnorm"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s7eqe"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 4.0
+initial_velocity_min = 0.19999999
+initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.29999998
-scale_max = 0.5
+scale_min = 0.099999994
+scale_max = 0.29999998
 color = Color(18.892157, 13.328268, 0.9696924, 1)
 alpha_curve = SubResource("CurveTexture_ey2vc")
 
-[sub_resource type="QuadMesh" id="QuadMesh_rjy64"]
-size = Vector2(0.05, 0.3)
+[sub_resource type="QuadMesh" id="QuadMesh_ey2vc"]
+size = Vector2(0.01, 0.03)
 
-[sub_resource type="Animation" id="Animation_jih8c"]
+[sub_resource type="Animation" id="Animation_ujmlp"]
 resource_name = "Spark"
 length = 5.0
 tracks/0/type = "value"
@@ -55,7 +57,7 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_iwc6v"]
+[sub_resource type="Animation" id="Animation_1khne"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -70,30 +72,39 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_flc4w"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddau6"]
 _data = {
-&"RESET": SubResource("Animation_iwc6v"),
-&"Spark": SubResource("Animation_jih8c")
+&"RESET": SubResource("Animation_1khne"),
+&"Spark": SubResource("Animation_ujmlp")
 }
 
-[node name="Dynamite" instance=ExtResource("1_ujmlp")]
-script = ExtResource("2_1khne")
+[node name="Dynamite" type="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 34
+collision_mask = 34
 
-[node name="Path3D" type="Path3D" parent="." index="3"]
-curve = SubResource("Curve3D_s7eqe")
+[node name="Dynamite" parent="." instance=ExtResource("1_ujmlp")]
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" index="0"]
-transform = Transform3D(0.5208478, 0, -0.853645, 0, 1, 0, 0.853645, 0, 0.5208478, -1.0045624, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013046876, 0, 0)
+shape = SubResource("BoxShape3D_ujmlp")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Path3D/PathFollow3D" index="0"]
-material_override = SubResource("ShaderMaterial_gxj8c")
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_1khne")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.20140967, 0, -0.9795, 0, 1, 0, 0.9795, 0, -0.20140967, -0.13006768, 0, 0)
+progress = 0.26086223
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Path3D/PathFollow3D"]
+material_override = SubResource("ShaderMaterial_ddau6")
 amount = 50
 lifetime = 0.09999999999999999
-process_material = SubResource("ParticleProcessMaterial_mnorm")
-draw_pass_1 = SubResource("QuadMesh_rjy64")
+process_material = SubResource("ParticleProcessMaterial_s7eqe")
+draw_pass_1 = SubResource("QuadMesh_ey2vc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_flc4w")
+&"": SubResource("AnimationLibrary_ddau6")
 }
 autoplay = "Spark"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dsesj1gvyb4ha"]
+[gd_scene load_steps=18 format=4 uid="uid://dsesj1gvyb4ha"]
 
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
@@ -151,6 +151,9 @@ size = Vector3(0.53511333, 1, 0.069244385)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig2pw"]
 size = Vector3(0.566864, 1, 0.067871094)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rkote"]
+size = Vector3(0.3972168, 1.2028809, 1)
+
 [node name="Barrier" type="Node3D"]
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
@@ -215,6 +218,14 @@ target_position = Vector3(0, 0, -50)
 collision_mask = 16
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23327637, 0.5826416, 0)
+shape = SubResource("BoxShape3D_rkote")
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]

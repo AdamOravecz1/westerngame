@@ -36,6 +36,8 @@ script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="."]
 
+[node name="Dynamites" type="Node3D" parent="."]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.722874, 0.598407, -0.345489, 2.83079e-08, 0.499998, 0.866027, 0.69098, 0.626028, -0.361435, 0, 7.65352, 0)
 layers = 3
