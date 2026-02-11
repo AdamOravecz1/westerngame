@@ -1,8 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://sn12olb5f8fe"]
+[gd_scene load_steps=41 format=3 uid="uid://sn12olb5f8fe"]
 
+[ext_resource type="Script" uid="uid://hpvlxa5hlofh" path="res://Scripts/dynamite.gd" id="1_ey2vc"]
 [ext_resource type="PackedScene" uid="uid://b416pqt4rj6eg" path="res://3D/Dynamite.blend" id="1_ujmlp"]
 [ext_resource type="Shader" uid="uid://ckut1i85geg1n" path="res://Shaders/Spark.tres" id="3_1khne"]
 [ext_resource type="Texture2D" uid="uid://cn18ou6k63sbk" path="res://Pictures/T_circle42.PNG" id="4_ddau6"]
+[ext_resource type="Texture2D" uid="uid://cdq47nqqv1xoy" path="res://Pictures/Flare00.PNG" id="4_s7eqe"]
+[ext_resource type="Material" uid="uid://diystlfqis3p4" path="res://Materials/MatFlare00.tres" id="5_ey2vc"]
+[ext_resource type="AudioStream" uid="uid://c5wrntkr8k6e2" path="res://Sounds/freesound_community-medium-explosion-40472.wav" id="6_mnorm"]
+[ext_resource type="AudioStream" uid="uid://byabb4rtor04s" path="res://Sounds/freesound_community-lighter-fuse-mechero-mecha-28469.wav" id="7_rjy64"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ujmlp"]
 size = Vector3(0.284, 0.045, 0.045)
@@ -41,22 +46,6 @@ alpha_curve = SubResource("CurveTexture_ey2vc")
 [sub_resource type="QuadMesh" id="QuadMesh_ey2vc"]
 size = Vector2(0.01, 0.03)
 
-[sub_resource type="Animation" id="Animation_ujmlp"]
-resource_name = "Spark"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_1khne"]
 length = 0.001
 tracks/0/type = "value"
@@ -71,6 +60,252 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fire:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Smoke:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Path3D/PathFollow3D/GPUParticles3D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Dynamite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExplosionSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FuseSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ExplosionEffectRange:monitoring")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ujmlp"]
+resource_name = "Spark"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fire:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Smoke:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Path3D/PathFollow3D/GPUParticles3D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Dynamite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExplosionSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FuseSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ExplosionEffectRange:monitoring")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ddau6"]
 _data = {
@@ -78,12 +313,125 @@ _data = {
 &"Spark": SubResource("Animation_ujmlp")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jih8c"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_s7eqe")
+
+[sub_resource type="Curve" id="Curve_iwc6v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_flc4w"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0.99), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ijl24"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xe1wu"]
+curve_x = SubResource("Curve_iwc6v")
+curve_y = SubResource("Curve_flc4w")
+curve_z = SubResource("Curve_ijl24")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ed7d"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.14999999
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_xe1wu")
+color = Color(3.6007304, 1.956484, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_panlm"]
+
+[sub_resource type="Curve" id="Curve_0p3ik"]
+_data = [Vector2(0, 1), 0.0, -1.4847419, 0, 0, Vector2(1, 0), -1.6973902, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j5eci"]
+curve = SubResource("Curve_0p3ik")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4dxbk"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_j5eci")
+color = Color(3.3529627, 1.8201555, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e5s7n"]
+
+[sub_resource type="Gradient" id="Gradient_ve05d"]
+offsets = PackedFloat32Array(0.0027855153, 0.9972145)
+colors = PackedColorArray(7.3073163, 3.4759836, 0, 1, 3.3529627, 1.5794667, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_51jds"]
+gradient = SubResource("Gradient_ve05d")
+
+[sub_resource type="Curve" id="Curve_j5hlx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.1625583, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y4d85"]
+curve = SubResource("Curve_j5hlx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ubwy"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.4
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, -2, 0)
+scale_min = 0.75
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_y4d85")
+color = Color(2.907523, 1.5860742, 0, 1)
+color_ramp = SubResource("GradientTexture1D_51jds")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ss847"]
+
+[sub_resource type="Curve" id="Curve_mll7d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.1302822, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hhkru"]
+curve = SubResource("Curve_mll7d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8cus5"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.4
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_hhkru")
+color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fwtby"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mnorm"]
+radius = 3.0
+
 [node name="Dynamite" type="RigidBody3D"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 34
 collision_mask = 34
+script = ExtResource("1_ey2vc")
 
 [node name="Dynamite" parent="." instance=ExtResource("1_ujmlp")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013046876, 0, 0)
@@ -93,13 +441,12 @@ shape = SubResource("BoxShape3D_ujmlp")
 curve = SubResource("Curve3D_1khne")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.20140967, 0, -0.9795, 0, 1, 0, 0.9795, 0, -0.20140967, -0.13006768, 0, 0)
-progress = 0.26086223
+transform = Transform3D(0.38009453, 0, -0.9249203, 0, 1, 0, 0.9249203, 0, 0.38009453, -0.38147527, 0, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Path3D/PathFollow3D"]
 material_override = SubResource("ShaderMaterial_ddau6")
 amount = 50
-lifetime = 0.09999999999999999
+lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_s7eqe")
 draw_pass_1 = SubResource("QuadMesh_ey2vc")
 
@@ -108,3 +455,63 @@ libraries = {
 &"": SubResource("AnimationLibrary_ddau6")
 }
 autoplay = "Spark"
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jih8c")
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_7ed7d")
+draw_pass_1 = SubResource("QuadMesh_panlm")
+
+[node name="Flash" type="GPUParticles3D" parent="."]
+material_override = ExtResource("5_ey2vc")
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4dxbk")
+draw_pass_1 = SubResource("QuadMesh_e5s7n")
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+material_override = ExtResource("5_ey2vc")
+emitting = false
+amount = 13
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_3ubwy")
+draw_pass_1 = SubResource("QuadMesh_ss847")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+material_override = ExtResource("5_ey2vc")
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8cus5")
+draw_pass_1 = SubResource("QuadMesh_fwtby")
+
+[node name="ExplosionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_mnorm")
+
+[node name="FuseSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_rjy64")
+
+[node name="ExplosionEffectRange" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionEffectRange"]
+shape = SubResource("SphereShape3D_mnorm")
+
+[connection signal="area_entered" from="ExplosionEffectRange" to="." method="_on_explosion_effect_range_area_entered"]
+[connection signal="body_entered" from="ExplosionEffectRange" to="." method="_on_explosion_effect_range_body_entered"]

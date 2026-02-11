@@ -8,7 +8,11 @@ func _ready() -> void:
 		pieces.apply_impulse(pieces.get_child(0).position * INTENSITY, self.global_position)
 	
 
+	if nav_mesh.is_baking():
+		await nav_mesh.bake_finished
+
 	nav_mesh.bake_navigation_mesh()
+	await nav_mesh.bake_finished
 	await  get_tree().create_timer(3).timeout
 	
 	queue_free()

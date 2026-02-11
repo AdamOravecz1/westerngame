@@ -5,6 +5,8 @@ extends Node3D
 @onready var main = get_tree().get_first_node_in_group("Main")
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+var full := true
+
 func _ready():
 	add_to_group("barrier")
 
@@ -31,12 +33,34 @@ func _process(delta: float) -> void:
 
 
 func hit():
-	var old_parent = self.get_parent()
-	old_parent.remove_child(self)  # Remove from current parent
-	main.add_child(self)     # Add to new parent
-	var broken_model_inst:Node3D = broken_model.instantiate()
-	get_parent().add_child(broken_model_inst)
-	broken_model_inst.transform = self.transform
+	if full:
+		full = false
+		var old_parent = self.get_parent()
+		old_parent.remove_child(self)  # Remove from current parent
+		main.add_child(self)     # Add to new parent
+		var broken_model_inst:Node3D = broken_model.instantiate()
+		get_parent().add_child(broken_model_inst)
+		broken_model_inst.transform = self.transform
 
-	self.queue_free()
+		self.queue_free()
 	
+	
+func destroy(from_position: Vector3, force: float = 5.0):
+	if full:
+		full = false
+
+		var old_parent = get_parent()
+		old_parent.remove_child(self)
+		main.add_child(self)
+
+		var broken_model_inst: Node3D = broken_model.instantiate()
+		get_parent().add_child(broken_model_inst)
+		broken_model_inst.transform = self.transform
+
+		# Apply force to all rigid bodies inside the broken model
+		for body in broken_model_inst.get_children():
+			if body is RigidBody3D:
+				var direction = (body.global_position - from_position).normalized()
+				body.apply_impulse(direction * force)
+
+		queue_free()

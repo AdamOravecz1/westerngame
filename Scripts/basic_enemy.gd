@@ -179,29 +179,23 @@ func hit(hitbox_type: String, pos):
 	if health<=0:
 		die()
 	
-func die():
+func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp = 6, a_damp = 9, grav = 1):
 	player.AddMoney(5)
 	if is_ragdoll:
 		return
 
 	is_ragdoll = true
-	
-	# Stop logic
 	set_physics_process(false)
 
-	# Stop character motion
 	velocity = Vector3.ZERO
 	global_basis = global_basis.orthonormalized()
-
-	# Stop animations
 	enemy_anim.stop()
 
-	# Disable character collision
 	$PlayerSearch.queue_free()
 	$CoverFinder.queue_free()
 	$CoverChecker.queue_free()
 	$Fire.stop()
-	#$CollisionShape3D.disabled = true
+
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():
@@ -212,18 +206,25 @@ func die():
 	# Enable ragdoll
 	skeleton.physical_bones_start_simulation()
 
-	# Stabilize bones
+	# Apply explosion force
 	for bone in skeleton.get_children():
 		if bone is PhysicalBone3D:
-			bone.linear_damp = 6.0
-			bone.angular_damp = 9.0
-			bone.apply_central_impulse(Vector3.DOWN * 0.5)
+			bone.gravity_scale = grav
+			bone.linear_damp = l_damp
+			bone.angular_damp = a_damp
 
-	# Stop logic
-	set_physics_process(false)
-	
+			var dir = (bone.global_position - from_position).normalized()
+			var impulse = dir * strength
+
+			# optional: add slight upward bias for nicer ragdolls
+			impulse.y += strength * 0.1
+
+			bone.apply_central_impulse(impulse * bone.mass)
+			
+
 	await get_tree().create_timer(5).timeout
-	queue_free()	
+	queue_free()
+
 
 
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dsesj1gvyb4ha"]
+[gd_scene load_steps=19 format=4 uid="uid://dsesj1gvyb4ha"]
 
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
@@ -146,13 +146,16 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2q4rf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
-size = Vector3(0.53511333, 1, 0.069244385)
+size = Vector3(0.65306544, 1, 0.4728775)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig2pw"]
-size = Vector3(0.566864, 1, 0.067871094)
+size = Vector3(0.69646454, 1, 0.43823242)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkote"]
 size = Vector3(0.3972168, 1.2028809, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0cgl3"]
+size = Vector3(0.14099121, 0.2944336, 0.21282959)
 
 [node name="Barrier" type="Node3D"]
 script = ExtResource("1_1olmg")
@@ -191,7 +194,7 @@ collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21149963, 0.5420926, -0.021011353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15252358, 0.5420926, -0.0072288513)
 shape = SubResource("BoxShape3D_megwv")
 debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
@@ -201,7 +204,7 @@ collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17358044, 0.542, -0.021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108780175, 0.542, -0.015262693)
 shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
@@ -226,6 +229,14 @@ collision_mask = 32
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23327637, 0.5826416, 0)
 shape = SubResource("BoxShape3D_rkote")
+
+[node name="GetExplosion" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GetExplosion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24920654, 0.45179164, -0.0184021)
+shape = SubResource("BoxShape3D_0cgl3")
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]
