@@ -11,4 +11,4 @@ func _on_explosion_effect_range_area_entered(area: Area3D) -> void:
 
 func _on_explosion_effect_range_body_entered(body: Node3D) -> void:
 	if body and body.has_method("die"):
-		body.die(global_position, 5, 0, 0, 1)
+		body.die(global_position, 5, 1, 1, 1)
