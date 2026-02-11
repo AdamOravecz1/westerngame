@@ -64,11 +64,13 @@ func _physics_process(delta):
 			if enemy.cover_location == area.global_position:
 				can_hide_there = false
 				break
-
-		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 3:
+				
+		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 1 and area.global_position.distance_to(player.global_position) < 10:
 			closest = dist
 			cover_location = area.global_position
 			sees_cover = true
+		elif closest == INF:
+			sees_cover = false
 
 
 	var current = animation_tree.get("parameters/Blend3/blend_amount")
@@ -83,9 +85,8 @@ func _physics_process(delta):
 		look_at_player(delta)
 		#print("shooting_from_cover")
 	
-	elif in_cover and sees_player:
+	elif in_cover and player_in_range:
 		ChangeAnimation(-1.0, current, delta)
-		#print($BasicConnectedDude/PlayerChecker.get_collider())
 		var new_value = lerp(current2, 0.0, blend_speed * delta)
 		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
 		var new_value2 = lerp(current3, 0.0, blend_speed * delta)
@@ -97,7 +98,7 @@ func _physics_process(delta):
 		look_at_player(delta)
 		#print("in_cover")
 
-	elif sees_cover and sees_player:
+	elif sees_cover and player_in_range:
 		# Set animation
 		ChangeAnimation(0.0, current, delta)
 		speed = 2
@@ -142,25 +143,18 @@ func _physics_process(delta):
 		#print("player_in_range")
 		
 
-	elif sees_player:
+	else:
 		
 		# Set animation
+		animation_tree.set("parameters/Blend3 2/blend_amount", -1.0)
 		ChangeAnimation(0.0, current, delta)
 		speed = 2
 		has_strafe_target = false
-		#$PlayerShoot/CollisionShape3D.shape.radius = 8
 		
 		follow_path(player.global_position, delta)
 		#print("sees_player")
 		
 
-			
-	else:
-		# Set animation
-		ChangeAnimation(1.0, current, delta)
-		speed = 0
-		velocity = Vector3.ZERO
-		#print("else")
 	move_and_slide()
 
 
@@ -190,8 +184,7 @@ func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp
 	velocity = Vector3.ZERO
 	global_basis = global_basis.orthonormalized()
 	enemy_anim.stop()
-
-	$PlayerSearch.queue_free()
+	
 	$CoverFinder.queue_free()
 	$CoverChecker.queue_free()
 	$Fire.stop()
@@ -309,17 +302,6 @@ func _on_fire_timeout() -> void:
 			#print("just_shot")
 
 		#print("fire")
-
-
-func _on_player_search_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
-		sees_player = true
-		
-
-
-func _on_player_search_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
-		sees_player = false
 
 func _on_cover_checker_area_entered(area: Area3D) -> void:
 	if area.name.begins_with("HideArea") and area.global_position == cover_location:

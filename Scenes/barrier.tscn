@@ -146,10 +146,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2q4rf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
-size = Vector3(0.65306544, 1, 0.4728775)
+size = Vector3(0.65306544, 1, 0.2398014)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig2pw"]
-size = Vector3(0.69646454, 1, 0.43823242)
+size = Vector3(0.69646454, 1, 0.2489624)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkote"]
 size = Vector3(0.3972168, 1.2028809, 1)
@@ -194,7 +194,7 @@ collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15252358, 0.5420926, -0.0072288513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15252358, 0.5420926, -0.023070335)
 shape = SubResource("BoxShape3D_megwv")
 debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
@@ -204,7 +204,7 @@ collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108780175, 0.542, -0.015262693)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108780175, 0.542, -0.018222898)
 shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
