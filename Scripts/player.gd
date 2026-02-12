@@ -36,6 +36,8 @@ var chamber := [1,1,1,1,1,1]
 var chamber_pointer := 0
 var free_bullets := 6
 
+var dynamyte_amount := 3
+
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
 @onready var bowie_knife: Node3D = $Camera3D/BowieKnife
@@ -46,6 +48,7 @@ var free_bullets := 6
 @onready var fakes: Node3D = $Camera3D/Revolver/Fakes
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
+@onready var dynamite_count: Label = $CanvasLayer/DynamiteCount
 
 
 @onready var weapons := [bowie_knife, revolver]
@@ -64,6 +67,7 @@ func _ready():
 	dead45.visible = false
 	live45.visible = false
 	RefreshBulletCount()
+	RefreshDynamiteCount()
 	
 
 
@@ -238,8 +242,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.z = move_toward(velocity.z, 0, speed)
-		
-
 			
 
 		# Duck
@@ -265,7 +267,9 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D.position.y += diff / 2.0
 			
 		# Throw
-		if Input.is_action_just_pressed("throw"):
+		if Input.is_action_just_pressed("throw") and dynamyte_amount > 0:
+			dynamyte_amount -= 1
+			RefreshDynamiteCount()
 			var dynamite = dynamite_scene.instantiate()
 			var dynamites_container = get_tree().current_scene.get_node("Dynamites")
 			dynamites_container.add_child(dynamite)
@@ -301,6 +305,9 @@ func _physics_process(delta: float) -> void:
 
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
+	
+func RefreshDynamiteCount():
+	dynamite_count.text = str(dynamyte_amount)
 	
 func AddMoney(amount):
 	money += amount
@@ -368,3 +375,10 @@ func _on_health_pressed() -> void:
 
 func _on_next_wave_pressed() -> void:
 	main.next_wave()
+
+
+func _on_dynamyte_pressed() -> void:
+	if money >= 3:
+		AddMoney(-3)
+		dynamyte_amount += 1
+		RefreshDynamiteCount()

@@ -64,8 +64,8 @@ func _physics_process(delta):
 			if enemy.cover_location == area.global_position:
 				can_hide_there = false
 				break
-				
-		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 1 and area.global_position.distance_to(player.global_position) < 10:
+
+		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 1 and area.global_position.distance_to(player.global_position) < 10 and player.selected_weapon != 0:
 			closest = dist
 			cover_location = area.global_position
 			sees_cover = true

@@ -526,6 +526,13 @@ offset_bottom = 169.0
 theme_override_font_sizes/font_size = 64
 text = "0"
 
+[node name="DynamiteCount" type="Label" parent="CanvasLayer"]
+offset_top = 116.0
+offset_right = 40.0
+offset_bottom = 204.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(1, 0, 0, 1)
 offset_top = 21.0
@@ -569,6 +576,10 @@ layout_mode = 2
 [node name="Ammo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
 layout_mode = 2
 text = "Buy ammo"
+
+[node name="Dynamyte" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dynamite"
 
 [node name="Health" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
 layout_mode = 2
@@ -618,6 +629,7 @@ stream = ExtResource("17_qqcod")
 [connection signal="area_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_area_entered"]
 [connection signal="body_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Dynamyte" to="." method="_on_dynamyte_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]
 
