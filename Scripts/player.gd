@@ -91,10 +91,10 @@ func _unhandled_input(event):
 func _physics_process(delta: float) -> void:
 	if not in_shop:
 		#Switch weapons
-		if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon:
+		if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon and not reloading:
 			switch_weapon(1)
 			
-		if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon:
+		if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon and not reloading:
 			switch_weapon(-1)
 
 		
@@ -357,7 +357,7 @@ func _on_knife_hit_box_area_entered(area: Area3D) -> void:
 	if area.get_owner().has_method("hit") and not knife_has_hit:
 		knife_has_hit = true
 		$Sounds/HitSound.play()
-		area.get_owner().hit("UpperArm", $Camera3D/BowieKnife/Cube.global_position)
+		area.get_owner().hit("UpperArm", area.global_position)
 
 
 func _on_ammo_pressed() -> void:

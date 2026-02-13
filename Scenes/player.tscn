@@ -1,11 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=59 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="3_f1ek2"]
 [ext_resource type="AudioStream" uid="uid://dbeiln8kythrt" path="res://Sounds/cocking-a-revolver-6279.wav" id="3_vgqql"]
 [ext_resource type="AudioStream" uid="uid://cvxyyt6ow30ir" path="res://Sounds/single-pistol-gunshot-33-37187.wav" id="4_fkybt"]
-[ext_resource type="Texture2D" uid="uid://c3r31512qkaqw" path="res://Textures/Revolver_close-up-wooden-surface-texture.jpg" id="4_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://d27jpun7546f3" path="res://Sounds/double-dry-fire-364847.wav" id="5_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bvoy683wbk4hv" path="res://Textures/Revolver_golden-wall-background.jpg" id="5_gymyn"]
 [ext_resource type="Texture2D" uid="uid://sc2qnxf6dgrf" path="res://Textures/Revolver_everytexture.com-stock-metal-texture-00185.jpg" id="5_pu2lt"]
@@ -270,10 +269,29 @@ roughness = 0.0
 use_z_clip_scale = true
 z_clip_scale = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqcod"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4iuc"]
+load_path = "res://.godot/imported/rosewood_veneer1_diff_4k.png-5e5fdc8f1afffda05d91a2256f45062e.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fd4e3"]
+load_path = "res://.godot/imported/rosewood_veneer1_rough_4k.png-a2101f090ec0cc4fb0b827fa89429964.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wpjfl"]
+load_path = "res://.godot/imported/rosewood_veneer1_nor_gl_4k.png-84eef7c7f82628bfe87e7070bae0d0c6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bi64h"]
+load_path = "res://.godot/imported/rosewood_veneer1_rough_4k.png-a2101f090ec0cc4fb0b827fa89429964.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wohnl"]
 resource_name = "Wood"
 cull_mode = 2
-albedo_texture = ExtResource("4_tx1dd")
+albedo_texture = SubResource("CompressedTexture2D_h4iuc")
+metallic_texture = SubResource("CompressedTexture2D_fd4e3")
+metallic_texture_channel = 2
+roughness_texture = SubResource("CompressedTexture2D_bi64h")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 5.0
+normal_texture = SubResource("CompressedTexture2D_wpjfl")
 use_z_clip_scale = true
 z_clip_scale = 0.5
 
@@ -460,7 +478,7 @@ material_override = SubResource("StandardMaterial3D_h4iuc")
 material_override = SubResource("StandardMaterial3D_fd4e3")
 
 [node name="Cube_001" parent="Camera3D/Revolver" index="7"]
-surface_material_override/0 = SubResource("StandardMaterial3D_qqcod")
+surface_material_override/0 = SubResource("StandardMaterial3D_wohnl")
 
 [node name="Cylinder_005" parent="Camera3D/Revolver" index="8"]
 material_override = SubResource("StandardMaterial3D_igrcy")
