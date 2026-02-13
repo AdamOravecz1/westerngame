@@ -598,31 +598,40 @@ offset_bottom = 40.0
 [node name="CockSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_vgqql")
 volume_db = 10.0
+bus = &"SFX"
 
 [node name="FireSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_fkybt")
+bus = &"SFX"
 
 [node name="DryFireSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_fkybt")
+bus = &"SFX"
 
 [node name="HalfDeCockSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_3smsa")
+bus = &"SFX"
 
 [node name="HalfCockSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_8erm5")
+bus = &"SFX"
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_8erm5")
+bus = &"SFX"
 
 [node name="StepSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_ukyrk")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="KnifeSlashSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("16_fd4e3")
+bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("17_qqcod")
+bus = &"SFX"
 
 [node name="Damage_Indicator_LookAt" type="Node3D" parent="."]
 

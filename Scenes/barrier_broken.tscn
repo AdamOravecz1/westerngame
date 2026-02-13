@@ -1492,3 +1492,4 @@ shape = SubResource("ConvexPolygonShape3D_s7kko")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_vfydy")
 autoplay = true
+bus = &"SFX"

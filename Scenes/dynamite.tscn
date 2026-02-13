@@ -503,9 +503,11 @@ draw_pass_1 = SubResource("QuadMesh_fwtby")
 
 [node name="ExplosionSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_mnorm")
+bus = &"SFX"
 
 [node name="FuseSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rjy64")
+bus = &"SFX"
 
 [node name="ExplosionEffectRange" type="Area3D" parent="."]
 collision_layer = 4
