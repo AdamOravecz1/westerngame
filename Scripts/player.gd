@@ -36,7 +36,11 @@ var chamber := [1,1,1,1,1,1]
 var chamber_pointer := 0
 var free_bullets := 6
 
-var dynamyte_amount := 3
+var dynamite_amount := 3
+var dynamite_indicator_targets: Array = []
+var dynamite_indicator_close_targets: Array = []
+var indicators := {} # target -> sprite
+
 
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
@@ -86,9 +90,46 @@ func _unhandled_input(event):
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
-
 func _physics_process(delta: float) -> void:
+	
+	# Dynamite indicator 
+	# Create missing indicators
+	for target in dynamite_indicator_targets:
+		if not indicators.has(target):
+			var sprite = Sprite2D.new()
+			sprite.texture = preload("res://Pictures/DynamiteIcon.png") 
+			sprite.scale = Vector2(0.25, 0.25)
+
+			$CanvasLayer/UI_Center.add_child(sprite)
+			indicators[target] = sprite
+	
+	# Remove dead/unused indicators
+	for target in indicators.keys():
+		if target not in dynamite_indicator_targets or target == null:
+			indicators[target].queue_free()
+			indicators.erase(target)
+	for target in dynamite_indicator_targets:
+		if target == null:
+			continue
+
+		var sprite = indicators[target]
+		sprite.visible = true
+		if target in dynamite_indicator_close_targets:
+			sprite.modulate = Color(1, 0, 0, 1)
+		else:
+			sprite.modulate = Color(1, 1, 1, 1)
+
+		$Dynamite_Indicator_LookAt.look_at(
+			target.global_transform.origin,
+			Vector3.UP
+		)
+
+		var angle = -$Dynamite_Indicator_LookAt.rotation.y
+		var radius = 500.0
+
+		var offset = Vector2(sin(angle), -cos(angle)) * radius
+		sprite.offset = offset
+	
 	if not in_shop:
 		#Switch weapons
 		if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon and not reloading:
@@ -267,8 +308,8 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D.position.y += diff / 2.0
 			
 		# Throw
-		if Input.is_action_just_pressed("throw") and dynamyte_amount > 0:
-			dynamyte_amount -= 1
+		if Input.is_action_just_pressed("throw") and dynamite_amount > 0:
+			dynamite_amount -= 1
 			RefreshDynamiteCount()
 			var dynamite = dynamite_scene.instantiate()
 			var dynamites_container = get_tree().current_scene.get_node("Dynamites")
@@ -278,6 +319,7 @@ func _physics_process(delta: float) -> void:
 			dynamite.rotation_degrees = Vector3(0, 180, 270)
 			var forward_dir = -$Camera3D.global_transform.basis.z.normalized()
 			dynamite.apply_impulse(forward_dir * throw_force)
+			
 
 
 	# Interact
@@ -307,7 +349,7 @@ func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
 	
 func RefreshDynamiteCount():
-	dynamite_count.text = str(dynamyte_amount)
+	dynamite_count.text = str(dynamite_amount)
 	
 func AddMoney(amount):
 	money += amount
@@ -348,7 +390,6 @@ func take_damage(enemy_position):
 	tween.tween_callback(indicator.queue_free)
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
-	#hfevsufbersubf
 
 func start_knife_swing():
 	knife_has_hit = false
@@ -380,5 +421,19 @@ func _on_next_wave_pressed() -> void:
 func _on_dynamyte_pressed() -> void:
 	if money >= 3:
 		AddMoney(-3)
-		dynamyte_amount += 1
+		dynamite_amount += 1
 		RefreshDynamiteCount()
+
+
+
+func _on_dynamite_close_body_entered(body: Node3D) -> void:
+	dynamite_indicator_targets.append(body)
+
+func _on_dynamite_close_body_exited(body: Node3D) -> void:
+	dynamite_indicator_targets.erase(body)
+
+func _on_dynamite_deadly_body_entered(body: Node3D) -> void:
+	dynamite_indicator_close_targets.append(body)
+
+func _on_dynamite_deadly_body_exited(body: Node3D) -> void:
+	dynamite_indicator_close_targets.erase(body)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=61 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
@@ -413,6 +413,12 @@ roughness = 0.0
 use_z_clip_scale = true
 z_clip_scale = 0.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_fd4e3"]
+radius = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h4iuc"]
+radius = 3.5
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 21
 collision_mask = 17
@@ -653,12 +659,33 @@ bus = &"SFX"
 
 [node name="Damage_Indicator_LookAt" type="Node3D" parent="."]
 
+[node name="Dynamite_Indicator_LookAt" type="Node3D" parent="."]
+
+[node name="DynamiteClose" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteClose"]
+shape = SubResource("SphereShape3D_fd4e3")
+
+[node name="DynamiteDeadly" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteDeadly"]
+shape = SubResource("SphereShape3D_h4iuc")
+debug_fill = false
+
 [connection signal="area_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_area_entered"]
 [connection signal="body_entered" from="Camera3D/BowieKnife/KnifeHitBox" to="." method="_on_knife_hit_box_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Dynamyte" to="." method="_on_dynamyte_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]
+[connection signal="body_entered" from="DynamiteClose" to="." method="_on_dynamite_close_body_entered"]
+[connection signal="body_exited" from="DynamiteClose" to="." method="_on_dynamite_close_body_exited"]
+[connection signal="body_entered" from="DynamiteDeadly" to="." method="_on_dynamite_deadly_body_entered"]
+[connection signal="body_exited" from="DynamiteDeadly" to="." method="_on_dynamite_deadly_body_exited"]
 
 [editable path="Camera3D/BowieKnife"]
 [editable path="Camera3D/Revolver"]
