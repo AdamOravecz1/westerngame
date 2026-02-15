@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://i0wo3fx3vjxw"]
+
+[ext_resource type="Texture2D" uid="uid://wkeiw0fjio2w" path="res://Pictures/DynamiteImage.png" id="1_377ws"]
+
+[node name="DynamiteFittedImage" type="TextureRect"]
+custom_minimum_size = Vector2(0, 80)
+texture = ExtResource("1_377ws")
+expand_mode = 3
+stretch_mode = 4

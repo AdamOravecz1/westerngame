@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var main = get_tree().get_first_node_in_group("Main")
 var dynamite_scene = preload("res://Scenes/dynamite.tscn")
+var dynamite_fitted_scene = preload("res://Scenes/dynamite_fitted_image.tscn")
 
 @export var speed: float = 6.0
 @export var mouse_sensitivity: float = 0.002
@@ -52,7 +53,6 @@ var indicators := {} # target -> sprite
 @onready var fakes: Node3D = $Camera3D/Revolver/Fakes
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
-@onready var dynamite_count: Label = $CanvasLayer/DynamiteCount
 
 
 @onready var weapons := [bowie_knife, revolver]
@@ -349,7 +349,11 @@ func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
 	
 func RefreshDynamiteCount():
-	dynamite_count.text = str(dynamite_amount)
+	for i in $CanvasLayer/DynamiteContainer.get_children():
+		i.queue_free()
+	for i in range(dynamite_amount):
+		var dynamite_fitted = dynamite_fitted_scene.instantiate()
+		$CanvasLayer/DynamiteContainer.add_child(dynamite_fitted)
 	
 func AddMoney(amount):
 	money += amount
@@ -417,14 +421,11 @@ func _on_health_pressed() -> void:
 func _on_next_wave_pressed() -> void:
 	main.next_wave()
 
-
 func _on_dynamyte_pressed() -> void:
 	if money >= 3:
 		AddMoney(-3)
 		dynamite_amount += 1
 		RefreshDynamiteCount()
-
-
 
 func _on_dynamite_close_body_entered(body: Node3D) -> void:
 	dynamite_indicator_targets.append(body)
