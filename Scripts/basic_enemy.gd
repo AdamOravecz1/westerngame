@@ -286,19 +286,13 @@ func _on_fire_timeout() -> void:
 			shooting_from_cover = true
 			await get_tree().create_timer(1).timeout
 			if in_cover and health > 0:
-				animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-				$Sounds/FireSound.play()
-				if gun_ray.get_collider() == player:
-					player.take_damage(global_position)
+				shoot_gun()
 				await get_tree().create_timer(1).timeout
 				shooting_from_cover = false
 				#print("shot_from_cover")
 			
 		elif player_in_range:
-			$Sounds/FireSound.play()
-			if gun_ray.get_collider() == player:
-				player.take_damage(global_position)
-			animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			shoot_gun()
 			#print("just_shot")
 
 		#print("fire")
@@ -323,3 +317,11 @@ func _on_cover_finder_area_exited(area: Area3D) -> void:
 		if area.global_position == cover_location:
 			shooting_from_cover = false
 		sees_cover = false
+		
+func shoot_gun():
+	for i in $BasicConnectedDude/Armature/Skeleton3D/Gun/MuzzleFlash.get_children():
+		i.emitting = true
+	$Sounds/FireSound.play()
+	if gun_ray.get_collider() == player:
+		player.take_damage(global_position)
+	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

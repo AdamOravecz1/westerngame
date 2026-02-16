@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=63 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://sc2qnxf6dgrf" path="res://Textures/Revolver_everytexture.com-stock-metal-texture-00185.jpg" id="5_pu2lt"]
 [ext_resource type="AudioStream" uid="uid://ccwnm6fbeu414" path="res://Sounds/HalfDeCock.wav" id="6_3smsa"]
 [ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
+[ext_resource type="PackedScene" uid="uid://ccjq5iymolfxe" path="res://Scenes/muzzle_flash.tscn" id="7_fd4e3"]
 [ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://8q3vm4wn8qth" path="res://3D/BowieKnife.blend" id="15_h4iuc"]
@@ -481,6 +482,7 @@ material_override = SubResource("StandardMaterial3D_ukyrk")
 material_override = SubResource("StandardMaterial3D_7dp3o")
 
 [node name="Cylinder_004" parent="Camera3D/Revolver" index="5"]
+transform = Transform3D(4.20041e-07, 0.5821856, 0.0008167455, -0.018453205, -0.0030191632, 0.15529077, 0.15529291, -0.00036033758, 0.01845295, 0.9667811, -0.1630169, -0.29348582)
 material_override = SubResource("StandardMaterial3D_h4iuc")
 
 [node name="Cube" parent="Camera3D/Revolver" index="6"]
@@ -505,6 +507,7 @@ material_override = SubResource("StandardMaterial3D_olqyp")
 material_override = SubResource("StandardMaterial3D_wpjfl")
 
 [node name="Hammer" parent="Camera3D/Revolver" index="13"]
+transform = Transform3D(-0.042330347, 0, 0.042842396, 0, -0.031809703, 0, -0.042842396, 0, -0.042330347, 1.0836035, -0.0019615781, -0.100926496)
 surface_material_override/0 = SubResource("StandardMaterial3D_2ijsl")
 
 [node name="45Dead" parent="Camera3D/Revolver" index="14"]
@@ -517,8 +520,12 @@ surface_material_override/1 = SubResource("StandardMaterial3D_vfarp")
 surface_material_override/2 = SubResource("StandardMaterial3D_y6uwr")
 
 [node name="Fakes" parent="Camera3D/Revolver" index="16"]
+transform = Transform3D(-3.82944e-09, -0.01776837, 1.1633194e-09, 0.01875657, -3.7320436e-10, 0.03423281, -0.03423281, 1.7831684e-09, 0.01875657, 0.5426053, -0.0014844621, -0.3416342)
 surface_material_override/0 = SubResource("StandardMaterial3D_83xs0")
 surface_material_override/1 = SubResource("StandardMaterial3D_ypfnu")
+
+[node name="MuzzleFlash" parent="Camera3D/Revolver" instance=ExtResource("7_fd4e3")]
+transform = Transform3D(-4.371137e-08, 0, 0.9999996, 0, 0.99999976, 0, -0.9999996, 0, -4.371137e-08, -2.5451999, -7.1525574e-07, -0.5061387)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.025038183, -0.18838778)
