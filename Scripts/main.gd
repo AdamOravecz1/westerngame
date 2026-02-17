@@ -1,7 +1,7 @@
 extends Node3D
 
 var barrier_scene = preload("res://Scenes/barrier.tscn")
-var enemy_scene = preload("res://Scenes/basic_enemy.tscn")
+var enemy_scene = preload("res://Scenes/revolver_enemy.tscn")
 
 
 const MIN_BARRIERS := 10

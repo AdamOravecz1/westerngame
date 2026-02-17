@@ -1,0 +1,204 @@
+extends BasicEnemy
+
+
+@onready var enemy_anim: AnimationPlayer = $BasicConnectedDude.get_node("AnimationPlayer")
+@onready var animation_tree: AnimationTree = $BasicConnectedDude/AnimationTree
+
+
+func _ready() -> void:
+	$Fire.wait_time = randf_range(3.0, 5.0)
+
+func _physics_process(delta):
+	var dir = (player.global_position - $PlayerShoot.global_position).normalized()
+
+	$PlayerShoot.rotation.y = atan2(dir.x, dir.z) # left/right
+	$PlayerShoot.rotation.x = asin(-dir.y)        # up/down
+	
+	if $PlayerShoot.get_collider() == player:
+		player_in_range = true
+	else:
+		player_in_range = false
+	
+	gun_ray.target_position = gun_ray.to_local(player.get_child(1).global_position)
+	enemies = get_tree().current_scene.get_child(0).get_children()
+	enemies.erase(self)
+	
+	var closest := INF
+
+	for area in hiding_spots:
+		
+		var dist := global_position.distance_to(area.global_position)
+		var can_hide_there = true
+		for enemy in enemies:
+			if enemy.cover_location == area.global_position:
+				can_hide_there = false
+				break
+
+		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 1 and area.global_position.distance_to(player.global_position) < 10 and player.selected_weapon != 0:
+			closest = dist
+			cover_location = area.global_position
+			sees_cover = true
+		elif closest == INF:
+			sees_cover = false
+
+
+	var current = animation_tree.get("parameters/Blend3/blend_amount")
+	var current2 = animation_tree.get("parameters/Blend3 2/blend_amount")
+	var current3 = animation_tree.get("parameters/Blend2/blend_amount")
+	
+	if shooting_from_cover:
+		var new_value = lerp(current2, 1.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
+		var new_value2 = lerp(current3, 1.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
+		look_at_player(delta)
+		#print("shooting_from_cover")
+	
+	elif in_cover and player_in_range:
+		ChangeAnimation(-1.0, current, delta)
+		var new_value = lerp(current2, 0.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
+		var new_value2 = lerp(current3, 0.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
+		
+		
+		speed = 0
+		velocity = Vector3.ZERO
+		look_at_player(delta)
+		#print("in_cover")
+
+	elif sees_cover and player_in_range:
+		# Set animation
+		ChangeAnimation(0.0, current, delta)
+		speed = 2
+		has_strafe_target = false
+		#$PlayerShoot/CollisionShape3D.shape.radius = 8
+		
+		follow_path(cover_location, delta)
+		#print("sees_cover")
+	
+	elif player_in_range:
+		if speed != 0.5:
+			animation_tree.set("parameters/TimeSeek/seek_request", 0)
+			#$PlayerShoot/CollisionShape3D.shape.radius = 10
+			speed = 0.5
+			
+		#Set animation
+		ChangeAnimation(-1.0, current, delta)
+		var new_value = lerp(current2, -1.0, blend_speed * delta)
+		animation_tree.set("parameters/Blend3 2/blend_amount", new_value)
+		animation_tree.set("parameters/Blend2/blend_amount", 1.0)
+		
+		# Pick a new strafe target if needed
+		if not has_strafe_target:
+			strafe_target = get_random_point_around_self()
+			has_strafe_target = true
+			navigation_agent_3d.set_target_position(strafe_target)
+
+		# Move toward strafe target
+		var destination = navigation_agent_3d.get_next_path_position()
+		var direction = destination - global_position
+		direction.y = 0
+
+		# If reached → choose another random point
+		if direction.length() < strafe_reach_distance:
+			has_strafe_target = false
+			velocity = Vector3.ZERO
+		else:
+			direction = direction.normalized()
+			velocity = direction * speed
+			
+		look_at_player(delta)
+		#print("player_in_range")
+		
+
+	else:
+		
+		# Set animation
+		animation_tree.set("parameters/Blend3 2/blend_amount", -1.0)
+		ChangeAnimation(0.0, current, delta)
+		speed = 2
+		has_strafe_target = false
+		
+		follow_path(player.global_position, delta)
+		#print("sees_player")
+		
+
+	move_and_slide()
+
+
+
+	
+func ChangeAnimation(target, current, delta):
+	var new_value = lerp(current, target, blend_speed * delta)
+	animation_tree.set("parameters/Blend3/blend_amount", new_value)
+	
+func get_random_point_around_self() -> Vector3:
+	# Random angle between -90° and +90°
+	var angle = randf_range(-PI * 0.5, PI * 0.5)
+
+	# Forward direction
+	var forward = model.global_transform.basis.z
+	if global_position.distance_to(player.global_position) <= 3:
+		forward = -forward
+
+	forward.y = 0
+	forward = forward.normalized()
+
+	# Rotate forward vector around Y
+	var dir = forward.rotated(Vector3.UP, angle)
+	dir.y = 0
+	dir = dir.normalized()
+
+
+	return global_position + dir * strafe_radius
+
+
+
+
+func _on_fire_timeout() -> void:
+	$Fire.wait_time = randf_range(3.0, 5.0)
+	if animation_tree.get("parameters/Blend3/blend_amount") <= -0.9:
+		if in_cover and player_in_range:
+			shooting_from_cover = true
+			await get_tree().create_timer(1).timeout
+			if in_cover and health > 0:
+				shoot_gun()
+				await get_tree().create_timer(1).timeout
+				shooting_from_cover = false
+				#print("shot_from_cover")
+			
+		elif player_in_range:
+			shoot_gun()
+			#print("just_shot")
+
+		#print("fire")
+
+func _on_cover_checker_area_entered(area: Area3D) -> void:
+	if area.name.begins_with("HideArea") and area.global_position == cover_location:
+		in_cover = true
+
+func _on_cover_checker_area_exited(area: Area3D) -> void:
+	if area.name.begins_with("HideArea"):
+		animation_tree.set("parameters/Blend3/blend_amount", -1.0)
+		in_cover = false
+		shooting_from_cover = false
+
+func _on_cover_finder_area_entered(area: Area3D) -> void:
+	if area.name.begins_with("HideArea"):
+		hiding_spots.append(area)
+		
+func _on_cover_finder_area_exited(area: Area3D) -> void:
+	if area.name.begins_with("HideArea"):
+		hiding_spots.erase(area)
+		if area.global_position == cover_location:
+			shooting_from_cover = false
+		sees_cover = false
+		
+func shoot_gun():
+	for i in $BasicConnectedDude/Armature/Skeleton3D/Gun/MuzzleFlash.get_children():
+		i.emitting = true
+	$Sounds/FireSound.play()
+	if gun_ray.get_collider() == player:
+		player.take_damage(global_position)
+	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
