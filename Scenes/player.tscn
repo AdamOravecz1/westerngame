@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=64 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://djkgb0fhtur0n" path="res://3D/Revolver.blend" id="2_cvnsp"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dntk1w4jrajfq" path="res://Sounds/HalfCock.wav" id="7_8erm5"]
 [ext_resource type="PackedScene" uid="uid://ccjq5iymolfxe" path="res://Scenes/muzzle_flash.tscn" id="7_fd4e3"]
 [ext_resource type="AudioStream" uid="uid://b238wbwh52vkj" path="res://Sounds/clean-revolver-reload-6889.wav" id="8_8erm5"]
+[ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://8q3vm4wn8qth" path="res://3D/BowieKnife.blend" id="15_h4iuc"]
 [ext_resource type="AudioStream" uid="uid://bsbeosg516ste" path="res://Sounds/Sounds_KnifeSlash.wav" id="16_fd4e3"]
@@ -547,6 +548,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 0.146
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("8_qqcod")]
+visible = false
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]
 offset_top = 45.0

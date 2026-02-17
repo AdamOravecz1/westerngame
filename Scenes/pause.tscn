@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://qktlg0swcp4t"]
+
+[ext_resource type="Script" uid="uid://dyjorqen3hsxj" path="res://Scripts/pause.gd" id="1_o80xk"]
+
+[node name="Pause" type="Control" groups=["Pause"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o80xk")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = -67.5
+offset_right = 183.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="Sound" type="HSlider" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Music" type="HSlider" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="FullScreen" type="Button" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Full Screen"
+
+[node name="Quit" type="Button" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/Sound" to="." method="_on_sound_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/FullScreen" to="." method="_on_full_screen_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

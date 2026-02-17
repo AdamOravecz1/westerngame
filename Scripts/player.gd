@@ -64,6 +64,7 @@ var knife_has_hit := false
 var pitch := 0.0
 
 var in_shop := false
+var paused = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -84,14 +85,22 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 		
 
-	if event.is_action_pressed("cancel"):
+	if event.is_action_pressed("pause"):
+
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+		Engine.time_scale = paused
+
+		cocked = paused
+		paused = not paused
+		
+		$CanvasLayer/Pause.visible = paused
+
+
 func _physics_process(delta: float) -> void:
-	
 	# Dynamite indicator 
 	# Create missing indicators
 	for target in dynamite_indicator_targets:
