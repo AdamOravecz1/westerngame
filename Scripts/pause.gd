@@ -2,10 +2,16 @@ extends Control
 
 @onready var music = $NinePatchRect/VBoxContainer/Music
 @onready var sfx = $NinePatchRect/VBoxContainer/Sound
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 var health_bar = true
 
 var full_screen = false
+
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		player.pause()
+		
 
 func _ready():
 	music.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))

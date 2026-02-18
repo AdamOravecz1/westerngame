@@ -42,7 +42,7 @@ func spawn_barriers():
 
 	print("Spawned barriers:", barrier_points)
 
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1, false).timeout
 	$NavigationRegion3D.bake_navigation_mesh()
 
 func clear_barriers():

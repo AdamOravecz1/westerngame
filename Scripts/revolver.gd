@@ -84,14 +84,18 @@ func fire():
 
 	revolver_anim.play("FireAction")
 	if player.chamber[player.chamber_pointer%6] == 1:
+
+
+		await get_tree().process_frame
+		await get_tree().process_frame
 		for i in $MuzzleFlash.get_children():
 			i.emitting = true
-
-		await get_tree().create_timer(0.04).timeout
+		$Sounds/FireSound.play()
+		await get_tree().process_frame
 		player.chamber[player.chamber_pointer%6] = 0
 		player.recoil_offset += player.recoil_strength
 		print("fire")
-		$Sounds/FireSound.play()
+		
 		player.chamber_pointer += 1
 		player.RefreshBulletCount()
 		if player.revolver_ray.is_colliding():

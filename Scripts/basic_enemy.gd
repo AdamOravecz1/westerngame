@@ -95,7 +95,7 @@ func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp
 			bone.apply_central_impulse(impulse * bone.mass)
 	
 
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5, false).timeout
 	queue_free()
 	
 func follow_path(where, delta):

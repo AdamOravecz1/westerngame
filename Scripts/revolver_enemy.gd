@@ -161,10 +161,10 @@ func _on_fire_timeout() -> void:
 	if animation_tree.get("parameters/Blend3/blend_amount") <= -0.9:
 		if in_cover and player_in_range:
 			shooting_from_cover = true
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(1, false).timeout
 			if in_cover and health > 0:
 				shoot_gun()
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(1, false).timeout
 				shooting_from_cover = false
 				#print("shot_from_cover")
 			

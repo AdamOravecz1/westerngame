@@ -63,7 +63,6 @@ func _ready():
 
 	RefreshBulletCount()
 	RefreshDynamiteCount()
-	
 
 
 func _unhandled_input(event):
@@ -75,14 +74,16 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 		
 
-	if event.is_action_pressed("pause"):
-
+	
+func pause():
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-		Engine.time_scale = paused
+	
+		get_tree().paused = !paused
+
 
 		cocked = paused
 		paused = not paused
@@ -97,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		if not indicators.has(target):
 			var sprite = Sprite2D.new()
 			sprite.texture = preload("res://Pictures/DynamiteIcon.png") 
-			sprite.scale = Vector2(0.25, 0.25)
+			sprite.scale = Vector2(0.15, 0.15)
 
 			$CanvasLayer/UI_Center.add_child(sprite)
 			indicators[target] = sprite
@@ -124,7 +125,7 @@ func _physics_process(delta: float) -> void:
 		)
 
 		var angle = -$Dynamite_Indicator_LookAt.rotation.y
-		var radius = 500.0
+		var radius = 1000.0
 
 		var offset = Vector2(sin(angle), -cos(angle)) * radius
 		sprite.offset = offset

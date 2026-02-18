@@ -30,6 +30,7 @@ current = true
 visible = false
 
 [node name="Revolver" parent="Camera3D" instance=ExtResource("3_ukyrk")]
+transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -42,15 +43,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 0.146
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
 
 [node name="RevolverRay" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(3.333333, 0, 0, 0, -1.457046e-07, -3.3333328, 0, 3.3333328, -1.457046e-07, 0, 0, 0)
-target_position = Vector3(0, -100, -1)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -100, 0)
 collision_mask = 19
 collide_with_areas = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("8_qqcod")]
-visible = false
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]
 offset_top = 45.0
@@ -127,6 +125,9 @@ text = "Buy health"
 [node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
 layout_mode = 2
 text = "Next wave"
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("8_qqcod")]
+visible = false
 
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3

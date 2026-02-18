@@ -13,6 +13,6 @@ func _ready() -> void:
 
 	nav_mesh.bake_navigation_mesh()
 	await nav_mesh.bake_finished
-	await  get_tree().create_timer(3).timeout
+	await  get_tree().create_timer(3, false).timeout
 	
 	queue_free()
