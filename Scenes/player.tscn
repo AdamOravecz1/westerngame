@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=10 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://d3y84ei0f0150" path="res://Scenes/bowie_knife.tscn" id="2_fkybt"]
 [ext_resource type="PackedScene" uid="uid://o7yr4us8c52x" path="res://Scenes/revolver.tscn" id="3_ukyrk"]
+[ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
@@ -32,12 +33,16 @@ visible = false
 [node name="Revolver" parent="Camera3D" instance=ExtResource("3_ukyrk")]
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
+[node name="Shotgun" parent="Camera3D" instance=ExtResource("4_x3wgy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5996585, -0.77516735, 1.5794208)
+visible = false
+
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 
 [node name="OffWeaponPos" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 0.14625812)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 1.5794208)
 
 [node name="OnWeaponPos" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)

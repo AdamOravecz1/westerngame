@@ -36,6 +36,9 @@ var chamber := [1,1,1,1,1,1]
 var chamber_pointer := 0
 var free_bullets := 6
 
+var shotgun_in_barrel := 2
+var free_shotgun := 6
+
 var dynamite_amount := 3
 var dynamite_indicator_targets: Array = []
 var dynamite_indicator_close_targets: Array = []
@@ -43,13 +46,15 @@ var indicators := {}
 
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
+@onready var shotgun: Node3D = $Camera3D/Shotgun
+
 @onready var revolver_ray: RayCast3D = $Camera3D/RevolverRay
 @onready var bowie_knife: Node3D = $Camera3D/BowieKnife
 
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
 
-@onready var weapons := [bowie_knife, revolver]
+@onready var weapons := [bowie_knife, revolver, shotgun]
 var selected_weapon := 1
 var switching_weapon := false
 
@@ -140,27 +145,36 @@ func _physics_process(delta: float) -> void:
 
 		
 		#Reload
-		if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] == revolver:
-			$Camera3D/Revolver.reload()
+		if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] != bowie_knife:
+			if weapons[selected_weapon] == revolver:
+				revolver.reload()
+			elif weapons[selected_weapon] == shotgun:
+				shotgun.reload()
 
 		
 		# Aim
 		if not reloading:
 			var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
 			revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
+			shotgun.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
+			
 
 
 		# Fire
 		if Input.is_action_just_pressed("fire"):
 			# Revolver
 			if cocked and not cocking and not reloading and not switching_weapon and weapons[selected_weapon] == revolver:
-				$Camera3D/Revolver.fire()
+				revolver.fire()
 
 
 			
 			# Knife
 			elif not switching_weapon and weapons[selected_weapon] == bowie_knife:
-				$Camera3D/BowieKnife.slash()
+				bowie_knife.slash()
+				
+			# Shotgun
+			elif not switching_weapon and weapons[selected_weapon] == shotgun and shotgun_in_barrel != 0:
+				shotgun.fire()
 
 
 		# Gravity
