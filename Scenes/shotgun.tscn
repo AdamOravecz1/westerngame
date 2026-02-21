@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://xnjbmhq8u41t"]
+[gd_scene load_steps=49 format=4 uid="uid://xnjbmhq8u41t"]
 
 [ext_resource type="Script" uid="uid://bgxh53spgb7g2" path="res://Scripts/shotgun.gd" id="1_amvni"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="1_voe37"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://cjispap3fq7dc" path="res://Textures/rosewood_veneer1_rough_4k.png" id="3_nc2j0"]
 [ext_resource type="Texture2D" uid="uid://cl6ydlgqfo5ce" path="res://Textures/rosewood_veneer1_nor_gl_4k.png" id="4_tte5i"]
 [ext_resource type="Texture2D" uid="uid://bvoy683wbk4hv" path="res://Textures/Revolver_golden-wall-background.jpg" id="5_32p8t"]
+[ext_resource type="PackedScene" uid="uid://ccjq5iymolfxe" path="res://Scenes/muzzle_flash.tscn" id="7_nc2j0"]
+[ext_resource type="AudioStream" uid="uid://iijfa2dxg10v" path="res://Sounds/freesound_community-shotgun-firing-3-14483.wav" id="8_tte5i"]
+[ext_resource type="AudioStream" uid="uid://dbeiln8kythrt" path="res://Sounds/cocking-a-revolver-6279.wav" id="9_32p8t"]
+[ext_resource type="AudioStream" uid="uid://cnukw2h3n60y7" path="res://Sounds/ShotgunShellEject.wav" id="10_wprm0"]
+[ext_resource type="AudioStream" uid="uid://31dvlcjn45vo" path="res://Sounds/ShotgunShellInsert.wav" id="11_6ypiu"]
+[ext_resource type="AudioStream" uid="uid://dyn0qhfx4ehnc" path="res://Sounds/ShutgunOpen.wav" id="12_dq761"]
+[ext_resource type="AudioStream" uid="uid://dinc8tu00m80g" path="res://Sounds/ShotgunClose.wav" id="13_dx37s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bi0rs"]
 resource_name = "Material.003"
@@ -13,6 +20,8 @@ cull_mode = 2
 albedo_texture = ExtResource("1_voe37")
 metallic = 0.5
 roughness = 0.0
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lqc4e"]
 _surfaces = [{
@@ -59,6 +68,8 @@ roughness_texture_channel = 1
 normal_enabled = true
 normal_scale = 5.0
 normal_texture = ExtResource("4_tte5i")
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5reu4"]
 _surfaces = [{
@@ -370,6 +381,8 @@ cull_mode = 2
 albedo_texture = ExtResource("5_32p8t")
 metallic = 0.5
 roughness = 0.25
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mv6sa"]
 resource_name = "Shotgun_Cylinder_008"
@@ -530,6 +543,54 @@ tracks/11/path = NodePath("Dead_001")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = PackedFloat32Array(0, 1, 0, 1.5896505e-10, 0, 1, 0.5, 1, 0, 1.5896505e-10, 0, 1, 1, 1, 2.2123655e-11, 1.57418e-10, -0.13917309, 0.9902681, 2, 1, 2.2123655e-11, 1.57418e-10, -0.13917309, 0.9902681, 2.4666667, 1, 2.323992e-12, 1.5934484e-10, -0.009308263, 0.9999567, 2.5, 1, 8.250629e-13, 1.589672e-10, -1.3115793e-22, 1, 3, 1, 8.250629e-13, 1.589672e-10, -1.3115793e-22, 1)
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sounds/ShellEjectSound:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sounds/ShellInsertSound:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sounds/OpenSound:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Sounds/CloseSound:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7n2go"]
 resource_name = "LoadOne"
@@ -618,6 +679,54 @@ tracks/11/path = NodePath("Dead_001")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = PackedFloat32Array(0, 1, 0, 1.5896505e-10, 0, 1, 0.5, 1, 0, 1.5896505e-10, 0, 1, 1, 1, 2.2123655e-11, 1.57418e-10, -0.13917309, 0.9902681, 2, 1, 2.2123655e-11, 1.57418e-10, -0.13917309, 0.9902681, 2.4666667, 1, 1.5539863e-12, 1.593499e-10, -0.009308263, 0.9999567, 2.5, 1, 0, 1.5896505e-10, 0, 1, 3, 1, 0, 1.5896505e-10, 0, 1)
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sounds/ShellEjectSound:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sounds/ShellInsertSound:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1.9666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sounds/OpenSound:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Sounds/CloseSound:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kov2o"]
 resource_name = "Fire1"
@@ -665,34 +774,18 @@ tracks/0/path = NodePath("Hammer1")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
-tracks/1/type = "position_3d"
-tracks/1/imported = true
+tracks/1/type = "value"
+tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Live_001")
+tracks/1/path = NodePath("Sounds/CockSound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array()
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Live_001")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array()
-tracks/3/type = "position_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dead_001")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array()
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Dead_001")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array()
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ftowf"]
 resource_name = "Cock2"
@@ -704,6 +797,93 @@ tracks/0/path = NodePath("Hammer2")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/CockSound2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_l7ybu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/CockSound2:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/ShellEjectSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/ShellInsertSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/CockSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sounds/OpenSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sounds/CloseSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4y60p"]
 _data = {
@@ -712,7 +892,8 @@ _data = {
 &"Fire1": SubResource("Animation_kov2o"),
 &"Fire2": SubResource("Animation_pa163"),
 &"LoadBoth": SubResource("Animation_fh7dq"),
-&"LoadOne": SubResource("Animation_7n2go")
+&"LoadOne": SubResource("Animation_7n2go"),
+&"RESET": SubResource("Animation_l7ybu")
 }
 
 [node name="Shotgun" type="Node3D"]
@@ -739,7 +920,7 @@ mesh = SubResource("ArrayMesh_bheav")
 skeleton = NodePath("")
 
 [node name="Trigger1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2986953, -0.27043507, 0)
+transform = Transform3D(0.9914449, 0.1305262, 0, -0.1305262, 0.9914449, 0, 0, 0, 1, -0.2986953, -0.27043507, 0)
 mesh = SubResource("ArrayMesh_rfm2h")
 skeleton = NodePath("")
 
@@ -749,17 +930,17 @@ mesh = SubResource("ArrayMesh_cmyn0")
 skeleton = NodePath("")
 
 [node name="Opener" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9999867, 0, 0.0051511247, 0, 1, 0, -0.0051511247, 0, 0.9999867, -0.11183772, -0.013354093, 0)
+transform = Transform3D(0.99998665, 0, 0.005151124, 0, 1, 0, -0.005151124, 0, 0.99998665, -0.11183772, -0.013354093, 0)
 mesh = SubResource("ArrayMesh_on1o3")
 skeleton = NodePath("")
 
 [node name="Hammer1" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7660445, -0.6427876, 0, 0.6427876, 0.7660445, 0, 0, 0, 1, -0.19369552, -0.10822828, 0.05914385)
+transform = Transform3D(0.7660444, -0.6427877, 0, 0.6427877, 0.7660444, 0, 0, 0, 1, -0.19369552, -0.10822828, 0.05914385)
 mesh = SubResource("ArrayMesh_0acvr")
 skeleton = NodePath("")
 
 [node name="Hammer2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7660445, -0.6427876, 0, 0.6427876, 0.7660445, 0, 0, 0, 1, -0.19369552, -0.10822828, -0.05914385)
+transform = Transform3D(0.7660444, -0.6427877, 0, 0.6427877, 0.7660444, 0, 0, 0, 1, -0.19369552, -0.10822828, -0.05914385)
 mesh = SubResource("ArrayMesh_dfri1")
 skeleton = NodePath("")
 
@@ -770,25 +951,21 @@ skeleton = NodePath("")
 
 [node name="Live" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637657e-22, -1.9857924e-10, 0, 1, 1.5932006e-12, 1.9857924e-10, -1.5932006e-12, 1, -2.0740054, -0.026050508, 0.060245004)
-visible = false
 mesh = SubResource("ArrayMesh_mv6sa")
 skeleton = NodePath("")
 
 [node name="Dead" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637854e-22, -1.9857942e-10, 0, 1, 1.5932091e-12, 1.9857942e-10, -1.5932091e-12, 1, -0.025641501, -0.04230068, 0.060245)
-visible = false
 mesh = SubResource("ArrayMesh_ydd1i")
 skeleton = NodePath("")
 
 [node name="Live_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637854e-22, -1.9857942e-10, 0, 1, 1.5932091e-12, 1.9857942e-10, -1.5932091e-12, 1, -0.025642, -0.042301, -0.060244586)
-visible = false
 mesh = SubResource("ArrayMesh_qkrcb")
 skeleton = NodePath("")
 
 [node name="Dead_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 3.179301e-10, 0, 1, 0, -3.179301e-10, 0, 1, -2.074, -0.02605, -0.060245)
-visible = false
 mesh = SubResource("ArrayMesh_g038c")
 skeleton = NodePath("")
 
@@ -796,3 +973,42 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_4y60p")
 }
+
+[node name="MuzzleFlash" parent="." instance=ExtResource("7_nc2j0")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 2.450175, -0.043712795, 0.060288534)
+
+[node name="MuzzleFlash2" parent="." instance=ExtResource("7_nc2j0")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 2.450175, -0.043712795, -0.059478775)
+
+[node name="Sounds" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FireSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_tte5i")
+volume_db = 10.0
+
+[node name="CockSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_32p8t")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="CockSound2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_32p8t")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="ShellEjectSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_wprm0")
+
+[node name="ShellInsertSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_6ypiu")
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("12_dq761")
+
+[node name="CloseSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_dx37s")
+pitch_scale = 1.5

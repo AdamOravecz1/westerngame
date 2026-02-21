@@ -34,8 +34,7 @@ visible = false
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
 [node name="Shotgun" parent="Camera3D" instance=ExtResource("4_x3wgy")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5996585, -0.77516735, 1.5794208)
-visible = false
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 0.5996585, -0.77516735, 1.5794208)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)

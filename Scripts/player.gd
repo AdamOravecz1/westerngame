@@ -18,7 +18,6 @@ var duck := false
 var stand_height := 2.0
 var duck_height := 1.8
 
-@export var recoil_strength := deg_to_rad(25.0)   
 @export var recoil_return_speed := 0.04          
 
 @export var aim_x := 0.0

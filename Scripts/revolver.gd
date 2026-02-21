@@ -8,7 +8,8 @@ extends Node3D
 @export var normal_x := 0.6
 @export var reload_rotate := 60
 @export var normal_rotate := 89
-@export var pull_speed := 10.0
+
+@export var recoil_strength := deg_to_rad(25.0)   
 
 @onready var cylinder: Node3D = $MainCylinder
 @onready var live45: Node3D = $"45Live"
@@ -78,7 +79,6 @@ func reload():
 	live45.visible = false
 	
 func fire():
-
 	player.cocking = true
 	player.cocked = false
 
@@ -93,7 +93,7 @@ func fire():
 		$Sounds/FireSound.play()
 		await get_tree().process_frame
 		player.chamber[player.chamber_pointer%6] = 0
-		player.recoil_offset += player.recoil_strength
+		player.recoil_offset += recoil_strength
 		print("fire")
 		
 		player.chamber_pointer += 1

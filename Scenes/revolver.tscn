@@ -1393,7 +1393,7 @@ libraries = {
 autoplay = "CloseAction"
 
 [node name="MuzzleFlash" parent="." instance=ExtResource("7_03b68")]
-transform = Transform3D(-4.371137e-08, 0, 0.9999996, 0, 0.99999976, 0, -0.9999996, 0, -4.371137e-08, -2.5451999, -7.1525574e-07, -0.5061387)
+transform = Transform3D(-8.742271e-08, 0, 1.9999986, 0, 1.9999995, 0, -1.9999986, 0, -8.742271e-08, -2.5451992, -7.1525574e-07, -0.5061385)
 
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3

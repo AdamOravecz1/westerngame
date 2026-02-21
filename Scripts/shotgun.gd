@@ -4,6 +4,8 @@ extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var recoil_strength := deg_to_rad(45.0)   
+
 
 
 func reload():
@@ -41,13 +43,22 @@ func reload():
 	player.reloading = false
 	
 func fire():
-	player.recoil_offset += player.recoil_strength
+
 	if player.shotgun_in_barrel == 2:
 		animation_player.play("Fire1")
+		for i in $MuzzleFlash.get_children():
+			i.emitting = true
 		
 	elif player.shotgun_in_barrel == 1:
 		animation_player.play("Fire2")
-		
+		for i in $MuzzleFlash2.get_children():
+			i.emitting = true
+	await get_tree().process_frame
+	await get_tree().process_frame
+	$Sounds/FireSound.play()
+	#await get_tree().process_frame
+
+	player.recoil_offset += recoil_strength
 	player.shotgun_in_barrel -= 1
 		
 	
