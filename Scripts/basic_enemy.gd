@@ -38,18 +38,13 @@ func _ready() -> void:
 	$Fire.wait_time = randf_range(3.0, 5.0)
 
 
-func hit(hitbox_type: String, pos):
+func hit(damage, pos):
 	var blood_burst = blood_scene.instantiate()
 	get_tree().current_scene.add_child(blood_burst)
 	blood_burst.global_position = pos
 	
-	print("Hit:", hitbox_type)
-	if hitbox_type == "Head":
-		health -= 100
-	elif hitbox_type == "Body":
-		health -= 3
-	else:
-		health -= 1
+
+	health -= damage
 	if health<=0:
 		die()
 	

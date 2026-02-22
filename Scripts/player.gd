@@ -48,6 +48,7 @@ var indicators := {}
 @onready var shotgun: Node3D = $Camera3D/Shotgun
 
 @onready var revolver_ray: RayCast3D = $Camera3D/RevolverRay
+@onready var shotgun_rays: Node3D = $Camera3D/ShotgunRays
 @onready var bowie_knife: Node3D = $Camera3D/BowieKnife
 
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
@@ -148,7 +149,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] != bowie_knife:
 			if weapons[selected_weapon] == revolver:
 				revolver.reload()
-			elif weapons[selected_weapon] == shotgun:
+			elif weapons[selected_weapon] == shotgun and shotgun_in_barrel != 2:
 				shotgun.reload()
 
 		

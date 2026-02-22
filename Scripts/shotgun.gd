@@ -50,11 +50,22 @@ func fire():
 		await get_tree().process_frame
 		sound_n_light($MuzzleFlash2)
 		
+	for ray in player.shotgun_rays.get_children():
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			
+			var hit_pos = ray.get_collision_point()
+
+			if collider is Area3D:
+				var enemy = collider.get_owner()
+				if enemy and enemy.has_method("hit"):
+					enemy.hit(1, hit_pos)
+		
 	await get_tree().process_frame
 
 	player.recoil_offset += recoil_strength
 	player.shotgun_in_barrel -= 1
-		
+
 	
 func sound_n_light(light):
 	for i in light.get_children():

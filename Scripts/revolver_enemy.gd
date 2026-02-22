@@ -127,7 +127,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-
 	
 func ChangeAnimation(target, current, delta):
 	var new_value = lerp(current, target, blend_speed * delta)
@@ -152,8 +151,6 @@ func get_random_point_around_self() -> Vector3:
 
 
 	return global_position + dir * strafe_radius
-
-
 
 
 func _on_fire_timeout() -> void:

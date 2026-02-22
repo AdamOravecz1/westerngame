@@ -34,6 +34,7 @@ transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884
 
 [node name="Shotgun" parent="Camera3D" instance=ExtResource("4_x3wgy")]
 transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 0.5996585, -0.77516735, 1.5794208)
+visible = false
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -50,6 +51,62 @@ transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, 
 target_position = Vector3(0, -100, 0)
 collision_mask = 19
 collide_with_areas = true
+
+[node name="ShotgunRays" type="Node3D" parent="Camera3D"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(0, 5, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(0, -5, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(5, 0, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D5" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(-5, 0, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D6" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(-3, -3, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D7" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(-3, 3, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D8" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(3, 3, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="RayCast3D9" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+target_position = Vector3(3, -3, -100)
+collision_mask = 19
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

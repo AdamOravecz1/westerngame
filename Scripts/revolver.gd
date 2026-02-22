@@ -4,16 +4,20 @@ extends Node3D
 
 @onready var revolver_anim = $AnimationPlayer
 
-
 @export var reload_rotate := 60
 @export var normal_rotate := 89
 
 @export var recoil_strength := deg_to_rad(25.0)   
 
+@export var headshot := 100
+@export var torsoshot := 3
+@export var limbshot := 1
+
 @onready var cylinder: Node3D = $MainCylinder
 @onready var live45: Node3D = $"45Live"
 @onready var dead45: Node3D = $"45Dead"
 @onready var fakes: Node3D = $Fakes
+
 
 
 
@@ -100,16 +104,21 @@ func fire():
 		player.RefreshBulletCount()
 		if player.revolver_ray.is_colliding():
 			var collider = player.revolver_ray.get_collider()
+			var damage = 0
+			if collider.name == "Head":
+				damage = headshot
+			elif collider.name == "Body":
+				damage = torsoshot
+			else:
+				damage = limbshot
+			
 			var hit_pos = player.revolver_ray.get_collision_point()
 
 			if collider is Area3D:
 				var enemy = collider.get_owner()
 				if enemy and enemy.has_method("hit"):
-					enemy.hit(collider.name, hit_pos)
-			if collider is CSGBox3D:
-				var enemy = collider.get_owner()
-				if enemy and enemy.has_method("hit"):
-					enemy.hit()
+					enemy.hit(damage, hit_pos)
+
 	else:
 		$Sounds/DryFireSound.play()
 		player.chamber_pointer += 1
