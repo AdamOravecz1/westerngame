@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://o7yr4us8c52x"]
+[gd_scene load_steps=98 format=4 uid="uid://o7yr4us8c52x"]
 
 [ext_resource type="Script" uid="uid://vrhpyeo37wuy" path="res://Scripts/revolver.gd" id="1_lr3gs"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="1_rdxj1"]
@@ -1277,6 +1277,69 @@ _data = {
 &"OpenAction": SubResource("Animation_wpqoc")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_71b88"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl2ji"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_71b88")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qg8uj"]
+load_path = "res://.godot/imported/MuzzleFlash01.png-094caa4a1329afebc0fe0e40d47a3dac.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_680hn"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_qg8uj")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qsv75"]
+load_path = "res://.godot/imported/MuzzleFlash02.png-393cb79f6ff01613ef13984a01579f58.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw2cm"]
+render_priority = 100
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_qsv75")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m6gg"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfd5l"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_8m6gg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
 [node name="Revolver" type="Node3D"]
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, 0, 0)
 script = ExtResource("1_lr3gs")
@@ -1395,6 +1458,18 @@ autoplay = "CloseAction"
 [node name="MuzzleFlash" parent="." instance=ExtResource("7_03b68")]
 transform = Transform3D(-8.742271e-08, 0, 1.9999986, 0, 1.9999995, 0, -1.9999986, 0, -8.742271e-08, -2.5451992, -7.1525574e-07, -0.5061385)
 
+[node name="Sparks" parent="MuzzleFlash" index="0"]
+material_overlay = SubResource("StandardMaterial3D_kl2ji")
+
+[node name="MuzzlePlanes" parent="MuzzleFlash" index="1"]
+material_overlay = SubResource("StandardMaterial3D_680hn")
+
+[node name="MuzzleCone" parent="MuzzleFlash" index="2"]
+material_overlay = SubResource("StandardMaterial3D_yw2cm")
+
+[node name="BeamFlash" parent="MuzzleFlash" index="3"]
+material_overlay = SubResource("StandardMaterial3D_vfd5l")
+
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -1425,3 +1500,5 @@ bus = &"SFX"
 [node name="ReloadSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_31ify")
 bus = &"SFX"
+
+[editable path="MuzzleFlash"]

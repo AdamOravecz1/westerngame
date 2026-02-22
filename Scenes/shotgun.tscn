@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://xnjbmhq8u41t"]
+[gd_scene load_steps=57 format=4 uid="uid://xnjbmhq8u41t"]
 
 [ext_resource type="Script" uid="uid://bgxh53spgb7g2" path="res://Scripts/shotgun.gd" id="1_amvni"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="1_voe37"]
@@ -456,6 +456,88 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="Animation" id="Animation_6coxr"]
+resource_name = "Cock1"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hammer1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/CockSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ftowf"]
+resource_name = "Cock2"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hammer2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/CockSound2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kov2o"]
+resource_name = "Fire1"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trigger1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hammer1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_pa163"]
+resource_name = "Fire2"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trigger2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hammer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_fh7dq"]
 resource_name = "LoadBoth"
 length = 3.0
@@ -728,88 +810,6 @@ tracks/15/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_kov2o"]
-resource_name = "Fire1"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trigger1")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hammer1")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_pa163"]
-resource_name = "Fire2"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trigger2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hammer2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_6coxr"]
-resource_name = "Cock1"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hammer1")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sounds/CockSound:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ftowf"]
-resource_name = "Cock2"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hammer2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sounds/CockSound2:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_l7ybu"]
 length = 0.001
 tracks/0/type = "value"
@@ -896,6 +896,69 @@ _data = {
 &"RESET": SubResource("Animation_l7ybu")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_71b88"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dq761"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_71b88")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qg8uj"]
+load_path = "res://.godot/imported/MuzzleFlash01.png-094caa4a1329afebc0fe0e40d47a3dac.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx37s"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_qg8uj")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qsv75"]
+load_path = "res://.godot/imported/MuzzleFlash02.png-393cb79f6ff01613ef13984a01579f58.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qjrk0"]
+render_priority = 100
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_qsv75")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m6gg"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptryg"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_8m6gg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_amvni")
 
@@ -930,7 +993,7 @@ mesh = SubResource("ArrayMesh_cmyn0")
 skeleton = NodePath("")
 
 [node name="Opener" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.99998665, 0, 0.005151124, 0, 1, 0, -0.005151124, 0, 0.99998665, -0.11183772, -0.013354093, 0)
+transform = Transform3D(0.9999865, 0, 0.005151126, 0, 1, 0, -0.005151126, 0, 0.9999865, -0.11183772, -0.013354093, 0)
 mesh = SubResource("ArrayMesh_on1o3")
 skeleton = NodePath("")
 
@@ -951,21 +1014,25 @@ skeleton = NodePath("")
 
 [node name="Live" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637657e-22, -1.9857924e-10, 0, 1, 1.5932006e-12, 1.9857924e-10, -1.5932006e-12, 1, -2.0740054, -0.026050508, 0.060245004)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_mv6sa")
 skeleton = NodePath("")
 
 [node name="Dead" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637854e-22, -1.9857942e-10, 0, 1, 1.5932091e-12, 1.9857942e-10, -1.5932091e-12, 1, -0.025641501, -0.04230068, 0.060245)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_ydd1i")
 skeleton = NodePath("")
 
 [node name="Live_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 3.1637854e-22, -1.9857942e-10, 0, 1, 1.5932091e-12, 1.9857942e-10, -1.5932091e-12, 1, -0.025642, -0.042301, -0.060244586)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_qkrcb")
 skeleton = NodePath("")
 
 [node name="Dead_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 3.179301e-10, 0, 1, 0, -3.179301e-10, 0, 1, -2.074, -0.02605, -0.060245)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_g038c")
 skeleton = NodePath("")
 
@@ -975,10 +1042,34 @@ libraries = {
 }
 
 [node name="MuzzleFlash" parent="." instance=ExtResource("7_nc2j0")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 2.450175, -0.043712795, 0.060288534)
+transform = Transform3D(-1.7484543e-07, 0, -3.9999971, 0, 3.999999, 0, 3.9999971, 0, -1.7484543e-07, 2.450175, -0.043712795, 0.060288534)
+
+[node name="Sparks" parent="MuzzleFlash" index="0"]
+material_overlay = SubResource("StandardMaterial3D_dq761")
+
+[node name="MuzzlePlanes" parent="MuzzleFlash" index="1"]
+material_overlay = SubResource("StandardMaterial3D_dx37s")
+
+[node name="MuzzleCone" parent="MuzzleFlash" index="2"]
+material_overlay = SubResource("StandardMaterial3D_qjrk0")
+
+[node name="BeamFlash" parent="MuzzleFlash" index="3"]
+material_overlay = SubResource("StandardMaterial3D_ptryg")
 
 [node name="MuzzleFlash2" parent="." instance=ExtResource("7_nc2j0")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 2.450175, -0.043712795, -0.059478775)
+transform = Transform3D(-1.7484543e-07, 0, -3.9999971, 0, 3.999999, 0, 3.9999971, 0, -1.7484543e-07, 2.450175, -0.043712795, -0.061328724)
+
+[node name="Sparks" parent="MuzzleFlash2" index="0"]
+material_overlay = SubResource("StandardMaterial3D_dq761")
+
+[node name="MuzzlePlanes" parent="MuzzleFlash2" index="1"]
+material_overlay = SubResource("StandardMaterial3D_dx37s")
+
+[node name="MuzzleCone" parent="MuzzleFlash2" index="2"]
+material_overlay = SubResource("StandardMaterial3D_qjrk0")
+
+[node name="BeamFlash" parent="MuzzleFlash2" index="3"]
+material_overlay = SubResource("StandardMaterial3D_ptryg")
 
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3
@@ -1012,3 +1103,6 @@ stream = ExtResource("12_dq761")
 [node name="CloseSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_dx37s")
 pitch_scale = 1.5
+
+[editable path="MuzzleFlash"]
+[editable path="MuzzleFlash2"]

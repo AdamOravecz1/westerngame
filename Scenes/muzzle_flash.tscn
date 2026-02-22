@@ -41,6 +41,7 @@ size = Vector2(0.2, 1)
 transparency = 1
 blend_mode = 1
 cull_mode = 2
+depth_draw_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
@@ -67,6 +68,7 @@ color = Color(2.0331757, 1.6594982, 1.1899191, 1)
 alpha_curve = SubResource("CurveTexture_0ji0n")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_486r5"]
+render_priority = 100
 transparency = 1
 blend_mode = 1
 cull_mode = 2
@@ -74,6 +76,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("3_01ce2")
+z_clip_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pos7"]
 transparency = 1

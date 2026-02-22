@@ -12,10 +12,8 @@ func reload():
 	if animation_player.current_animation:
 		await animation_player.animation_finished
 		
-	$Live.visible = true
-	$Live_001.visible = true
-	$Dead.visible = true
-	$Dead_001.visible = true
+	var tween_in := get_tree().create_tween()
+	tween_in.parallel().tween_property(self, "position:x", player.normal_x, 0.2)
 	
 	player.reloading = true
 	
@@ -32,33 +30,33 @@ func reload():
 		await animation_player.animation_finished
 		animation_player.play("Cock1")
 	player.shotgun_in_barrel = 2
-	$Live.visible = false
-	$Live_001.visible = false
-	$Dead.visible = false
-	$Dead_001.visible = false
+
 	await animation_player.animation_finished
 	
-
 	
 	player.reloading = false
 	
 func fire():
-
 	if player.shotgun_in_barrel == 2:
 		animation_player.play("Fire1")
-		for i in $MuzzleFlash.get_children():
-			i.emitting = true
+		await get_tree().process_frame
+		await get_tree().process_frame
+		sound_n_light($MuzzleFlash)
+
 		
 	elif player.shotgun_in_barrel == 1:
 		animation_player.play("Fire2")
-		for i in $MuzzleFlash2.get_children():
-			i.emitting = true
+		await get_tree().process_frame
+		await get_tree().process_frame
+		sound_n_light($MuzzleFlash2)
+		
 	await get_tree().process_frame
-	await get_tree().process_frame
-	$Sounds/FireSound.play()
-	#await get_tree().process_frame
 
 	player.recoil_offset += recoil_strength
 	player.shotgun_in_barrel -= 1
 		
 	
+func sound_n_light(light):
+	for i in light.get_children():
+		i.emitting = true
+	$Sounds/FireSound.play()

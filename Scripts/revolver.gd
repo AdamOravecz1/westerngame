@@ -4,8 +4,7 @@ extends Node3D
 
 @onready var revolver_anim = $AnimationPlayer
 
-@export var aim_x := 0.0
-@export var normal_x := 0.6
+
 @export var reload_rotate := 60
 @export var normal_rotate := 89
 
@@ -31,7 +30,7 @@ func reload():
 	var length := 0.2
 	
 	var tween_in := get_tree().create_tween()
-	tween_in.parallel().tween_property(self, "position:x", aim_x, length)
+	tween_in.parallel().tween_property(self, "position:x", player.aim_x, length)
 	tween_in.parallel().tween_property(self, "rotation_degrees:x", reload_rotate, length)
 	tween_in.parallel().tween_property(fakes,"rotation_degrees:x",fakes.rotation_degrees.x + 60,cylinder_length)
 	
@@ -69,7 +68,7 @@ func reload():
 	await revolver_anim.animation_finished
 
 	var tween_out := get_tree().create_tween()
-	tween_out.parallel().tween_property(self, "position:x", normal_x, length)
+	tween_out.parallel().tween_property(self, "position:x", player.normal_x, length)
 	tween_out.parallel().tween_property(self, "rotation_degrees:x", normal_rotate, length)
 	await tween_out.finished
 
@@ -90,6 +89,7 @@ func fire():
 		await get_tree().process_frame
 		for i in $MuzzleFlash.get_children():
 			i.emitting = true
+
 		$Sounds/FireSound.play()
 		await get_tree().process_frame
 		player.chamber[player.chamber_pointer%6] = 0

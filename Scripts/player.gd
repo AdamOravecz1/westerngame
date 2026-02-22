@@ -76,6 +76,7 @@ func _unhandled_input(event):
 		pitch -= event.relative.y * mouse_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
+
 		
 
 	
@@ -154,8 +155,10 @@ func _physics_process(delta: float) -> void:
 		# Aim
 		if not reloading:
 			var target_x := aim_x if Input.is_action_pressed("aim") else normal_x
+
 			revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
-			shotgun.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
+			shotgun.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
+
 			
 
 
