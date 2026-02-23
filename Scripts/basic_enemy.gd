@@ -45,7 +45,7 @@ func hit(damage, pos):
 	
 
 	health -= damage
-	if health<=0:
+	if health<=0 and not is_ragdoll:
 		die()
 	
 func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp = 6, a_damp = 9, grav = 1):

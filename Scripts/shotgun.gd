@@ -4,7 +4,7 @@ extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var recoil_strength := deg_to_rad(45.0)   
+@export var recoil_strength := deg_to_rad(55.0)   
 
 
 
@@ -33,7 +33,7 @@ func reload():
 
 	await animation_player.animation_finished
 	
-	
+	player.RefreshShotgunCount()
 	player.reloading = false
 	
 func fire():
@@ -65,6 +65,8 @@ func fire():
 
 	player.recoil_offset += recoil_strength
 	player.shotgun_in_barrel -= 1
+	player.RefreshShotgunCount()
+	
 
 	
 func sound_n_light(light):

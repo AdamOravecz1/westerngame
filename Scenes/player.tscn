@@ -33,8 +33,7 @@ visible = false
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
 [node name="Shotgun" parent="Camera3D" instance=ExtResource("4_x3wgy")]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 0.5996585, -0.77516735, 1.5794208)
-visible = false
+transform = Transform3D(-3.715468e-08, 0, 0.85, 0, 0.85, 0, -0.85, 0, -3.715468e-08, 0.5996585, -0.77516735, 1.5794208)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -55,13 +54,13 @@ collide_with_areas = true
 [node name="ShotgunRays" type="Node3D" parent="Camera3D"]
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(0, 5, -100)
+target_position = Vector3(0, 3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D2" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(0, -5, -100)
+target_position = Vector3(0, -3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
@@ -73,37 +72,37 @@ collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D4" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(5, 0, -100)
+target_position = Vector3(3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D5" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(-5, 0, -100)
+target_position = Vector3(-3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D6" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(-3, -3, -100)
+target_position = Vector3(-2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D7" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(-3, 3, -100)
+target_position = Vector3(-2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D8" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(3, 3, -100)
+target_position = Vector3(2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="RayCast3D9" type="RayCast3D" parent="Camera3D/ShotgunRays"]
-target_position = Vector3(3, -3, -100)
+target_position = Vector3(2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
@@ -111,6 +110,14 @@ debug_shape_custom_color = Color(0, 1, 0, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BulletCount" type="Label" parent="CanvasLayer"]
+offset_top = 45.0
+offset_right = 98.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 64
+text = "0/0"
+
+[node name="ShotgunCount" type="Label" parent="CanvasLayer"]
+visible = false
 offset_top = 45.0
 offset_right = 98.0
 offset_bottom = 133.0
@@ -174,6 +181,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Buy ammo"
 
+[node name="ShutgunAmmo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buy shutgon shell"
+
 [node name="Dynamyte" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
 layout_mode = 2
 text = "Dynamite"
@@ -220,6 +231,7 @@ shape = SubResource("SphereShape3D_h4iuc")
 debug_fill = false
 
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/ShutgunAmmo" to="." method="_on_shutgun_ammo_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Dynamyte" to="." method="_on_dynamyte_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]

@@ -52,6 +52,7 @@ var indicators := {}
 @onready var bowie_knife: Node3D = $Camera3D/BowieKnife
 
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
+@onready var shotgun_count: Label = $CanvasLayer/ShotgunCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
 
 @onready var weapons := [bowie_knife, revolver, shotgun]
@@ -67,6 +68,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	RefreshBulletCount()
+	RefreshShotgunCount()
 	RefreshDynamiteCount()
 
 
@@ -140,16 +142,18 @@ func _physics_process(delta: float) -> void:
 		#Switch weapons
 		if Input.is_action_just_pressed("switch_weapon_up") and not switching_weapon and not reloading:
 			switch_weapon(1)
+
 			
 		if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon and not reloading:
 			switch_weapon(-1)
 
+
 		
 		#Reload
-		if Input.is_action_just_pressed("reload") and not reloading and free_bullets > 0 and not switching_weapon and weapons[selected_weapon] != bowie_knife:
-			if weapons[selected_weapon] == revolver:
+		if Input.is_action_just_pressed("reload") and not reloading and not switching_weapon and weapons[selected_weapon] != bowie_knife:
+			if weapons[selected_weapon] == revolver and free_bullets > 0:
 				revolver.reload()
-			elif weapons[selected_weapon] == shotgun and shotgun_in_barrel != 2:
+			elif weapons[selected_weapon] == shotgun and shotgun_in_barrel != 2 and free_shotgun > 0:
 				shotgun.reload()
 
 		
@@ -274,6 +278,17 @@ func _physics_process(delta: float) -> void:
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
 	
+func RefreshShotgunCount():
+	shotgun_count.text = str(free_shotgun) + "/" + str(shotgun_in_barrel)
+	
+func DisplayCorrectAmmoType():
+	bullet_count.visible = false
+	shotgun_count.visible = false
+	if weapons[selected_weapon] == revolver:
+		bullet_count.visible = true
+	elif weapons[selected_weapon] == shotgun:
+		shotgun_count.visible = true
+	
 func RefreshDynamiteCount():
 	for i in $CanvasLayer/DynamiteContainer.get_children():
 		i.queue_free()
@@ -302,6 +317,7 @@ func switch_weapon(dir):
 	tween_down.tween_property(weapons[selected_weapon], "position", $Camera3D/OnWeaponPos.position, 0.5)
 	await tween_down.finished
 	switching_weapon = false
+	DisplayCorrectAmmoType()
 	
 	
 func take_damage(enemy_position):
@@ -355,3 +371,9 @@ func _on_dynamite_deadly_body_entered(body: Node3D) -> void:
 
 func _on_dynamite_deadly_body_exited(body: Node3D) -> void:
 	dynamite_indicator_close_targets.erase(body)
+
+func _on_shutgun_ammo_pressed() -> void:
+	if money >= 1:
+		AddMoney(-1)
+		free_shotgun += 1
+		RefreshShotgunCount()
