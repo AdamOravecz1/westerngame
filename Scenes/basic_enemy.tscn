@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jlik3"]
 radius = 0.24804688
-height = 1.7792969
+height = 1.6905518
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_r4aor"]
 height = 3.0
