@@ -174,13 +174,19 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -13.5171585)
 
 [node name="Dog2" parent="." instance=ExtResource("11_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -12.701661)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30916524, 0.06589781, -13.5171585)
 
 [node name="Dog3" parent="." instance=ExtResource("11_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -12.146842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3430028, 0.06589781, -13.5171585)
 
 [node name="Dog4" parent="." instance=ExtResource("11_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -11.628178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9610988, 0.06589781, -13.5171585)
 
 [node name="Dog5" parent="." instance=ExtResource("11_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -11.1223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.754263, 0.06589781, -13.5171585)
+
+[node name="Dog6" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.336392, 0.06589781, -13.5171585)
+
+[node name="Dog7" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9372773, 0.06589781, -13.5171585)

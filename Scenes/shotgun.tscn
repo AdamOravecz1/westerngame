@@ -520,6 +520,88 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ru4e8")
 
+[sub_resource type="Animation" id="Animation_6coxr"]
+resource_name = "Cock1"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hammer1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/CockSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ftowf"]
+resource_name = "Cock2"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hammer2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/CockSound2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kov2o"]
+resource_name = "Fire1"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trigger1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hammer1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_pa163"]
+resource_name = "Fire2"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trigger2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hammer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_fh7dq"]
 resource_name = "LoadBoth"
 length = 3.0
@@ -792,88 +874,6 @@ tracks/15/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_kov2o"]
-resource_name = "Fire1"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trigger1")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hammer1")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_pa163"]
-resource_name = "Fire2"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trigger2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hammer2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0.17364816, 0.9848078, 0.033333335, 1, 0, 0, 0.17364816, 0.9848078, 0.06666667, 1, 0, 0, 0.06975647, 0.99756414, 0.1, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_6coxr"]
-resource_name = "Cock1"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hammer1")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sounds/CockSound:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ftowf"]
-resource_name = "Cock2"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hammer2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.02585386, 0.99966574, 0.033333335, 1, 0, 0, 0.02585386, 0.99966574, 0.06666667, 1, 0, 0, 0.064596824, 0.9979115, 0.1, 1, 0, 0, 0.1237939, 0.99230796, 0.16666667, 1, 0, 0, 0.2556958, 0.9667573, 0.2, 1, 0, 0, 0.305326, 0.95224786, 0.23333333, 1, 0, 0, 0.3322831, 0.9431797, 0.25, 1, 0, 0, 0.34202018, 0.9396926)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sounds/CockSound2:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_dq761"]
 length = 0.001
 tracks/0/type = "value"
@@ -1057,7 +1057,7 @@ mesh = SubResource("ArrayMesh_os5cv")
 skeleton = NodePath("")
 
 [node name="Opener" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9999867, 0, 0.0051511247, 0, 1, 0, -0.0051511247, 0, 0.9999867, -0.21183772, 0.2066459, 0)
+transform = Transform3D(0.99998665, 0, 0.005151125, 0, 1, 0, -0.005151125, 0, 0.99998665, -0.21183772, 0.2066459, 0)
 mesh = SubResource("ArrayMesh_0ji0n")
 skeleton = NodePath("")
 
@@ -1140,6 +1140,7 @@ offset_bottom = 40.0
 [node name="FireSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_tte5i")
 volume_db = 10.0
+bus = &"SFX"
 
 [node name="CockSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("9_32p8t")
@@ -1153,16 +1154,20 @@ bus = &"SFX"
 
 [node name="ShellEjectSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_wprm0")
+bus = &"SFX"
 
 [node name="ShellInsertSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("11_6ypiu")
+bus = &"SFX"
 
 [node name="OpenSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("12_dq761")
+bus = &"SFX"
 
 [node name="CloseSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_dx37s")
-pitch_scale = 1.5
+pitch_scale = 2.0
+bus = &"SFX"
 
 [editable path="MuzzleFlash"]
 [editable path="MuzzleFlash2"]
