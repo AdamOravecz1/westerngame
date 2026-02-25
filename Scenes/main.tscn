@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=17 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b003fb1330ih1" path="res://Scenes/shop.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="9_hptm8"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://b08we6bmyu250" path="res://Scenes/dog.tscn" id="11_d1ilt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bp64"]
 albedo_texture = ExtResource("3_kry3j")
@@ -168,3 +169,18 @@ debug_color = Color(0.972549, 0, 0.43529412, 1)
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
+
+[node name="Dog" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -13.5171585)
+
+[node name="Dog2" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -12.701661)
+
+[node name="Dog3" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -12.146842)
+
+[node name="Dog4" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -11.628178)
+
+[node name="Dog5" parent="." instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -11.1223)

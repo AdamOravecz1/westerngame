@@ -12,4 +12,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8628632, 0)
 
 [node name="BasicDog" parent="." index="7" instance=ExtResource("2_uny1q")]
 
+[node name="Plane1501" parent="BasicDog" index="1"]
+visible = false
+
 [editable path="BasicDog"]
