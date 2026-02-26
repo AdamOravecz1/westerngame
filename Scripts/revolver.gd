@@ -104,6 +104,7 @@ func fire():
 		player.RefreshBulletCount()
 		if player.revolver_ray.is_colliding():
 			var collider = player.revolver_ray.get_collider()
+
 			var damage = 0
 			if collider.name == "Head":
 				damage = headshot
@@ -115,8 +116,11 @@ func fire():
 			var hit_pos = player.revolver_ray.get_collision_point()
 
 			if collider is Area3D:
+
 				var enemy = collider.get_owner()
+
 				if enemy and enemy.has_method("hit"):
+
 					enemy.hit(damage, hit_pos)
 
 	else:

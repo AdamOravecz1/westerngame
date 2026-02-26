@@ -39,6 +39,7 @@ func _ready() -> void:
 
 
 func hit(damage, pos):
+	print("yup")
 	var blood_burst = blood_scene.instantiate()
 	get_tree().current_scene.add_child(blood_burst)
 	blood_burst.global_position = pos
@@ -126,24 +127,5 @@ func look_at_player(delta):
 			)
 
 
-func _on_cover_checker_area_entered(area: Area3D) -> void:
-	if area.name.begins_with("HideArea") and area.global_position == cover_location:
-		in_cover = true
 
-func _on_cover_checker_area_exited(area: Area3D) -> void:
-	if area.name.begins_with("HideArea"):
-		#animation_tree.set("parameters/Blend3/blend_amount", -1.0)
-		in_cover = false
-		shooting_from_cover = false
-
-func _on_cover_finder_area_entered(area: Area3D) -> void:
-	if area.name.begins_with("HideArea"):
-		hiding_spots.append(area)
-		
-func _on_cover_finder_area_exited(area: Area3D) -> void:
-	if area.name.begins_with("HideArea"):
-		hiding_spots.erase(area)
-		if area.global_position == cover_location:
-			shooting_from_cover = false
-		sees_cover = false
 		

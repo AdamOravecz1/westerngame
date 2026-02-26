@@ -199,3 +199,4 @@ func shoot_gun():
 	if gun_ray.get_collider() == player:
 		player.take_damage(global_position)
 	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	

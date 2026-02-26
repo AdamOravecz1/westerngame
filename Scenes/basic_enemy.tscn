@@ -1,18 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpvimjxc4obem"]
+[gd_scene load_steps=3 format=3 uid="uid://cpvimjxc4obem"]
 
 [ext_resource type="Script" uid="uid://d0u76i8q3uo4q" path="res://Scripts/basic_enemy.gd" id="1_fecjr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jlik3"]
 radius = 0.24804688
 height = 1.6905518
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_r4aor"]
-height = 3.0
-radius = 6.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tv6co"]
-radius = 0.15625
-height = 1.7646484
 
 [node name="BasicEnemy" type="CharacterBody3D"]
 collision_layer = 4
@@ -36,30 +28,4 @@ offset_bottom = 40.0
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
-[node name="CoverFinder" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CoverFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_r4aor")
-
-[node name="PlayerShoot" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9504031, 0)
-target_position = Vector3(0, 0, 10)
-collide_with_areas = true
-debug_shape_custom_color = Color(1, 1, 0, 1)
-
-[node name="CoverChecker" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CoverChecker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9155803, 0)
-shape = SubResource("CapsuleShape3D_tv6co")
-
 [connection signal="timeout" from="Fire" to="." method="_on_fire_timeout"]
-[connection signal="area_entered" from="CoverFinder" to="." method="_on_cover_finder_area_entered"]
-[connection signal="area_exited" from="CoverFinder" to="." method="_on_cover_finder_area_exited"]
-[connection signal="area_entered" from="CoverChecker" to="." method="_on_cover_checker_area_entered"]
-[connection signal="area_exited" from="CoverChecker" to="." method="_on_cover_checker_area_exited"]
