@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b08we6bmyu250"]
+[gd_scene load_steps=27 format=3 uid="uid://b08we6bmyu250"]
 
 [ext_resource type="PackedScene" uid="uid://cpvimjxc4obem" path="res://Scenes/basic_enemy.tscn" id="1_nvlu8"]
 [ext_resource type="PackedScene" uid="uid://1442uxgh4cvt" path="res://3D/BasicDog.blend" id="2_uny1q"]
@@ -27,38 +27,109 @@ height = 0.32714844
 radius = 0.064453125
 height = 0.39801025
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wkkfr"]
+radius = 0.049316406
+height = 0.5866699
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2qe13"]
+radius = 0.017089844
+height = 0.21637043
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_llnvy"]
+radius = 0.013566399
+height = 0.13566399
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dam1u"]
+radius = 0.018554688
+height = 0.18365878
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kcuxi"]
+radius = 0.026367188
+height = 0.31111306
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sy2b1"]
+radius = 0.020507813
+height = 0.2093958
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k0nkm"]
+radius = 0.022460938
+height = 0.21365875
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0swk1"]
+radius = 0.024902344
+height = 0.32380837
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcryx"]
+radius = 0.015625
+height = 0.23211442
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1hqjs"]
+radius = 0.01953125
+height = 0.19977841
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1yv2"]
+animation = &"Bite"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6yb15"]
+animation = &"Bite"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bno1h"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6yb15"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_usue5"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_usue5"]
+graph_offset = Vector2(-613.8583, 52.885788)
+nodes/output/position = Vector2(480, 100)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_6yb15")
+nodes/Blend2/position = Vector2(-60, 60)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bno1h")
+nodes/Animation/position = Vector2(-320, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_y1yv2")
+"nodes/Animation 2/position" = Vector2(-400, 260)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_usue5")
+nodes/OneShot/position = Vector2(220, 60)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_6yb15")
+"nodes/Animation 3/position" = Vector2(-82.19939, 375.57367)
+node_connections = [&"output", 0, &"OneShot", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"OneShot", 0, &"Blend2", &"OneShot", 1, &"Animation 3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y1yv2"]
+
 [node name="Dog" instance=ExtResource("1_nvlu8")]
 script = ExtResource("2_y1yv2")
 
 [node name="BasicDog" parent="." index="0" instance=ExtResource("2_uny1q")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="BasicDog/Armature" index="0"]
-bones/0/position = Vector3(-1.8828388e-07, 0.9300237, 0.54806256)
-bones/0/rotation = Quaternion(0.5021402, 0.49785066, -0.50214, -0.49785072)
-bones/1/rotation = Quaternion(0.24050595, 0.6028957, -0.28185973, 0.70656127)
-bones/2/rotation = Quaternion(-0.23412877, -0.5518263, 0.23272389, 0.7658402)
-bones/3/rotation = Quaternion(-0.039767746, -0.5697936, -0.08334206, 0.8165831)
+bones/0/position = Vector3(-1.7517158e-07, 0.99736744, 0.54806256)
+bones/0/rotation = Quaternion(0.55017996, 0.44418707, -0.5501798, -0.44418716)
+bones/1/rotation = Quaternion(0.17851216, 0.6240671, -0.20920636, 0.731373)
+bones/2/rotation = Quaternion(-0.15211566, -0.5709942, 0.15120292, 0.7924419)
+bones/3/rotation = Quaternion(-0.039767742, -0.5697936, -0.08334205, 0.8165831)
 bones/4/rotation = Quaternion(0.65825063, 0.021917382, 0.752063, -0.025040831)
-bones/6/rotation = Quaternion(-0.29493654, 0.6684214, 0.3041234, 0.61133814)
-bones/7/rotation = Quaternion(0.0025834779, -0.0072836676, -0.00053204095, 0.99997)
-bones/8/rotation = Quaternion(-0.5316152, 0.4662077, 0.5805758, 0.40369216)
-bones/9/rotation = Quaternion(-0.34671167, 0.04500025, -0.018143255, 0.9367161)
-bones/10/rotation = Quaternion(0.3639878, -0.011363868, -0.034741554, 0.93068624)
-bones/11/rotation = Quaternion(0.4268843, -0.5476219, -0.3620806, -0.62191457)
-bones/12/rotation = Quaternion(0.34994888, 0.006802962, 0.07206457, 0.933968)
-bones/13/rotation = Quaternion(-0.3883016, 0.59098, 0.31956962, 0.6307455)
-bones/14/rotation = Quaternion(-0.31454363, -0.034687262, 0.02381358, 0.94831014)
-bones/15/rotation = Quaternion(0.29042244, 0.011678154, 0.027719958, 0.95642567)
-bones/17/position = Vector3(-0.15775572, 0.16425, -0.80128384)
-bones/18/position = Vector3(-0.15775578, 0.40558985, 0.86892414)
-bones/19/position = Vector3(-0.15775573, 0.11737673, 0.8322332)
-bones/20/position = Vector3(0.15775575, 0.37877354, 0.0041115675)
-bones/21/position = Vector3(0.15775575, 0.2464734, -0.7447593)
-bones/22/position = Vector3(0.15775575, 0.32534158, 0.8408092)
-bones/23/position = Vector3(0.15775575, 0.06359893, 0.26870131)
+bones/6/rotation = Quaternion(-0.41874495, 0.6059977, 0.41230553, 0.53611904)
+bones/7/rotation = Quaternion(0.012181465, -0.00728312, -0.0025085248, 0.9998962)
+bones/8/rotation = Quaternion(-0.45674732, 0.539765, 0.5144225, 0.48518562)
+bones/9/rotation = Quaternion(-0.24629112, 0.025246844, -0.012507438, 0.96878624)
+bones/10/rotation = Quaternion(0.44816023, -0.01090203, -0.042775583, 0.89286274)
+bones/11/rotation = Quaternion(0.48021266, -0.48846793, -0.48296884, -0.54546857)
+bones/12/rotation = Quaternion(0.014135605, 0.007282992, 0.0029109365, 0.9998694)
+bones/13/rotation = Quaternion(-0.4801842, 0.5190941, 0.41892558, 0.569619)
+bones/14/rotation = Quaternion(-0.49294662, -0.037919093, 0.009358468, 0.8691825)
+bones/15/rotation = Quaternion(0.47187245, 0.010750473, 0.045038816, 0.8804502)
+bones/17/position = Vector3(-0.1577558, -0.07348758, -0.34305778)
+bones/18/position = Vector3(-0.15775578, 0.56828153, 1.0776354)
+bones/19/position = Vector3(-0.15775557, 0.12870024, 0.64073443)
+bones/20/position = Vector3(0.15775575, 0.39152744, 0.11889652)
+bones/21/position = Vector3(0.15775578, -0.052209824, -0.17238665)
+bones/22/position = Vector3(0.15775575, 0.43394136, 1.1177019)
+bones/23/position = Vector3(0.15775564, 0.18762624, 0.764472)
 
 [node name="Body" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="1"]
-transform = Transform3D(2.9802322e-07, 1.7881393e-07, -1, 0.99996316, -0.008578777, 2.9802322e-07, -0.008578777, -0.99996316, -2.3841858e-07, -1.8828388e-07, 0.9300237, 0.54806256)
+transform = Transform3D(2.3841858e-07, 5.9604645e-08, -1.0000001, 0.97753114, -0.21079135, 2.3841858e-07, -0.21079138, -0.97753114, -2.3841858e-07, -1.7517158e-07, 0.99736744, 0.54806256)
 bone_name = "Body"
 bone_idx = 0
 
@@ -71,7 +142,7 @@ transform = Transform3D(1.0000268, -1.6670674e-07, 8.328005e-12, 1.6670674e-07, 
 shape = SubResource("CapsuleShape3D_y1yv2")
 
 [node name="Neck" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.9875433, -2.2781876e-08, -0.15734728, 0.11506838, 0.6820537, 0.72219247, 0.107319355, -0.731302, 0.6735575, -9.469943e-09, 0.92144495, -0.4519006)
+transform = Transform3D(0.9875433, -1.213537e-07, -0.15734728, 0.14808476, 0.3380353, 0.92941, 0.053188886, -0.9411335, 0.3338245, -1.1556693e-07, 0.7865761, -0.42946857)
 bone_name = "Neck"
 bone_idx = 1
 
@@ -84,7 +155,7 @@ transform = Transform3D(0.99999535, 5.9604645e-08, -2.5555491e-06, 4.991889e-07,
 shape = SubResource("CapsuleShape3D_bno1h")
 
 [node name="Head" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.16328742, 1.7881393e-07, -0.9865783, 0.98360085, 0.077635825, 0.16279452, 0.07659382, -0.9969816, 0.012676701, -1.1700853e-08, 1.1467446, -0.6934683)
+transform = Transform3D(0.16328724, -2.2351742e-08, -0.98657846, 0.98280513, -0.087377876, 0.16266274, -0.086205214, -0.99617517, -0.01426778, -1.7726384e-07, 0.8982378, -0.74034894)
 bone_name = "Head"
 bone_idx = 2
 
@@ -97,7 +168,7 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_6yb15")
 
 [node name="Tail" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.9911944, -3.7466054e-07, -0.13245115, -0.13207805, 0.07507615, 0.9883921, 0.009943547, 0.99717766, -0.074414745, -1.8828388e-07, 0.9300237, 0.54806256)
+transform = Transform3D(-0.99119455, -2.5968015e-07, -0.13245124, -0.12733196, 0.2753487, 0.95287454, 0.03647009, 0.9613444, -0.2729228, -1.7517158e-07, 0.99736744, 0.54806256)
 bone_name = "Tail1"
 bone_idx = 4
 
@@ -110,7 +181,7 @@ transform = Transform3D(0.997091, -0.07334541, 0.020731686, 0.0760389, 0.9759222
 shape = SubResource("CapsuleShape3D_usue5")
 
 [node name="UpperForeleg_r" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.9902811, 0.13440436, -0.03575983, 0.1381577, -0.9210778, 0.36404416, 0.015991567, -0.36544657, -0.93069494, 0.12314438, 0.75250494, -0.31523436)
+transform = Transform3D(0.9967434, 0.052052062, -0.06158965, 0.04284202, -0.9888808, -0.1424061, -0.06831724, 0.13930376, -0.98789036, 0.1231443, 0.64879346, -0.26143777)
 bone_name = "UpperForeleg.r"
 bone_idx = 11
 
@@ -123,7 +194,7 @@ transform = Transform3D(0.9999862, 3.4458935e-08, -9.872019e-08, -1.1641532e-08,
 shape = SubResource("CapsuleShape3D_6yb15")
 
 [node name="UpperForeleg_l" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.996657, -0.045953356, 0.067549676, -0.0783612, -0.77159923, 0.6312638, 0.023112627, -0.63444674, -0.77262086, -0.12314436, 0.75250494, -0.31523424)
+transform = Transform3D(0.9950755, -0.050718337, 0.085161105, -0.058993872, -0.99347055, 0.09765173, 0.0796525, -0.102194816, -0.9915704, -0.12314448, 0.64879346, -0.26143765)
 bone_name = "UpperForeleg.l"
 bone_idx = 6
 
@@ -136,7 +207,7 @@ transform = Transform3D(0.9999862, 3.4458935e-08, -9.872019e-08, -1.1641532e-08,
 shape = SubResource("CapsuleShape3D_6yb15")
 
 [node name="LowerForeleg_r" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="7"]
-transform = Transform3D(0.9972869, -0.051910337, -0.052192237, 0.022071693, -0.4655265, 0.8847587, -0.07022496, -0.88351023, -0.46311778, 0.17474824, 0.39886186, -0.45554572)
+transform = Transform3D(0.99782634, 0.044689853, -0.048429005, 0.038939044, -0.9927409, -0.11379534, -0.05316283, 0.111662254, -0.9923233, 0.14312941, 0.26911774, -0.2079528)
 bone_name = "LowerForeleg.r"
 bone_idx = 12
 
@@ -149,7 +220,7 @@ transform = Transform3D(1, 1.0058284e-07, 3.7252903e-09, -2.6077032e-08, 1, 0, -
 shape = SubResource("CapsuleShape3D_12smy")
 
 [node name="LowerForeleg_l" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.99758506, -0.044580195, 0.05325774, -0.06830896, -0.7684024, 0.6363108, 0.012556555, -0.6384122, -0.76959217, -0.14078791, 0.45625335, -0.5588268)
+transform = Transform3D(0.996456, -0.04380972, 0.07180665, -0.052410517, -0.99106634, 0.12264026, 0.06579249, -0.12596904, -0.98985016, -0.1426175, 0.2673555, -0.30067486)
 bone_name = "LowerForeleg.l"
 bone_idx = 7
 
@@ -162,7 +233,7 @@ transform = Transform3D(1, 1.0058284e-07, 3.7252903e-09, -2.6077032e-08, 1, 0, -
 shape = SubResource("CapsuleShape3D_12smy")
 
 [node name="UpperHindeleg_r" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="9"]
-transform = Transform3D(0.9936947, 0.11212026, 7.1113674e-05, 0.097710945, -0.86629903, 0.48987618, 0.054986812, -0.48678046, -0.87179214, 0.10950958, 0.80535656, 0.49954417)
+transform = Transform3D(0.99369484, 0.112120286, 7.115235e-05, 0.11209426, -0.99345, -0.02218917, -0.0024169995, 0.022057276, -0.999754, 0.1095096, 0.8654604, 0.5257807)
 bone_name = "UpperHindeleg.r"
 bone_idx = 13
 
@@ -175,7 +246,7 @@ transform = Transform3D(1.0000001, 2.0489097e-08, -1.5646219e-07, -7.4505806e-08
 shape = SubResource("CapsuleShape3D_12smy")
 
 [node name="UpperHindeleg_l" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="10"]
-transform = Transform3D(0.99369454, -0.112120435, -7.11854e-05, -0.108601004, -0.9623451, -0.24919441, 0.0278713, 0.2476309, -0.9684535, -0.10950961, 0.80535656, 0.49954414)
+transform = Transform3D(0.9936948, -0.11212029, -7.10956e-05, -0.11072596, -0.9812365, -0.15784524, 0.017627997, 0.1568579, -0.98746413, -0.10950962, 0.86546046, 0.5257806)
 bone_name = "UpperHindeleg.l"
 bone_idx = 8
 
@@ -188,7 +259,7 @@ transform = Transform3D(1.0000001, 2.0489097e-08, -1.5646219e-07, -7.4505806e-08
 shape = SubResource("CapsuleShape3D_12smy")
 
 [node name="LowerHindeleg_r" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="11"]
-transform = Transform3D(0.99995035, 0.0015931069, -0.009806654, 0.0057647023, -0.8969495, 0.44209552, -0.00809161, -0.4421303, -0.89691424, 0.15730089, 0.31962353, 0.39490238)
+transform = Transform3D(0.9999373, -0.007918971, 0.00789931, -0.0073201805, -0.9972939, -0.073150545, 0.00845741, 0.07308805, -0.9972894, 0.16023538, 0.46671432, 0.74502856)
 bone_name = "LowerHindeleg.r"
 bone_idx = 15
 
@@ -202,7 +273,7 @@ transform = Transform3D(1.0000001, 1.3038516e-08, -1.5692785e-07, -7.473864e-08,
 shape = SubResource("CapsuleShape3D_12smy")
 
 [node name="LowerHindeleg_l" type="BoneAttachment3D" parent="BasicDog/Armature/Skeleton3D" index="12"]
-transform = Transform3D(0.99957156, 0.011903688, 0.026729485, 0.017457083, -0.9757278, -0.21829006, 0.02348226, 0.21866333, -0.97551787, -0.16115355, 0.39588785, 0.7698181)
+transform = Transform3D(0.99979764, 0.015781425, 0.012472553, 0.011871475, -0.96349114, 0.267478, 0.016238473, -0.26727575, -0.96348345, -0.16224477, 0.3968828, 0.7193686)
 bone_name = "LowerHindeleg.l"
 bone_idx = 10
 
@@ -215,11 +286,217 @@ collision_mask = 2
 transform = Transform3D(1.0000001, 1.3038516e-08, -1.5692785e-07, -7.473864e-08, 1.0000029, -1.3411045e-06, -2.682209e-07, 2.3841858e-07, 1.0000025, 1.4901161e-07, 0.14334112, 3.427267e-07)
 shape = SubResource("CapsuleShape3D_12smy")
 
-[node name="AnimationPlayer" parent="BasicDog" index="1"]
-autoplay = "Run"
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="BasicDog/Armature/Skeleton3D" index="13"]
+visible = false
+
+[node name="Physical Bone Body" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(8.196383e-07, -1.3831904, -7.180431e-08, 1.3451276, 7.803544e-07, 0.3222539, -0.3222539, -2.6078663e-07, 1.3451276, -1.4369826e-07, 0.8890385, 0.055711303)
+collision_layer = 2
+collision_mask = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067665316, -1.725039e-10, 0.36440462)
+body_offset = Transform3D(1.3828322, 4.2590923e-07, 0.031471968, 0.031471938, -1.6241903e-07, -1.3828322, -4.8806936e-07, 1.3831903, -3.115467e-09, -0.0021115541, 0.5041234, -1.9286404e-09)
+bone_name = "Body"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Body" index="0"]
+transform = Transform3D(1.0000106, -2.6077032e-08, -1.110223e-15, 2.6423308e-14, 1.3784529e-12, 1, -2.6077032e-08, -1.0000106, 0, -1.1920929e-07, -5.400125e-13, 0.023566801)
+shape = SubResource("CapsuleShape3D_wkkfr")
+debug_color = Color(1.1268731, 0, 0.32605028, 1)
+
+[node name="Physical Bone Neck" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(1.3659604, -0.21764205, -7.5113436e-05, 0.2156703, 1.353521, 0.18623409, -0.029230034, -0.18392593, 1.3705957, -4.6208625e-05, 0.7544606, -0.58360887)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012982208, 0.0078969, 0.113549694)
+body_offset = Transform3D(1.3793279, -0.024277858, 0.10040464, 0.10041348, 0.6306367, -1.2269597, -0.024241652, 1.2308226, 0.6306381, -0.01299987, 0.13421047, -0.08129698)
+bone_name = "Neck"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 45.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Neck" index="0"]
+transform = Transform3D(1.0000025, 4.0233135e-07, 1.0430813e-07, 4.4703484e-08, -2.2351742e-06, 1.0000043, -1.5646219e-07, -1.0000042, 1.2218952e-06, 1.8626451e-08, -1.7881393e-07, 0.02908349)
+shape = SubResource("CapsuleShape3D_2qe13")
+debug_color = Color(0.9920456, 0, 0.26479155, 1)
+
+[node name="Physical Bone Head" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="2"]
+transform = Transform3D(1.3831904, 3.4291214e-05, 3.3334098e-05, -4.686974e-05, 0.7804846, 1.1419543, 9.5014e-06, -1.1419542, 0.7804846, -6.216914e-05, 0.69995606, -0.86562)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0587038e-05, 0.0061164536, 0.16945338)
+body_offset = Transform3D(0.22581057, 0.8655122, 1.055042, -5.2746873e-06, 1.0693893, -0.87728107, -1.364634, 0.14321497, 0.17458482, -0.18408346, 0.14211738, -0.030404568)
+bone_name = "Head"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 45.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_llnvy")
+debug_color = Color(1.4929924, 0, 0.6084577, 1)
+
+[node name="Physical Bone Tail1" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="3"]
+transform = Transform3D(-1.3710034, -0.18320885, -6.723024e-05, -0.17492805, 1.3091865, -0.4106662, 0.054457936, -0.40703934, -1.3208214, -8.509836e-05, 1.0478468, 0.6795728)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008112263, -0.006571454, 0.10162564)
+body_offset = Transform3D(1.3831772, 4.9470924e-05, 0.0041868873, 0.0041871406, -0.030822128, -1.3828406, 4.3740496e-05, 1.382847, -0.030822217, -0.0015472397, 0.14032614, 0.012219608)
+bone_name = "Tail1"
+joint_constraints/swing_span = 90.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Tail1" index="0"]
+transform = Transform3D(1, 6.61239e-08, 8.995994e-07, 1.9208528e-09, 2.9802322e-08, 0.9999993, 0, -1, -3.054738e-07, 4.4703484e-08, 0, 0.026887834)
+shape = SubResource("CapsuleShape3D_dam1u")
+debug_color = Color(0.9960334, 0, 0.20598418, 1)
+
+[node name="Physical Bone UpperForeleg_l" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="4"]
+transform = Transform3D(1.3757914, 0.12512532, -0.06897221, -0.084644444, 1.2517352, 0.58241767, 0.115103535, -0.57508147, 1.2526965, -0.11314936, 0.55697036, -0.43346316)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009004568, 0.007714182, 0.1409483)
+body_offset = Transform3D(1.3831781, 0.0048579127, -0.0032114089, 0.0025508776, -1.191138, -0.70313585, -0.0052347705, 0.7031237, -1.1911365, 0.0016606599, 0.10829675, 0.16245991)
+bone_name = "UpperForeleg.l"
+joint_constraints/swing_span = 90.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperForeleg_l" index="0"]
+transform = Transform3D(1.0000054, -2.30968e-07, 1.6763806e-08, -3.7252903e-09, 8.046627e-07, 1.0000057, -2.7101487e-07, -1.0000068, 0, 0, 0, 0.036416054)
+shape = SubResource("CapsuleShape3D_kcuxi")
+debug_color = Color(0.9960334, 0, 0.20598418, 1)
+
+[node name="Physical Bone UpperHindeleg_l" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="5"]
+transform = Transform3D(1.374465, -7.4943295e-05, 0.15511927, -0.11851777, -0.89289427, 1.0497186, 0.100077644, -1.056388, -0.88726807, -0.12509695, 0.7675653, 0.61577135)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00042645214, 0.0040006004, 0.096709505)
+body_offset = Transform3D(1.3806854, 0.0801701, 0.022269556, -0.022113595, 0.71044564, -1.1865886, -0.08021317, 1.1840836, 0.71044075, -0.003063202, 0.11192161, -0.0734092)
+bone_name = "UpperHindeleg.l"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperHindeleg_l" index="0"]
+transform = Transform3D(1, 1.7601997e-07, 1.3038516e-08, 1.1175871e-08, 1.3411045e-07, 1.0000015, -8.1025064e-08, -1.0000038, -2.0861626e-07, -5.9604645e-08, -1.1920929e-07, 0.02909112)
+shape = SubResource("CapsuleShape3D_sy2b1")
+debug_color = Color(0.9960334, 0, 0.20598418, 1)
+
+[node name="Physical Bone MiddleHindeleg_l" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="6"]
+transform = Transform3D(1.3774239, 0.017086273, 0.12500829, -0.02383928, -1.310519, 0.44180015, 0.12389794, -0.4421128, -1.304761, -0.15293828, 0.5973858, 0.8307457)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008194306, 0.065403834, 0.17705482)
+body_offset = Transform3D(1.3805488, 0.08199557, 0.024028242, -0.025120646, 0.7612882, -1.1545669, -0.08166749, 1.1519256, 0.76132345, 0.0016954988, 0.15442461, -0.21080554)
+bone_name = "MiddleHindeleg.l"
+joint_constraints/swing_span = 90.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone MiddleHindeleg_l" index="0"]
+transform = Transform3D(0.9999996, 1.4901161e-08, 1.4901161e-08, 7.450581e-09, -1.4901161e-07, 0.9999999, -7.450581e-09, -1.0000001, 6.2584877e-07, 7.450581e-09, 0, -0.005266741)
+shape = SubResource("CapsuleShape3D_k0nkm")
+debug_color = Color(0.9929336, 0, 0.25030932, 1)
+
+[node name="Physical Bone UpperForeleg_r" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="7"]
+transform = Transform3D(1.3746909, -0.103468426, -0.112850055, 0.13618705, 0.36052826, 1.3284158, -0.06995671, -1.3313637, 0.3685002, 0.13834704, 0.4542498, -0.307995)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012221655, 0.005084049, 0.14494278)
+body_offset = Transform3D(1.380828, 0.0032695457, -0.08074545, -0.072862566, -0.5473691, -1.2681853, -0.03495092, 1.2702725, -0.5462619, 0.009999245, 0.18668619, 0.0727613)
+bone_name = "UpperForeleg.r"
+joint_constraints/swing_span = 90.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperForeleg_r" index="0"]
+transform = Transform3D(1, -2.514571e-08, -9.313226e-10, -9.313226e-10, 1.1920929e-06, 1, 4.656613e-09, -1.0000007, 2.9802322e-08, -5.9604645e-08, -2.9802322e-08, 0.030068219)
+shape = SubResource("CapsuleShape3D_0swk1")
+debug_color = Color(0.99823964, 0, 0.16007765, 1)
+
+[node name="Physical Bone UpperHindeleg_r" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="8"]
+transform = Transform3D(1.3744682, 0.00011832553, -0.15509017, 0.15400188, 0.16253604, 1.3649473, 0.018341111, -1.3736076, 0.16149792, 0.12507291, 0.73689353, 0.5075801)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00065749144, -0.0021458715, 0.094521515)
+body_offset = Transform3D(1.3830198, 0.021657163, -0.0014999511, 0.0015171734, -0.19175607, -1.3698328, -0.02165573, 1.3696626, -0.19175626, 0.0010975748, 0.1290682, 0.021049976)
+bone_name = "UpperHindeleg.r"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperHindeleg_r" index="0"]
+transform = Transform3D(0.9999979, -2.0302832e-07, 6.3329935e-08, -1.8626451e-08, 2.9802322e-08, 1, 1.1175871e-07, -0.99999976, 0, 0, 8.940697e-08, 0.024260461)
+shape = SubResource("CapsuleShape3D_pcryx")
+debug_color = Color(0.99470645, 0, 0.22376983, 1)
+
+[node name="Physical Bone MiddleHindeleg_r" type="PhysicalBone3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="9"]
+transform = Transform3D(1.3778703, 0.018520975, -0.119774304, 0.0860043, -1.1125469, 0.81734854, -0.08539419, -0.8216522, -1.1094193, 0.15150706, 0.5101689, 0.58888483)
+collision_layer = 2
+collision_mask = 2
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016064876, -0.020141564, 0.06634167)
+body_offset = Transform3D(1.3831631, 0.0024057329, -0.008391298, -0.00803671, -0.16820407, -1.3729014, -0.0034081563, 1.3729229, -0.16818672, 0.0028271824, 0.08767977, 0.038805127)
+bone_name = "MiddleHindeleg.r"
+joint_constraints/swing_span = 90.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone MiddleHindeleg_r" index="0"]
+transform = Transform3D(1, 1.4272518e-07, 0, -7.264316e-08, 1.0430813e-07, 1, 2.165325e-08, -1.0000029, 0, -5.2154064e-08, 0, -0.022740752)
+shape = SubResource("CapsuleShape3D_1hqjs")
+debug_color = Color(0.9995603, 0, 0.12835406, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="BasicDog" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_usue5")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 0.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8628632, 0)
 visible = false
+
+[node name="PlayerChecker" type="Area3D" parent="." index="4"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerChecker" index="0"]
+shape = SubResource("CylinderShape3D_y1yv2")
+
+[node name="Bite" type="Timer" parent="." index="5"]
+wait_time = 1.5
+
+[connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]
+[connection signal="body_exited" from="PlayerChecker" to="." method="_on_player_checker_body_exited"]
+[connection signal="timeout" from="Bite" to="." method="_on_bite_timeout"]
 
 [editable path="BasicDog"]

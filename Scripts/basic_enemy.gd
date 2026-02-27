@@ -13,14 +13,12 @@ var has_strafe_target := false
 @export var strafe_radius := 3.0
 @export var strafe_reach_distance := 0.5
 
-@onready var skeleton := $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
-@onready var model: Node3D = $BasicConnectedDude
+@onready var skeleton 
+@onready var model
 
 const blood_scene := preload("res://Scenes/blood.tscn")
 
 var is_ragdoll := false
-
-@onready var gun_ray := $BasicConnectedDude/Armature/Skeleton3D/Gun/RayCast3D
 
 var enemies = []
 
@@ -39,7 +37,6 @@ func _ready() -> void:
 
 
 func hit(damage, pos):
-	print("yup")
 	var blood_burst = blood_scene.instantiate()
 	get_tree().current_scene.add_child(blood_burst)
 	blood_burst.global_position = pos
@@ -61,16 +58,8 @@ func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp
 	global_basis = global_basis.orthonormalized()
 	#enemy_anim.stop()
 	
-	$CoverFinder.queue_free()
-	$CoverChecker.queue_free()
-	$Fire.stop()
 
-	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
-		if bone is BoneAttachment3D:
-			for shape in bone.get_children():
-				if shape is Area3D:
-					shape.monitoring = false
-					shape.get_child(0).queue_free()
+	delete_after_death()
 
 	# Enable ragdoll
 	skeleton.physical_bones_start_simulation()
@@ -127,5 +116,5 @@ func look_at_player(delta):
 			)
 
 
-
-		
+func delete_after_death():
+	pass

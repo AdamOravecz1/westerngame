@@ -4,9 +4,13 @@ extends BasicEnemy
 @onready var enemy_anim: AnimationPlayer = $BasicConnectedDude.get_node("AnimationPlayer")
 @onready var animation_tree: AnimationTree = $BasicConnectedDude/AnimationTree
 
+@onready var gun_ray := $BasicConnectedDude/Armature/Skeleton3D/Gun/RayCast3D
+
 
 func _ready() -> void:
 	$Fire.wait_time = randf_range(3.0, 5.0)
+	skeleton = $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
+	model = $BasicConnectedDude
 
 func _physics_process(delta):
 	var dir = (player.global_position - $PlayerShoot.global_position).normalized()
@@ -200,3 +204,14 @@ func shoot_gun():
 		player.take_damage(global_position)
 	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
+func delete_after_death():
+	$CoverFinder.queue_free()
+	$CoverChecker.queue_free()
+	$Fire.stop()
+
+	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
+		if bone is BoneAttachment3D:
+			for shape in bone.get_children():
+				if shape is Area3D:
+					shape.monitoring = false
+					shape.get_child(0).queue_free()

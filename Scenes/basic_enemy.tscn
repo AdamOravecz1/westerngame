@@ -14,10 +14,6 @@ script = ExtResource("1_fecjr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90723574, 0)
 shape = SubResource("CapsuleShape3D_jlik3")
 
-[node name="Fire" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [node name="Sounds" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -27,5 +23,3 @@ offset_bottom = 40.0
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
-
-[connection signal="timeout" from="Fire" to="." method="_on_fire_timeout"]

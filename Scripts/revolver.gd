@@ -98,7 +98,7 @@ func fire():
 		await get_tree().process_frame
 		player.chamber[player.chamber_pointer%6] = 0
 		player.recoil_offset += recoil_strength
-		print("fire")
+
 		
 		player.chamber_pointer += 1
 		player.RefreshBulletCount()
