@@ -26,16 +26,18 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_player_checker_body_entered(body: Node3D) -> void:
-	if body == player:
+	if body == player and not is_ragdoll:
+		$Sounds/Run.playing = false
 		speed = 0
 		$Bite.start()
 		biting = true
 
 func _on_player_checker_body_exited(body: Node3D) -> void:
-	if body == player:
+	if body == player and not is_ragdoll:
 		biting = false
 		$BasicDog/AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		speed = 4
+		$Sounds/Run.playing = true
 		$Bite.stop()
 		
 
@@ -45,10 +47,13 @@ func _on_bite_timeout() -> void:
 	await get_tree().create_timer(0.4, false).timeout
 	if biting:
 		player.take_damage(global_position)
+	$Sounds/Bite.play()
 	
 func delete_after_death():
 	$Bite.stop()
 	$BasicDog/PlayerChecker.queue_free()
+	$Sounds/Bite.playing = false
+	$Sounds/Run.playing = false
 	for bone in $BasicDog/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():
