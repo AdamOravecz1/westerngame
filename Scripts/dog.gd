@@ -4,6 +4,7 @@ var running := true
 var biting := false
 
 func _ready() -> void:
+	speed = 4
 	skeleton = $BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D
 	model = $BasicDog
 
@@ -32,19 +33,22 @@ func _on_player_checker_body_entered(body: Node3D) -> void:
 
 func _on_player_checker_body_exited(body: Node3D) -> void:
 	if body == player:
-		speed = 2
-		$Bite.stop()
 		biting = false
+		$BasicDog/AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		speed = 4
+		$Bite.stop()
+		
 
 
 func _on_bite_timeout() -> void:
 	$BasicDog/AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await get_tree().create_timer(0.4, false).timeout
-	player.take_damage(global_position)
+	if biting:
+		player.take_damage(global_position)
 	
 func delete_after_death():
 	$Bite.stop()
-	$PlayerChecker.queue_free()
+	$BasicDog/PlayerChecker.queue_free()
 	for bone in $BasicDog/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():

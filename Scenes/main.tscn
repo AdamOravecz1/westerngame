@@ -41,6 +41,12 @@ script = ExtResource("1_ynf5e")
 
 [node name="RevolverEnemy" parent="Enemies" instance=ExtResource("2_hptm8")]
 
+[node name="Dog" parent="Enemies" instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -13.5171585)
+
+[node name="Dog2" parent="Enemies" instance=ExtResource("11_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39795327, 0.06589781, -13.5171585)
+
 [node name="Dynamites" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -169,6 +175,3 @@ debug_color = Color(0.972549, 0, 0.43529412, 1)
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
-
-[node name="Dog" parent="." instance=ExtResource("11_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96661425, 0.06589781, -13.5171585)

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+radius = 0.41259766
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fd4e3"]
 radius = 6.0
