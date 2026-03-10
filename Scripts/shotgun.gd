@@ -60,6 +60,10 @@ func fire():
 				var enemy = collider.get_owner()
 				if enemy and enemy.has_method("hit"):
 					enemy.hit(1, hit_pos)
+			if collider is StaticBody3D:
+				var enemy = collider.get_owner()
+				if enemy and enemy.has_method("hit"):
+					enemy.hit()
 		
 	await get_tree().process_frame
 
