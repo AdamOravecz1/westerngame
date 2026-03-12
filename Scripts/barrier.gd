@@ -26,17 +26,17 @@ func _process(delta: float) -> void:
 		$HideArea2/CollisionShape3D.disabled = true
 
 
-func hit():
-	if full:
-		full = false
-		var old_parent = self.get_parent()
-		old_parent.remove_child(self)  # Remove from current parent
-		main.add_child(self)     # Add to new parent
-		var broken_model_inst:Node3D = broken_model.instantiate()
-		get_parent().add_child(broken_model_inst)
-		broken_model_inst.transform = self.transform
-
-		self.queue_free()
+#func hit():
+	#if full:
+		#full = false
+		#var old_parent = self.get_parent()
+		#old_parent.remove_child(self)  # Remove from current parent
+		#main.add_child(self)     # Add to new parent
+		#var broken_model_inst:Node3D = broken_model.instantiate()
+		#get_parent().add_child(broken_model_inst)
+		#broken_model_inst.transform = self.transform
+#
+		#self.queue_free()
 	
 	
 func destroy(from_position: Vector3, force: float = 5.0):
