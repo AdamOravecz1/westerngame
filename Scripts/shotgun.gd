@@ -6,11 +6,22 @@ extends Node3D
 
 @export var recoil_strength := deg_to_rad(55.0)   
 
+func _ready() -> void:
+	$Live.visible = false
+	$Dead.visible = false
+	$Live_001.visible = false
+	$Dead_001.visible = false
+
 
 
 func reload():
 	if animation_player.current_animation:
 		await animation_player.animation_finished
+		
+	$Live.visible = true
+	$Dead.visible = true
+	$Live_001.visible = true
+	$Dead_001.visible = true
 		
 	var tween_in := get_tree().create_tween()
 	tween_in.parallel().tween_property(self, "position:x", player.normal_x, 0.2)
@@ -35,6 +46,11 @@ func reload():
 	
 	player.RefreshShotgunCount()
 	player.reloading = false
+	
+	$Live.visible = false
+	$Dead.visible = false
+	$Live_001.visible = false
+	$Dead_001.visible = false
 	
 func fire():
 	if player.shotgun_in_barrel == 2:

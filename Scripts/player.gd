@@ -46,6 +46,7 @@ var indicators := {}
 @onready var camera: Camera3D = $Camera3D
 @onready var revolver: Node3D = $Camera3D/Revolver
 @onready var shotgun: Node3D = $Camera3D/Shotgun
+@onready var sniper: Node3D = $Camera3D/Sniper
 
 @onready var revolver_ray: RayCast3D = $Camera3D/RevolverRay
 @onready var shotgun_rays: Node3D = $Camera3D/ShotgunRays
@@ -55,7 +56,7 @@ var indicators := {}
 @onready var shotgun_count: Label = $CanvasLayer/ShotgunCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
 
-@onready var weapons := [bowie_knife, revolver, shotgun]
+@onready var weapons := [bowie_knife, revolver, shotgun, sniper]
 var selected_weapon := 1
 var switching_weapon := false
 
@@ -163,6 +164,7 @@ func _physics_process(delta: float) -> void:
 
 			revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
 			shotgun.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
+			sniper.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
 
 			
 
