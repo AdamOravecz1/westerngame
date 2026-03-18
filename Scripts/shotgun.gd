@@ -13,7 +13,6 @@ func _ready() -> void:
 	$Dead_001.visible = false
 
 
-
 func reload():
 	if animation_player.current_animation:
 		await animation_player.animation_finished
