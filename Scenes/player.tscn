@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3y84ei0f0150" path="res://Scenes/bowie_knife.tscn" id="2_fkybt"]
 [ext_resource type="PackedScene" uid="uid://o7yr4us8c52x" path="res://Scenes/revolver.tscn" id="3_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
-[ext_resource type="PackedScene" uid="uid://dxf5qcqegabw2" path="res://3D/Sniper.blend" id="5_3smsa"]
+[ext_resource type="PackedScene" uid="uid://bd164iyxft216" path="res://Scenes/sniper.tscn" id="5_3smsa"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
@@ -40,6 +40,7 @@ visible = false
 
 [node name="Sniper" parent="Camera3D" instance=ExtResource("5_3smsa")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5996585, -0.77516735, 1.5794208)
+visible = false
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)

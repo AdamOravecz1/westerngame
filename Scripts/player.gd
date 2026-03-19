@@ -38,6 +38,10 @@ var free_bullets := 6
 var shotgun_in_barrel := 2
 var free_shotgun := 6
 
+var sniper_in_clip := 1
+var sniper_in_chamber := 1
+var free_sniper := 10
+
 var dynamite_amount := 3
 var dynamite_indicator_targets: Array = []
 var dynamite_indicator_close_targets: Array = []
@@ -156,6 +160,8 @@ func _physics_process(delta: float) -> void:
 				revolver.reload()
 			elif weapons[selected_weapon] == shotgun and shotgun_in_barrel != 2 and free_shotgun > 0:
 				shotgun.reload()
+			elif weapons[selected_weapon] == sniper and sniper_in_clip != 5 and free_sniper > 0:
+				sniper.reload()
 
 		
 		# Aim
@@ -184,6 +190,10 @@ func _physics_process(delta: float) -> void:
 			# Shotgun
 			elif not switching_weapon and weapons[selected_weapon] == shotgun and shotgun_in_barrel != 0:
 				shotgun.fire()
+				
+			# Sniper
+			elif not switching_weapon and weapons[selected_weapon] == sniper and sniper_in_chamber != 0:
+				sniper.fire()
 
 
 		# Gravity
