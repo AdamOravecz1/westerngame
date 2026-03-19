@@ -131,6 +131,14 @@ offset_bottom = 133.0
 theme_override_font_sizes/font_size = 64
 text = "0/0"
 
+[node name="SniperCount" type="Label" parent="CanvasLayer"]
+visible = false
+offset_top = 45.0
+offset_right = 98.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 64
+text = "0/0"
+
 [node name="MoneyCount" type="Label" parent="CanvasLayer"]
 offset_left = 1055.0
 offset_top = -10.0

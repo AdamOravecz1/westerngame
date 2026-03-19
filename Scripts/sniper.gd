@@ -10,24 +10,41 @@ extends Node3D
 
 @export var recoil_strength := deg_to_rad(55.0)   
 
+func _ready() -> void:
+	$Live.visible = false
+	$LiveAmmo.visible = false
+	$Dead.visible = false
+
 func reload():
+
+
 	animation_player.play("Open")
 	await animation_player.animation_finished
+	$Live.visible = true
+	$LiveAmmo.visible = true
 	while player.free_sniper > 0 and player.sniper_in_clip < 5:
 		animation_player.play("In")
 		await animation_player.animation_finished
 		player.free_sniper -= 1
 		player.sniper_in_clip += 1
+		player.RefreshSniperCount()
+	$Live.visible = false
+	$LiveAmmo.visible = false
 	animation_player.play("Close")
 	await animation_player.animation_finished
 	if player.sniper_in_chamber == 0:
 		player.sniper_in_clip -= 1
 		player.sniper_in_chamber += 1
-	print("in_chamber: ", player.sniper_in_chamber, " in_clip: ", player.sniper_in_clip, " free: ", player.free_sniper)
+		player.RefreshSniperCount()
+		
+
+
+	#print("in_chamber: ", player.sniper_in_chamber, " in_clip: ", player.sniper_in_clip, " free: ", player.free_sniper)
 
 func fire():
 	animation_player.play("Fire")
-	#sound_n_light($MuzzleFlash)
+	for i in $MuzzleFlash.get_children():
+		i.emitting = true
 		
 	if player.revolver_ray.is_colliding():
 		var collider = player.revolver_ray.get_collider()
@@ -55,6 +72,9 @@ func fire():
 
 	player.recoil_offset += recoil_strength
 	player.sniper_in_chamber -= 1
+	player.RefreshSniperCount()
+
+	$Dead.visible = true
 	
 	await animation_player.animation_finished
 	animation_player.play("Open")
@@ -63,10 +83,11 @@ func fire():
 	await animation_player.animation_finished
 	animation_player.play("Close")
 	await animation_player.animation_finished
-	
+
+	$Dead.visible = false
+
 	if player.sniper_in_clip > 0:
 		player.sniper_in_chamber += 1
 		player.sniper_in_clip -= 1
-	print("in_chamber: ", player.sniper_in_chamber, " in_clip: ", player.sniper_in_clip, " free: ", player.free_sniper)
+	#print("in_chamber: ", player.sniper_in_chamber, " in_clip: ", player.sniper_in_clip, " free: ", player.free_sniper)
 	
-	#player.RefreshShotgunCount()

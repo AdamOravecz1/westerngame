@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://bd164iyxft216"]
+[gd_scene load_steps=51 format=4 uid="uid://bd164iyxft216"]
 
 [ext_resource type="Script" uid="uid://dajp8ro202ilp" path="res://Scripts/sniper.gd" id="1_nj4t3"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="1_tyci1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjispap3fq7dc" path="res://Textures/rosewood_veneer1_rough_4k.png" id="3_52far"]
 [ext_resource type="Texture2D" uid="uid://cl6ydlgqfo5ce" path="res://Textures/rosewood_veneer1_nor_gl_4k.png" id="4_0efve"]
 [ext_resource type="Texture2D" uid="uid://bvoy683wbk4hv" path="res://Textures/Revolver_golden-wall-background.jpg" id="5_rk6q2"]
+[ext_resource type="PackedScene" uid="uid://ccjq5iymolfxe" path="res://Scenes/muzzle_flash.tscn" id="7_52far"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0wkc"]
 resource_name = "Material.002"
@@ -13,6 +14,8 @@ cull_mode = 2
 albedo_texture = ExtResource("1_tyci1")
 metallic = 0.5
 roughness = 0.25
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_563pc"]
 _surfaces = [{
@@ -195,6 +198,8 @@ roughness_texture_channel = 1
 normal_enabled = true
 normal_scale = 5.0
 normal_texture = ExtResource("4_0efve")
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bwm7s"]
 _surfaces = [{
@@ -372,6 +377,8 @@ cull_mode = 2
 albedo_texture = ExtResource("5_rk6q2")
 metallic = 0.5
 roughness = 0.25
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0o8qm"]
 _surfaces = [{
@@ -474,6 +481,69 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6ru76")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_52far"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0efve"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_52far")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rk6q2"]
+load_path = "res://.godot/imported/MuzzleFlash01.png-094caa4a1329afebc0fe0e40d47a3dac.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8a4w6"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_rk6q2")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wedyk"]
+load_path = "res://.godot/imported/MuzzleFlash02.png-393cb79f6ff01613ef13984a01579f58.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pol2c"]
+render_priority = 100
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_wedyk")
+use_z_clip_scale = true
+z_clip_scale = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ngvg"]
+load_path = "res://.godot/imported/Flare00.PNG-8ad4305bd0974c799a2f6c8088b774b5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6f02"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_8ngvg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_z_clip_scale = true
+z_clip_scale = 0.5
 
 [sub_resource type="Animation" id="Animation_2lm67"]
 resource_name = "Close"
@@ -835,12 +905,12 @@ mesh = SubResource("ArrayMesh_xyjo1")
 skeleton = NodePath("")
 
 [node name="Live" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, -0.020675711, 0, 0.020675711, 0, 0, 0, 0, -0.020675711, 0.08470588, -0.30193102, 0.28729004)
+transform = Transform3D(0, -0.020675711, 0, 0.020675711, 0, 0, 0, 0, -0.020675711, 0.08470588, -0.27598137, 0.28729004)
 mesh = SubResource("ArrayMesh_joj6i")
 skeleton = NodePath("")
 
 [node name="LiveAmmo" type="MeshInstance3D" parent="."]
-transform = Transform3D(-9.006652e-10, -0.015110655, 0, 0.015110655, -9.006652e-10, 0, 0, 0, -0.015110655, 0.28212464, -0.30193102, 0.28729007)
+transform = Transform3D(-9.006652e-10, -0.015110655, 0, 0.015110655, -9.006652e-10, 0, 0, 0, -0.015110655, 0.28212464, -0.27598137, 0.28729007)
 mesh = SubResource("ArrayMesh_fav7l")
 skeleton = NodePath("")
 
@@ -849,7 +919,24 @@ transform = Transform3D(9.0376406e-10, -0.020675711, 0, 0.020675711, 9.0376406e-
 mesh = SubResource("ArrayMesh_ttqad")
 skeleton = NodePath("")
 
+[node name="MuzzleFlash" parent="." instance=ExtResource("7_52far")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.340671, 0.061067387, 0)
+
+[node name="Sparks" parent="MuzzleFlash" index="0"]
+material_overlay = SubResource("StandardMaterial3D_0efve")
+
+[node name="MuzzlePlanes" parent="MuzzleFlash" index="1"]
+material_overlay = SubResource("StandardMaterial3D_8a4w6")
+
+[node name="MuzzleCone" parent="MuzzleFlash" index="2"]
+material_overlay = SubResource("StandardMaterial3D_pol2c")
+
+[node name="BeamFlash" parent="MuzzleFlash" index="3"]
+material_overlay = SubResource("StandardMaterial3D_y6f02")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_7cdel")
 }
+
+[editable path="MuzzleFlash"]

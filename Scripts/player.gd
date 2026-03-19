@@ -38,7 +38,7 @@ var free_bullets := 6
 var shotgun_in_barrel := 2
 var free_shotgun := 6
 
-var sniper_in_clip := 1
+var sniper_in_clip := 5
 var sniper_in_chamber := 1
 var free_sniper := 10
 
@@ -58,6 +58,7 @@ var indicators := {}
 
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
 @onready var shotgun_count: Label = $CanvasLayer/ShotgunCount
+@onready var sniper_count: Label = $CanvasLayer/SniperCount
 @onready var money_count: Label = $CanvasLayer/MoneyCount
 
 @onready var weapons := [bowie_knife, revolver, shotgun, sniper]
@@ -74,6 +75,7 @@ func _ready():
 
 	RefreshBulletCount()
 	RefreshShotgunCount()
+	RefreshSniperCount()
 	RefreshDynamiteCount()
 
 
@@ -84,8 +86,6 @@ func _unhandled_input(event):
 		pitch -= event.relative.y * mouse_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		camera.rotation.x = pitch
-
-		
 
 	
 func pause():
@@ -293,13 +293,19 @@ func RefreshBulletCount():
 func RefreshShotgunCount():
 	shotgun_count.text = str(free_shotgun) + "/" + str(shotgun_in_barrel)
 	
+func RefreshSniperCount():
+	sniper_count.text = str(free_sniper) + "/" + str(sniper_in_chamber + sniper_in_clip)
+	
 func DisplayCorrectAmmoType():
 	bullet_count.visible = false
 	shotgun_count.visible = false
+	sniper_count.visible = false
 	if weapons[selected_weapon] == revolver:
 		bullet_count.visible = true
 	elif weapons[selected_weapon] == shotgun:
 		shotgun_count.visible = true
+	elif weapons[selected_weapon] == sniper:
+		sniper_count.visible = true
 	
 func RefreshDynamiteCount():
 	for i in $CanvasLayer/DynamiteContainer.get_children():
