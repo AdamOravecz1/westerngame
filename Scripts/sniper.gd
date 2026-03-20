@@ -16,7 +16,11 @@ func _ready() -> void:
 	$Dead.visible = false
 
 func reload():
-
+	if animation_player.current_animation:
+		await animation_player.animation_finished
+	var tween_in := get_tree().create_tween()
+	tween_in.parallel().tween_property(self, "position:x", player.normal_x, 0.2)
+	player.reloading = true
 
 	animation_player.play("Open")
 	await animation_player.animation_finished
@@ -32,12 +36,12 @@ func reload():
 	$LiveAmmo.visible = false
 	animation_player.play("Close")
 	await animation_player.animation_finished
+	player.reloading = false
 	if player.sniper_in_chamber == 0:
 		player.sniper_in_clip -= 1
 		player.sniper_in_chamber += 1
 		player.RefreshSniperCount()
-		
-
+	
 
 	#print("in_chamber: ", player.sniper_in_chamber, " in_clip: ", player.sniper_in_clip, " free: ", player.free_sniper)
 

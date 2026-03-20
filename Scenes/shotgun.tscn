@@ -993,7 +993,7 @@ mesh = SubResource("ArrayMesh_os5cv")
 skeleton = NodePath("")
 
 [node name="Opener" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9999866, 0, 0.0051511275, 0, 1, 0, -0.0051511275, 0, 0.9999866, -0.21183772, 0.2066459, 0)
+transform = Transform3D(0.9999865, 0, 0.005151128, 0, 1, 0, -0.005151128, 0, 0.9999865, -0.21183772, 0.2066459, 0)
 mesh = SubResource("ArrayMesh_0ji0n")
 skeleton = NodePath("")
 

@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 
 			revolver.position.x = lerp(revolver.position.x, target_x, pull_speed * delta)
 			shotgun.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
-			sniper.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
+			sniper.position.x = lerp(sniper.position.x, target_x, pull_speed * delta)
 
 			
 

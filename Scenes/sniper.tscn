@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://bd164iyxft216"]
+[gd_scene load_steps=57 format=4 uid="uid://bd164iyxft216"]
 
 [ext_resource type="Script" uid="uid://dajp8ro202ilp" path="res://Scripts/sniper.gd" id="1_nj4t3"]
 [ext_resource type="Texture2D" uid="uid://cjuulifnknvt7" path="res://Textures/Revolver_photo-metal-texture-pattern(1).jpg" id="1_tyci1"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cl6ydlgqfo5ce" path="res://Textures/rosewood_veneer1_nor_gl_4k.png" id="4_0efve"]
 [ext_resource type="Texture2D" uid="uid://bvoy683wbk4hv" path="res://Textures/Revolver_golden-wall-background.jpg" id="5_rk6q2"]
 [ext_resource type="PackedScene" uid="uid://ccjq5iymolfxe" path="res://Scenes/muzzle_flash.tscn" id="7_52far"]
+[ext_resource type="AudioStream" uid="uid://c4nf8hpd1dbq6" path="res://Sounds/freesound_community-sniper-rifle-5989.wav" id="8_0efve"]
+[ext_resource type="AudioStream" uid="uid://cdukfin5ydoxq" path="res://Sounds/BoltOpen2.wav" id="9_8a4w6"]
+[ext_resource type="AudioStream" uid="uid://bjsf2vs31fcs5" path="res://Sounds/BoltClose2.wav" id="10_8a4w6"]
+[ext_resource type="AudioStream" uid="uid://31dvlcjn45vo" path="res://Sounds/ShotgunShellInsert.wav" id="11_wedyk"]
+[ext_resource type="AudioStream" uid="uid://dmjjbm604fg6i" path="res://Sounds/ajhartman42295-50-caliber-rifle-shot-with-shell-ping-132079.wav" id="12_pol2c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0wkc"]
 resource_name = "Material.002"
@@ -568,100 +573,70 @@ tracks/2/path = NodePath("Gizmos")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, -0.085779, 0.062253993, 8.547357e-09, 0.033333335, 1, -0.085779, 0.062253993, 8.547357e-09, 0.06666667, 1, -0.07997069, 0.062253993, 8.547357e-09, 0.1, 1, -0.07002853, 0.062253993, 8.547357e-09, 0.13333334, 1, -0.056946732, 0.062253993, 8.547357e-09, 0.16666667, 1, -0.041039284, 0.062253993, 8.547357e-09, 0.2, 1, -0.021992195, 0.062253993, 8.547357e-09, 0.23333333, 1, -0.0010613371, 0.062253993, 8.547357e-09, 0.26666668, 1, 0.021439344, 0.062253993, 8.547357e-09, 0.3, 1, 0.04519587, 0.062253993, 8.547357e-09, 0.33333334, 1, 0.06989428, 0.062253993, 8.547357e-09, 0.4, 1, 0.120546974, 0.062253993, 8.547357e-09, 0.43333334, 1, 0.14555934, 0.062253993, 8.547357e-09, 0.46666667, 1, 0.16994378, 0.062253993, 8.547357e-09, 0.5, 1, 0.19338635, 0.062253993, 8.547357e-09, 0.53333336, 1, 0.21494517, 0.062253993, 8.547357e-09, 0.56666666, 1, 0.23462015, 0.062253993, 8.547357e-09, 0.6, 1, 0.25209743, 0.062253993, 8.547357e-09, 0.6333333, 1, 0.267063, 0.062253993, 8.547357e-09, 0.6666667, 1, 0.27920288, 0.062253993, 8.547357e-09, 0.7, 1, 0.28694737, 0.062253993, 8.547357e-09, 0.73333335, 1, 0.2909242, 0.062253993, 8.547357e-09, 0.76666665, 1, 0.29228467, 0.062253993, 8.547357e-09, 1, 1, 0.29228467, 0.062253993, 8.547357e-09)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
+tracks/3/type = "value"
+tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Trigger")
+tracks/3/path = NodePath("Sounds/CloseSound:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/4/type = "position_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Live")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.08470588, -0.30193102, 0.28729004)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("LiveAmmo")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.28212464, -0.30193102, 0.28729007)
-tracks/6/type = "position_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Dead")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.08470588, 0.06557801, 0.0033073425)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Dead")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/3/keys = {
+"times": PackedFloat32Array(0.35),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qkd2b"]
+resource_name = "Fire"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trigger")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/FireSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bc8wv"]
 resource_name = "In"
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bolt")
-tracks/0/interp = 0
+tracks/0/path = NodePath("Live")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.08918026, 0.062253993, 8.547357e-09)
-tracks/1/type = "rotation_3d"
+tracks/0/keys = PackedFloat32Array(0, 1, 0.08470588, -0.2658478, 0.28729004, 0.033333335, 1, 0.08470588, -0.2658478, 0.28729004, 0.06666667, 1, 0.08470588, -0.21172296, 0.28729004, 0.1, 1, 0.08470588, -0.12873152, 0.28729004, 0.16666667, 1, 0.08470588, 0.05890131, 0.28729004, 0.2, 1, 0.08470588, 0.13106777, 0.28729004, 0.23333333, 1, 0.08470588, 0.17075928, 0.28729004, 0.26666668, 1, 0.08470588, 0.18408702, 0.28333718, 0.3, 1, 0.08470588, 0.18104681, 0.27217537, 0.33333334, 1, 0.08470588, 0.17551918, 0.2512452, 0.36666667, 1, 0.08470588, 0.16833325, 0.22147077, 0.4, 1, 0.08470588, 0.1611473, 0.18819839, 0.43333334, 1, 0.08470588, 0.1547905, 0.15351819, 0.46666667, 1, 0.08470588, 0.15009202, 0.119520314, 0.5, 1, 0.08470588, 0.14788096, 0.08829488, 0.53333336, 1, 0.08470588, 0.14800379, 0.06407112, 0.56666666, 1, 0.08470588, 0.14826483, 0.04495182, 0.6, 1, 0.08470588, 0.14861798, 0.03040144, 0.6333333, 1, 0.08470588, 0.1490172, 0.019884538, 0.6666667, 1, 0.08470588, 0.14941642, 0.0128655825, 0.7, 1, 0.08470588, 0.1497235, 0.0094396, 0.73333335, 1, 0.08470588, 0.1498924, 0.0079051005, 0.76666665, 1, 0.08470588, 0.14608449, 0.007453099, 0.8, 1, 0.08470588, 0.13544376, 0.007453099, 0.8333333, 1, 0.08470588, 0.11609701, 0.007453099, 0.9, 1, 0.08470588, 0.06579548, 0.007453099, 0.93333334, 1, 0.08470588, 0.043546688, 0.007453099, 0.96666664, 1, 0.08470588, 0.027101954, 0.007453099, 1, 1, 0.08470588, 0.019363254, 0.007453099)
+tracks/1/type = "position_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
-tracks/1/path = NodePath("Bolt")
-tracks/1/interp = 0
+tracks/1/path = NodePath("LiveAmmo")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.38268346, 0, 0, 0.92387956)
-tracks/2/type = "position_3d"
-tracks/2/imported = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.28212464, -0.2658478, 0.28729007, 0.033333335, 1, 0.28212464, -0.2658478, 0.28729007, 0.06666667, 1, 0.28212464, -0.21172296, 0.28729007, 0.1, 1, 0.28212464, -0.12873152, 0.28729007, 0.16666667, 1, 0.28212464, 0.05890131, 0.28729007, 0.2, 1, 0.28212464, 0.13106777, 0.28729007, 0.23333333, 1, 0.28212464, 0.17075928, 0.28729007, 0.26666668, 1, 0.28212464, 0.18408702, 0.2833372, 0.3, 1, 0.28212464, 0.18104681, 0.2721754, 0.33333334, 1, 0.28212464, 0.17551918, 0.25124523, 0.36666667, 1, 0.28212464, 0.16833325, 0.2214708, 0.4, 1, 0.28212464, 0.1611473, 0.18819842, 0.43333334, 1, 0.28212464, 0.1547905, 0.15351821, 0.46666667, 1, 0.28212464, 0.15009202, 0.119520344, 0.5, 1, 0.28212464, 0.14788096, 0.08829491, 0.53333336, 1, 0.28212464, 0.14800379, 0.06407115, 0.56666666, 1, 0.28212464, 0.14826483, 0.04495185, 0.6, 1, 0.28212464, 0.14861798, 0.03040147, 0.6333333, 1, 0.28212464, 0.1490172, 0.019884568, 0.6666667, 1, 0.28212464, 0.14941642, 0.012865612, 0.7, 1, 0.28212464, 0.1497235, 0.0094396295, 0.73333335, 1, 0.28212464, 0.1498924, 0.00790513, 0.76666665, 1, 0.28212464, 0.14608449, 0.0074531287, 0.8, 1, 0.28212464, 0.13544376, 0.0074531287, 0.8333333, 1, 0.28212464, 0.11609701, 0.0074531287, 0.9, 1, 0.28212464, 0.06579548, 0.0074531287, 0.93333334, 1, 0.28212464, 0.043546688, 0.0074531287, 0.96666664, 1, 0.28212464, 0.027101954, 0.0074531287, 1, 1, 0.28212464, 0.019363254, 0.0074531287)
+tracks/2/type = "value"
+tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Gizmos")
-tracks/2/interp = 0
+tracks/2/path = NodePath("Sounds/ShellInsertSound:playing")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, -0.08918026, 0.062253993, 8.547357e-09)
-tracks/3/type = "position_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Live")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.08470588, -0.2658478, 0.28729004, 0.033333335, 1, 0.08470588, -0.2658478, 0.28729004, 0.06666667, 1, 0.08470588, -0.21172296, 0.28729004, 0.1, 1, 0.08470588, -0.12873152, 0.28729004, 0.16666667, 1, 0.08470588, 0.05890131, 0.28729004, 0.2, 1, 0.08470588, 0.13106777, 0.28729004, 0.23333333, 1, 0.08470588, 0.17075928, 0.28729004, 0.26666668, 1, 0.08470588, 0.18408702, 0.28333718, 0.3, 1, 0.08470588, 0.18104681, 0.27217537, 0.33333334, 1, 0.08470588, 0.17551918, 0.2512452, 0.36666667, 1, 0.08470588, 0.16833325, 0.22147077, 0.4, 1, 0.08470588, 0.1611473, 0.18819839, 0.43333334, 1, 0.08470588, 0.1547905, 0.15351819, 0.46666667, 1, 0.08470588, 0.15009202, 0.119520314, 0.5, 1, 0.08470588, 0.14788096, 0.08829488, 0.53333336, 1, 0.08470588, 0.14800379, 0.06407112, 0.56666666, 1, 0.08470588, 0.14826483, 0.04495182, 0.6, 1, 0.08470588, 0.14861798, 0.03040144, 0.6333333, 1, 0.08470588, 0.1490172, 0.019884538, 0.6666667, 1, 0.08470588, 0.14941642, 0.0128655825, 0.7, 1, 0.08470588, 0.1497235, 0.0094396, 0.73333335, 1, 0.08470588, 0.1498924, 0.0079051005, 0.76666665, 1, 0.08470588, 0.14608449, 0.007453099, 0.8, 1, 0.08470588, 0.13544376, 0.007453099, 0.8333333, 1, 0.08470588, 0.11609701, 0.007453099, 0.9, 1, 0.08470588, 0.06579548, 0.007453099, 0.93333334, 1, 0.08470588, 0.043546688, 0.007453099, 0.96666664, 1, 0.08470588, 0.027101954, 0.007453099, 1, 1, 0.08470588, 0.019363254, 0.007453099)
-tracks/4/type = "position_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("LiveAmmo")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.28212464, -0.2658478, 0.28729007, 0.033333335, 1, 0.28212464, -0.2658478, 0.28729007, 0.06666667, 1, 0.28212464, -0.21172296, 0.28729007, 0.1, 1, 0.28212464, -0.12873152, 0.28729007, 0.16666667, 1, 0.28212464, 0.05890131, 0.28729007, 0.2, 1, 0.28212464, 0.13106777, 0.28729007, 0.23333333, 1, 0.28212464, 0.17075928, 0.28729007, 0.26666668, 1, 0.28212464, 0.18408702, 0.2833372, 0.3, 1, 0.28212464, 0.18104681, 0.2721754, 0.33333334, 1, 0.28212464, 0.17551918, 0.25124523, 0.36666667, 1, 0.28212464, 0.16833325, 0.2214708, 0.4, 1, 0.28212464, 0.1611473, 0.18819842, 0.43333334, 1, 0.28212464, 0.1547905, 0.15351821, 0.46666667, 1, 0.28212464, 0.15009202, 0.119520344, 0.5, 1, 0.28212464, 0.14788096, 0.08829491, 0.53333336, 1, 0.28212464, 0.14800379, 0.06407115, 0.56666666, 1, 0.28212464, 0.14826483, 0.04495185, 0.6, 1, 0.28212464, 0.14861798, 0.03040147, 0.6333333, 1, 0.28212464, 0.1490172, 0.019884568, 0.6666667, 1, 0.28212464, 0.14941642, 0.012865612, 0.7, 1, 0.28212464, 0.1497235, 0.0094396295, 0.73333335, 1, 0.28212464, 0.1498924, 0.00790513, 0.76666665, 1, 0.28212464, 0.14608449, 0.0074531287, 0.8, 1, 0.28212464, 0.13544376, 0.0074531287, 0.8333333, 1, 0.28212464, 0.11609701, 0.0074531287, 0.9, 1, 0.28212464, 0.06579548, 0.0074531287, 0.93333334, 1, 0.28212464, 0.043546688, 0.0074531287, 0.96666664, 1, 0.28212464, 0.027101954, 0.0074531287, 1, 1, 0.28212464, 0.019363254, 0.0074531287)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("Trigger")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/6/type = "position_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Dead")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.08470588, 0.06557801, 0.0033073425)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Dead")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_adx7f"]
 resource_name = "Open"
@@ -686,41 +661,18 @@ tracks/2/path = NodePath("Gizmos")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0.29228467, 0.062253993, 8.547357e-09, 0.23333333, 1, 0.29228467, 0.062253993, 8.547357e-09, 0.26666668, 1, 0.29092416, 0.062253993, 8.547357e-09, 0.3, 1, 0.2869473, 0.062253993, 8.547357e-09, 0.33333334, 1, 0.27920288, 0.062253993, 8.547357e-09, 0.36666667, 1, 0.267063, 0.062253993, 8.547357e-09, 0.4, 1, 0.2520974, 0.062253993, 8.547357e-09, 0.43333334, 1, 0.23462014, 0.062253993, 8.547357e-09, 0.46666667, 1, 0.21494514, 0.062253993, 8.547357e-09, 0.5, 1, 0.19338635, 0.062253993, 8.547357e-09, 0.53333336, 1, 0.16994378, 0.062253993, 8.547357e-09, 0.56666666, 1, 0.14555934, 0.062253993, 8.547357e-09, 0.6, 1, 0.12054693, 0.062253993, 8.547357e-09, 0.6666667, 1, 0.06989427, 0.062253993, 8.547357e-09, 0.7, 1, 0.04519587, 0.062253993, 8.547357e-09, 0.73333335, 1, 0.021439327, 0.062253993, 8.547357e-09, 0.76666665, 1, -0.0010613175, 0.062253993, 8.547357e-09, 0.8, 1, -0.021992188, 0.062253993, 8.547357e-09, 0.8333333, 1, -0.04103926, 0.062253993, 8.547357e-09, 0.8666667, 1, -0.05694677, 0.062253993, 8.547357e-09, 0.9, 1, -0.07002854, 0.062253993, 8.547357e-09, 0.93333334, 1, -0.07997073, 0.062253993, 8.547357e-09, 0.96666664, 1, -0.08645931, 0.062253993, 8.547357e-09, 1, 1, -0.08918026, 0.062253993, 8.547357e-09)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
+tracks/3/type = "value"
+tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Trigger")
+tracks/3/path = NodePath("Sounds/OpenSound:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/4/type = "position_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Live")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.08470588, -0.30193102, 0.28729004)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("LiveAmmo")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.28212464, -0.30193102, 0.28729007)
-tracks/6/type = "position_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Dead")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.08470588, 0.06557801, 0.0033073425)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Dead")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_y3oea"]
 resource_name = "Out"
@@ -728,119 +680,92 @@ length = 0.5
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bolt")
-tracks/0/interp = 0
+tracks/0/path = NodePath("Dead")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.08918026, 0.062253993, 8.547357e-09)
+tracks/0/keys = PackedFloat32Array(0, 1, 0.08470588, 0.09372294, 0.023759626, 0.033333335, 1, 0.08470588, 0.09372294, 0.023759626, 0.06666667, 1, 0.08470588, 0.132831, 0.053277243, 0.1, 1, 0.08470588, 0.18823643, 0.09683508, 0.13333334, 1, 0.08470588, 0.2436787, 0.14380163, 0.16666667, 1, 0.08470588, 0.2894476, 0.18839127, 0.2, 1, 0.08470588, 0.31763858, 0.23032768, 0.23333333, 1, 0.08470588, 0.3318999, 0.2729274, 0.26666668, 1, 0.08470588, 0.33523494, 0.31659582, 0.3, 1, 0.08470588, 0.32786474, 0.35901126, 0.33333334, 1, 0.08470588, 0.3072282, 0.39512518, 0.36666667, 1, 0.08470588, 0.25121474, 0.41001296, 0.4, 1, 0.08470588, 0.14992985, 0.4059962, 0.43333334, 1, 0.08470588, 0.025373608, 0.39125583, 0.46666667, 1, 0.08470588, -0.090006724, 0.37430438, 0.5, 1, 0.08470588, -0.15331668, 0.3639861)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
-tracks/1/path = NodePath("Bolt")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.38268346, 0, 0, 0.92387956)
-tracks/2/type = "position_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Gizmos")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, -0.08918026, 0.062253993, 8.547357e-09)
-tracks/3/type = "position_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dead")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.08470588, 0.09372294, 0.023759626, 0.033333335, 1, 0.08470588, 0.09372294, 0.023759626, 0.06666667, 1, 0.08470588, 0.132831, 0.053277243, 0.1, 1, 0.08470588, 0.18823643, 0.09683508, 0.13333334, 1, 0.08470588, 0.2436787, 0.14380163, 0.16666667, 1, 0.08470588, 0.2894476, 0.18839127, 0.2, 1, 0.08470588, 0.31763858, 0.23032768, 0.23333333, 1, 0.08470588, 0.3318999, 0.2729274, 0.26666668, 1, 0.08470588, 0.33523494, 0.31659582, 0.3, 1, 0.08470588, 0.32786474, 0.35901126, 0.33333334, 1, 0.08470588, 0.3072282, 0.39512518, 0.36666667, 1, 0.08470588, 0.25121474, 0.41001296, 0.4, 1, 0.08470588, 0.14992985, 0.4059962, 0.43333334, 1, 0.08470588, 0.025373608, 0.39125583, 0.46666667, 1, 0.08470588, -0.090006724, 0.37430438, 0.5, 1, 0.08470588, -0.15331668, 0.3639861)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Dead")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.013023484, 0.012567921, -0.7194624, 0.6942955, 0.033333335, 1, -0.013023484, 0.012567921, -0.7194624, 0.6942955, 0.06666667, 1, -0.028522259, 0.025503654, -0.7382787, 0.67340976, 0.1, 1, -0.045465097, 0.037474394, -0.7672032, 0.63869226, 0.13333334, 1, -0.047666688, 0.03616996, -0.80161226, 0.5948424, 0.16666667, 1, -0.016824586, 0.01088299, -0.8394815, 0.54301876, 0.2, 1, 0.048369203, -0.023880031, -0.8819082, 0.46832493, 0.23333333, 1, 0.09566839, -0.035720985, -0.9255278, 0.3646505, 0.26666668, 1, 0.09252379, -0.025150014, -0.9689158, 0.22805507, 0.3, 1, 0.032070767, -0.006581343, -0.99767214, 0.059819706, 0.33333334, 1, 0.06469081, 0.008462014, 0.98944056, 0.12942581, 0.36666667, 1, 0.11090241, 0.03926563, 0.94296545, 0.31140837, 0.4, 1, 0.08558735, 0.042285524, 0.87861156, 0.46789795, 0.43333334, 1, 0.025200218, 0.013646539, 0.80881166, 0.58736914, 0.46666667, 1, -0.03628003, -0.03280382, 0.7477925, 0.6621285, 0.5, 1, -0.06894566, -0.066580065, 0.7160281, 0.6914603)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("Trigger")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/6/type = "position_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Live")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.08470588, -0.30193102, 0.28729004)
-tracks/7/type = "position_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("LiveAmmo")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.28212464, -0.30193102, 0.28729007)
-
-[sub_resource type="Animation" id="Animation_qkd2b"]
-resource_name = "Fire"
-length = 0.25
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trigger")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.06540313, 0.99785894, 0.033333335, 1, 0, 0, -0.06540313, 0.99785894, 0.06666667, 1, 0, 0, -0.10452847, 0.994522, 0.1, 1, 0, 0, -0.12241069, 0.99247956, 0.13333334, 1, 0, 0, -0.101273365, 0.99485874, 0.2, 1, 0, 0, -0.029448174, 0.9995663, 0.23333333, 1, 0, 0, -0.008181141, 0.99996656, 0.25, 1, 0, 0, 0, 1)
-tracks/1/type = "position_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Bolt")
+tracks/1/path = NodePath("Dead")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.29228467, 0.062253993, 0)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.013023484, 0.012567921, -0.7194624, 0.6942955, 0.033333335, 1, -0.013023484, 0.012567921, -0.7194624, 0.6942955, 0.06666667, 1, -0.028522259, 0.025503654, -0.7382787, 0.67340976, 0.1, 1, -0.045465097, 0.037474394, -0.7672032, 0.63869226, 0.13333334, 1, -0.047666688, 0.03616996, -0.80161226, 0.5948424, 0.16666667, 1, -0.016824586, 0.01088299, -0.8394815, 0.54301876, 0.2, 1, 0.048369203, -0.023880031, -0.8819082, 0.46832493, 0.23333333, 1, 0.09566839, -0.035720985, -0.9255278, 0.3646505, 0.26666668, 1, 0.09252379, -0.025150014, -0.9689158, 0.22805507, 0.3, 1, 0.032070767, -0.006581343, -0.99767214, 0.059819706, 0.33333334, 1, 0.06469081, 0.008462014, 0.98944056, 0.12942581, 0.36666667, 1, 0.11090241, 0.03926563, 0.94296545, 0.31140837, 0.4, 1, 0.08558735, 0.042285524, 0.87861156, 0.46789795, 0.43333334, 1, 0.025200218, 0.013646539, 0.80881166, 0.58736914, 0.46666667, 1, -0.03628003, -0.03280382, 0.7477925, 0.6621285, 0.5, 1, -0.06894566, -0.066580065, 0.7160281, 0.6914603)
+tracks/2/type = "value"
+tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Bolt")
+tracks/2/path = NodePath("Sounds/ShellPing:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/3/type = "position_3d"
-tracks/3/imported = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rk6q2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/FireSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/OpenSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/CloseSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Gizmos")
+tracks/3/path = NodePath("Sounds/ShellInsertSound:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.29228467, 0.062253993, 0)
-tracks/4/type = "position_3d"
-tracks/4/imported = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Live")
+tracks/4/path = NodePath("Sounds/ShellPing:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.08470588, -0.30193102, 0.28729004)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("LiveAmmo")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.28212464, -0.30193102, 0.28729007)
-tracks/6/type = "position_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Dead")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.08470588, 0.06557801, 0.0033073425)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Dead")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7cdel"]
 _data = {
@@ -848,7 +773,8 @@ _data = {
 &"Fire": SubResource("Animation_qkd2b"),
 &"In": SubResource("Animation_bc8wv"),
 &"Open": SubResource("Animation_adx7f"),
-&"Out": SubResource("Animation_y3oea")
+&"Out": SubResource("Animation_y3oea"),
+&"RESET": SubResource("Animation_rk6q2")
 }
 
 [node name="Sniper" type="Node3D"]
@@ -905,17 +831,17 @@ mesh = SubResource("ArrayMesh_xyjo1")
 skeleton = NodePath("")
 
 [node name="Live" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, -0.020675711, 0, 0.020675711, 0, 0, 0, 0, -0.020675711, 0.08470588, -0.27598137, 0.28729004)
+transform = Transform3D(0, -0.020675711, 0, 0.020675711, 0, 0, 0, 0, -0.020675711, 0.08470588, -0.2658478, 0.28729004)
 mesh = SubResource("ArrayMesh_joj6i")
 skeleton = NodePath("")
 
 [node name="LiveAmmo" type="MeshInstance3D" parent="."]
-transform = Transform3D(-9.006652e-10, -0.015110655, 0, 0.015110655, -9.006652e-10, 0, 0, 0, -0.015110655, 0.28212464, -0.27598137, 0.28729007)
+transform = Transform3D(-9.006652e-10, -0.015110655, 0, 0.015110655, -9.006652e-10, 0, 0, 0, -0.015110655, 0.28212464, -0.2658478, 0.28729007)
 mesh = SubResource("ArrayMesh_fav7l")
 skeleton = NodePath("")
 
 [node name="Dead" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.0376406e-10, -0.020675711, 0, 0.020675711, 9.0376406e-10, 0, 0, 0, -0.020675711, 0.08470588, 0.06557801, 0.0033073425)
+transform = Transform3D(0.0007354003, -0.020649076, -0.0007482853, 0.020662611, 0.0007358824, 0, -2.6632699e-05, 0.0007478113, -0.020662166, 0.08470588, 0.09372294, 0.023759626)
 mesh = SubResource("ArrayMesh_ttqad")
 skeleton = NodePath("")
 
@@ -938,5 +864,31 @@ material_overlay = SubResource("StandardMaterial3D_y6f02")
 libraries = {
 &"": SubResource("AnimationLibrary_7cdel")
 }
+
+[node name="Sounds" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FireSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_0efve")
+bus = &"SFX"
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_8a4w6")
+bus = &"SFX"
+
+[node name="CloseSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_8a4w6")
+bus = &"SFX"
+
+[node name="ShellInsertSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_wedyk")
+bus = &"SFX"
+
+[node name="ShellPing" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("12_pol2c")
+bus = &"SFX"
 
 [editable path="MuzzleFlash"]
