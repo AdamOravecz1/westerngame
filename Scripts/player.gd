@@ -24,6 +24,9 @@ var duck_height := 1.8
 @export var normal_x := 0.6
 
 @export var pull_speed := 10.0
+@export var normal_fov := 75.0
+@export var zoom_fov := 30.0
+@export var zoom_speed := 10.0
 @export var throw_force: float = 10.0
 
 var recoil_offset := 0.0 
@@ -172,7 +175,18 @@ func _physics_process(delta: float) -> void:
 			shotgun.position.x = lerp(shotgun.position.x, target_x, pull_speed * delta)
 			sniper.position.x = lerp(sniper.position.x, target_x, pull_speed * delta)
 
-			
+		# Sniper aim
+		var is_aiming: bool = Input.is_action_pressed("aim") and not reloading
+
+		var target_fov := zoom_fov if (is_aiming and weapons[selected_weapon] == sniper) else normal_fov
+		$Camera3D.fov = lerp($Camera3D.fov, target_fov, pull_speed * delta)
+
+		var target_crosshair_alpha := 1.0 if (is_aiming and weapons[selected_weapon] == sniper) else 0.0
+		$CanvasLayer/CrossHair.modulate.a = lerp($CanvasLayer/CrossHair.modulate.a, target_crosshair_alpha, pull_speed * delta)
+
+		if weapons[selected_weapon] == sniper:
+			var target_alpha := 0.0 if is_aiming else 1.0
+			sniper.set_transparency(target_alpha, pull_speed, delta)
 
 
 		# Fire

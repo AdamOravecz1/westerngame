@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=17 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://bod7rerxd0ui" path="res://Scenes/revolver_enemy.tscn" id="2_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
@@ -37,6 +38,17 @@ plane = Plane(1, 0, 0, 0)
 script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="."]
+
+[node name="RevolverEnemy" parent="Enemies" instance=ExtResource("2_d1ilt")]
+
+[node name="RevolverEnemy2" parent="Enemies" instance=ExtResource("2_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4577446, 0, 0)
+
+[node name="RevolverEnemy3" parent="Enemies" instance=ExtResource("2_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9408407, 0, 0)
+
+[node name="RevolverEnemy4" parent="Enemies" instance=ExtResource("2_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.364581, 0, 0)
 
 [node name="Dynamites" type="Node3D" parent="."]
 

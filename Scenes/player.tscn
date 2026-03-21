@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene load_steps=12 format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://d3y84ei0f0150" path="res://Scenes/bowie_knife.tscn" id="2_fkybt"]
 [ext_resource type="PackedScene" uid="uid://o7yr4us8c52x" path="res://Scenes/revolver.tscn" id="3_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://bd164iyxft216" path="res://Scenes/sniper.tscn" id="5_3smsa"]
+[ext_resource type="Texture2D" uid="uid://c0rt7aswv06o3" path="res://Pictures/CrossHair.png" id="7_8erm5"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
@@ -211,6 +212,15 @@ text = "Buy health"
 [node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
 layout_mode = 2
 text = "Next wave"
+
+[node name="CrossHair" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8erm5")
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("8_qqcod")]
 visible = false

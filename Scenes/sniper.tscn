@@ -15,6 +15,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0wkc"]
 resource_name = "Material.002"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("1_tyci1")
 metallic = 0.5
@@ -194,6 +197,9 @@ shadow_mesh = SubResource("ArrayMesh_shbdw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klwms"]
 resource_name = "Material.001"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("2_nj4t3")
 metallic_texture = ExtResource("3_52far")
@@ -378,6 +384,9 @@ shadow_mesh = SubResource("ArrayMesh_mvug3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djl8p"]
 resource_name = "Material.003"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("5_rk6q2")
 metallic = 0.5
@@ -796,7 +805,7 @@ mesh = SubResource("ArrayMesh_bs3e6")
 skeleton = NodePath("")
 
 [node name="Bolt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9983082, 0.05814486, 0, -0.05814486, 0.9983082, 0.29228467, 0.062253993, 8.547357e-09)
+transform = Transform3D(1, 0, 0, 0, 0.9983082, 0.05814487, 0, -0.05814487, 0.9983082, 0.29228467, 0.062253993, 8.547357e-09)
 mesh = SubResource("ArrayMesh_iiw10")
 skeleton = NodePath("")
 
@@ -841,7 +850,7 @@ mesh = SubResource("ArrayMesh_fav7l")
 skeleton = NodePath("")
 
 [node name="Dead" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0007354003, -0.020649076, -0.0007482853, 0.020662611, 0.0007358824, 0, -2.6632699e-05, 0.0007478113, -0.020662166, 0.08470588, 0.09372294, 0.023759626)
+transform = Transform3D(0.0007354003, -0.020649077, -0.0007482853, 0.020662611, 0.00073588244, -3.8511513e-11, -2.6632739e-05, 0.00074781134, -0.020662166, 0.08470588, 0.09372294, 0.023759626)
 mesh = SubResource("ArrayMesh_ttqad")
 skeleton = NodePath("")
 
