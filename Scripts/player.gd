@@ -154,6 +154,16 @@ func _physics_process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("switch_weapon_down") and not switching_weapon and not reloading:
 			switch_weapon(-1)
+			
+		if Input.is_action_just_pressed("one") and not switching_weapon and not reloading:
+			switch_weapon(-(selected_weapon))
+		if Input.is_action_just_pressed("two") and not switching_weapon and not reloading:
+			switch_weapon(-(selected_weapon-1))
+		if Input.is_action_just_pressed("three") and not switching_weapon and not reloading:
+			switch_weapon(-(selected_weapon-2))
+		if Input.is_action_just_pressed("four") and not switching_weapon and not reloading:
+			switch_weapon(-(selected_weapon-3))
+		
 
 
 		
