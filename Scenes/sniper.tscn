@@ -20,8 +20,7 @@ alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("1_tyci1")
-metallic = 0.5
-roughness = 0.25
+metallic = 0.75
 use_z_clip_scale = true
 z_clip_scale = 0.5
 
@@ -805,7 +804,7 @@ mesh = SubResource("ArrayMesh_bs3e6")
 skeleton = NodePath("")
 
 [node name="Bolt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9983082, 0.05814487, 0, -0.05814487, 0.9983082, 0.29228467, 0.062253993, 8.547357e-09)
+transform = Transform3D(1, 0, 0, 0, 0.9983082, 0.058144882, 0, -0.058144882, 0.9983082, 0.29228467, 0.062253993, 8.547357e-09)
 mesh = SubResource("ArrayMesh_iiw10")
 skeleton = NodePath("")
 

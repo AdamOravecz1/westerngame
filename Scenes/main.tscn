@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=20 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bod7rerxd0ui" path="res://Scenes/revolver_enemy.tscn" id="2_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
+[ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://b003fb1330ih1" path="res://Scenes/shop.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="9_hptm8"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dsuh6nmagx28u" path="res://Scenes/barrel.tscn" id="11_6iyac"]
+[ext_resource type="PackedScene" uid="uid://b8q0brkh8anrd" path="res://3D/Foundation.blend" id="13_fdnlq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bp64"]
 albedo_texture = ExtResource("3_kry3j")
@@ -22,6 +24,16 @@ uv1_scale = Vector3(60, 60, 60)
 [sub_resource type="PlaneMesh" id="PlaneMesh_344ge"]
 material = SubResource("StandardMaterial3D_6bp64")
 size = Vector2(300, 300)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6iyac"]
+render_priority = 0
+shader = ExtResource("4_6iyac")
+shader_parameter/albedo_texture = ExtResource("3_kry3j")
+shader_parameter/normal_texture = ExtResource("3_8gbba")
+shader_parameter/roughness_texture = ExtResource("5_21xkr")
+shader_parameter/uv_scale = Vector2(60, 60)
+shader_parameter/hole_centers = PackedVector2Array(0.55, 0.474, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/hole_sizes = PackedVector2Array(0.023, 0.022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hptm8"]
 
@@ -63,6 +75,7 @@ transform = Transform3D(0.89941293, 0, -0.43709993, 0, 1, 0, 0.43709993, 0, 0.89
 [node name="Ground" type="MeshInstance3D" parent="."]
 layers = 262144
 mesh = SubResource("PlaneMesh_344ge")
+surface_material_override/0 = SubResource("ShaderMaterial_6iyac")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 collision_layer = 11
@@ -72,9 +85,6 @@ collision_mask = 9
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_hptm8")
 debug_color = Color(0.981387, 0, 0.371502, 0.42)
-
-[node name="Saloon2" parent="." instance=ExtResource("6_21xkr")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -7.458)
 
 [node name="Saloon3" parent="." instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -7.458)
@@ -102,6 +112,7 @@ navigation_mesh = SubResource("NavigationMesh_344ge")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2191048, -0.51, -20.7836)
+visible = false
 use_collision = true
 size = Vector3(51.76397, 1, 55.459045)
 
@@ -183,3 +194,6 @@ debug_color = Color(0.972549, 0, 0.43529412, 1)
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
+
+[node name="NonSaloon" parent="." instance=ExtResource("13_fdnlq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 14.986, 0.0010001193, -7.697)

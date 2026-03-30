@@ -18,7 +18,7 @@
 resource_name = "Material.003"
 cull_mode = 2
 albedo_texture = ExtResource("1_voe37")
-metallic = 0.5
+metallic = 0.75
 roughness = 0.0
 use_z_clip_scale = true
 z_clip_scale = 0.5
