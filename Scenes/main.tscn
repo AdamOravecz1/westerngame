@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene load_steps=21 format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dsuh6nmagx28u" path="res://Scenes/barrel.tscn" id="11_6iyac"]
 [ext_resource type="PackedScene" uid="uid://b8q0brkh8anrd" path="res://3D/Foundation.blend" id="13_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://yq8d8cr6rx5f" path="res://3D/HalfSaloon.blend" id="14_jkdf5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bp64"]
 albedo_texture = ExtResource("3_kry3j")
@@ -32,7 +33,7 @@ shader_parameter/albedo_texture = ExtResource("3_kry3j")
 shader_parameter/normal_texture = ExtResource("3_8gbba")
 shader_parameter/roughness_texture = ExtResource("5_21xkr")
 shader_parameter/uv_scale = Vector2(60, 60)
-shader_parameter/hole_centers = PackedVector2Array(0.55, 0.474, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/hole_centers = PackedVector2Array(0.553, 0.474, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/hole_sizes = PackedVector2Array(0.023, 0.022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hptm8"]
@@ -88,9 +89,6 @@ debug_color = Color(0.981387, 0, 0.371502, 0.42)
 
 [node name="Saloon3" parent="." instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -7.458)
-
-[node name="Saloon4" parent="." instance=ExtResource("6_21xkr")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -18.578)
 
 [node name="Saloon5" parent="." instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -18.578)
@@ -195,5 +193,8 @@ stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
 
-[node name="NonSaloon" parent="." instance=ExtResource("13_fdnlq")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 14.986, 0.0010001193, -7.697)
+[node name="Foundation" parent="." instance=ExtResource("13_fdnlq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 15.772753, 0.0010001193, -7.697)
+
+[node name="HalfSaloon" parent="." instance=ExtResource("14_jkdf5")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.015976, 0, -18.758274)
