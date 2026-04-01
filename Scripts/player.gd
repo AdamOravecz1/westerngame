@@ -279,8 +279,10 @@ func _physics_process(delta: float) -> void:
 			dynamite_amount -= 1
 			RefreshDynamiteCount()
 			var dynamite = dynamite_scene.instantiate()
-			var dynamites_container = get_tree().current_scene.get_node("Dynamites")
-			dynamites_container.add_child(dynamite)
+			var dynamites_container = get_tree().current_scene.get_node_or_null("Dynamites")
+
+			if dynamites_container:
+				dynamites_container.add_child(dynamite)
 			
 			dynamite.global_transform = $Camera3D.global_transform
 			dynamite.rotation_degrees = Vector3(0, 180, 270)

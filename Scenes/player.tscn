@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://pxdbp65ht4ke"]
+[gd_scene format=3 uid="uid://pxdbp65ht4ke"]
 
 [ext_resource type="Script" uid="uid://crhy2da2gjytx" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://d3y84ei0f0150" path="res://Scenes/bowie_knife.tscn" id="2_fkybt"]
@@ -18,113 +18,113 @@ radius = 6.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_h4iuc"]
 radius = 3.5
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=301962480 groups=["Player"]]
 collision_layer = 21
 collision_mask = 17
 script = ExtResource("1_v0iea")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1169135033]
 shape = SubResource("CapsuleShape3D_f60y1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1360806820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615, 0.188)
 
-[node name="BowieKnife" parent="Camera3D" instance=ExtResource("2_fkybt")]
+[node name="BowieKnife" parent="Camera3D" unique_id=1852882668 instance=ExtResource("2_fkybt")]
 visible = false
 
-[node name="Revolver" parent="Camera3D" instance=ExtResource("3_ukyrk")]
+[node name="Revolver" parent="Camera3D" unique_id=1277603588 instance=ExtResource("3_ukyrk")]
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
-[node name="Shotgun" parent="Camera3D" instance=ExtResource("4_x3wgy")]
+[node name="Shotgun" parent="Camera3D" unique_id=2090931400 instance=ExtResource("4_x3wgy")]
 transform = Transform3D(-3.715468e-08, 0, 0.85, 0, 0.85, 0, -0.85, 0, -3.715468e-08, 0.5996585, -0.77516735, 1.5794208)
 visible = false
 
-[node name="Sniper" parent="Camera3D" instance=ExtResource("5_3smsa")]
+[node name="Sniper" parent="Camera3D" unique_id=1649247906 instance=ExtResource("5_3smsa")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5996585, -0.77516735, 1.5794208)
 visible = false
 
-[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+[node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=252026844]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 
-[node name="OffWeaponPos" type="Node3D" parent="Camera3D"]
+[node name="OffWeaponPos" type="Node3D" parent="Camera3D" unique_id=94063624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 1.5794208)
 
-[node name="OnWeaponPos" type="Node3D" parent="Camera3D"]
+[node name="OnWeaponPos" type="Node3D" parent="Camera3D" unique_id=300782017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
 
-[node name="RevolverRay" type="RayCast3D" parent="Camera3D"]
+[node name="RevolverRay" type="RayCast3D" parent="Camera3D" unique_id=501013745]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -100, 0)
 collision_mask = 19
 collide_with_areas = true
 
-[node name="ShotgunRays" type="Node3D" parent="Camera3D"]
+[node name="ShotgunRays" type="Node3D" parent="Camera3D" unique_id=783050845]
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=491160468]
 target_position = Vector3(0, 3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D2" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D2" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1752851805]
 target_position = Vector3(0, -3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D3" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D3" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1895390111]
 target_position = Vector3(0, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D4" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D4" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=217107288]
 target_position = Vector3(3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D5" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D5" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=768826949]
 target_position = Vector3(-3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D6" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D6" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1992157228]
 target_position = Vector3(-2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D7" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D7" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1444421905]
 target_position = Vector3(-2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D8" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D8" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=574325105]
 target_position = Vector3(2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D9" type="RayCast3D" parent="Camera3D/ShotgunRays"]
+[node name="RayCast3D9" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1185732446]
 target_position = Vector3(2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1758497960]
 
-[node name="BulletCount" type="Label" parent="CanvasLayer"]
+[node name="BulletCount" type="Label" parent="CanvasLayer" unique_id=2048875500]
 offset_top = 45.0
 offset_right = 98.0
 offset_bottom = 133.0
 theme_override_font_sizes/font_size = 64
 text = "0/0"
 
-[node name="ShotgunCount" type="Label" parent="CanvasLayer"]
+[node name="ShotgunCount" type="Label" parent="CanvasLayer" unique_id=162696036]
 visible = false
 offset_top = 45.0
 offset_right = 98.0
@@ -132,7 +132,7 @@ offset_bottom = 133.0
 theme_override_font_sizes/font_size = 64
 text = "0/0"
 
-[node name="SniperCount" type="Label" parent="CanvasLayer"]
+[node name="SniperCount" type="Label" parent="CanvasLayer" unique_id=23838411]
 visible = false
 offset_top = 45.0
 offset_right = 98.0
@@ -140,7 +140,7 @@ offset_bottom = 133.0
 theme_override_font_sizes/font_size = 64
 text = "0/0"
 
-[node name="MoneyCount" type="Label" parent="CanvasLayer"]
+[node name="MoneyCount" type="Label" parent="CanvasLayer" unique_id=983202933]
 offset_left = 1055.0
 offset_top = -10.0
 offset_right = 1153.0
@@ -148,19 +148,19 @@ offset_bottom = 169.0
 theme_override_font_sizes/font_size = 64
 text = "0"
 
-[node name="DynamiteContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="DynamiteContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1697684939]
 offset_top = 134.0
 offset_right = 40.0
 offset_bottom = 184.0
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=897779190]
 modulate = Color(1, 0, 0, 1)
 offset_top = 21.0
 offset_right = 167.0
 offset_bottom = 48.0
 value = 100.0
 
-[node name="UI_Center" type="Control" parent="CanvasLayer"]
+[node name="UI_Center" type="Control" parent="CanvasLayer" unique_id=2143335069]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -171,7 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Shop" type="Control" parent="CanvasLayer"]
+[node name="Shop" type="Control" parent="CanvasLayer" unique_id=198112924]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -182,7 +182,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Shop"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Shop" unique_id=1335840590]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,30 +190,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Shop/GridContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Shop/GridContainer" unique_id=1647986796]
 layout_mode = 2
 
-[node name="Ammo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+[node name="Ammo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=283513316]
 layout_mode = 2
 text = "Buy ammo"
 
-[node name="ShutgunAmmo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+[node name="ShutgunAmmo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=1051797992]
 layout_mode = 2
 text = "Buy shutgon shell"
 
-[node name="Dynamyte" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+[node name="Dynamyte" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=1315490672]
 layout_mode = 2
 text = "Dynamite"
 
-[node name="Health" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+[node name="Health" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=2133595860]
 layout_mode = 2
 text = "Buy health"
 
-[node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer"]
+[node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=372750287]
 layout_mode = 2
 text = "Next wave"
 
-[node name="CrossHair" type="TextureRect" parent="CanvasLayer"]
+[node name="CrossHair" type="TextureRect" parent="CanvasLayer" unique_id=802857391]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,36 +222,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_8erm5")
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("8_qqcod")]
+[node name="Pause" parent="CanvasLayer" unique_id=1933569389 instance=ExtResource("8_qqcod")]
 visible = false
 
-[node name="Sounds" type="Control" parent="."]
+[node name="Sounds" type="Control" parent="." unique_id=573422876]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StepSound" type="AudioStreamPlayer" parent="Sounds"]
+[node name="StepSound" type="AudioStreamPlayer" parent="Sounds" unique_id=2067468491]
 stream = ExtResource("13_ukyrk")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="Damage_Indicator_LookAt" type="Node3D" parent="."]
+[node name="Damage_Indicator_LookAt" type="Node3D" parent="." unique_id=1945823906]
 
-[node name="Dynamite_Indicator_LookAt" type="Node3D" parent="."]
+[node name="Dynamite_Indicator_LookAt" type="Node3D" parent="." unique_id=442006693]
 
-[node name="DynamiteClose" type="Area3D" parent="."]
+[node name="DynamiteClose" type="Area3D" parent="." unique_id=751708211]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteClose"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteClose" unique_id=269234136]
 shape = SubResource("SphereShape3D_fd4e3")
 
-[node name="DynamiteDeadly" type="Area3D" parent="."]
+[node name="DynamiteDeadly" type="Area3D" parent="." unique_id=49493285]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteDeadly"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteDeadly" unique_id=71763081]
 shape = SubResource("SphereShape3D_h4iuc")
 debug_fill = false
 
