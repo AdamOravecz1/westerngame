@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckqnx8r3861ne"]
+[gd_scene format=3 uid="uid://ckqnx8r3861ne"]
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
@@ -47,154 +47,154 @@ edge_max_error = 0.5
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_344ge"]
 plane = Plane(1, 0, 0, 0)
 
-[node name="Main" type="Node3D" groups=["Main"]]
+[node name="Main" type="Node3D" unique_id=1161211106 groups=["Main"]]
 script = ExtResource("1_ynf5e")
 
-[node name="Enemies" type="Node3D" parent="."]
+[node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
 
-[node name="RevolverEnemy" parent="Enemies" instance=ExtResource("2_d1ilt")]
+[node name="RevolverEnemy" parent="Enemies" unique_id=1721007508 instance=ExtResource("2_d1ilt")]
 
-[node name="RevolverEnemy2" parent="Enemies" instance=ExtResource("2_d1ilt")]
+[node name="RevolverEnemy2" parent="Enemies" unique_id=1140406247 instance=ExtResource("2_d1ilt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4577446, 0, 0)
 
-[node name="RevolverEnemy3" parent="Enemies" instance=ExtResource("2_d1ilt")]
+[node name="RevolverEnemy3" parent="Enemies" unique_id=384941981 instance=ExtResource("2_d1ilt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9408407, 0, 0)
 
-[node name="RevolverEnemy4" parent="Enemies" instance=ExtResource("2_d1ilt")]
+[node name="RevolverEnemy4" parent="Enemies" unique_id=1144349232 instance=ExtResource("2_d1ilt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.364581, 0, 0)
 
-[node name="Dynamites" type="Node3D" parent="."]
+[node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1259703466]
 transform = Transform3D(-0.722874, 0.598407, -0.345489, 2.83079e-08, 0.499998, 0.866027, 0.69098, 0.626028, -0.361435, 0, 7.65352, 0)
 layers = 3
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+[node name="Player" parent="." unique_id=1839764911 instance=ExtResource("1_jjgbg")]
 transform = Transform3D(0.89941293, 0, -0.43709993, 0, 1, 0, 0.43709993, 0, 0.89941293, -5.9192057, 1.0874374, -28.57937)
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1471223616]
 layers = 262144
 mesh = SubResource("PlaneMesh_344ge")
 surface_material_override/0 = SubResource("ShaderMaterial_6iyac")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=981470952]
 collision_layer = 11
 collision_mask = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=1411423279]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_hptm8")
 debug_color = Color(0.981387, 0, 0.371502, 0.42)
 
-[node name="Saloon3" parent="." instance=ExtResource("6_21xkr")]
+[node name="Saloon3" parent="." unique_id=609826570 instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -7.458)
 
-[node name="Saloon5" parent="." instance=ExtResource("6_21xkr")]
+[node name="Saloon5" parent="." unique_id=2007466694 instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -18.578)
 
-[node name="Saloon6" parent="." instance=ExtResource("6_21xkr")]
+[node name="Saloon6" parent="." unique_id=401152166 instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -28.768013)
 
-[node name="Saloon7" parent="." instance=ExtResource("6_21xkr")]
+[node name="Saloon7" parent="." unique_id=306755867 instance=ExtResource("6_21xkr")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -28.768013)
 
-[node name="Saloon8" parent="." instance=ExtResource("6_21xkr")]
+[node name="Saloon8" parent="." unique_id=1027117872 instance=ExtResource("6_21xkr")]
 transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 1.7713642, 0, -38.467514)
 
-[node name="Shop" parent="." instance=ExtResource("8_ynf5e")]
+[node name="Shop" parent="." unique_id=1561012023 instance=ExtResource("8_ynf5e")]
 transform = Transform3D(0.49457908, 0, -0.8691325, 0, 1, 0, 0.8691325, 0, 0.49457908, -5.753563, 0.50740004, -33.68998)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["NavigationRegion"]]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=811582068 groups=["NavigationRegion"]]
 navigation_mesh = SubResource("NavigationMesh_344ge")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=865595901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2191048, -0.51, -20.7836)
 visible = false
 use_collision = true
 size = Vector3(51.76397, 1, 55.459045)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1109289709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.059862, 1.2075806, -7.428364)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=434574896]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.590183, 1.2075806, -7.428364)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D" unique_id=417350957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.059862, 1.2075806, -18.603556)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1037289986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.590183, 1.2075806, -18.603556)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D" unique_id=441889923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.059862, 1.2075806, -28.740614)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1229758963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.590183, 1.2075806, -28.740614)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1543779006]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.7799683, 1.2075806, -38.232597)
 visible = false
 size = Vector3(7.0469055, 3.4151611, 7.271118)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1461343828]
 transform = Transform3D(0.867427, 0, 0.49756452, 0, 1, 0, -0.49756452, 0, 0.867427, -5.7144327, 0.9614856, -33.621284)
 visible = false
 size = Vector3(2.0562744, 2.0019531, 1.1912842)
 
-[node name="Barrier" parent="NavigationRegion3D" instance=ExtResource("9_hptm8")]
+[node name="Barrier" parent="NavigationRegion3D" unique_id=1892987581 instance=ExtResource("9_hptm8")]
 transform = Transform3D(-0.013176818, 0, -0.99991316, 0, 1, 0, 0.99991316, 0, -0.013176818, 0, 0, -17.947037)
 
-[node name="Barrel" parent="NavigationRegion3D" instance=ExtResource("11_6iyac")]
+[node name="Barrel" parent="NavigationRegion3D" unique_id=756631976 instance=ExtResource("11_6iyac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2414584, 0, -17.371468)
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=552788623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4353807, 0.63537574, -20.402021)
 size = Vector3(54.340862, 20, 58.007324)
 cull_mask = 1048573
 reflection_mask = 1048573
 
-[node name="Walls" type="StaticBody3D" parent="."]
+[node name="Walls" type="StaticBody3D" parent="." unique_id=37215105]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls" unique_id=183865840]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -23.99303, 1.1204152, -17.139874)
 shape = SubResource("WorldBoundaryShape3D_344ge")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls" unique_id=365627101]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 0.99999994, 0, 8.742278e-08, 0, -1, 26.818207, 1.1204152, -17.139874)
 shape = SubResource("WorldBoundaryShape3D_344ge")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls" unique_id=1350254360]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 0.99999994, 0, -0.99999994, 0, -4.3711385e-08, 4.037613, 1.1204152, 6.473915)
 shape = SubResource("WorldBoundaryShape3D_344ge")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls" unique_id=233110727]
 transform = Transform3D(1.192488e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, 1.192488e-08, 2.1714554, 1.1204152, -47.695103)
 shape = SubResource("WorldBoundaryShape3D_344ge")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=750209788]
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
 
-[node name="Foundation" parent="." instance=ExtResource("13_fdnlq")]
+[node name="Foundation" parent="." unique_id=1990246109 instance=ExtResource("13_fdnlq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 15.772753, 0.0010001193, -7.697)
 
-[node name="HalfSaloon" parent="." instance=ExtResource("14_jkdf5")]
+[node name="HalfSaloon" parent="." unique_id=187765443 instance=ExtResource("14_jkdf5")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.015976, 0, -18.758274)
