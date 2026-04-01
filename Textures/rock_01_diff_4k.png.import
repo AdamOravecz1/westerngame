@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsb2o2781yf56"
-path.s3tc="res://.godot/imported/rocks_ground_02_col_4k.png-c88695c7597601c32cdd332a114800c1.s3tc.ctex"
+uid="uid://ywuccgup3s3e"
+path.s3tc="res://.godot/imported/rock_01_diff_4k.png-57ba9bf78575af9df1d5df6c93a0a97e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/rocks_ground_02_col_4k.png"
-dest_files=["res://.godot/imported/rocks_ground_02_col_4k.png-c88695c7597601c32cdd332a114800c1.s3tc.ctex"]
+source_file="res://Textures/rock_01_diff_4k.png"
+dest_files=["res://.godot/imported/rock_01_diff_4k.png-57ba9bf78575af9df1d5df6c93a0a97e.s3tc.ctex"]
 
 [params]
 
