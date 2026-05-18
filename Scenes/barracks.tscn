@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bjaujlxdmamey"]
+
+[ext_resource type="PackedScene" uid="uid://ck2pw0jnkobwg" path="res://3D/Barracks.blend" id="1_7aoon"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7aoon"]
+size = Vector3(22.287369, 9.430786, 7.7927704)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_coeoc"]
+size = Vector3(7.311981, 9.3116455, 8.178284)
+
+[node name="Barracks" unique_id=1925532788 instance=ExtResource("1_7aoon")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(361042726) index="0" unique_id=1025348734]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0" unique_id=1162056932]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 2.741126, 4.2153926, 2.9215703)
+shape = SubResource("BoxShape3D_7aoon")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="1" unique_id=422009724]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 2.741126, 4.2153926, 18.835136)
+shape = SubResource("BoxShape3D_7aoon")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="2" unique_id=457998864]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 10.195676, 4.1558213, 10.881649)
+shape = SubResource("BoxShape3D_coeoc")

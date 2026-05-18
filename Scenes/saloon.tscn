@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxbf727kql8vf"]
+[gd_scene format=3 uid="uid://bxbf727kql8vf"]
 
 [ext_resource type="PackedScene" uid="uid://18wixqsvofsr" path="res://3D/Saloon.blend" id="1_w6ir6"]
 
@@ -26,64 +26,64 @@ points = PackedVector3Array(1, 1, 19.9928, 1, -1, 19.9928, 0.999805, 1, -1, -1, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0122m"]
 points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
 
-[node name="Saloon" instance=ExtResource("1_w6ir6")]
+[node name="Saloon" unique_id=2069171928 instance=ExtResource("1_w6ir6")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" unique_id=778424005]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=729584569]
 shape = SubResource("ConvexPolygonShape3D_w6ir6")
 
 [node name="Cube_002" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 36.9342, -13.5166, 2.25472, 0.185261)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0" unique_id=1771496052]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0" unique_id=245481184]
 shape = SubResource("ConvexPolygonShape3D_2ubgp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0" unique_id=2116755510]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_005/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_005/StaticBody3D" index="0" unique_id=1160083972]
 shape = SubResource("ConcavePolygonShape3D_ib4qw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_007" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_007" index="0" unique_id=399281395]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_007/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_007/StaticBody3D" index="0" unique_id=1930702391]
 shape = SubResource("ConvexPolygonShape3D_ib4qw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" index="0" unique_id=327251626]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0" unique_id=695904776]
 shape = SubResource("ConvexPolygonShape3D_5aqd4")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_009" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_009" index="0" unique_id=670889465]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_009/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_009/StaticBody3D" index="0" unique_id=1513242448]
 shape = SubResource("ConvexPolygonShape3D_54rxr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" index="0" unique_id=1394041721]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0" unique_id=2038445536]
 shape = SubResource("ConvexPolygonShape3D_m1260")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_011" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_011" index="0" unique_id=1025433962]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_011/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_011/StaticBody3D" index="0" unique_id=1657015997]
 shape = SubResource("ConvexPolygonShape3D_0122m")

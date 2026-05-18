@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://g3pbuwg7clvl"]
+
+[ext_resource type="PackedScene" uid="uid://c7lbr2wve81yq" path="res://3D/HalfBarracks.blend" id="1_8d6fr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xfy66"]
+points = PackedVector3Array(13.904963, 8.024059, 6.8267183, 13.904963, 8.024059, -1, -8.397608, 8.024059, 6.8267183, 13.904963, -1, 6.8267183, 13.904963, -1, -1, -8.397608, 8.024059, -1, -8.397608, -1, 6.8267183, -8.397608, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gdokk"]
+points = PackedVector3Array(13.904963, 8.024059, 6.8267183, 13.904963, 8.024059, -1, -8.397608, 8.024059, 6.8267183, 13.904963, -1, 6.8267183, 13.904963, -1, -1, -8.397608, 8.024059, -1, -8.397608, -1, 6.8267183, -8.397608, -1, -1)
+
+[node name="HalfBarracks" unique_id=1862953969 instance=ExtResource("1_8d6fr")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(1475453941) index="0" unique_id=2011896140]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0" unique_id=1870205826]
+shape = SubResource("ConvexPolygonShape3D_xfy66")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" parent_id_path=PackedInt32Array(406201108) index="0" unique_id=1977926692]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0" unique_id=824500351]
+shape = SubResource("ConvexPolygonShape3D_gdokk")

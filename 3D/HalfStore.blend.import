@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://yq8d8cr6rx5f"
-path="res://.godot/imported/HalfSaloon.blend-1bef8d2b8123325de48960af3618ad05.scn"
+uid="uid://0kgdk5e4o5vr"
+path="res://.godot/imported/HalfStore.blend-29b87adf1ec7d9ea6abbaaaeadd363c7.scn"
 
 [deps]
 
-source_file="res://3D/HalfSaloon.blend"
-dest_files=["res://.godot/imported/HalfSaloon.blend-1bef8d2b8123325de48960af3618ad05.scn"]
+source_file="res://3D/HalfStore.blend"
+dest_files=["res://.godot/imported/HalfStore.blend-29b87adf1ec7d9ea6abbaaaeadd363c7.scn"]
 
 [params]
 

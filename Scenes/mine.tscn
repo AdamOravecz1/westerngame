@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bkoweebtcpdk3"]
+
+[ext_resource type="PackedScene" uid="uid://c5eo0ycqr11ab" path="res://3D/Mine.blend" id="1_qoe3o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qoe3o"]
+size = Vector3(24.23901, 22.406834, 19.320871)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mygvu"]
+size = Vector3(2.1585693, 6.6099854, 6.6273804)
+
+[node name="Mine" unique_id=1284914710 instance=ExtResource("1_qoe3o")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" parent_id_path=PackedInt32Array(254883223) index="0" unique_id=1667851633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4590683, 1.8901978, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0" unique_id=335337805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.433179, 0)
+shape = SubResource("BoxShape3D_qoe3o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="30" unique_id=665844183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.299377, 0, 8.164705)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1735266039]
+transform = Transform3D(-0.64936846, 0, -0.76047415, 0, 1, 0, 0.76047415, 0, -0.64936846, -1.8720055, 2.8049927, 3.5109339)
+shape = SubResource("BoxShape3D_mygvu")

@@ -2,18 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://bod7rerxd0ui" path="res://Scenes/revolver_enemy.tscn" id="2_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://bjaujlxdmamey" path="res://Scenes/barracks.tscn" id="8_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://b003fb1330ih1" path="res://Scenes/shop.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="9_hptm8"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://ble6xapl37qnc" path="res://Scenes/black_smith.tscn" id="10_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://dsuh6nmagx28u" path="res://Scenes/barrel.tscn" id="11_6iyac"]
-[ext_resource type="PackedScene" uid="uid://b8q0brkh8anrd" path="res://3D/Foundation.blend" id="13_fdnlq"]
-[ext_resource type="PackedScene" uid="uid://yq8d8cr6rx5f" path="res://3D/HalfSaloon.blend" id="14_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://ckxf4u6dfalf7" path="res://Scenes/store.tscn" id="12_b3802"]
+[ext_resource type="PackedScene" uid="uid://ysabl4lfw6p8" path="res://Scenes/half_store.tscn" id="12_fevyy"]
+[ext_resource type="PackedScene" uid="uid://b263yhuxc631w" path="res://Scenes/carpenter.tscn" id="12_h1bgf"]
+[ext_resource type="PackedScene" uid="uid://bkoweebtcpdk3" path="res://Scenes/mine.tscn" id="12_hibaj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bp64"]
 albedo_texture = ExtResource("3_kry3j")
@@ -33,8 +36,8 @@ shader_parameter/albedo_texture = ExtResource("3_kry3j")
 shader_parameter/normal_texture = ExtResource("3_8gbba")
 shader_parameter/roughness_texture = ExtResource("5_21xkr")
 shader_parameter/uv_scale = Vector2(60, 60)
-shader_parameter/hole_centers = PackedVector2Array(0.553, 0.474, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/hole_sizes = PackedVector2Array(0.023, 0.022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/hole_centers = PackedVector2Array(0.553, 0.438, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/hole_sizes = PackedVector2Array(0.024, 0.018, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hptm8"]
 
@@ -51,17 +54,6 @@ plane = Plane(1, 0, 0, 0)
 script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
-
-[node name="RevolverEnemy" parent="Enemies" unique_id=1721007508 instance=ExtResource("2_d1ilt")]
-
-[node name="RevolverEnemy2" parent="Enemies" unique_id=1140406247 instance=ExtResource("2_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4577446, 0, 0)
-
-[node name="RevolverEnemy3" parent="Enemies" unique_id=384941981 instance=ExtResource("2_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9408407, 0, 0)
-
-[node name="RevolverEnemy4" parent="Enemies" unique_id=1144349232 instance=ExtResource("2_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.364581, 0, 0)
 
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
@@ -87,17 +79,25 @@ transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_hptm8")
 debug_color = Color(0.981387, 0, 0.371502, 0.42)
 
-[node name="Saloon3" parent="." unique_id=609826570 instance=ExtResource("6_21xkr")]
-transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -7.458)
+[node name="Buildings" type="Node3D" parent="." unique_id=716386548]
 
-[node name="Saloon5" parent="." unique_id=2007466694 instance=ExtResource("6_21xkr")]
-transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -18.578)
+[node name="Barracks" parent="Buildings" unique_id=1925532788 instance=ExtResource("8_fdnlq")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 15.377017, 0, -7.392226)
 
-[node name="Saloon6" parent="." unique_id=401152166 instance=ExtResource("6_21xkr")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.34, 0, -28.768013)
+[node name="BlackSmith" parent="Buildings" unique_id=1438539648 instance=ExtResource("10_wsu2k")]
+transform = Transform3D(-0.25, 0, -2.1855694e-08, 0, 0.25, 0, 2.1855694e-08, 0, -0.25, -12.44055, 0, -7.4964905)
 
-[node name="Saloon7" parent="." unique_id=306755867 instance=ExtResource("6_21xkr")]
-transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.832943, 0, -28.768013)
+[node name="Carpenter" parent="Buildings" unique_id=1971693180 instance=ExtResource("12_h1bgf")]
+transform = Transform3D(-0.4, 0, -6.039832e-08, 0, 0.4, 0, 6.039832e-08, 0, -0.4, -11.685194, 0, -28.769852)
+
+[node name="Store" parent="Buildings" unique_id=218958998 instance=ExtResource("12_b3802")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 15.082218, 0, -28.896376)
+
+[node name="HalfStore" parent="Buildings" unique_id=110768298 instance=ExtResource("12_fevyy")]
+transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, -10.819655, 0, -18.683674)
+
+[node name="Mine" parent="Buildings" unique_id=660774924 instance=ExtResource("12_hibaj")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 17.045177, 0, -18.478195)
 
 [node name="Saloon8" parent="." unique_id=1027117872 instance=ExtResource("6_21xkr")]
 transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 1.7713642, 0, -38.467514)
@@ -192,9 +192,3 @@ debug_color = Color(0.972549, 0, 0.43529412, 1)
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
-
-[node name="Foundation" parent="." unique_id=1990246109 instance=ExtResource("13_fdnlq")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 15.772753, 0.0010001193, -7.697)
-
-[node name="HalfSaloon" parent="." unique_id=187765443 instance=ExtResource("14_jkdf5")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.015976, 0, -18.758274)

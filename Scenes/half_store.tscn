@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ysabl4lfw6p8"]
+
+[ext_resource type="PackedScene" uid="uid://0kgdk5e4o5vr" path="res://3D/HalfStore.blend" id="1_5et12"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5et12"]
+points = PackedVector3Array(15.15642, 8.567061, 12.430712, 15.15642, -1, 12.430712, 15.15642, 8.567061, -12.430712, -1, 10.480924, 12.430712, -1, -1, 12.430712, 15.15642, -1, -12.430712, -1, 10.480924, -12.430712, -1, -1, -12.430712)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ttti"]
+size = Vector3(5.2110596, 5.4345703, 2.9360352)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ykvi"]
+height = 3.0229492
+radius = 1.5063477
+
+[node name="HalfStore" unique_id=173330931 instance=ExtResource("1_5et12")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" parent_id_path=PackedInt32Array(1459592705) index="0" unique_id=2070591875]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_017/StaticBody3D" index="0" unique_id=335564709]
+shape = SubResource("ConvexPolygonShape3D_5et12")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="53" unique_id=2106382043]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=165036264]
+transform = Transform3D(0.76861835, 0, 0.63970715, 0, 0.99999976, 0, -0.63970715, 0, 0.76861835, -4.239236, 2.67427, 9.651329)
+shape = SubResource("BoxShape3D_5ttti")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="54" unique_id=1038630920]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -4.1570344, 1.6487944, -4.378978)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0" unique_id=430590578]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.937078, 0.5114746, -0.91112614)
+shape = SubResource("CylinderShape3D_1ykvi")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." index="55" unique_id=42274376]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -4.5591288, 1.6487944, -8.218008)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" index="0" unique_id=1032505203]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.937078, 0.5114746, -0.91112614)
+shape = SubResource("CylinderShape3D_1ykvi")
