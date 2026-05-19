@@ -19,7 +19,10 @@ var enemy_points: Array[Vector3] = []
 
 var rng := RandomNumberGenerator.new()
 
+
 func _ready():
+
+
 	rng.randomize()
 
 	
@@ -97,3 +100,20 @@ func is_far_enough(point: Vector3, existing: Array) -> bool:
 		if point.distance_to(p) < MIN_DISTANCE:
 			return false
 	return true
+	
+func close_ground(num):
+	var mat = $Ground.material_override as ShaderMaterial
+
+	var sizes = mat.get_shader_parameter("hole_sizes")
+	sizes[num] = Vector2(0.0, 0.0)
+
+	mat.set_shader_parameter("hole_sizes", sizes)
+	
+func shrink_hole(num):
+	var mat = $Ground.material_override as ShaderMaterial
+
+	var sizes = mat.get_shader_parameter("hole_sizes")
+	sizes[num] = Vector2(0.019, 0.019)
+
+	mat.set_shader_parameter("hole_sizes", sizes)
+	

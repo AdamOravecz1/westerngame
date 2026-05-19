@@ -292,7 +292,6 @@ func _physics_process(delta: float) -> void:
 
 	# Interact
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Shop":
-		print("shop")
 		$CanvasLayer/Shop.visible = !$CanvasLayer/Shop.visible
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -300,6 +299,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			in_shop = false
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
+		$Camera3D/InteractRay.get_collider().get_parent().shop()
 
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
