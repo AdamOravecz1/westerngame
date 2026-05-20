@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8q0brkh8anrd" path="res://3D/Foundation.blend" id="1_45lwh"]
 [ext_resource type="Script" uid="uid://bnniibg3a4qmy" path="res://Scripts/foundation.gd" id="2_4iyyp"]
+[ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_ldchh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4iyyp"]
 size = Vector3(70, 26.351563, 70)
@@ -10,7 +11,7 @@ size = Vector3(70, 26.351563, 70)
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_4iyyp")
 
-[node name="Plane" parent="." index="0" unique_id=1161002073]
+[node name="Plane" parent="." index="0" unique_id=1255143123]
 transform = Transform3D(36.647625, 0, 0, 0, 36.647625, 0, 0, 0, 36.647625, 0, 0.11, 0)
 
 [node name="Foundation" type="StaticBody3D" parent="." index="9" unique_id=1073658375]
@@ -21,53 +22,5 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.675781, 0)
 shape = SubResource("BoxShape3D_4iyyp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="10" unique_id=122832830]
-visible = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=1748832971]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BlackSmith" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=211985674]
-layout_mode = 2
-text = "Blacksmith"
-
-[node name="Store" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=1793769773]
-layout_mode = 2
-text = "Store"
-
-[node name="Carpenter" type="Button" parent="CanvasLayer/VBoxContainer" index="2" unique_id=1491089889]
-layout_mode = 2
-text = "Carpenter"
-
-[node name="Barracks" type="Button" parent="CanvasLayer/VBoxContainer" index="3" unique_id=743537097]
-layout_mode = 2
-text = "Barracks"
-
-[node name="Mine" type="Button" parent="CanvasLayer/VBoxContainer" index="4" unique_id=308468474]
-layout_mode = 2
-text = "Mine"
-
-[node name="Saloon" type="Button" parent="CanvasLayer/VBoxContainer" index="5" unique_id=642317180]
-layout_mode = 2
-text = "Saloon"
-
-[node name="Church" type="Button" parent="CanvasLayer/VBoxContainer" index="6" unique_id=706440951]
-layout_mode = 2
-text = "Church"
-
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/BlackSmith" to="." method="_on_black_smith_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Store" to="." method="_on_store_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Carpenter" to="." method="_on_carpenter_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Barracks" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Mine" to="." method="_on_mine_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Saloon" to="." method="_on_saloon_pressed"]
+[node name="Building" type="AudioStreamPlayer3D" parent="." index="10" unique_id=597448221]
+stream = ExtResource("3_ldchh")

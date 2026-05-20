@@ -300,7 +300,7 @@ func _physics_process(delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			in_shop = false
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
-		$Camera3D/InteractRay.get_collider().get_parent().shop()
+		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
 
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
@@ -422,3 +422,12 @@ func _on_shutgun_ammo_pressed() -> void:
 		AddMoney(-1)
 		free_shotgun += 1
 		RefreshShotgunCount()
+
+func teleport(pos, rot):
+	var tween = get_tree().create_tween()
+	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1), 0.5)
+	await tween.finished
+	global_position = pos
+	rotation = rot
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,0), 0.5)

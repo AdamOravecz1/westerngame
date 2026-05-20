@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://bd164iyxft216" path="res://Scenes/sniper.tscn" id="5_3smsa"]
 [ext_resource type="Texture2D" uid="uid://c0rt7aswv06o3" path="res://Pictures/CrossHair.png" id="7_8erm5"]
+[ext_resource type="PackedScene" uid="uid://byspcepwidmfx" path="res://Scenes/shop_menu.tscn" id="8_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
@@ -223,7 +224,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_8erm5")
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1851047938]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 367.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Pause" parent="CanvasLayer" unique_id=1933569389 instance=ExtResource("8_qqcod")]
+visible = false
+
+[node name="ShopMenu" parent="CanvasLayer" unique_id=756853650 instance=ExtResource("8_f1ek2")]
 visible = false
 
 [node name="Sounds" type="Control" parent="." unique_id=573422876]

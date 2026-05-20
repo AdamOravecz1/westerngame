@@ -1,22 +1,21 @@
 extends Node3D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var main = get_tree().get_first_node_in_group("Main")
+@onready var shop_menu = player.get_node("CanvasLayer/ShopMenu")
 @onready var index = get_index()
-
-func shop():
-	$CanvasLayer.visible = !$CanvasLayer.visible
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		player.in_shop = true
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		player.in_shop = false
 		
 func build(building):
 	if !is_inside_tree():
 		return
 	
-	shop()
+	shop_menu.shop(null)
+	$Building.play()
+	if index >= 3:
+		player.teleport(global_position + Vector3(5, 0, 0), global_rotation + Vector3(0, deg_to_rad(270), 0))
+	else:
+		player.teleport(global_position + Vector3(-5, 0, 0), global_rotation + Vector3(0, deg_to_rad(270), 0))
+	await get_tree().create_timer(.5, false).timeout
+	
 	var building_scene = load(building)
 	var new_building = building_scene.instantiate()
 	var original_scale = new_building.scale
@@ -29,28 +28,7 @@ func build(building):
 		main.close_ground(index)
 	else:
 		main.shrink_hole(index)
+	visible = false
+	await get_tree().create_timer(.5, false).timeout
 
 	queue_free()
-
-func _on_black_smith_pressed() -> void:
-	build("res://Scenes/half_black_smith.tscn")
-
-
-func _on_store_pressed() -> void:
-	build("res://Scenes/half_store.tscn")
-
-
-func _on_carpenter_pressed() -> void:
-	build("res://Scenes/half_carpenter.tscn")
-
-
-func _on_barracks_pressed() -> void:
-	build("res://Scenes/half_barracks.tscn")
-
-
-func _on_mine_pressed() -> void:
-	build("res://Scenes/half_mine.tscn")
-
-
-func _on_saloon_pressed() -> void:
-	build("res://Scenes/half_saloon.tscn")

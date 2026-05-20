@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://byspcepwidmfx"]
+
+[ext_resource type="Script" uid="uid://cwtvtcxd7b7kn" path="res://Scripts/shop_menu.gd" id="1_xysl7"]
+
+[node name="ShopMenu" type="Control" unique_id=756853650]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xysl7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=542949061]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackSmith" type="Button" parent="VBoxContainer" unique_id=2083428849]
+layout_mode = 2
+text = "Blacksmith"
+
+[node name="Store" type="Button" parent="VBoxContainer" unique_id=1940187102]
+layout_mode = 2
+text = "Store"
+
+[node name="Carpenter" type="Button" parent="VBoxContainer" unique_id=2083625259]
+layout_mode = 2
+text = "Carpenter"
+
+[node name="Barracks" type="Button" parent="VBoxContainer" unique_id=20957400]
+layout_mode = 2
+text = "Barracks"
+
+[node name="Mine" type="Button" parent="VBoxContainer" unique_id=1270117459]
+layout_mode = 2
+text = "Mine"
+
+[node name="Saloon" type="Button" parent="VBoxContainer" unique_id=1298441797]
+layout_mode = 2
+text = "Saloon"
+
+[node name="Church" type="Button" parent="VBoxContainer" unique_id=399269294]
+layout_mode = 2
+text = "Church"
+
+[connection signal="pressed" from="VBoxContainer/BlackSmith" to="." method="_on_black_smith_pressed"]
+[connection signal="pressed" from="VBoxContainer/Store" to="." method="_on_store_pressed"]
+[connection signal="pressed" from="VBoxContainer/Carpenter" to="." method="_on_carpenter_pressed"]
+[connection signal="pressed" from="VBoxContainer/Barracks" to="." method="_on_barracks_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mine" to="." method="_on_mine_pressed"]
+[connection signal="pressed" from="VBoxContainer/Saloon" to="." method="_on_saloon_pressed"]
