@@ -1,7 +1,6 @@
 extends Control
 
 @onready var player = get_tree().get_first_node_in_group("Player")
-@onready var main = get_tree().get_first_node_in_group("Main")
 @onready var shop_menu = player.get_node("CanvasLayer/ShopMenu")
 var foundation = null
 

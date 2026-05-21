@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://g3pbuwg7clvl"]
 
 [ext_resource type="PackedScene" uid="uid://c7lbr2wve81yq" path="res://3D/HalfBarracks.blend" id="1_8d6fr"]
+[ext_resource type="Script" uid="uid://bwjsml8eh3my2" path="res://Scripts/half_barracks.gd" id="2_xfy66"]
+[ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_gdokk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xfy66"]
 points = PackedVector3Array(13.904963, 8.024059, 6.8267183, 13.904963, 8.024059, -1, -8.397608, 8.024059, 6.8267183, 13.904963, -1, 6.8267183, 13.904963, -1, -1, -8.397608, 8.024059, -1, -8.397608, -1, 6.8267183, -8.397608, -1, -1)
@@ -8,15 +10,63 @@ points = PackedVector3Array(13.904963, 8.024059, 6.8267183, 13.904963, 8.024059,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gdokk"]
 points = PackedVector3Array(13.904963, 8.024059, 6.8267183, 13.904963, 8.024059, -1, -8.397608, 8.024059, 6.8267183, 13.904963, -1, 6.8267183, 13.904963, -1, -1, -8.397608, 8.024059, -1, -8.397608, -1, 6.8267183, -8.397608, -1, -1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8d6fr"]
+size = Vector3(4.359009, 8.152697, 5.092285)
+
 [node name="HalfBarracks" unique_id=1862953969 instance=ExtResource("1_8d6fr")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_xfy66")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(1475453941) index="0" unique_id=2011896140]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(1801714980) index="0" unique_id=2011896140]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_008/StaticBody3D" index="0" unique_id=1870205826]
 shape = SubResource("ConvexPolygonShape3D_xfy66")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" parent_id_path=PackedInt32Array(406201108) index="0" unique_id=1977926692]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" parent_id_path=PackedInt32Array(1642893121) index="0" unique_id=1977926692]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0" unique_id=824500351]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, -5.7701197)
 shape = SubResource("ConvexPolygonShape3D_gdokk")
+
+[node name="Menu" type="StaticBody3D" parent="." index="16" unique_id=1375186942]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.15724817, 0, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=315992799]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -4.482253, 3.576129, 6.0150814)
+shape = SubResource("BoxShape3D_8d6fr")
+
+[node name="Menu2" type="StaticBody3D" parent="." index="17" unique_id=1465274657]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 14.385427, 0, -11.940584)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu2" index="0" unique_id=946875417]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -4.482253, 3.576129, 6.0150814)
+shape = SubResource("BoxShape3D_8d6fr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="18" unique_id=1491060645]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=660386989]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=1499196748]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="Building" type="AudioStreamPlayer3D" parent="." index="19" unique_id=1320650546]
+stream = ExtResource("3_gdokk")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]

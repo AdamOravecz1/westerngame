@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ysabl4lfw6p8"]
 
 [ext_resource type="PackedScene" uid="uid://0kgdk5e4o5vr" path="res://3D/HalfStore.blend" id="1_5et12"]
+[ext_resource type="Script" uid="uid://duafnfn0ibhhf" path="res://Scripts/half_store.gd" id="2_1ykvi"]
+[ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_7cnbh"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5et12"]
 points = PackedVector3Array(15.15642, 8.567061, 12.430712, 15.15642, -1, 12.430712, 15.15642, 8.567061, -12.430712, -1, 10.480924, 12.430712, -1, -1, 12.430712, 15.15642, -1, -12.430712, -1, 10.480924, -12.430712, -1, -1, -12.430712)
@@ -12,8 +14,12 @@ size = Vector3(5.2110596, 5.4345703, 2.9360352)
 height = 3.0229492
 radius = 1.5063477
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5ebu"]
+size = Vector3(3.9255981, 8.152697, 7.2492065)
+
 [node name="HalfStore" unique_id=173330931 instance=ExtResource("1_5et12")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_1ykvi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" parent_id_path=PackedInt32Array(1459592705) index="0" unique_id=2070591875]
 collision_layer = 3
@@ -47,3 +53,37 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" index="0" unique_id=1032505203]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.937078, 0.5114746, -0.91112614)
 shape = SubResource("CylinderShape3D_1ykvi")
+
+[node name="Menu" type="StaticBody3D" parent="." index="56" unique_id=1418392212]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 4.38919, 0, -6.7913384)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=1217841761]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -4.265546, 3.576129, 6.783178)
+shape = SubResource("BoxShape3D_h5ebu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="57" unique_id=1816226001]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=1145899408]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=658663882]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="Building" type="AudioStreamPlayer3D" parent="." index="58" unique_id=1745630667]
+stream = ExtResource("3_7cnbh")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]

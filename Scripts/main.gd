@@ -109,11 +109,11 @@ func close_ground(num):
 
 	mat.set_shader_parameter("hole_sizes", sizes)
 	
-func shrink_hole(num):
+func shrink_hole(num, x, y):
 	var mat = $Ground.material_override as ShaderMaterial
 
 	var sizes = mat.get_shader_parameter("hole_sizes")
-	sizes[num] = Vector2(0.019, 0.019)
+	sizes[num] = Vector2(x, y)
 
 	mat.set_shader_parameter("hole_sizes", sizes)
 	

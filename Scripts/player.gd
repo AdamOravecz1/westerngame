@@ -301,6 +301,8 @@ func _physics_process(delta: float) -> void:
 			in_shop = false
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
 		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
+		$Camera3D/InteractRay.get_collider().get_parent().menu()
 
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
