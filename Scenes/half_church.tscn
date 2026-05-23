@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bn2ndd1qtp6qj"]
+
+[ext_resource type="PackedScene" uid="uid://ddb7ar47ococ8" path="res://3D/HalfChurch.blend" id="1_1gkl1"]
+[ext_resource type="Script" uid="uid://bw7flpmgb1lyw" path="res://Scripts/half_church.gd" id="2_pd2u4"]
+[ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_ig478"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1gkl1"]
+points = PackedVector3Array(16.683765, 16.475533, -0.001560688, 16.683765, 10.553421, 7.97323, 16.683765, 10.553421, -7.97323, -9.854806, 16.475533, -0.001560688, -9.854806, 10.553421, 7.97323, 16.683765, -1, 7.97323, 16.683765, -1, -7.97323, -9.854806, 10.553421, -7.97323, -9.854806, -1, 7.97323, -9.854806, -1, -7.97323)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_booph"]
+points = PackedVector3Array(-9.577, -1, -2.748, -9.577, -1, 2.748, -8.401968, -0.2698999, -2.748087, 1, -1, -2.748087, -8.401968, -0.2698999, 2.748087, 1, -1, 2.748087, -7.3123116, 0.4602002, -2.748087, 1, 2.650858, -2.748087, -7.3123116, 0.4602002, 2.748087, 1, 2.650858, 2.748087, -6.1821613, 1.1903002, -2.748087, -3.7193904, 2.650858, -2.748087, -6.1821613, 1.1903002, 2.748087, -3.7193904, 2.650858, 2.748087, -4.9912696, 1.9204004, -2.748087, -4.9912696, 1.9204004, 2.748087)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pd2u4"]
+points = PackedVector3Array(-0.12073182, -0.12073182, -0.12073182, -0.12073182, -0.12073182, 0.12073182, -0.12073182, 6.3102274, -0.12073182, 0.12073182, -0.12073182, -0.12073182, 0.12073182, -0.12073182, 0.12073182, -0.12073182, 6.3102274, 0.12073182, 0.12073182, 6.3102274, -0.12073182, 0.12073182, 6.3102274, 0.12073182)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ig478"]
+points = PackedVector3Array(3.9664006, -1, 3.0238032, -1, -1, 3.0238032, 3.9664006, -1, -3.0237975, 3.9664006, 1.3325605, 0.104782104, -1, 1.3325605, 0.104782104, -1, -1, -3.0237975, 3.9664006, 1.3325605, -0.105368614, -1, 1.3325605, -0.105368614)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_eacnu"]
+points = PackedVector3Array(4.110917, 0.18309376, 0.18309376, 4.110917, 0.18309376, -0.18309379, -0.18309379, 0.18309376, 0.18309376, 4.110917, -0.18309379, 0.18309376, 4.110917, -0.18309379, -0.18309379, -0.18309379, 0.18309376, -0.18309379, -0.18309379, -0.18309379, 0.18309376, -0.18309379, -0.18309379, -0.18309379)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tffk0"]
+points = PackedVector3Array(-0.12073182, -0.12073182, -0.12073182, -0.12073182, -0.12073182, 0.12073182, -0.12073182, 6.3102274, -0.12073182, 0.12073182, -0.12073182, -0.12073182, 0.12073182, -0.12073182, 0.12073182, -0.12073182, 6.3102274, 0.12073182, 0.12073182, 6.3102274, -0.12073182, 0.12073182, 6.3102274, 0.12073182)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kjiys"]
+points = PackedVector3Array(4.110917, 0.18309376, 0.18309376, 4.110917, 0.18309376, -0.18309379, -0.18309379, 0.18309376, 0.18309376, 4.110917, -0.18309379, 0.18309376, 4.110917, -0.18309379, -0.18309379, -0.18309379, 0.18309376, -0.18309379, -0.18309379, -0.18309379, 0.18309376, -0.18309379, -0.18309379, -0.18309379)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eacnu"]
+size = Vector3(0.416, 6.68668, 3.294)
+
+[node name="HalfChurch" unique_id=1254519990 instance=ExtResource("1_1gkl1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_pd2u4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" parent_id_path=PackedInt32Array(1917993006) index="0" unique_id=1750032432]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0" unique_id=1632885703]
+shape = SubResource("ConvexPolygonShape3D_1gkl1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_009" parent_id_path=PackedInt32Array(1701188113) index="0" unique_id=1552461747]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_009/StaticBody3D" index="0" unique_id=399553081]
+shape = SubResource("ConvexPolygonShape3D_booph")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_015" parent_id_path=PackedInt32Array(857555033) index="0" unique_id=591450928]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_015/StaticBody3D" index="0" unique_id=903933186]
+shape = SubResource("ConvexPolygonShape3D_pd2u4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" parent_id_path=PackedInt32Array(807892560) index="0" unique_id=993702004]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_017/StaticBody3D" index="0" unique_id=1180218982]
+shape = SubResource("ConvexPolygonShape3D_ig478")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_022" parent_id_path=PackedInt32Array(367380027) index="0" unique_id=1815853853]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_022/StaticBody3D" index="0" unique_id=1400248773]
+shape = SubResource("ConvexPolygonShape3D_eacnu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_016" parent_id_path=PackedInt32Array(1662266431) index="0" unique_id=776168619]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_016/StaticBody3D" index="0" unique_id=997226042]
+shape = SubResource("ConvexPolygonShape3D_tffk0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_020" parent_id_path=PackedInt32Array(1785810299) index="0" unique_id=77697044]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_020/StaticBody3D" index="0" unique_id=1854222817]
+shape = SubResource("ConvexPolygonShape3D_kjiys")
+
+[node name="Menu" type="StaticBody3D" parent="." index="36" unique_id=1683313949]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 3.158995, 7.072582, -5.991667)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=539852052]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -13.050716, 0.14909983, 6.0150795)
+shape = SubResource("BoxShape3D_eacnu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="37" unique_id=335324738]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=1198487176]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=2104749658]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="Building" type="AudioStreamPlayer3D" parent="." index="38" unique_id=869930045]
+stream = ExtResource("3_ig478")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]

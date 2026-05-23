@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
-[ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="6_21xkr"]
-[ext_resource type="PackedScene" uid="uid://b003fb1330ih1" path="res://Scenes/shop.tscn" id="8_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://bn2ndd1qtp6qj" path="res://Scenes/half_church.tscn" id="8_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="9_hptm8"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dsuh6nmagx28u" path="res://Scenes/barrel.tscn" id="11_6iyac"]
@@ -72,7 +71,7 @@ script = ExtResource("1_ynf5e")
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1259703466]
-transform = Transform3D(0.058439847, -0.8645465, 0.49914348, -0.7204302, 0.30959693, 0.62058854, -0.69106096, -0.3958651, -0.60475254, -18.202538, 36.04709, -61.967735)
+transform = Transform3D(-0.066745594, 0.8597237, -0.50637954, -0.7204302, 0.30959693, 0.62058854, 0.6903083, 0.40623266, 0.5987066, -18.202538, 36.04709, -61.967735)
 layers = 3
 light_energy = 1.5
 shadow_enabled = true
@@ -115,11 +114,8 @@ transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1
 [node name="Foundation6" parent="Buildings" unique_id=1640216960 instance=ExtResource("12_hibaj")]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -12.787003, 0, -7.6174316)
 
-[node name="Saloon8" parent="." unique_id=1027117872 instance=ExtResource("6_21xkr")]
-transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 1.7713642, 0, -38.467514)
-
-[node name="Shop" parent="." unique_id=1561012023 instance=ExtResource("8_ynf5e")]
-transform = Transform3D(0.49457908, 0, -0.8691325, 0, 1, 0, 0.8691325, 0, 0.49457908, -5.753563, 0.50740004, -33.68998)
+[node name="HalfChurch" parent="Buildings" unique_id=76208220 instance=ExtResource("8_d1ilt")]
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 2.0784578, 0, -38.72106)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=811582068 groups=["NavigationRegion"]]
 navigation_mesh = SubResource("NavigationMesh_344ge")
