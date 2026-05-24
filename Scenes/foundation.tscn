@@ -7,11 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_4iyyp"]
 size = Vector3(70, 26.351563, 70)
 
-[node name="Foundation" unique_id=1576474905 instance=ExtResource("1_45lwh")]
+[node name="Foundation" unique_id=2010978189 instance=ExtResource("1_45lwh")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_4iyyp")
 
-[node name="Plane" parent="." index="0" unique_id=1255143123]
+[node name="Plane" parent="." index="0" unique_id=1693820206]
 transform = Transform3D(36.647625, 0, 0, 0, 36.647625, 0, 0, 0, 36.647625, 0, 0.11, 0)
 
 [node name="Foundation" type="StaticBody3D" parent="." index="9" unique_id=1073658375]

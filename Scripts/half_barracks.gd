@@ -19,6 +19,8 @@ func _on_upgrade_pressed() -> void:
 		return
 		
 	var index = get_index()
+	$Menu/CollisionShape3D.disabled = true
+	$Menu2/CollisionShape3D.disabled = true
 	
 	$CanvasLayer.visible = false
 	shop_menu.shop(null)

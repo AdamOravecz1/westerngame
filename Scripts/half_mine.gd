@@ -19,7 +19,7 @@ func _on_upgrade_pressed() -> void:
 		return
 		
 	var index = get_index()
-	
+	$Menu/CollisionShape3D.disabled = true
 	$CanvasLayer.visible = false
 	shop_menu.shop(null)
 	$Building.play()
@@ -35,7 +35,11 @@ func _on_upgrade_pressed() -> void:
 	main.shrink_hole(index, 0.025, 0.019)
 	get_parent().add_child(new_building)
 	new_building.global_transform = global_transform
-	new_building.global_position += Vector3(-0.9, 0, 0) 
+	if index >= 3:
+		new_building.global_position += Vector3(-0.9, 0, 0) 
+	else:
+		new_building.global_position += Vector3(0.9, 0, 0) 
+
 	new_building.scale = original_scale
 	
 	visible = false

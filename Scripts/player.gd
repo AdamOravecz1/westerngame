@@ -291,16 +291,14 @@ func _physics_process(delta: float) -> void:
 
 
 	# Interact
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Shop":
-		$CanvasLayer/Shop.visible = !$CanvasLayer/Shop.visible
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			in_shop = true
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			in_shop = false
+	if $Camera3D/InteractRay.get_collider() and not in_shop:
+		if $Camera3D/InteractRay.get_collider().name == "Foundation" or $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
+			$CanvasLayer/InteractIndicator.visible = true
+	else:
+		$CanvasLayer/InteractIndicator.visible = false
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
 		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
+		
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
 		$Camera3D/InteractRay.get_collider().get_parent().menu()
 
@@ -384,29 +382,6 @@ func take_damage(enemy_position):
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
 
-
-func _on_ammo_pressed() -> void:
-	if money >= 1:
-		AddMoney(-1)
-		free_bullets += 1
-		RefreshBulletCount()
-
-func _on_health_pressed() -> void:
-	if money >= 1 and health < 100:
-		AddMoney(-1)
-		health += 5
-		$CanvasLayer/HealthBar.value = health
-
-
-func _on_next_wave_pressed() -> void:
-	main.next_wave()
-
-func _on_dynamyte_pressed() -> void:
-	if money >= 3:
-		AddMoney(-3)
-		dynamite_amount += 1
-		RefreshDynamiteCount()
-
 func _on_dynamite_close_body_entered(body: Node3D) -> void:
 	dynamite_indicator_targets.append(body)
 
@@ -426,6 +401,7 @@ func _on_shutgun_ammo_pressed() -> void:
 		RefreshShotgunCount()
 
 func teleport(pos, rot):
+	in_shop = true
 	var tween = get_tree().create_tween()
 	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1), 0.5)
 	await tween.finished
@@ -433,3 +409,5 @@ func teleport(pos, rot):
 	rotation = rot
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,0), 0.5)
+	await tween2.finished
+	in_shop = false

@@ -173,48 +173,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Shop" type="Control" parent="CanvasLayer" unique_id=198112924]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Shop" unique_id=1335840590]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Shop/GridContainer" unique_id=1647986796]
-layout_mode = 2
-
-[node name="Ammo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=283513316]
-layout_mode = 2
-text = "Buy ammo"
-
-[node name="ShutgunAmmo" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=1051797992]
-layout_mode = 2
-text = "Buy shutgon shell"
-
-[node name="Dynamyte" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=1315490672]
-layout_mode = 2
-text = "Dynamite"
-
-[node name="Health" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=2133595860]
-layout_mode = 2
-text = "Buy health"
-
-[node name="NextWave" type="Button" parent="CanvasLayer/Shop/GridContainer/VBoxContainer" unique_id=372750287]
-layout_mode = 2
-text = "Next wave"
-
 [node name="CrossHair" type="TextureRect" parent="CanvasLayer" unique_id=802857391]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -241,6 +199,21 @@ visible = false
 
 [node name="ShopMenu" parent="CanvasLayer" unique_id=756853650 instance=ExtResource("8_f1ek2")]
 visible = false
+
+[node name="InteractIndicator" type="Label" parent="CanvasLayer" unique_id=1859814402]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -51.0
+offset_right = 85.5
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press [E] to open shop"
 
 [node name="Sounds" type="Control" parent="." unique_id=573422876]
 layout_mode = 3
@@ -272,11 +245,6 @@ collision_mask = 64
 shape = SubResource("SphereShape3D_h4iuc")
 debug_fill = false
 
-[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Ammo" to="." method="_on_ammo_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/ShutgunAmmo" to="." method="_on_shutgun_ammo_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Dynamyte" to="." method="_on_dynamyte_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/Health" to="." method="_on_health_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/GridContainer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]
 [connection signal="body_entered" from="DynamiteClose" to="." method="_on_dynamite_close_body_entered"]
 [connection signal="body_exited" from="DynamiteClose" to="." method="_on_dynamite_close_body_exited"]
 [connection signal="body_entered" from="DynamiteDeadly" to="." method="_on_dynamite_deadly_body_entered"]
