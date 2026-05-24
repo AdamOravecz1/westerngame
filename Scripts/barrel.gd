@@ -15,8 +15,8 @@ func hit():
 	if full:
 		$Area3D.monitoring = true
 		full = false
-		for i in get_children():
-			i.visible = false
+
+		visible = false
 		var old_parent = self.get_parent()
 		old_parent.remove_child(self)  # Remove from current parent
 		main.add_child(self)     # Add to new parent
