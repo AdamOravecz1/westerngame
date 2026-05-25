@@ -220,13 +220,7 @@ func _physics_process(delta: float) -> void:
 				sniper.fire()
 
 
-		# Gravity
-		if not is_on_floor():
-			velocity.y -= gravity * delta
-			velocity.y = max(velocity.y, -terminal_velocity)
-		else:
-			if velocity.y < 0:
-				velocity.y = 0
+
 
 		# Jump
 		if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -288,7 +282,14 @@ func _physics_process(delta: float) -> void:
 			dynamite.rotation_degrees = Vector3(0, 180, 270)
 			var forward_dir = -$Camera3D.global_transform.basis.z.normalized()
 			dynamite.apply_impulse(forward_dir * throw_force)
-
+			
+	# Gravity
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+		velocity.y = max(velocity.y, -terminal_velocity)
+	else:
+		if velocity.y < 0:
+			velocity.y = 0
 
 	# Interact
 	if $Camera3D/InteractRay.get_collider() and not in_shop:
@@ -298,9 +299,13 @@ func _physics_process(delta: float) -> void:
 		$CanvasLayer/InteractIndicator.visible = false
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
 		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
+		velocity.x = 0
+		velocity.z = 0
 		
 	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
 		$Camera3D/InteractRay.get_collider().get_parent().menu()
+		velocity.x = 0
+		velocity.z = 0
 
 	# Recoil recovery
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
@@ -310,7 +315,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("addbullet"):
 		free_bullets += 1
 		RefreshBulletCount()
-
 
 	move_and_slide()
 

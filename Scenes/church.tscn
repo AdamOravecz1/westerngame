@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyocd18ihdrs2"]
 
 [ext_resource type="PackedScene" uid="uid://c0kenpeggcjhr" path="res://3D/Church.blend" id="1_uxvc0"]
+[ext_resource type="Script" uid="uid://cudh8w2hk7moh" path="res://Scripts/church.gd" id="2_38qbd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uxvc0"]
 points = PackedVector3Array(16.683765, 16.475533, -0.001560688, 16.683765, 10.553421, 7.97323, 16.683765, 10.553421, -7.97323, -9.854806, 16.475533, -0.001560688, -9.854806, 10.553421, 7.97323, 16.683765, -1, 7.97323, 16.683765, -1, -7.97323, -9.854806, 10.553421, -7.97323, -9.854806, -1, 7.97323, -9.854806, -1, -7.97323)
@@ -45,10 +46,7 @@ points = PackedVector3Array(-0.26108983, -0.26108983, -0.26108983, -0.26108983, 
 points = PackedVector3Array(-0.26108983, -0.26108983, -0.26108983, -0.26108983, -0.26108983, 0.26108983, -0.26108983, 10.190859, -0.26108983, 0.26108983, -0.26108983, -0.26108983, 0.26108983, -0.26108983, 0.26108983, -0.26108983, 10.190859, 0.26108983, 0.26108983, 10.190859, -0.26108983, 0.26108983, 10.190859, 0.26108983)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qqu8f"]
-points = PackedVector3Array(15.117, 8.827, 3.078, 15.322294, 7.850254, 3.078373, 15.117, 8.827, -3.078, 13.849236, 8.092238, 3.078373, 15.322294, 7.850254, -3.078373, 13.997013, 7.125103, 3.078373, 13.849236, 8.092238, -3.078373, 4.5659747, 3.0193973, 3.078373, 13.997013, 7.125103, -3.078373, 3.3884706, 1.3279145, 3.078373, 4.5659747, 3.0193973, -3.078373, 1.9138391, 1.5698994, 3.078373, 3.3884706, 1.3279145, -3.078373, 0.7363349, -0.12077967, 3.078373, 1.9138391, 1.5698994, -3.078373, -0.7367244, 0.120401375, 3.078373, 0.7363349, -0.12077967, -3.078373, -2.192, -0.711, 3.078, -0.7367244, 0.120401375, -3.078373, -2.192, -0.711, -3.078)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gw6bf"]
-points = PackedVector3Array(3.7607007, 0.13816428, 3.0397298, 3.7607007, -0.13816428, 3.0397298, 3.7607007, 0.13816428, -3.0397298, -1.17494, 0.13816428, 3.0397298, -1.17494, -0.13816428, 3.0397298, 3.7607007, -0.13816428, -3.0397298, -1.17494, 0.13816428, -3.0397298, -1.17494, -0.13816428, -3.0397298)
+points = PackedVector3Array(20.102, 11.607, 3.078, 15.322294, 7.850254, 3.078373, 20.102, 10.352, -3.078, 15.659, 10.352, 3.078, 15.322294, 7.850254, -3.078373, 13.997013, 7.125103, 3.078373, 15.659, 10.352, -3.078, 4.5659747, 3.0193973, 3.078373, 13.997013, 7.125103, -3.078373, 3.3884706, 1.3279145, 3.078373, 4.5659747, 3.0193973, -3.078373, 1.9138391, 1.5698994, 3.078373, 3.3884706, 1.3279145, -3.078373, 0.7363349, -0.12077967, 3.078373, 1.9138391, 1.5698994, -3.078373, -0.7367244, 0.120401375, 3.078373, 0.7363349, -0.12077967, -3.078373, -2.192, -0.711, 3.078, -0.7367244, 0.120401375, -3.078373, -2.192, -0.711, -3.078)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xfrio"]
 points = PackedVector3Array(16.296915, 9.052323, 0.25273782, 16.296915, 9.052323, -0.2527876, -0.8686382, -0.13724571, 0.2527873, 16.57177, 8.541528, 0.25273782, 16.57177, 8.541528, -0.2527876, -0.8686382, -0.13724571, -0.2527876, -0.59719884, -0.6470916, 0.2527873, -0.59719884, -0.6470916, -0.2527876)
@@ -61,6 +59,7 @@ points = PackedVector3Array(-0.2527876, -0.28955507, -0.2972701, 0.2527873, -0.2
 
 [node name="Church" unique_id=1333433071 instance=ExtResource("1_uxvc0")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_38qbd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" parent_id_path=PackedInt32Array(609350944) index="0" unique_id=124378116]
 collision_layer = 3
@@ -163,32 +162,24 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_031/StaticBody3D" index="0" unique_id=1557321759]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.056899548, 1.6093254e-06, 0.0224123)
 shape = SubResource("ConvexPolygonShape3D_qqu8f")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_026" parent_id_path=PackedInt32Array(1957020722) index="0" unique_id=2059143105]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_026/StaticBody3D" index="0" unique_id=1714557506]
-shape = SubResource("ConvexPolygonShape3D_gw6bf")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_035" parent_id_path=PackedInt32Array(1732350804) index="0" unique_id=2123124287]
-collision_layer = 3
-collision_mask = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_035/StaticBody3D" index="0" unique_id=1401448327]
 shape = SubResource("ConvexPolygonShape3D_xfrio")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_036" parent_id_path=PackedInt32Array(1761443209) index="0" unique_id=1771748996]
-collision_layer = 3
-collision_mask = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_036/StaticBody3D" index="0" unique_id=1421025297]
 shape = SubResource("ConvexPolygonShape3D_r77vr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_037" parent_id_path=PackedInt32Array(1253440229) index="0" unique_id=1467114054]
-collision_layer = 3
-collision_mask = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_037/StaticBody3D" index="0" unique_id=1489094661]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_3tsjs")

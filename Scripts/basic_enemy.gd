@@ -95,7 +95,7 @@ func follow_path(where, delta):
 	velocity = direction * speed
 
 	# Smooth rotation toward movement direction
-	if direction.length() > 0.01:
+	if direction.length() > 0.1:
 		
 		# Simplest smooth Y rotation
 		var target_yaw = atan2(direction.x, direction.z)

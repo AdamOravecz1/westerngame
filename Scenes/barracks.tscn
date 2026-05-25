@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjaujlxdmamey"]
 
 [ext_resource type="PackedScene" uid="uid://ck2pw0jnkobwg" path="res://3D/Barracks.blend" id="1_7aoon"]
+[ext_resource type="Script" uid="uid://ircpc1uxg3i7" path="res://Scripts/barracks.gd" id="2_coeoc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aoon"]
 size = Vector3(22.287369, 9.430786, 7.7927704)
@@ -13,8 +14,9 @@ size = Vector3(7.743164, 8.717075, 10)
 
 [node name="Barracks" unique_id=1925532788 instance=ExtResource("1_7aoon")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_coeoc")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(700858062) index="0" unique_id=1025348734]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(1800006117) index="0" unique_id=1025348734]
 collision_layer = 3
 collision_mask = 3
 

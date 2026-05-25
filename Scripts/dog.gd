@@ -5,6 +5,8 @@ var biting := false
 
 func _ready() -> void:
 	speed = 4
+	rotation_speed = 3.0
+	blend_speed = 2.5
 	skeleton = $BasicDog/Armature/Skeleton3D/PhysicalBoneSimulator3D
 	model = $BasicDog
 

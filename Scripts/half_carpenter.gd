@@ -2,7 +2,17 @@ extends Node3D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var main = get_tree().get_first_node_in_group("Main")
 @onready var shop_menu = player.get_node("CanvasLayer/ShopMenu")
+@onready var nav_mesh = get_tree().get_first_node_in_group("NavigationRegion")
 var index = get_index()
+
+func _ready() -> void:
+	await get_tree().create_timer(2.0, false).timeout
+	if nav_mesh.is_baking():
+		await nav_mesh.bake_finished
+
+	nav_mesh.bake_navigation_mesh()
+	await nav_mesh.bake_finished
+	await get_tree().create_timer(3, false).timeout
 
 func menu():
 	$CanvasLayer.visible = !$CanvasLayer.visible

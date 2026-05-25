@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b263yhuxc631w"]
 
 [ext_resource type="PackedScene" uid="uid://lfotqr6sjxix" path="res://3D/Carpenter.blend" id="1_kykgb"]
+[ext_resource type="Script" uid="uid://tc04mpd1s4ep" path="res://Scripts/carpenter.gd" id="2_ih2xn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kykgb"]
 size = Vector3(21.705994, 15.727417, 6.100006)
@@ -28,6 +29,7 @@ size = Vector3(3.3027344, 3.7958984, 1)
 
 [node name="Carpenter" unique_id=2108946224 instance=ExtResource("1_kykgb")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("2_ih2xn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_014" parent_id_path=PackedInt32Array(1865546450) index="0" unique_id=1712640420]
 collision_layer = 3

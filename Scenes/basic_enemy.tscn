@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpvimjxc4obem"]
+[gd_scene format=3 uid="uid://cpvimjxc4obem"]
 
 [ext_resource type="Script" uid="uid://d0u76i8q3uo4q" path="res://Scripts/basic_enemy.gd" id="1_fecjr"]
 
@@ -6,20 +6,21 @@
 radius = 0.24804688
 height = 1.6905518
 
-[node name="BasicEnemy" type="CharacterBody3D"]
+[node name="BasicEnemy" type="CharacterBody3D" unique_id=1149815378]
 collision_layer = 4
 script = ExtResource("1_fecjr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1788043889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90723574, 0)
 shape = SubResource("CapsuleShape3D_jlik3")
 
-[node name="Sounds" type="Control" parent="."]
+[node name="Sounds" type="Control" parent="." unique_id=463285803]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1107694457]
+path_desired_distance = 0.5
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
