@@ -25,7 +25,7 @@ points = PackedVector3Array(1, 1, 19.9928, 1, -1, 19.9928, 0.999805, 1, -1, -1, 
 points = PackedVector3Array(1, 1, 19.9928, 1, -1, 19.9928, 0.999805, 1, -1, -1, 1, 19.9928, -1, -1, 19.9928, 0.999805, -1, -1, -1, 1, -1, -1, -1, -1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0122m"]
-points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+points = PackedVector3Array(1.35, 2.04, 1, 1.35, 2.04, -1, 1.35, -1, 1, 1.35, -1, -1, -4.755, -1, 1, -4.755, -1, -1)
 
 [node name="Saloon" unique_id=2069171928 instance=ExtResource("1_w6ir6")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
