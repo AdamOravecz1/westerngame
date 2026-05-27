@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dy76cngb1e35q"]
 
 [ext_resource type="PackedScene" uid="uid://yq8d8cr6rx5f" path="res://3D/HalfSaloon.blend" id="1_yg6xa"]
-[ext_resource type="Script" uid="uid://db4hcymdd6ic8" path="res://Scripts/half_saloon.gd" id="2_8p2r0"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_v2uea"]
+[ext_resource type="PackedScene" uid="uid://bxbf727kql8vf" path="res://Scenes/saloon.tscn" id="3_mwmeo"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_v2uea"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n1ufc"]
@@ -21,7 +22,8 @@ size = Vector3(13.027252, 22.97079, 7.2492065)
 
 [node name="HalfSaloon" unique_id=916315897 instance=ExtResource("1_yg6xa")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-script = ExtResource("2_8p2r0")
+script = ExtResource("2_v2uea")
+building_scene = ExtResource("3_mwmeo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" parent_id_path=PackedInt32Array(1575539172) index="0" unique_id=1144365132]
 collision_layer = 3

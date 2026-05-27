@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://ygo37g6ppyho"]
 
 [ext_resource type="PackedScene" uid="uid://cco3grcht5vef" path="res://3D/HalfBlackSmith.blend" id="1_40j0e"]
-[ext_resource type="Script" uid="uid://byd5yaissroxs" path="res://Scripts/half_black_smith.gd" id="2_dei5x"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_ic0pq"]
+[ext_resource type="PackedScene" uid="uid://ble6xapl37qnc" path="res://Scenes/black_smith.tscn" id="3_66kfj"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_ic0pq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_40j0e"]
@@ -30,7 +31,8 @@ size = Vector3(3.9255981, 8.152697, 9.499374)
 
 [node name="HalfBlackSmith" unique_id=1563419790 instance=ExtResource("1_40j0e")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-script = ExtResource("2_dei5x")
+script = ExtResource("2_ic0pq")
+building_scene = ExtResource("3_66kfj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" parent_id_path=PackedInt32Array(220624653) index="0" unique_id=1774637842]
 collision_layer = 3

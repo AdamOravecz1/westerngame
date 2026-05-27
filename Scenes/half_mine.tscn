@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://crmdoalgmcrhq"]
 
 [ext_resource type="PackedScene" uid="uid://dq0r4omxdim4f" path="res://3D/HalfMine.blend" id="1_m6pxq"]
-[ext_resource type="Script" uid="uid://cn1y53xgcctf" path="res://Scripts/half_mine.gd" id="2_1sij6"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_g8jtq"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_g8jtq"]
+[ext_resource type="PackedScene" uid="uid://bkoweebtcpdk3" path="res://Scenes/mine.tscn" id="3_pm4ue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m6pxq"]
 size = Vector3(2.1585693, 6.6099854, 6.6273804)
@@ -15,7 +16,8 @@ size = Vector3(2.4139557, 7.221978, 6.1382294)
 
 [node name="HalfMine" unique_id=1542527671 instance=ExtResource("1_m6pxq")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-script = ExtResource("2_1sij6")
+script = ExtResource("2_g8jtq")
+building_scene = ExtResource("3_pm4ue")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="26" unique_id=879318359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.153713, 0, 8.164705)

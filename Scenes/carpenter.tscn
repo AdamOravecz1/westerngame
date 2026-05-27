@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b263yhuxc631w"]
 
 [ext_resource type="PackedScene" uid="uid://lfotqr6sjxix" path="res://3D/Carpenter.blend" id="1_kykgb"]
-[ext_resource type="Script" uid="uid://tc04mpd1s4ep" path="res://Scripts/carpenter.gd" id="2_ih2xn"]
+[ext_resource type="Script" uid="uid://bs62v4322viuw" path="res://Scripts/full_building.gd" id="2_ih2xn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kykgb"]
 size = Vector3(21.705994, 15.727417, 6.100006)

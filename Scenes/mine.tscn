@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkoweebtcpdk3"]
 
 [ext_resource type="PackedScene" uid="uid://c5eo0ycqr11ab" path="res://3D/Mine.blend" id="1_qoe3o"]
-[ext_resource type="Script" uid="uid://kg5l6fcpm4ce" path="res://Scripts/mine.gd" id="2_mygvu"]
+[ext_resource type="Script" uid="uid://bs62v4322viuw" path="res://Scripts/full_building.gd" id="2_mygvu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qoe3o"]
 size = Vector3(24.23901, 22.406834, 19.320871)

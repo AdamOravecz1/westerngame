@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyocd18ihdrs2"]
 
 [ext_resource type="PackedScene" uid="uid://c0kenpeggcjhr" path="res://3D/Church.blend" id="1_uxvc0"]
-[ext_resource type="Script" uid="uid://cudh8w2hk7moh" path="res://Scripts/church.gd" id="2_38qbd"]
+[ext_resource type="Script" uid="uid://bs62v4322viuw" path="res://Scripts/full_building.gd" id="2_38qbd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_38qbd"]
 points = PackedVector3Array(-9.854806, 15.724674, 1.0099216, -9.854806, 15.606802, -1.1691365, -9.854806, 10.554694, 7.97323, 16.683765, 10.554694, 7.97323, 16.683765, 15.723038, 1.0114827, 16.683765, 15.700117, -1.0427008, 16.683765, 10.554694, -7.97323, -9.854806, 10.554694, -7.97323, -9.854806, -1, 7.97323, 16.683765, -1, 7.97323, 16.683765, -1, -7.97323, -9.854806, -1, -7.97323)
@@ -101,6 +101,7 @@ shape = SubResource("ConvexPolygonShape3D_gw6bf")
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" parent_id_path=PackedInt32Array(1938778237) index="0" unique_id=1539090421]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("2_38qbd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0" unique_id=803783747]
 shape = SubResource("ConvexPolygonShape3D_vbmhj")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjaujlxdmamey"]
 
 [ext_resource type="PackedScene" uid="uid://ck2pw0jnkobwg" path="res://3D/Barracks.blend" id="1_7aoon"]
-[ext_resource type="Script" uid="uid://ircpc1uxg3i7" path="res://Scripts/barracks.gd" id="2_coeoc"]
+[ext_resource type="Script" uid="uid://bs62v4322viuw" path="res://Scripts/full_building.gd" id="2_coeoc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aoon"]
 size = Vector3(22.287369, 9.430786, 7.7927704)

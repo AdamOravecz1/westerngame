@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://g3pbuwg7clvl"]
 
 [ext_resource type="PackedScene" uid="uid://c7lbr2wve81yq" path="res://3D/HalfBarracks.blend" id="1_8d6fr"]
-[ext_resource type="Script" uid="uid://bwjsml8eh3my2" path="res://Scripts/half_barracks.gd" id="2_xfy66"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_gdokk"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_gdokk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xfy66"]
@@ -15,7 +15,7 @@ size = Vector3(4.359009, 8.152697, 5.092285)
 
 [node name="HalfBarracks" unique_id=1862953969 instance=ExtResource("1_8d6fr")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-script = ExtResource("2_xfy66")
+script = ExtResource("2_gdokk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_008" parent_id_path=PackedInt32Array(1801714980) index="0" unique_id=2011896140]
 

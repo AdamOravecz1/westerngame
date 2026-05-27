@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bmhscf8dwyefw"]
 
 [ext_resource type="PackedScene" uid="uid://op1x2pirxfps" path="res://3D/HalfCarpenter.blend" id="1_mtvtb"]
-[ext_resource type="Script" uid="uid://dqmvlm8j54xy6" path="res://Scripts/half_carpenter.gd" id="2_xqp0m"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_vfbg3"]
+[ext_resource type="PackedScene" uid="uid://b263yhuxc631w" path="res://Scenes/carpenter.tscn" id="3_42m4t"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_vfbg3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtvtb"]
@@ -33,7 +34,8 @@ size = Vector3(3.9255981, 6.5000544, 4.1488953)
 
 [node name="HalfCarpenter" unique_id=1300365403 instance=ExtResource("1_mtvtb")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-script = ExtResource("2_xqp0m")
+script = ExtResource("2_vfbg3")
+building_scene = ExtResource("3_42m4t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_014" parent_id_path=PackedInt32Array(344056045) index="0" unique_id=1846855831]
 collision_layer = 3

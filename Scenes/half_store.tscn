@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://ysabl4lfw6p8"]
 
 [ext_resource type="PackedScene" uid="uid://0kgdk5e4o5vr" path="res://3D/HalfStore.blend" id="1_5et12"]
-[ext_resource type="Script" uid="uid://duafnfn0ibhhf" path="res://Scripts/half_store.gd" id="2_1ykvi"]
+[ext_resource type="Script" uid="uid://lv0vqr8al63f" path="res://Scripts/half_building.gd" id="2_7cnbh"]
 [ext_resource type="AudioStream" uid="uid://cqyxv044dyt4m" path="res://Sounds/Building.wav" id="3_7cnbh"]
+[ext_resource type="PackedScene" uid="uid://ckxf4u6dfalf7" path="res://Scenes/store.tscn" id="3_h5ebu"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5et12"]
 points = PackedVector3Array(15.15642, 8.567061, 12.430712, 15.15642, -1, 12.430712, 15.15642, 8.567061, -12.430712, -1, 10.480924, 12.430712, -1, -1, 12.430712, 15.15642, -1, -12.430712, -1, 10.480924, -12.430712, -1, -1, -12.430712)
@@ -19,7 +20,8 @@ size = Vector3(3.9255981, 8.152697, 7.2492065)
 
 [node name="HalfStore" unique_id=173330931 instance=ExtResource("1_5et12")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-script = ExtResource("2_1ykvi")
+script = ExtResource("2_7cnbh")
+building_scene = ExtResource("3_h5ebu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" parent_id_path=PackedInt32Array(1459592705) index="0" unique_id=2070591875]
 collision_layer = 3

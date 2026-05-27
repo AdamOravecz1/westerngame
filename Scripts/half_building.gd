@@ -3,7 +3,7 @@ extends Node3D
 @onready var main = get_tree().get_first_node_in_group("Main")
 @onready var shop_menu = player.get_node("CanvasLayer/ShopMenu")
 @onready var nav_mesh = get_tree().get_first_node_in_group("NavigationRegion")
-var index = get_index()
+@export var building_scene = preload("res://Scenes/barracks.tscn")
 
 func _ready() -> void:
 	await get_tree().create_timer(2.0, false).timeout
@@ -30,22 +30,34 @@ func _on_upgrade_pressed() -> void:
 		
 	var index = get_index()
 	$Menu/CollisionShape3D.disabled = true
+	if get_node_or_null("Menu2/CollisionShape3D"):
+		$Menu2/CollisionShape3D.disabled = true
+	
 	$CanvasLayer.visible = false
 	shop_menu.shop(null)
 	$Building.play()
-	if index >= 3:
+	print(index)
+	if index == 6:
+		player.teleport(global_position + Vector3(0, 0, 10), global_rotation + Vector3(0, deg_to_rad(270), 0))
+	elif index >= 3:
 		player.teleport(global_position + Vector3(5, 0, 0), global_rotation + Vector3(0, deg_to_rad(270), 0))
 	else:
 		player.teleport(global_position + Vector3(-5, 0, 0), global_rotation + Vector3(0, deg_to_rad(270), 0))
 	await get_tree().create_timer(.5, false).timeout
 	
-	var building_scene = load("res://Scenes/black_smith.tscn")
 	var new_building = building_scene.instantiate()
 	var original_scale = new_building.scale
 
 	get_parent().add_child(new_building)
 	new_building.global_transform = global_transform
 	new_building.scale = original_scale
+	
+	if new_building.name == "Mine":
+		main.shrink_hole(index, 0.025, 0.019)
+		if index >= 3:
+			new_building.global_position += Vector3(-0.9, 0, 0) 
+		else:
+			new_building.global_position += Vector3(0.9, 0, 0) 
 	
 	visible = false
 	await get_tree().create_timer(.5, false).timeout

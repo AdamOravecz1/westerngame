@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bxbf727kql8vf"]
 
 [ext_resource type="PackedScene" uid="uid://18wixqsvofsr" path="res://3D/Saloon.blend" id="1_w6ir6"]
-[ext_resource type="Script" uid="uid://d26fnl2h5ya8t" path="res://Scripts/saloon.gd" id="2_2ubgp"]
+[ext_resource type="Script" uid="uid://bs62v4322viuw" path="res://Scripts/full_building.gd" id="2_2ubgp"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w6ir6"]
 points = PackedVector3Array(-1, -1.05924, -1, -1, -1.19209e-07, -1, 1, -1.05924, -1, -1, -1.05924, 1, -1, -1.19209e-07, 1, 1, -1.19209e-07, -1, 1, -1.05924, 1, 1, -1.19209e-07, 1)
