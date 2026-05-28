@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dsesj1gvyb4ha"]
+[gd_scene format=4 uid="uid://dsesj1gvyb4ha"]
 
 [ext_resource type="Script" uid="uid://trvodk2pahfu" path="res://Scripts/barrier.gd" id="1_1olmg"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_wexun"]
@@ -154,71 +154,72 @@ size = Vector3(0.69646454, 1, 0.2489624)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkote"]
 size = Vector3(0.3972168, 1.2028809, 1)
 
-[node name="Barrier" type="Node3D"]
+[node name="Barrier" type="Node3D" unique_id=259206274]
 script = ExtResource("1_1olmg")
 broken_model = ExtResource("2_megwv")
 
-[node name="Cube2" type="MeshInstance3D" parent="."]
+[node name="Cube2" type="MeshInstance3D" parent="." unique_id=1837060957]
 transform = Transform3D(0.3007527, -0.04448427, 0, 0.03517335, 0.3803665, 0, 0, 0, 0.3028025, 0, -0.010123298, 0)
 mesh = SubResource("ArrayMesh_megwv")
 skeleton = NodePath("")
 
-[node name="Cube_004" type="MeshInstance3D" parent="."]
+[node name="Cube_004" type="MeshInstance3D" parent="." unique_id=546244767]
 transform = Transform3D(0.043703694, 0.06629181, 0, -0.006815537, 0.42508712, 0, 0, 0, 0.028118797, 0, -0.010123298, 0)
 mesh = SubResource("ArrayMesh_ig2pw")
 skeleton = NodePath("")
 
-[node name="Cube_005" type="MeshInstance3D" parent="."]
+[node name="Cube_005" type="MeshInstance3D" parent="." unique_id=1386609109]
 transform = Transform3D(0.043703698, 0.06629182, 0, -0.0068155373, 0.42508718, 0, 0, 0, -0.028118797, 0, -0.010123298, 0)
 mesh = SubResource("ArrayMesh_rkote")
 skeleton = NodePath("")
 
-[node name="Cube_006" type="MeshInstance3D" parent="."]
+[node name="Cube_006" type="MeshInstance3D" parent="." unique_id=1914679566]
 transform = Transform3D(0.0134053575, -0.0068133147, 0, 0.0015677708, 0.058257822, 0, 0, 0, 0.5163095, 0, -0.010123298, 0)
 mesh = SubResource("ArrayMesh_0cgl3")
 skeleton = NodePath("")
 
-[node name="HideArea" type="Area3D" parent="."]
+[node name="HideArea" type="Area3D" parent="." unique_id=1761998330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9320932, 0.05, 0)
 collision_layer = 4
 collision_mask = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea" unique_id=1550250702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15252358, 0.5420926, -0.023070335)
 shape = SubResource("BoxShape3D_megwv")
 debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
-[node name="HideArea2" type="Area3D" parent="."]
+[node name="HideArea2" type="Area3D" parent="." unique_id=492509698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505, 0.05, 0)
 collision_layer = 4
 collision_mask = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2" unique_id=9867107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108780175, 0.542, -0.018222898)
 shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
-[node name="PlayerChecker" type="RayCast3D" parent="."]
+[node name="PlayerChecker" type="RayCast3D" parent="." unique_id=1974754038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2486534, 0.16285165, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 16
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="PlayerChecker2" type="RayCast3D" parent="."]
+[node name="PlayerChecker2" type="RayCast3D" parent="." unique_id=1545438612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8855137, 0.16332348, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 16
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="Barrier" type="StaticBody3D" parent="."]
+[node name="Barrier" type="StaticBody3D" parent="." unique_id=1287203103]
 collision_layer = 48
 collision_mask = 33
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier" unique_id=1496832281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23327637, 0.5826416, 0)
 shape = SubResource("BoxShape3D_rkote")
+disabled = true
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]

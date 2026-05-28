@@ -2,13 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://b08we6bmyu250" path="res://Scenes/dog.tscn" id="2_6iyac"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bn2ndd1qtp6qj" path="res://Scenes/half_church.tscn" id="8_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://dsesj1gvyb4ha" path="res://Scenes/barrier.tscn" id="9_hptm8"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dsuh6nmagx28u" path="res://Scenes/barrel.tscn" id="11_6iyac"]
 [ext_resource type="PackedScene" uid="uid://8rqjynmsxt0b" path="res://Scenes/foundation.tscn" id="12_hibaj"]
@@ -72,8 +70,6 @@ script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
 
-[node name="Dog" parent="Enemies" unique_id=1382672057 instance=ExtResource("2_6iyac")]
-
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1259703466]
@@ -83,7 +79,7 @@ light_energy = 1.5
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1839764911 instance=ExtResource("1_jjgbg")]
-transform = Transform3D(0.89941293, 0, -0.43709993, 0, 1, 0, 0.43709993, 0, 0.89941293, -5.9192057, 1.0874374, -28.57937)
+transform = Transform3D(0.89941293, 0, -0.43709993, 0, 1, 0, 0.43709993, 0, 0.89941293, -5.654583, 1.0874374, -30.443607)
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1471223616]
 layers = 262144
@@ -168,9 +164,6 @@ transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1
 transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 2.0784578, 0, -38.72106)
 
 [node name="Barriers" type="Node3D" parent="NavigationRegion3D" unique_id=124481720]
-
-[node name="Barrier" parent="NavigationRegion3D/Barriers" unique_id=1892987581 instance=ExtResource("9_hptm8")]
-transform = Transform3D(-0.013176818, 0, -0.99991316, 0, 1, 0, 0.99991316, 0, -0.013176818, 0, 0, -17.947037)
 
 [node name="Barrel" parent="NavigationRegion3D/Barriers" unique_id=756631976 instance=ExtResource("11_6iyac")]
 transform = Transform3D(0.99999994, 0, -3.5527137e-15, 0, 0.99999994, 0, 3.5527137e-15, 0, 0.99999994, -5.2414584, 0, -17.371471)

@@ -63,3 +63,16 @@ func _on_upgrade_pressed() -> void:
 	await get_tree().create_timer(.5, false).timeout
 
 	queue_free()
+
+
+func _on_barrier_pressed() -> void:
+	var barrier_scene = preload("res://Scenes/barrier.tscn")
+	var barrier = barrier_scene.instantiate()
+	player.add_child(barrier)
+	barrier.position.z -= 3
+	barrier.position.y -= 1
+	shop_menu.shop(null)
+	player.placing_barrier = true
+	$CanvasLayer.visible = false
+
+	

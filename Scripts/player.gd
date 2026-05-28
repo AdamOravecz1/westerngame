@@ -71,6 +71,7 @@ var switching_weapon := false
 var pitch := 0.0
 
 var in_shop := false
+var placing_barrier := false
 var paused = false
 
 func _ready():
@@ -269,7 +270,7 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D.position.y += diff / 2.0
 			
 		# Throw
-		if Input.is_action_just_pressed("throw") and dynamite_amount > 0:
+		if Input.is_action_just_pressed("throw") and dynamite_amount > 0 and not placing_barrier:
 			dynamite_amount -= 1
 			RefreshDynamiteCount()
 			var dynamite = dynamite_scene.instantiate()
@@ -292,17 +293,17 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 
 	# Interact
-	if $Camera3D/InteractRay.get_collider() and not in_shop:
+	if $Camera3D/InteractRay.get_collider() and not in_shop and not placing_barrier:
 		if $Camera3D/InteractRay.get_collider().name == "Foundation" or $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
 			$CanvasLayer/InteractIndicator.visible = true
 	else:
 		$CanvasLayer/InteractIndicator.visible = false
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation":
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation" and not placing_barrier:
 		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
 		velocity.x = 0
 		velocity.z = 0
 		
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu") and not placing_barrier:
 		$Camera3D/InteractRay.get_collider().get_parent().menu()
 		velocity.x = 0
 		velocity.z = 0
