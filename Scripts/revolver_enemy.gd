@@ -30,13 +30,21 @@ func _physics_process(delta):
 	var closest := INF
 
 	for area in hiding_spots:
-		
 		var dist := global_position.distance_to(area.global_position)
 		var can_hide_there = true
 		for enemy in enemies:
 			if enemy.cover_location == area.global_position:
 				can_hide_there = false
 				break
+		
+		if area.name == "HideArea" and not area.get_parent().hide_area_valid:
+			can_hide_there = false
+			break
+			
+		if area.name == "HideArea2" and not area.get_parent().hide_area2_valid:
+			can_hide_there = false
+			break
+		
 
 		if can_hide_there and dist < closest and not in_cover and global_position.distance_to(player.global_position) > 1 and area.global_position.distance_to(player.global_position) < 10 and player.selected_weapon != 0:
 			closest = dist

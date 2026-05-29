@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://dsuh6nmagx28u"]
+[gd_scene format=4 uid="uid://dsuh6nmagx28u"]
 
 [ext_resource type="Script" uid="uid://s351gnap6otv" path="res://Scripts/barrel.gd" id="1_1tdys"]
 [ext_resource type="Texture2D" uid="uid://bdsh6btjegeoa" path="res://Textures/weathered_brown_planks_diff_4k.png" id="1_rp70x"]
@@ -678,122 +678,137 @@ radius = 0.39404297
 [sub_resource type="SphereShape3D" id="SphereShape3D_w6ax0"]
 radius = 3.0609
 
-[node name="Barrel" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n4cgw"]
+height = 0.9397583
+radius = 0.44970703
+
+[node name="Barrel" type="Node3D" unique_id=202648324]
 script = ExtResource("1_1tdys")
 broken_model = ExtResource("2_w6ax0")
 
-[node name="NurbsCurve_003" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_003" type="MeshInstance3D" parent="." unique_id=215789076]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_c217k")
 skeleton = NodePath("")
 
-[node name="Cylinder" type="MeshInstance3D" parent="."]
+[node name="Cylinder" type="MeshInstance3D" parent="." unique_id=1026008100]
 transform = Transform3D(0.36641324, 0, 0, 0, 0.015139135, 0, 0, 0, 0.36641324, 0, 0.9037365, 0)
 mesh = SubResource("ArrayMesh_l0ub0")
 skeleton = NodePath("")
 
-[node name="Cylinder_001" type="MeshInstance3D" parent="."]
+[node name="Cylinder_001" type="MeshInstance3D" parent="." unique_id=711582872]
 transform = Transform3D(0.36641324, 0, 0, 0, -0.015139135, 0, 0, 0, 0.36641324, 0, 0.05871567, 0)
 mesh = SubResource("ArrayMesh_rnk1i")
 skeleton = NodePath("")
 
-[node name="BézierCircle" type="MeshInstance3D" parent="."]
+[node name="BézierCircle" type="MeshInstance3D" parent="." unique_id=563809788]
 transform = Transform3D(0.4315938, 0, 0, 0, 1, 0, 0, 0, 0.4315938, 0, 0.7752477, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_qddms")
 skeleton = NodePath("")
 
-[node name="BézierCircle_001" type="MeshInstance3D" parent="."]
+[node name="BézierCircle_001" type="MeshInstance3D" parent="." unique_id=515421485]
 transform = Transform3D(0.4315938, 0, 0, 0, -1, 0, 0, 0, 0.4315938, 0, 0.18720445, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_3jbva")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_001" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_001" type="MeshInstance3D" parent="." unique_id=908746663]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_rxsfx")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_002" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_002" type="MeshInstance3D" parent="." unique_id=770117067]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_oy3bj")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_004" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_004" type="MeshInstance3D" parent="." unique_id=760685652]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_10mgb")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_005" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_005" type="MeshInstance3D" parent="." unique_id=1118217448]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_a0len")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_006" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_006" type="MeshInstance3D" parent="." unique_id=1355518586]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_yup00")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_007" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_007" type="MeshInstance3D" parent="." unique_id=1560177108]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_hqq08")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_008" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_008" type="MeshInstance3D" parent="." unique_id=1623696785]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_38rt7")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_009" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_009" type="MeshInstance3D" parent="." unique_id=1960633790]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_80kf4")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_010" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_010" type="MeshInstance3D" parent="." unique_id=279568883]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_3dyfc")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_011" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_011" type="MeshInstance3D" parent="." unique_id=1074096314]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_h1c2e")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_012" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_012" type="MeshInstance3D" parent="." unique_id=2027213580]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_klg42")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_013" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_013" type="MeshInstance3D" parent="." unique_id=1208092297]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_appw8")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_014" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_014" type="MeshInstance3D" parent="." unique_id=1323925295]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_yapf7")
 skeleton = NodePath("")
 
-[node name="NurbsCurve_015" type="MeshInstance3D" parent="."]
+[node name="NurbsCurve_015" type="MeshInstance3D" parent="." unique_id=1002829097]
 transform = Transform3D(0, 1, 0, -0.57863164, 0, 0, 0, 0, 1, 0, 0.4812261, 0)
 mesh = SubResource("ArrayMesh_hqhin")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 48
-collision_mask = 33
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=725667723]
+collision_layer = 304
+collision_mask = 289
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2115055949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49169922, 0)
 shape = SubResource("CylinderShape3D_w6ax0")
+disabled = true
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1028690706]
 collision_layer = 36
 collision_mask = 36
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=147039372]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46765006, 0)
 shape = SubResource("SphereShape3D_w6ax0")
 
+[node name="OverlapChecker" type="Area3D" parent="." unique_id=1694491754]
+collision_layer = 304
+collision_mask = 289
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverlapChecker" unique_id=281059417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023303032, 0.48861694, 0)
+shape = SubResource("CylinderShape3D_n4cgw")
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="OverlapChecker" to="." method="_on_overlap_checker_body_entered"]
+[connection signal="body_exited" from="OverlapChecker" to="." method="_on_overlap_checker_body_exited"]

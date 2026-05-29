@@ -46,6 +46,7 @@ visible = false
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=252026844]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 target_position = Vector3(0, -2, 0)
 collision_mask = 4
 
@@ -57,11 +58,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
 
 [node name="RevolverRay" type="RayCast3D" parent="Camera3D" unique_id=501013745]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 target_position = Vector3(0, -100, 0)
 collision_mask = 19
 collide_with_areas = true
 
 [node name="ShotgunRays" type="Node3D" parent="Camera3D" unique_id=783050845]
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=491160468]
 target_position = Vector3(0, 3, -100)

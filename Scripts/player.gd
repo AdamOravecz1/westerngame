@@ -201,7 +201,7 @@ func _physics_process(delta: float) -> void:
 
 
 		# Fire
-		if Input.is_action_just_pressed("fire"):
+		if Input.is_action_just_pressed("fire") and not placing_barrier:
 			# Revolver
 			if cocked and not cocking and not reloading and not switching_weapon and weapons[selected_weapon] == revolver:
 				revolver.fire()

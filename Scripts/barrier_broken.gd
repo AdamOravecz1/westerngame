@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 
 	if nav_mesh.is_baking():
-		await nav_mesh.bake_finished
+		await get_tree().create_timer(.5, false).timeout
 
 	nav_mesh.bake_navigation_mesh()
 	await nav_mesh.bake_finished

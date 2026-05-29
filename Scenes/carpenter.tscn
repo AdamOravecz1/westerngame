@@ -27,6 +27,9 @@ radius = 1.0532227
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wxyw"]
 size = Vector3(3.3027344, 3.7958984, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ih2xn"]
+size = Vector3(5.5257874, 1.6142714, 4.1488953)
+
 [node name="Carpenter" unique_id=2108946224 instance=ExtResource("1_kykgb")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("2_ih2xn")
@@ -116,3 +119,43 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" index="0" unique_id=1249621311]
 transform = Transform3D(0.9612613, 0, 0.27563724, 0, 0.99999976, 0, -0.27563724, 0, 0.9612613, -4.3049707, 1.8614345, 7.36644)
 shape = SubResource("BoxShape3D_2wxyw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="82" unique_id=425160044]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=269364030]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=272403881]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="Barrier" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=1424413708]
+layout_mode = 2
+text = "Barrier"
+
+[node name="Barrel" type="Button" parent="CanvasLayer/VBoxContainer" index="2" unique_id=798783066]
+layout_mode = 2
+text = "Barrel"
+
+[node name="Menu" type="StaticBody3D" parent="." index="83" unique_id=1135331707]
+transform = Transform3D(0.9999054, 0, 0.01375276, 0, 1, 0, -0.01375276, 0, 0.9999054, -0.50881743, 0, -8.144243)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=898020239]
+transform = Transform3D(0.999991, 0, -2.7939677e-09, 0, 0.999991, 0, 2.7939677e-09, 0, 0.999991, -3.6821628, 2.171186, 4.464926)
+shape = SubResource("BoxShape3D_ih2xn")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Barrier" to="." method="_on_barrier_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Barrel" to="." method="_on_barrel_pressed"]
