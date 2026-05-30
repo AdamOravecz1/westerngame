@@ -65,6 +65,7 @@ func destroy(from_position: Vector3, force: float = 5.0):
 		queue_free()
 
 func place():
+	$CanvasLayer.visible = false
 	$Barrier/CollisionShape3D.disabled = false
 	placed = true
 	player.placing_barrier = false

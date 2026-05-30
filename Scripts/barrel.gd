@@ -56,6 +56,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			body.get_owner().hit()
 			
 func place():
+	$CanvasLayer.visible = false
 	$StaticBody3D/CollisionShape3D.disabled = false
 	placed = true
 	player.placing_barrier = false

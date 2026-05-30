@@ -229,6 +229,23 @@ collision_mask = 289
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23327637, 0.5826416, 0)
 shape = SubResource("BoxShape3D_rkote")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1578590606]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1458864051]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -257.0
+offset_right = 154.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[Q] to rotate left            [E] to rotate right
+                [Enter] to place down"
+
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]
 [connection signal="body_entered" from="HideArea2" to="." method="_on_hide_area_2_body_entered"]

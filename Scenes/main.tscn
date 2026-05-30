@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bod7rerxd0ui" path="res://Scenes/revolver_enemy.tscn" id="2_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://b8hopjf0x44ks" path="res://Scenes/revolver_friend.tscn" id="3_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
@@ -71,6 +72,9 @@ script = ExtResource("1_ynf5e")
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
 
 [node name="RevolverEnemy" parent="Enemies" unique_id=1458915881 instance=ExtResource("2_d1ilt")]
+
+[node name="RevolverFriend" parent="Enemies" unique_id=1340275751 instance=ExtResource("3_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 

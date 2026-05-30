@@ -809,6 +809,23 @@ collision_mask = 289
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023303032, 0.48861694, 0)
 shape = SubResource("CylinderShape3D_n4cgw")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=905975152]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=252865343]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -257.0
+offset_right = 154.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[Q] to rotate left            [E] to rotate right
+                [Enter] to place down"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="OverlapChecker" to="." method="_on_overlap_checker_body_entered"]
 [connection signal="body_exited" from="OverlapChecker" to="." method="_on_overlap_checker_body_exited"]

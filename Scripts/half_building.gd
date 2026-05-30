@@ -49,6 +49,7 @@ func _on_upgrade_pressed() -> void:
 	var original_scale = new_building.scale
 
 	get_parent().add_child(new_building)
+	get_parent().move_child(new_building, index + 1)
 	new_building.global_transform = global_transform
 	new_building.scale = original_scale
 	

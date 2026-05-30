@@ -114,6 +114,18 @@ func look_at_player(delta):
 				target_yaw,
 				rotation_speed * delta
 			)
+			
+func look_at_target(target, delta):
+		var look_dir = target.global_position - global_position
+		look_dir.y = 0
+
+		if look_dir.length() > 0.01:
+			var target_yaw = atan2(look_dir.x, look_dir.z)
+			model.rotation.y = lerp_angle(
+				model.rotation.y,
+				target_yaw,
+				rotation_speed * delta
+			)
 
 
 func delete_after_death():
