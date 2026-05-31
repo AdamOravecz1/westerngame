@@ -72,9 +72,10 @@ script = ExtResource("1_ynf5e")
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
 
 [node name="RevolverEnemy" parent="Enemies" unique_id=1458915881 instance=ExtResource("2_d1ilt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.451977)
 
 [node name="RevolverFriend" parent="Enemies" unique_id=1340275751 instance=ExtResource("3_d1ilt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1524754, 0, -16.241398)
 
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 

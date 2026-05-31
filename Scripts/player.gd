@@ -75,6 +75,7 @@ var placing_barrier := false
 var paused = false
 
 func _ready():
+	add_to_group("friend")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	RefreshBulletCount()

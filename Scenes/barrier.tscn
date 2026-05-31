@@ -146,10 +146,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2q4rf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_megwv"]
-size = Vector3(0.65306544, 1, 0.2398014)
+size = Vector3(0.721064, 1, 0.2398014)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig2pw"]
-size = Vector3(0.69646454, 1, 0.2489624)
+size = Vector3(0.75008774, 1, 0.2489624)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkote"]
 size = Vector3(0.3972168, 1.2028809, 1)
@@ -184,7 +184,7 @@ collision_layer = 260
 collision_mask = 261
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea" unique_id=1550250702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15252358, 0.5420926, -0.023070335)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11852431, 0.5420926, -0.023070335)
 shape = SubResource("BoxShape3D_megwv")
 debug_color = Color(0.97814435, 0, 0.40443814, 1)
 
@@ -194,23 +194,15 @@ collision_layer = 260
 collision_mask = 261
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea2" unique_id=9867107]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108780175, 0.542, -0.018222898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081968576, 0.542, -0.018222898)
 shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
-[node name="PlayerChecker" type="RayCast3D" parent="." unique_id=1974754038]
+[node name="Checker1Pos" type="Node3D" parent="." unique_id=878130989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2486534, 0.16285165, 0)
-target_position = Vector3(0, 0, -50)
-collision_mask = 16
-collide_with_areas = true
-debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="PlayerChecker2" type="RayCast3D" parent="." unique_id=1545438612]
+[node name="Checker2Pos" type="Node3D" parent="." unique_id=331350949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8855137, 0.16332348, 0)
-target_position = Vector3(0, 0, -50)
-collision_mask = 16
-collide_with_areas = true
-debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="Barrier" type="StaticBody3D" parent="." unique_id=1287203103]
 collision_layer = 304

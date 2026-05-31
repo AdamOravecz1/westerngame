@@ -7,6 +7,13 @@ extends Node3D
 @onready var main = get_tree().get_first_node_in_group("Main")
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+@onready var valid_barrier_checker_scene = preload("res://Scenes/valid_barrier_checker.tscn")
+
+var friends_cache = []
+
+var checker1_rays = []
+var checker2_rays = []
+
 var hide_area_valid := true
 var hide_area2_valid := true
 var can_place_down := true
@@ -16,6 +23,8 @@ var placed := false
 
 func _ready():
 	add_to_group("barrier")
+
+	create_friend_checkers()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ok") and not placed:
@@ -28,22 +37,63 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("rotate_right") and not placed:
 		rotate_y(deg_to_rad(-90 * delta))
 
-	if placed:
-		$PlayerChecker.look_at(player.global_position, Vector3.UP)
-		$PlayerChecker2.look_at(player.global_position, Vector3.UP)
+	if !placed:
+		return
 
-		if $PlayerChecker.get_collider() == $Barrier and Vector2($HideArea.global_position.x, $HideArea.global_position.z) \
-		.distance_to(Vector2(player.global_position.x, player.global_position.z)) >= 3:
-			$HideArea/CollisionShape3D.disabled = false
-		else:
-			$HideArea/CollisionShape3D.disabled = true
+	var hide_area1_enabled = true
+	var hide_area2_enabled = true
 
-		if $PlayerChecker2.get_collider() == $Barrier and Vector2($HideArea2.global_position.x, $HideArea2.global_position.z) \
-		.distance_to(Vector2(player.global_position.x, player.global_position.z)) >= 3:
-			$HideArea2/CollisionShape3D.disabled = false
-		else:
-			$HideArea2/CollisionShape3D.disabled = true
+	# -------------------------
+	# SIDE 1 (ALL must hit)
+	# -------------------------
+	for data in checker1_rays:
+		var ray = data["ray"]
+		var friend = data["friend"]
 
+		if !is_instance_valid(friend):
+			hide_area1_enabled = false
+			break
+
+		ray.look_at(friend.global_position, Vector3.UP)
+		
+
+		if ray.get_collider() != $Barrier:
+			hide_area1_enabled = false
+
+
+		if Vector2($HideArea.global_position.x, $HideArea.global_position.z).distance_to(
+			Vector2(player.global_position.x, player.global_position.z)
+		) < 3:
+			hide_area1_enabled = false
+
+
+	# -------------------------
+	# SIDE 2 (ALL must hit)
+	# -------------------------
+	for data in checker2_rays:
+		var ray = data["ray"]
+		var friend = data["friend"]
+
+		if !is_instance_valid(friend):
+			hide_area2_enabled = false
+			break
+
+		ray.look_at(friend.global_position, Vector3.UP)
+		
+
+		if ray.get_collider() != $Barrier:
+			hide_area2_enabled = false
+			
+		
+
+		if Vector2($HideArea2.global_position.x, $HideArea2.global_position.z).distance_to(
+			Vector2(player.global_position.x, player.global_position.z)
+		) < 3:
+			hide_area2_enabled = false
+
+	$HideArea/CollisionShape3D.disabled = !hide_area1_enabled
+	$HideArea2/CollisionShape3D.disabled = !hide_area2_enabled
+	
 func destroy(from_position: Vector3, force: float = 5.0):
 	if full:
 		full = false
@@ -110,6 +160,37 @@ func can_place_barrier() -> bool:
 			#return false
 
 	return true
+	
+
+func create_friend_checkers():
+	for data in checker1_rays:
+		data["ray"].queue_free()
+
+	for data in checker2_rays:
+		data["ray"].queue_free()
+
+	checker1_rays.clear()
+	checker2_rays.clear()
+
+	friends_cache = get_tree().get_nodes_in_group("friend")
+
+	for friend in friends_cache:
+		var ray1 = valid_barrier_checker_scene.instantiate()
+		$Checker1Pos.add_child(ray1)
+
+		checker1_rays.append({
+			"ray": ray1,
+			"friend": friend
+		})
+
+		var ray2 = valid_barrier_checker_scene.instantiate()
+		$Checker2Pos.add_child(ray2)
+
+		checker2_rays.append({
+			"ray": ray2,
+			"friend": friend
+		})
+		
 
 func _on_hide_area_body_entered(body: Node3D) -> void:
 	hide_area_valid = false

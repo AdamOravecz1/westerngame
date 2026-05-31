@@ -35,6 +35,8 @@ func _physics_process(delta):
 
 	# Aim at target
 	var dir = (target_enemy.global_position - $PlayerShoot.global_position + Vector3(0, 1, 0)).normalized()
+	if target_enemy == player:
+		dir = (target_enemy.global_position - $PlayerShoot.global_position).normalized()
 
 	$PlayerShoot.rotation.y = atan2(dir.x, dir.z)
 	$PlayerShoot.rotation.x = asin(-dir.y)
@@ -86,7 +88,7 @@ func _physics_process(delta):
 	var current = animation_tree.get("parameters/Blend3/blend_amount")
 	var current2 = animation_tree.get("parameters/Blend3 2/blend_amount")
 	var current3 = animation_tree.get("parameters/Blend2/blend_amount")
-
+	
 	if shooting_from_cover:
 
 		var new_value = lerp(current2, 1.0, blend_speed * delta)
@@ -96,6 +98,8 @@ func _physics_process(delta):
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 
 		look_at_target(target_enemy, delta)
+		if name == "RevolverEnemy":
+			print("shooting_from_cover")
 
 	elif in_cover and player_in_range:
 
@@ -111,6 +115,8 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 
 		look_at_target(target_enemy, delta)
+		if name == "RevolverEnemy":
+			print("in_cover")
 
 	elif sees_cover and player_in_range:
 
@@ -120,6 +126,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(cover_location, delta)
+		if name == "RevolverEnemy":
+			print("sees_cover")
 
 	elif player_in_range:
 
@@ -151,10 +159,11 @@ func _physics_process(delta):
 			velocity = direction * speed
 
 		look_at_target(target_enemy, delta)
-		print("player_in_range")
+		if name == "RevolverEnemy":
+			print("player_in_range")
+		
 
 	else:
-		print("else")
 		animation_tree.set("parameters/Blend3 2/blend_amount", -1.0)
 
 		ChangeAnimation(0.0, current, delta)
@@ -163,6 +172,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(target_enemy.global_position, delta)
+		if name == "RevolverEnemy":
+			print("else", player_in_range)
 
 	move_and_slide()
 
