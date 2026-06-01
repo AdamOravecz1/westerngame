@@ -10,9 +10,9 @@ var placed := false
 
 var can_place_down := true
 
-
-func _ready():
-	add_to_group("barrier")
+#
+#func _ready():
+	#add_to_group("barrier")
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ok") and not placed:

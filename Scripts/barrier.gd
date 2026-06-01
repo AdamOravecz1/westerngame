@@ -10,12 +10,18 @@ extends Node3D
 @onready var valid_barrier_checker_scene = preload("res://Scenes/valid_barrier_checker.tscn")
 
 var friends_cache = []
+var enemy_chache = []
 
 var checker1_rays = []
 var checker2_rays = []
 
+var checker3_rays = []
+var checker4_rays = []
+
 var hide_area_valid := true
 var hide_area2_valid := true
+var hide_area3_valid := true
+var hide_area4_valid := true
 var can_place_down := true
 
 var full := true
@@ -23,7 +29,7 @@ var placed := false
 
 func _ready():
 	add_to_group("barrier")
-
+	create_enemy_checkers()
 	create_friend_checkers()
 
 func _process(delta: float) -> void:
@@ -94,6 +100,42 @@ func _process(delta: float) -> void:
 	$HideArea/CollisionShape3D.disabled = !hide_area1_enabled
 	$HideArea2/CollisionShape3D.disabled = !hide_area2_enabled
 	
+	var hide_area3_enabled = true
+	var hide_erea4_enabled = true
+
+	for data in checker3_rays:
+		var ray = data["ray"]
+		var enemy = data["enemy"]
+
+		if !is_instance_valid(enemy):
+			hide_area3_enabled = false
+			break
+
+		ray.look_at(enemy.global_position, Vector3.UP)
+		
+
+		if ray.get_collider() != $Barrier:
+			hide_area3_enabled = false
+
+	for data in checker4_rays:
+		var ray = data["ray"]
+		var enemy = data["enemy"]
+
+		if !is_instance_valid(enemy):
+			hide_erea4_enabled = false
+			break
+
+		ray.look_at(enemy.global_position, Vector3.UP)
+		
+
+		if ray.get_collider() != $Barrier:
+			hide_erea4_enabled = false
+			
+		
+
+	$HideArea3/CollisionShape3D.disabled = !hide_area3_enabled
+	$HideArea4/CollisionShape3D.disabled = !hide_erea4_enabled
+	
 func destroy(from_position: Vector3, force: float = 5.0):
 	if full:
 		full = false
@@ -160,37 +202,75 @@ func can_place_barrier() -> bool:
 			#return false
 
 	return true
-	
 
 func create_friend_checkers():
+	# Delete old rays
 	for data in checker1_rays:
-		data["ray"].queue_free()
+		if is_instance_valid(data["ray"]):
+			data["ray"].queue_free()
 
 	for data in checker2_rays:
-		data["ray"].queue_free()
+		if is_instance_valid(data["ray"]):
+			data["ray"].queue_free()
 
+	# Delete dictionaries from arrays
 	checker1_rays.clear()
 	checker2_rays.clear()
 
 	friends_cache = get_tree().get_nodes_in_group("friend")
 
 	for friend in friends_cache:
-		var ray1 = valid_barrier_checker_scene.instantiate()
-		$Checker1Pos.add_child(ray1)
+		if friend.health >= 0:
+			var ray1 = valid_barrier_checker_scene.instantiate()
+			$Checker1Pos.add_child(ray1)
 
-		checker1_rays.append({
-			"ray": ray1,
-			"friend": friend
-		})
+			checker1_rays.append({
+				"ray": ray1,
+				"friend": friend
+			})
 
-		var ray2 = valid_barrier_checker_scene.instantiate()
-		$Checker2Pos.add_child(ray2)
+			var ray2 = valid_barrier_checker_scene.instantiate()
+			$Checker2Pos.add_child(ray2)
 
-		checker2_rays.append({
-			"ray": ray2,
-			"friend": friend
-		})
+			checker2_rays.append({
+				"ray": ray2,
+				"friend": friend
+			})
 		
+		
+func create_enemy_checkers():
+	# Delete old rays
+	for data in checker3_rays:
+		if is_instance_valid(data["ray"]):
+			data["ray"].queue_free()
+
+	for data in checker4_rays:
+		if is_instance_valid(data["ray"]):
+			data["ray"].queue_free()
+
+	# Delete dictionaries from arrays
+	checker3_rays.clear()
+	checker4_rays.clear()
+
+	enemy_chache = get_tree().get_nodes_in_group("enemy")
+
+	for enemy in enemy_chache:
+		if enemy.health >= 0:
+			var ray1 = valid_barrier_checker_scene.instantiate()
+			$Checker1Pos.add_child(ray1)
+
+			checker3_rays.append({
+				"ray": ray1,
+				"enemy": enemy
+			})
+
+			var ray2 = valid_barrier_checker_scene.instantiate()
+			$Checker2Pos.add_child(ray2)
+
+			checker4_rays.append({
+				"ray": ray2,
+				"enemy": enemy
+			})
 
 func _on_hide_area_body_entered(body: Node3D) -> void:
 	hide_area_valid = false
@@ -211,3 +291,19 @@ func _on_overlap_checker_body_entered(body: Node3D) -> void:
 
 func _on_overlap_checker_body_exited(body: Node3D) -> void:
 	can_place_down = true
+
+
+func _on_hide_area_3_body_entered(body: Node3D) -> void:
+	hide_area3_valid = false
+
+
+func _on_hide_area_3_body_exited(body: Node3D) -> void:
+	hide_area3_valid = true
+
+
+func _on_hide_area_4_body_entered(body: Node3D) -> void:
+	hide_area4_valid = false
+
+
+func _on_hide_area_4_body_exited(body: Node3D) -> void:
+	hide_area4_valid = true

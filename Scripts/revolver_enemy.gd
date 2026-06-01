@@ -26,7 +26,7 @@ func _physics_process(delta):
 			continue
 
 		var dist = global_position.distance_to(enemy.global_position)
-		if dist < closest_enemy_dist:
+		if dist < closest_enemy_dist and enemy.health > 0:
 			closest_enemy_dist = dist
 			target_enemy = enemy
 
@@ -72,6 +72,12 @@ func _physics_process(delta):
 		if area.name == "HideArea2" and not area.get_parent().hide_area2_valid:
 			can_hide_there = false
 
+		if area.name == "HideArea3" and not area.get_parent().hide_area3_valid:
+			can_hide_there = false
+
+		if area.name == "HideArea4" and not area.get_parent().hide_area4_valid:
+			can_hide_there = false
+
 		if (
 			can_hide_there
 			and dist < closest
@@ -98,8 +104,8 @@ func _physics_process(delta):
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("shooting_from_cover")
+		#if name == "RevolverEnemy":
+			#print("shooting_from_cover")
 
 	elif in_cover and player_in_range:
 
@@ -115,8 +121,8 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("in_cover")
+		#if name == "RevolverEnemy":
+			#print("in_cover")
 
 	elif sees_cover and player_in_range:
 
@@ -126,8 +132,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(cover_location, delta)
-		if name == "RevolverEnemy":
-			print("sees_cover")
+		#if name == "RevolverEnemy":
+			#print("sees_cover")
 
 	elif player_in_range:
 
@@ -159,8 +165,8 @@ func _physics_process(delta):
 			velocity = direction * speed
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("player_in_range")
+		#if name == "RevolverEnemy":
+			#print("player_in_range")
 		
 
 	else:
@@ -172,8 +178,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(target_enemy.global_position, delta)
-		if name == "RevolverEnemy":
-			print("else", player_in_range)
+		#if name == "RevolverEnemy":
+			#print("else", player_in_range)
 
 	move_and_slide()
 
@@ -216,7 +222,7 @@ func _on_fire_timeout() -> void:
 				shooting_from_cover = false
 				#print("shot_from_cover")
 			
-		elif player_in_range:
+		elif player_in_range and health > 0:
 			shoot_gun()
 			#print("just_shot")
 
@@ -256,9 +262,14 @@ func delete_after_death():
 	$CoverChecker.queue_free()
 	$Fire.stop()
 
+
 	for bone in $BasicConnectedDude/Armature/Skeleton3D.get_children():
 		if bone is BoneAttachment3D:
 			for shape in bone.get_children():
 				if shape is Area3D:
 					shape.monitoring = false
 					shape.get_child(0).queue_free()
+					
+	if get_script() == preload("res://Scripts/revolver_enemy.gd"):
+		for barrier in get_tree().get_nodes_in_group("barrier"):
+			barrier.create_enemy_checkers()

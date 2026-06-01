@@ -198,6 +198,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081968576, 0.542, -0.01822
 shape = SubResource("BoxShape3D_ig2pw")
 debug_color = Color(0.9584171, 0, 0.53013366, 1)
 
+[node name="HideArea3" type="Area3D" parent="." unique_id=1265461884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9320932, 0.05, 0)
+collision_layer = 768
+collision_mask = 769
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea3" unique_id=983094127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11852431, 0.5420926, -0.023070335)
+shape = SubResource("BoxShape3D_megwv")
+debug_color = Color(0.97814435, 0, 0.40443814, 1)
+
+[node name="HideArea4" type="Area3D" parent="." unique_id=1956159563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505, 0.05, 0)
+collision_layer = 768
+collision_mask = 769
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HideArea4" unique_id=240616455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081968576, 0.542, -0.018222898)
+shape = SubResource("BoxShape3D_ig2pw")
+debug_color = Color(0.9584171, 0, 0.53013366, 1)
+
 [node name="Checker1Pos" type="Node3D" parent="." unique_id=878130989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2486534, 0.16285165, 0)
 
@@ -242,5 +262,9 @@ text = "[Q] to rotate left            [E] to rotate right
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]
 [connection signal="body_entered" from="HideArea2" to="." method="_on_hide_area_2_body_entered"]
 [connection signal="body_exited" from="HideArea2" to="." method="_on_hide_area_2_body_exited"]
+[connection signal="body_entered" from="HideArea3" to="." method="_on_hide_area_3_body_entered"]
+[connection signal="body_exited" from="HideArea3" to="." method="_on_hide_area_3_body_exited"]
+[connection signal="body_entered" from="HideArea4" to="." method="_on_hide_area_4_body_entered"]
+[connection signal="body_exited" from="HideArea4" to="." method="_on_hide_area_4_body_exited"]
 [connection signal="body_entered" from="OverlapChecker" to="." method="_on_overlap_checker_body_entered"]
 [connection signal="body_exited" from="OverlapChecker" to="." method="_on_overlap_checker_body_exited"]
