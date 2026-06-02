@@ -70,6 +70,8 @@ var switching_weapon := false
 
 var pitch := 0.0
 
+var cover_location := Vector3.ZERO
+
 var in_shop := false
 var placing_barrier := false
 var paused = false
@@ -313,10 +315,6 @@ func _physics_process(delta: float) -> void:
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
 	camera.rotation.x = pitch + recoil_offset
 	
-	# Debug Add Bullet:
-	if Input.is_action_just_pressed("addbullet"):
-		free_bullets += 1
-		RefreshBulletCount()
 
 	move_and_slide()
 

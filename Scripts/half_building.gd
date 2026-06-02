@@ -77,3 +77,9 @@ func _on_barrier_pressed() -> void:
 	$CanvasLayer.visible = false
 
 	
+
+
+func _on_friend_pressed() -> void:
+	main.friend_counter += 1
+	main.friend_wave_point = $FriendWavePoint.global_position
+	$CanvasLayer/FriendCounter.text = str(main.friend_counter)

@@ -12,6 +12,9 @@ var looking_for = "friend"
 
 func _ready() -> void:
 	add_to_group("enemy")
+	if get_script() == preload("res://Scripts/revolver_enemy.gd"):
+		for barrier in get_tree().get_nodes_in_group("barrier"):
+			barrier.create_enemy_checkers()
 	$Fire.wait_time = randf_range(3.0, 5.0)
 	skeleton = $BasicConnectedDude/Armature/Skeleton3D/PhysicalBoneSimulator3D
 	model = $BasicConnectedDude
@@ -19,6 +22,7 @@ func _ready() -> void:
 func _physics_process(delta):
 
 	# Find closest enemy
+
 	var closest_enemy_dist = INF
 
 	for enemy in get_tree().get_nodes_in_group(looking_for):
@@ -32,6 +36,8 @@ func _physics_process(delta):
 
 	if target_enemy == null:
 		return
+		
+	print(target_enemy)
 
 	# Aim at target
 	var dir = (target_enemy.global_position - $PlayerShoot.global_position + Vector3(0, 1, 0)).normalized()
@@ -51,7 +57,8 @@ func _physics_process(delta):
 		)
 
 	# Enemy list for cover reservation
-	enemies = get_tree().get_nodes_in_group("enemy")
+	var group = get_groups()
+	enemies = get_tree().get_nodes_in_group(group[0])
 	enemies.erase(self)
 
 	var closest := INF
@@ -65,18 +72,20 @@ func _physics_process(delta):
 			if enemy.cover_location == area.global_position:
 				can_hide_there = false
 				break
+		
+		if group[0] == "enemy":
+			if area.name == "HideArea" and not area.get_parent().hide_area_valid:
+				can_hide_there = false
 
-		if area.name == "HideArea" and not area.get_parent().hide_area_valid:
-			can_hide_there = false
+			if area.name == "HideArea2" and not area.get_parent().hide_area2_valid:
+				can_hide_there = false
 
-		if area.name == "HideArea2" and not area.get_parent().hide_area2_valid:
-			can_hide_there = false
+		elif group[0] == "friend":
+			if area.name == "HideArea3" and not area.get_parent().hide_area3_valid:
+				can_hide_there = false
 
-		if area.name == "HideArea3" and not area.get_parent().hide_area3_valid:
-			can_hide_there = false
-
-		if area.name == "HideArea4" and not area.get_parent().hide_area4_valid:
-			can_hide_there = false
+			if area.name == "HideArea4" and not area.get_parent().hide_area4_valid:
+				can_hide_there = false
 
 		if (
 			can_hide_there
@@ -88,8 +97,10 @@ func _physics_process(delta):
 			closest = dist
 			cover_location = area.global_position
 			sees_cover = true
+		
 		elif closest == INF:
 			sees_cover = false
+
 
 	var current = animation_tree.get("parameters/Blend3/blend_amount")
 	var current2 = animation_tree.get("parameters/Blend3 2/blend_amount")
@@ -104,8 +115,8 @@ func _physics_process(delta):
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 
 		look_at_target(target_enemy, delta)
-		#if name == "RevolverEnemy":
-			#print("shooting_from_cover")
+		if name == "RevolverEnemy":
+			print("shooting_from_cover")
 
 	elif in_cover and player_in_range:
 
@@ -121,8 +132,8 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 
 		look_at_target(target_enemy, delta)
-		#if name == "RevolverEnemy":
-			#print("in_cover")
+		if name == "RevolverEnemy":
+			print("in_cover")
 
 	elif sees_cover and player_in_range:
 
@@ -132,8 +143,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(cover_location, delta)
-		#if name == "RevolverEnemy":
-			#print("sees_cover")
+		if name == "RevolverEnemy":
+			print("sees_cover")
 
 	elif player_in_range:
 
@@ -165,8 +176,8 @@ func _physics_process(delta):
 			velocity = direction * speed
 
 		look_at_target(target_enemy, delta)
-		#if name == "RevolverEnemy":
-			#print("player_in_range")
+		if name == "RevolverEnemy":
+			print("player_in_range")
 		
 
 	else:
@@ -178,8 +189,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(target_enemy.global_position, delta)
-		#if name == "RevolverEnemy":
-			#print("else", player_in_range)
+		if name == "RevolverEnemy":
+			print("else", player_in_range)
 
 	move_and_slide()
 
@@ -230,10 +241,12 @@ func _on_fire_timeout() -> void:
 
 func _on_cover_checker_area_entered(area: Area3D) -> void:
 	if area.name.begins_with("HideArea") and area.global_position == cover_location:
+		print("area_entered")
 		in_cover = true
 
 func _on_cover_checker_area_exited(area: Area3D) -> void:
 	if area.name.begins_with("HideArea"):
+		print("area_exited")
 		animation_tree.set("parameters/Blend3/blend_amount", -1.0)
 		in_cover = false
 		shooting_from_cover = false
@@ -248,6 +261,7 @@ func _on_cover_finder_area_exited(area: Area3D) -> void:
 		if area.global_position == cover_location:
 			shooting_from_cover = false
 		sees_cover = false
+	
 		
 func shoot_gun():
 	for i in $BasicConnectedDude/Armature/Skeleton3D/Gun/MuzzleFlash.get_children():

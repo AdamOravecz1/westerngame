@@ -56,21 +56,20 @@ func _process(delta: float) -> void:
 		var ray = data["ray"]
 		var friend = data["friend"]
 
-		if !is_instance_valid(friend):
-			hide_area1_enabled = false
-			break
-
-		ray.look_at(friend.global_position, Vector3.UP)
-		
-
-		if ray.get_collider() != $Barrier:
-			hide_area1_enabled = false
+		if is_instance_valid(friend):
 
 
-		if Vector2($HideArea.global_position.x, $HideArea.global_position.z).distance_to(
-			Vector2(player.global_position.x, player.global_position.z)
-		) < 3:
-			hide_area1_enabled = false
+			ray.look_at(friend.global_position, Vector3.UP)
+			
+
+			if ray.get_collider() != $Barrier:
+				hide_area1_enabled = false
+
+
+			#if Vector2($HideArea.global_position.x, $HideArea.global_position.z).distance_to(
+				#Vector2(player.global_position.x, player.global_position.z)
+			#) < 3:
+				#hide_area1_enabled = false
 
 
 	# -------------------------
@@ -80,22 +79,20 @@ func _process(delta: float) -> void:
 		var ray = data["ray"]
 		var friend = data["friend"]
 
-		if !is_instance_valid(friend):
-			hide_area2_enabled = false
-			break
+		if is_instance_valid(friend):
 
-		ray.look_at(friend.global_position, Vector3.UP)
-		
-
-		if ray.get_collider() != $Barrier:
-			hide_area2_enabled = false
+			ray.look_at(friend.global_position, Vector3.UP)
 			
-		
 
-		if Vector2($HideArea2.global_position.x, $HideArea2.global_position.z).distance_to(
-			Vector2(player.global_position.x, player.global_position.z)
-		) < 3:
-			hide_area2_enabled = false
+			if ray.get_collider() != $Barrier:
+				hide_area2_enabled = false
+				
+			
+
+			#if Vector2($HideArea2.global_position.x, $HideArea2.global_position.z).distance_to(
+				#Vector2(player.global_position.x, player.global_position.z)
+			#) < 3:
+				#hide_area2_enabled = false
 
 	$HideArea/CollisionShape3D.disabled = !hide_area1_enabled
 	$HideArea2/CollisionShape3D.disabled = !hide_area2_enabled
@@ -107,29 +104,27 @@ func _process(delta: float) -> void:
 		var ray = data["ray"]
 		var enemy = data["enemy"]
 
-		if !is_instance_valid(enemy):
-			hide_area3_enabled = false
-			break
+		if is_instance_valid(enemy):
 
-		ray.look_at(enemy.global_position, Vector3.UP)
-		
 
-		if ray.get_collider() != $Barrier:
-			hide_area3_enabled = false
+			ray.look_at(enemy.global_position, Vector3.UP)
+			
+
+			if ray.get_collider() != $Barrier:
+				hide_area3_enabled = false
 
 	for data in checker4_rays:
 		var ray = data["ray"]
 		var enemy = data["enemy"]
 
-		if !is_instance_valid(enemy):
-			hide_erea4_enabled = false
-			break
+		if is_instance_valid(enemy):
 
-		ray.look_at(enemy.global_position, Vector3.UP)
-		
 
-		if ray.get_collider() != $Barrier:
-			hide_erea4_enabled = false
+			ray.look_at(enemy.global_position, Vector3.UP)
+			
+
+			if ray.get_collider() != $Barrier:
+				hide_erea4_enabled = false
 			
 		
 
@@ -190,16 +185,7 @@ func can_place_barrier() -> bool:
 	if not can_place_down:
 		print("overlap")
 		return false
-	## Distance check
-	#var barriers = get_tree().get_nodes_in_group("barrier")
-	#
-	#for barrier in barriers:
-		#if barrier == self:
-			#continue
-	#
-		#if global_position.distance_to(barrier.global_position) < min_barrier_distance:
-			#print("Too close to another barrier!")
-			#return false
+
 
 	return true
 
@@ -212,6 +198,9 @@ func create_friend_checkers():
 	for data in checker2_rays:
 		if is_instance_valid(data["ray"]):
 			data["ray"].queue_free()
+			
+	print($Checker1Pos.get_children())
+	print($Checker2Pos.get_children())
 
 	# Delete dictionaries from arrays
 	checker1_rays.clear()
@@ -220,7 +209,7 @@ func create_friend_checkers():
 	friends_cache = get_tree().get_nodes_in_group("friend")
 
 	for friend in friends_cache:
-		if friend.health >= 0:
+		if friend.health > 0:
 			var ray1 = valid_barrier_checker_scene.instantiate()
 			$Checker1Pos.add_child(ray1)
 
@@ -247,6 +236,10 @@ func create_enemy_checkers():
 	for data in checker4_rays:
 		if is_instance_valid(data["ray"]):
 			data["ray"].queue_free()
+			
+	print($Checker1Pos.get_children())
+	print($Checker2Pos.get_children())
+
 
 	# Delete dictionaries from arrays
 	checker3_rays.clear()
@@ -255,7 +248,7 @@ func create_enemy_checkers():
 	enemy_chache = get_tree().get_nodes_in_group("enemy")
 
 	for enemy in enemy_chache:
-		if enemy.health >= 0:
+		if enemy.health > 0:
 			var ray1 = valid_barrier_checker_scene.instantiate()
 			$Checker1Pos.add_child(ray1)
 
