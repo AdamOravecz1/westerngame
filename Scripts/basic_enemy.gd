@@ -47,6 +47,7 @@ func hit(damage, pos):
 		die()
 	
 func die(from_position: Vector3 = global_position, strength: float = 0.0, l_damp = 6, a_damp = 9, grav = 1):
+	health = 0
 	player.AddMoney(5)
 	if is_ragdoll:
 		return

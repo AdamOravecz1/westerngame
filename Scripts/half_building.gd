@@ -6,6 +6,10 @@ extends Node3D
 @export var building_scene = preload("res://Scenes/barracks.tscn")
 
 func _ready() -> void:
+	print(name)
+	if name == "HalfBarracks":
+		await get_tree().process_frame
+		main.friend_wave_point = $FriendWavePoint.global_position
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():
 		await nav_mesh.bake_finished
@@ -80,6 +84,7 @@ func _on_barrier_pressed() -> void:
 
 
 func _on_friend_pressed() -> void:
-	main.friend_counter += 1
-	main.friend_wave_point = $FriendWavePoint.global_position
-	$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+	if main.friend_counter < 2:
+		main.friend_counter += 1
+		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+		

@@ -36,6 +36,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ok") and not placed:
 		if can_place_barrier():
 			place()
+			
+	if Input.is_action_just_pressed("cancel") and not placed:
+		player.placing_barrier = false
+		queue_free()
 
 	if Input.is_action_pressed("rotate_left") and not placed:
 		rotate_y(deg_to_rad(90 * delta))
@@ -199,8 +203,6 @@ func create_friend_checkers():
 		if is_instance_valid(data["ray"]):
 			data["ray"].queue_free()
 			
-	print($Checker1Pos.get_children())
-	print($Checker2Pos.get_children())
 
 	# Delete dictionaries from arrays
 	checker1_rays.clear()
@@ -237,9 +239,6 @@ func create_enemy_checkers():
 		if is_instance_valid(data["ray"]):
 			data["ray"].queue_free()
 			
-	print($Checker1Pos.get_children())
-	print($Checker2Pos.get_children())
-
 
 	# Delete dictionaries from arrays
 	checker3_rays.clear()

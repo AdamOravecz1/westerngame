@@ -251,7 +251,8 @@ func _physics_process(delta: float) -> void:
 			
 
 		# Duck
-		if Input.is_action_just_pressed("duck"):
+		if Input.is_action_just_pressed("duck") and not placing_barrier and not duck:
+			duck = true
 			speed = 3.0
 
 			var tween = get_tree().create_tween()
@@ -262,7 +263,8 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D.position.y -= diff / 2.0
 
 
-		elif Input.is_action_just_released("duck"):
+		elif Input.is_action_just_released("duck") and not placing_barrier and duck:
+			duck = false
 			speed = 6.0
 
 			var tween = get_tree().create_tween()

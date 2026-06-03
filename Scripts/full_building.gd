@@ -1,11 +1,17 @@
 extends Node3D
 
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var main = get_tree().get_first_node_in_group("Main")
 @onready var shop_menu = player.get_node("CanvasLayer/ShopMenu")
 @onready var nav_mesh = get_tree().get_first_node_in_group("NavigationRegion")
 var index = get_index()
 
 func _ready() -> void:
+	if name == "Barracks":
+		await get_tree().process_frame
+		main.friend_wave_point = $FriendWavePoint.global_position
+		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+	
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():
 		await nav_mesh.bake_finished
@@ -44,3 +50,9 @@ func _on_barrel_pressed() -> void:
 	shop_menu.shop(null)
 	player.placing_barrier = true
 	$CanvasLayer.visible = false
+	
+func _on_friend_pressed() -> void:
+	if main.friend_counter < 4:
+		main.friend_counter += 1
+		
+		$CanvasLayer/FriendCounter.text = str(main.friend_counter)

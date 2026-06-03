@@ -36,8 +36,6 @@ func _physics_process(delta):
 
 	if target_enemy == null:
 		return
-		
-	print(target_enemy)
 
 	# Aim at target
 	var dir = (target_enemy.global_position - $PlayerShoot.global_position + Vector3(0, 1, 0)).normalized()
@@ -51,9 +49,13 @@ func _physics_process(delta):
 	player_in_range = ($PlayerShoot.get_collider() == target_enemy)
 
 	# Gun ray target
-	if target_enemy.get_child_count() > 1:
+	if target_enemy.get_child_count() > 1 and target_enemy == player:
 		gun_ray.target_position = gun_ray.to_local(
 			target_enemy.get_child(1).global_position
+		)
+	else:
+		gun_ray.target_position = gun_ray.to_local(
+			target_enemy.global_position
 		)
 
 	# Enemy list for cover reservation
@@ -115,8 +117,8 @@ func _physics_process(delta):
 		animation_tree.set("parameters/Blend2/blend_amount", new_value2)
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("shooting_from_cover")
+		#if name == "RevolverEnemy":
+			#print("shooting_from_cover")
 
 	elif in_cover and player_in_range:
 
@@ -132,8 +134,8 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("in_cover")
+		#if name == "RevolverEnemy":
+			#print("in_cover")
 
 	elif sees_cover and player_in_range:
 
@@ -143,8 +145,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(cover_location, delta)
-		if name == "RevolverEnemy":
-			print("sees_cover")
+		#if name == "RevolverEnemy":
+			#print("sees_cover")
 
 	elif player_in_range:
 
@@ -176,8 +178,8 @@ func _physics_process(delta):
 			velocity = direction * speed
 
 		look_at_target(target_enemy, delta)
-		if name == "RevolverEnemy":
-			print("player_in_range")
+		#if name == "RevolverEnemy":
+			#print("player_in_range")
 		
 
 	else:
@@ -189,8 +191,8 @@ func _physics_process(delta):
 		has_strafe_target = false
 
 		follow_path(target_enemy.global_position, delta)
-		if name == "RevolverEnemy":
-			print("else", player_in_range)
+		#if name == "RevolverEnemy":
+			#print("else", player_in_range)
 
 	move_and_slide()
 

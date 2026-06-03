@@ -256,7 +256,8 @@ offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "[Q] to rotate left            [E] to rotate right
-                [Enter] to place down"
+                [Enter] to place down
+                     [Shift] to cancel"
 
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]

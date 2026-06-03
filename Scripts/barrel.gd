@@ -18,6 +18,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ok") and not placed:
 		if can_place_barrel():
 			place()
+			
+	if Input.is_action_just_pressed("cancel") and not placed:
+		player.placing_barrier = false
+		queue_free()
 
 	if Input.is_action_pressed("rotate_left") and not placed:
 		rotate_y(deg_to_rad(90 * delta))

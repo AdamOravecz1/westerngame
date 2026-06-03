@@ -1,7 +1,5 @@
 extends RevolverEnemy
 
-
-
 func _ready() -> void:
 	for barrier in get_tree().get_nodes_in_group("barrier"):
 		barrier.create_friend_checkers()

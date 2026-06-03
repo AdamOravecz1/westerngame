@@ -136,15 +136,11 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrade" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=272403881]
-layout_mode = 2
-text = "Upgrade"
-
-[node name="Barrier" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=1424413708]
+[node name="Barrier" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=1424413708]
 layout_mode = 2
 text = "Barrier"
 
-[node name="Barrel" type="Button" parent="CanvasLayer/VBoxContainer" index="2" unique_id=798783066]
+[node name="Barrel" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=798783066]
 layout_mode = 2
 text = "Barrel"
 

@@ -9,8 +9,8 @@ size = Vector3(22.287369, 9.430786, 7.7927704)
 [sub_resource type="BoxShape3D" id="BoxShape3D_coeoc"]
 size = Vector3(7.311981, 9.3116455, 8.178284)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3p7p4"]
-size = Vector3(7.743164, 8.717075, 10)
+[sub_resource type="BoxShape3D" id="BoxShape3D_87o8n"]
+size = Vector3(2.1677856, 8.501153, 5.092285)
 
 [node name="Barracks" unique_id=1925532788 instance=ExtResource("1_7aoon")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -32,10 +32,42 @@ shape = SubResource("BoxShape3D_7aoon")
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 10.195676, 4.1558213, 10.881649)
 shape = SubResource("BoxShape3D_coeoc")
 
-[node name="Foundation" type="StaticBody3D" parent="." index="11" unique_id=254458924]
+[node name="Menu" type="StaticBody3D" parent="." index="11" unique_id=1102135687]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 10.0827055, 0, 0)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Foundation" index="0" unique_id=1778414069]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 9.582313, 3.8583808, 0)
-shape = SubResource("BoxShape3D_3p7p4")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=2113397041]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -3.386642, 3.750357, -0.043644108)
+shape = SubResource("BoxShape3D_87o8n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="12" unique_id=401192738]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=1711650579]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Friend" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=180398373]
+layout_mode = 2
+text = "Friend"
+
+[node name="FriendCounter" type="Label" parent="CanvasLayer" index="1" unique_id=940818492]
+offset_left = 629.0
+offset_top = 308.0
+offset_right = 669.0
+offset_bottom = 331.0
+text = "0"
+
+[node name="FriendWavePoint" type="Node3D" parent="." index="13" unique_id=1166904458]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Friend" to="." method="_on_friend_pressed"]
