@@ -33,6 +33,8 @@ func _physics_process(delta):
 		if dist < closest_enemy_dist and enemy.health > 0:
 			closest_enemy_dist = dist
 			target_enemy = enemy
+		elif enemy.health <= 0:
+			target_enemy = null
 
 	if target_enemy == null:
 		return
@@ -55,7 +57,7 @@ func _physics_process(delta):
 		)
 	else:
 		gun_ray.target_position = gun_ray.to_local(
-			target_enemy.global_position
+			target_enemy.global_position + Vector3(0, 1, 0)
 		)
 
 	# Enemy list for cover reservation
@@ -169,8 +171,8 @@ func _physics_process(delta):
 		var destination = navigation_agent_3d.get_next_path_position()
 		var direction = destination - global_position
 		direction.y = 0
-
-		if direction.length() < strafe_reach_distance:
+		
+		if navigation_agent_3d.is_navigation_finished():
 			has_strafe_target = false
 			velocity = Vector3.ZERO
 		else:
@@ -271,11 +273,15 @@ func shoot_gun():
 	$Sounds/FireSound.play()
 	if gun_ray.get_collider() == player:
 		player.take_damage(global_position)
+	elif gun_ray.get_collider().has_method("hit"):
+		gun_ray.get_collider().hit(1, gun_ray.get_collision_point())
+	print(gun_ray.get_collider())
 	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 func delete_after_death():
 	$CoverFinder.queue_free()
 	$CoverChecker.queue_free()
+	$CollisionShape3D.queue_free()
 	$Fire.stop()
 
 
