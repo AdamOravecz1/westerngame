@@ -13,6 +13,9 @@ func _ready() -> void:
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():
 		await nav_mesh.bake_finished
+	if name == "HalfBlackSmith":
+		await get_tree().process_frame
+		player.unlock_shotgun()
 
 	nav_mesh.bake_navigation_mesh()
 	await nav_mesh.bake_finished

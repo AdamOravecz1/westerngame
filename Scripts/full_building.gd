@@ -11,6 +11,9 @@ func _ready() -> void:
 		await get_tree().process_frame
 		main.friend_wave_point = $FriendWavePoint.global_position
 		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+	if name == "BlackSmith":
+		await get_tree().process_frame
+		player.unlock_sniper()
 	
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():

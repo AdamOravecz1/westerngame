@@ -65,6 +65,12 @@ var indicators := {}
 @onready var money_count: Label = $CanvasLayer/MoneyCount
 
 @onready var weapons := [bowie_knife, revolver, shotgun, sniper]
+var weapon_unlocked := {
+	"knife": true,
+	"revolver": true,
+	"shotgun": false,
+	"sniper": false
+}
 var selected_weapon := 1
 var switching_weapon := false
 
@@ -163,9 +169,9 @@ func _physics_process(delta: float) -> void:
 			switch_weapon(-(selected_weapon))
 		if Input.is_action_just_pressed("two") and not switching_weapon and not reloading:
 			switch_weapon(-(selected_weapon-1))
-		if Input.is_action_just_pressed("three") and not switching_weapon and not reloading:
+		if Input.is_action_just_pressed("three") and not switching_weapon and not reloading and weapon_unlocked["shotgun"]:
 			switch_weapon(-(selected_weapon-2))
-		if Input.is_action_just_pressed("four") and not switching_weapon and not reloading:
+		if Input.is_action_just_pressed("four") and not switching_weapon and not reloading and weapon_unlocked["sniper"]:
 			switch_weapon(-(selected_weapon-3))
 		
 
@@ -359,8 +365,7 @@ func switch_weapon(dir):
 	tween_up.tween_property(weapons[selected_weapon], "position", $Camera3D/OffWeaponPos.position, 0.5)
 	await tween_up.finished
 	weapons[selected_weapon].visible = false
-	selected_weapon += dir
-	selected_weapon = selected_weapon%len(weapons)
+	selected_weapon = get_next_unlocked_weapon(selected_weapon, dir)
 	
 
 	weapons[selected_weapon].visible = true
@@ -417,3 +422,34 @@ func teleport(pos, rot):
 	tween2.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,0), 0.5)
 	await tween2.finished
 	in_shop = false
+
+func get_next_unlocked_weapon(start_index: int, dir: int) -> int:
+	var idx = start_index
+
+	for i in range(len(weapons)):
+		idx = (idx + dir) % len(weapons)
+		if idx < 0:
+			idx = len(weapons) - 1
+
+		var w = weapons[idx]
+
+		if w == bowie_knife and weapon_unlocked["knife"]:
+			return idx
+		elif w == revolver and weapon_unlocked["revolver"]:
+			return idx
+		elif w == shotgun and weapon_unlocked["shotgun"]:
+			return idx
+		elif w == sniper and weapon_unlocked["sniper"]:
+			return idx
+
+	return start_index
+	
+func unlock_shotgun():
+	if weapon_unlocked["shotgun"]:
+		return
+	weapon_unlocked["shotgun"] = true
+
+func unlock_sniper():
+	if weapon_unlocked["sniper"]:
+		return
+	weapon_unlocked["sniper"] = true
