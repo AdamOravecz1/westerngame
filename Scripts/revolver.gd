@@ -104,6 +104,7 @@ func fire():
 		player.RefreshBulletCount()
 		if player.revolver_ray.is_colliding():
 			var collider = player.revolver_ray.get_collider()
+			print(collider)
 
 			var damage = 0
 			if collider.name == "Head":

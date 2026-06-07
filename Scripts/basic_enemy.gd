@@ -32,8 +32,6 @@ var shooting_from_cover := false
 var cover_location := Vector3.INF
 var hiding_spots = []
 
-func _ready() -> void:
-	$Fire.wait_time = randf_range(3.0, 5.0)
 
 
 func hit(damage, pos):

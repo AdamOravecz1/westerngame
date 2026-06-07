@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://ncsgtg6rfblo" path="res://Scenes/boss.tscn" id="2_hptm8"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
@@ -68,6 +69,9 @@ plane = Plane(1, 0, 0, 0)
 script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
+
+[node name="Boss" parent="Enemies" unique_id=1149815378 instance=ExtResource("2_hptm8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.792208)
 
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
