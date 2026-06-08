@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
 [ext_resource type="Texture2D" uid="uid://b7awjph3j3nvs" path="res://Textures/rocky_trail_02_rough_4k.png" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://d4gt8tfl3vcvj" path="res://3D/Mountain.blend" id="8_6iyac"]
 [ext_resource type="PackedScene" uid="uid://bn2ndd1qtp6qj" path="res://Scenes/half_church.tscn" id="8_d1ilt"]
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://8rqjynmsxt0b" path="res://Scenes/foundation.tscn" id="12_hibaj"]
@@ -98,6 +99,11 @@ collision_mask = 9
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_hptm8")
 debug_color = Color(0.981387, 0, 0.371502, 0.42)
+
+[node name="Design" type="Node3D" parent="." unique_id=793521415]
+
+[node name="Mountain" parent="Design" unique_id=1635444828 instance=ExtResource("8_6iyac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.579498, -0.53421783, -62.51622)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=811582068 groups=["NavigationRegion"]]
 navigation_mesh = SubResource("NavigationMesh_344ge")

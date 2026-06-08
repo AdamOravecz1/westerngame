@@ -152,4 +152,4 @@ cancel={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.417498, 0.626251, 0.760843, 1)
+environment/defaults/default_clear_color=Color(0.5686275, 0.8039216, 0.92156863, 1)
