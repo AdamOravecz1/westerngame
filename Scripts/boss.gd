@@ -10,6 +10,7 @@ var looking_for = "friend"
 
 func _ready() -> void:
 	add_to_group("enemy")
+	health = 100
 	if get_script() == preload("res://Scripts/revolver_enemy.gd"):
 		for barrier in get_tree().get_nodes_in_group("barrier"):
 			barrier.create_enemy_checkers()
@@ -149,9 +150,8 @@ func shoot_gun():
 	$Sounds/FireSound.play()
 	if gun_ray.get_collider() == player:
 		player.take_damage(global_position)
-	elif gun_ray.get_collider().has_method("hit"):
+	elif gun_ray.get_collider() and gun_ray.get_collider().has_method("hit"):
 		gun_ray.get_collider().hit(1, gun_ray.get_collision_point())
-	print(gun_ray.get_collider())
 	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func delete_after_death():

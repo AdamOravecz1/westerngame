@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var headshot := 100
-@export var torsoshot := 100
+@export var headshot := 7
+@export var torsoshot := 5
 @export var limbshot := 4
 
 @onready var player = get_tree().get_first_node_in_group("Player")

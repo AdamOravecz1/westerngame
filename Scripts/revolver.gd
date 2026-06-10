@@ -9,7 +9,7 @@ extends Node3D
 
 @export var recoil_strength := deg_to_rad(25.0)   
 
-@export var headshot := 100
+@export var headshot := 5
 @export var torsoshot := 3
 @export var limbshot := 1
 

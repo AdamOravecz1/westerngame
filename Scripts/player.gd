@@ -352,6 +352,44 @@ func AddMoney(amount):
 	money += amount
 	print(money)
 	money_count.text = str(money)
+
+func AddBullets(level):
+	if level == 1:
+		if free_bullets + 6 < 30:
+			free_bullets += 6
+		else:
+			free_bullets = 30
+		RefreshBulletCount()
+		if free_shotgun + 6 < 30:
+			free_shotgun += 6
+		else: 
+			free_shotgun = 30
+		RefreshShotgunCount()
+		if free_sniper + 5 < 30:
+			free_sniper += 5
+		else:
+			free_sniper = 30
+		RefreshSniperCount()
+	elif level == 2:
+		if free_bullets + 12 < 30:
+			free_bullets += 12
+		else:
+			free_bullets = 30
+		RefreshBulletCount()
+		if free_shotgun + 12 < 30:
+			free_shotgun += 12
+		else: 
+			free_shotgun = 30
+		RefreshShotgunCount()
+		if free_sniper + 10 < 30:
+			free_sniper += 10
+		else:
+			free_sniper = 30
+		RefreshSniperCount()
+		
+func AddDynamite():
+	dynamite_amount += 1
+	RefreshDynamiteCount()
 	
 	
 func switch_weapon(dir):
@@ -388,6 +426,13 @@ func take_damage(enemy_position):
 	tween.tween_callback(indicator.queue_free)
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
+	
+func AddHealth(amount):
+	if health + amount > 100:
+		health += amount
+	else:
+		health = 100
+	$CanvasLayer/HealthBar.value = health
 
 func _on_dynamite_close_body_entered(body: Node3D) -> void:
 	dynamite_indicator_targets.append(body)

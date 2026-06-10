@@ -9,8 +9,15 @@ var index = get_index()
 func _ready() -> void:
 	if name == "Barracks":
 		await get_tree().process_frame
+		main.barracks += 1
 		main.friend_wave_point = $FriendWavePoint.global_position
 		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+	if name == "Saloon":
+		main.saloon += 1
+	if name == "Store":
+		main.store += 1
+	if name == "Mine":
+		main.mine += 1
 	if name == "BlackSmith":
 		await get_tree().process_frame
 		player.unlock_sniper()

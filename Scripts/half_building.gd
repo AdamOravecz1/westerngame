@@ -9,7 +9,14 @@ func _ready() -> void:
 	print(name)
 	if name == "HalfBarracks":
 		await get_tree().process_frame
+		main.barracks += 1
 		main.friend_wave_point = $FriendWavePoint.global_position
+	if name == "HalfSaloon":
+		main.saloon += 1
+	if name == "HalfStore":
+		main.store += 1
+	if name == "HalfMine":
+		main.mine += 1
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():
 		await nav_mesh.bake_finished
