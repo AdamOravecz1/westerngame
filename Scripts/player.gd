@@ -299,17 +299,17 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 
 	# Interact
-	if $Camera3D/InteractRay.get_collider() and not in_shop and not placing_barrier:
+	if $Camera3D/InteractRay.get_collider() and not in_shop and not placing_barrier and not main.in_combat:
 		if $Camera3D/InteractRay.get_collider().name == "Foundation" or $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
 			$CanvasLayer/InteractIndicator.visible = true
 	else:
 		$CanvasLayer/InteractIndicator.visible = false
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation" and not placing_barrier:
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation" and not placing_barrier and not main.in_combat:
 		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
 		velocity.x = 0
 		velocity.z = 0
 		
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu") and not placing_barrier:
+	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu") and not placing_barrier and not main.in_combat:
 		$Camera3D/InteractRay.get_collider().get_parent().menu()
 		velocity.x = 0
 		velocity.z = 0

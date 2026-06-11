@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://pxdbp65ht4ke" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b6uwmd6mkvppa" path="res://Scripts/main.gd" id="1_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://ncsgtg6rfblo" path="res://Scenes/boss.tscn" id="2_hptm8"]
 [ext_resource type="Texture2D" uid="uid://coaoet25ffa7c" path="res://Textures/rocky_trail_02_nor_gl_4k.png" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b0hhw47dn4mal" path="res://Textures/rocky_trail_02_diff_4k.png" id="3_kry3j"]
 [ext_resource type="Shader" uid="uid://ce6s4wun1mvc2" path="res://Shaders/Hole.tres" id="4_6iyac"]
@@ -69,13 +68,17 @@ vertices_per_polygon = 3.0
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_344ge"]
 plane = Plane(1, 0, 0, 0)
 
+[sub_resource type="Curve3D" id="Curve3D_fdnlq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -13.21, 0, 0, 0, 0, 0, 0, 0, 0, 16.78, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="Main" type="Node3D" unique_id=1161211106 groups=["Main"]]
 script = ExtResource("1_ynf5e")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1353312146]
-
-[node name="Boss" parent="Enemies" unique_id=1149815378 instance=ExtResource("2_hptm8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.792208)
 
 [node name="Dynamites" type="Node3D" parent="." unique_id=1902864719]
 
@@ -561,5 +564,9 @@ stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
 
-[node name="EnemyWavePoint" type="Node3D" parent="." unique_id=98697472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.645668)
+[node name="Path3D" type="Path3D" parent="." unique_id=86260527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9455385)
+curve = SubResource("Curve3D_fdnlq")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1379338336]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13.21, 0, 0)

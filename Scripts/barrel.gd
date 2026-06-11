@@ -10,9 +10,8 @@ var placed := false
 
 var can_place_down := true
 
-#
-#func _ready():
-	#add_to_group("barrier")
+func _ready():
+	add_to_group("barrel")
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ok") and not placed:
@@ -111,6 +110,9 @@ func can_place_barrel() -> bool:
 
 	return true
 
+func cancel_placing():
+	player.placing_barrier = false
+	queue_free()
 
 func _on_overlap_checker_body_entered(body: Node3D) -> void:
 	can_place_down = false

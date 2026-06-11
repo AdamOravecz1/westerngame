@@ -264,6 +264,10 @@ func create_enemy_checkers():
 				"enemy": enemy
 			})
 
+func cancel_placing():
+	player.placing_barrier = false
+	queue_free()
+
 func _on_hide_area_body_entered(body: Node3D) -> void:
 	hide_area_valid = false
 
