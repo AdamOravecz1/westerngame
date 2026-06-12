@@ -8,6 +8,7 @@ func build(building):
 	if !is_inside_tree():
 		return
 	
+	player.AddMoney(-10)
 	$Foundation/CollisionShape3D.disabled = true
 	shop_menu.shop(null)
 	$Building.play()

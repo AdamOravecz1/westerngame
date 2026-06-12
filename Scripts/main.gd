@@ -34,8 +34,6 @@ func _ready():
 	rng.randomize()
 	
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		next_wave()
 	if len(get_tree().get_nodes_in_group("enemy")) == 0 and in_combat:
 		in_combat = false
 		

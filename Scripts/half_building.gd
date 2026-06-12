@@ -39,8 +39,12 @@ func menu():
 		player.in_shop = false
 
 func _on_upgrade_pressed() -> void:
+	if player.money < 20:
+		return
 	if !is_inside_tree():
 		return
+	
+	player.AddMoney(-20)
 		
 	var index = get_index()
 	$Menu/CollisionShape3D.disabled = true
@@ -98,3 +102,9 @@ func _on_friend_pressed() -> void:
 		main.friend_counter += 1
 		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
 		
+
+
+func _on_next_wave_pressed() -> void:
+	main.next_wave()
+	$CanvasLayer.visible = false
+	shop_menu.shop(null)

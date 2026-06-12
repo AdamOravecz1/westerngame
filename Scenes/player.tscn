@@ -197,6 +197,41 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Death" type="Label" parent="CanvasLayer" unique_id=1101851850]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -91.0
+offset_right = 71.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Kicked The Bucket"
+
+[node name="Restart" type="Button" parent="CanvasLayer" unique_id=650585610]
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -15.5
+offset_right = 32.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
 [node name="Pause" parent="CanvasLayer" unique_id=1933569389 instance=ExtResource("8_qqcod")]
 visible = false
 
@@ -248,6 +283,7 @@ collision_mask = 64
 shape = SubResource("SphereShape3D_h4iuc")
 debug_fill = false
 
+[connection signal="pressed" from="CanvasLayer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="body_entered" from="DynamiteClose" to="." method="_on_dynamite_close_body_entered"]
 [connection signal="body_exited" from="DynamiteClose" to="." method="_on_dynamite_close_body_exited"]
 [connection signal="body_entered" from="DynamiteDeadly" to="." method="_on_dynamite_deadly_body_entered"]

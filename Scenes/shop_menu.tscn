@@ -49,10 +49,6 @@ text = "Mine"
 layout_mode = 2
 text = "Saloon"
 
-[node name="Church" type="Button" parent="VBoxContainer" unique_id=399269294]
-layout_mode = 2
-text = "Church"
-
 [connection signal="pressed" from="VBoxContainer/BlackSmith" to="." method="_on_black_smith_pressed"]
 [connection signal="pressed" from="VBoxContainer/Store" to="." method="_on_store_pressed"]
 [connection signal="pressed" from="VBoxContainer/Carpenter" to="." method="_on_carpenter_pressed"]

@@ -17,29 +17,35 @@ func shop(found):
 
 
 func _on_black_smith_pressed() -> void:
-	foundation.build("res://Scenes/half_black_smith.tscn")
-	$VBoxContainer/BlackSmith.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_black_smith.tscn")
+		$VBoxContainer/BlackSmith.queue_free()
 
 
 func _on_store_pressed() -> void:
-	foundation.build("res://Scenes/half_store.tscn")
-	$VBoxContainer/Store.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_store.tscn")
+		$VBoxContainer/Store.queue_free()
 
 func _on_carpenter_pressed() -> void:
-	foundation.build("res://Scenes/half_carpenter.tscn")
-	$VBoxContainer/Carpenter.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_carpenter.tscn")
+		$VBoxContainer/Carpenter.queue_free()
 
 
 func _on_barracks_pressed() -> void:
-	foundation.build("res://Scenes/half_barracks.tscn")
-	$VBoxContainer/Barracks.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_barracks.tscn")
+		$VBoxContainer/Barracks.queue_free()
 
 
 func _on_mine_pressed() -> void:
-	foundation.build("res://Scenes/half_mine.tscn")
-	$VBoxContainer/Mine.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_mine.tscn")
+		$VBoxContainer/Mine.queue_free()
 
 
 func _on_saloon_pressed() -> void:
-	foundation.build("res://Scenes/half_saloon.tscn")
-	$VBoxContainer/Saloon.queue_free()
+	if player.money >= 10:
+		foundation.build("res://Scenes/half_saloon.tscn")
+		$VBoxContainer/Saloon.queue_free()

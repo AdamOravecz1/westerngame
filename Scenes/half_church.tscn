@@ -120,6 +120,10 @@ grow_vertical = 2
 layout_mode = 2
 text = "Upgrade"
 
+[node name="NextWave" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=1346686912]
+layout_mode = 2
+text = "Next wave"
+
 [node name="Building" type="AudioStreamPlayer3D" parent="." index="38" unique_id=869930045]
 stream = ExtResource("3_ig478")
 
@@ -142,3 +146,4 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0.
 shape = SubResource("BoxShape3D_ig478")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]

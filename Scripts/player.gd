@@ -113,6 +113,9 @@ func pause():
 
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("debug"):
+		death()
+	
 	# Dynamite indicator 
 	# Create missing indicators
 	for target in dynamite_indicator_targets:
@@ -426,6 +429,8 @@ func take_damage(enemy_position):
 	tween.tween_callback(indicator.queue_free)
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
+	if health <= 0:
+		death()
 	
 func AddHealth(amount):
 	if health + amount > 100:
@@ -470,3 +475,17 @@ func unlock_shotgun():
 
 func unlock_sniper():
 	weapons.append(sniper)
+	
+func death():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	in_shop = true
+	$CanvasLayer/Restart.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1), 0.5)
+	tween.tween_property($CanvasLayer/Death, "modulate", Color(1,1,1,1), 0.5)
+	tween.tween_property($CanvasLayer/Restart, "modulate", Color(1,1,1,1), 0.5)
+	await tween.finished
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()

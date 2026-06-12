@@ -84,6 +84,9 @@ size = Vector3(1, 7.050354, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p8iik"]
 points = PackedVector3Array(1.0933248, 1, 1, 1.0933248, 1, -1, -1.1947616, 1, 1, 1.0933248, -1, 1, 1.0933248, -1, -1, -1.1947616, 1, -1, -1.1947616, -1, 1, -1.1947616, -1, -1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1f3h"]
+size = Vector3(0.416, 6.68668, 3.294)
+
 [node name="Church" unique_id=745960784 instance=ExtResource("1_uxvc0")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("2_38qbd")
@@ -257,3 +260,34 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" index="0" unique_id=216778678]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0.46420383, 0)
 shape = SubResource("BoxShape3D_38qbd")
+
+[node name="Menu" type="StaticBody3D" parent="." index="46" unique_id=480471486]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 3.158995, 7.072582, -5.991667)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu" index="0" unique_id=1152163238]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -13.050716, 0.14909983, 6.0150795)
+shape = SubResource("BoxShape3D_p1f3h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="47" unique_id=189493009]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" index="0" unique_id=1527098707]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextWave" type="Button" parent="CanvasLayer/VBoxContainer" index="0" unique_id=843077593]
+layout_mode = 2
+text = "Next wave"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/NextWave" to="." method="_on_next_wave_pressed"]
