@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="WesternGame"
 run/main_scene="uid://ckqnx8r3861ne"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bqe1r30flvteq"
 
 [display]
 
