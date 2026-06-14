@@ -27,6 +27,9 @@ var can_place_down := true
 var full := true
 var placed := false
 
+var bounds_tween: Tween = null
+var overlap_tween: Tween = null
+
 func _ready():
 	add_to_group("barrier")
 	create_enemy_checkers()
@@ -137,6 +140,7 @@ func _process(delta: float) -> void:
 	
 func destroy(from_position: Vector3, force: float = 5.0):
 	if full:
+		main.add_barrier(-1)
 		full = false
 
 		var old_parent = get_parent()
@@ -156,6 +160,8 @@ func destroy(from_position: Vector3, force: float = 5.0):
 		queue_free()
 
 func place():
+	main.add_barrier(1)
+
 	$CanvasLayer.visible = false
 	$Barrier/CollisionShape3D.disabled = false
 	placed = true
@@ -180,14 +186,17 @@ func can_place_barrier() -> bool:
 	# Area limits
 	if global_position.x < -8 or global_position.x > 11:
 		print("Can't place outside X bounds!")
+		flash_bounds()
 		return false
 
 	if global_position.z < -30 or global_position.z > -5:
 		print("Can't place outside Z bounds!")
+		flash_bounds()
 		return false
 
 	if not can_place_down:
 		print("overlap")
+		flash_overlap()
 		return false
 
 
@@ -303,3 +312,27 @@ func _on_hide_area_4_body_entered(body: Node3D) -> void:
 
 func _on_hide_area_4_body_exited(body: Node3D) -> void:
 	hide_area4_valid = true
+	
+func flash_bounds():
+	if bounds_tween and bounds_tween.is_valid():
+		return
+
+	bounds_tween = get_tree().create_tween()
+	bounds_tween.tween_property($CanvasLayer/OutOfBounds,"modulate",Color(1.0, 0.0, 0.0, 1.0),0.1)
+
+	bounds_tween.tween_property($CanvasLayer/OutOfBounds,"modulate",Color(1.0, 0.0, 0.0, 0.0),2.0)
+
+	await bounds_tween.finished
+	bounds_tween = null
+	
+func flash_overlap():
+	if overlap_tween and overlap_tween.is_valid():
+		return
+
+	overlap_tween = get_tree().create_tween()
+	overlap_tween.tween_property($CanvasLayer/Overlap,"modulate",Color(1.0, 0.0, 0.0, 1.0),0.1)
+
+	overlap_tween.tween_property($CanvasLayer/Overlap,"modulate",Color(1.0, 0.0, 0.0, 0.0),2.0)
+
+	await overlap_tween.finished
+	overlap_tween = null

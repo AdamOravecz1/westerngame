@@ -826,6 +826,22 @@ grow_vertical = 2
 text = "[Q] to rotate left            [E] to rotate right
                 [Enter] to place down"
 
+[node name="OutOfBounds" type="Label" parent="CanvasLayer" unique_id=1443448078]
+modulate = Color(1, 0, 0, 0)
+offset_left = 516.0
+offset_top = 144.0
+offset_right = 627.0
+offset_bottom = 167.0
+text = "Out of bounds"
+
+[node name="Overlap" type="Label" parent="CanvasLayer" unique_id=1256826748]
+modulate = Color(1, 0, 0, 0)
+offset_left = 452.0
+offset_top = 144.0
+offset_right = 694.0
+offset_bottom = 167.0
+text = "Overlaps with another obstacle"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="OverlapChecker" to="." method="_on_overlap_checker_body_entered"]
 [connection signal="body_exited" from="OverlapChecker" to="." method="_on_overlap_checker_body_exited"]

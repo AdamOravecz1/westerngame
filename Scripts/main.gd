@@ -16,6 +16,10 @@ var store := 0
 var mine := 0
 var barracks := 0
 
+var carpenter = null
+var barrier_counter := 0
+var barrel_counter := 0
+
 var rng := RandomNumberGenerator.new()
 
 var wave_counter := 0
@@ -40,6 +44,8 @@ func _process(delta: float) -> void:
 		
 	
 func next_wave():
+	if wave_counter == len(enemie_order):
+		print("win")
 	in_combat = true
 	wave_loading = true
 	for i in get_tree().get_nodes_in_group("barrel"):
@@ -98,3 +104,18 @@ func shrink_hole(num, x, y):
 
 	mat.set_shader_parameter("hole_sizes", sizes)
 	
+func add_barrier(num):
+	barrier_counter += num
+	carpenter.update_barriers(barrier_counter)
+	
+func add_barrel(num):
+	barrel_counter += num
+	carpenter.update_barrels(barrel_counter)
+
+
+func _on_start_pressed() -> void:
+	$CanvasLayer.visible = false
+	var tween = get_tree().create_tween()
+	tween.tween_property($CameraPath/PathFollow3D, "progress_ratio", 0, 2)
+	await tween.finished
+	player.start()

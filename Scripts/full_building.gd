@@ -11,7 +11,7 @@ func _ready() -> void:
 		await get_tree().process_frame
 		main.barracks += 1
 		main.friend_wave_point = $FriendWavePoint.global_position
-		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+		main.friend_counter = 2
 	if name == "Saloon":
 		main.saloon += 1
 	if name == "Store":
@@ -21,6 +21,9 @@ func _ready() -> void:
 	if name == "BlackSmith":
 		await get_tree().process_frame
 		player.unlock_sniper()
+	if name == "Carpenter":
+		main.carpenter = self
+		main.add_barrier(0)
 	
 	await get_tree().create_timer(2.0, false).timeout
 	if nav_mesh.is_baking():
@@ -31,14 +34,15 @@ func _ready() -> void:
 	await get_tree().create_timer(3, false).timeout
 
 func _on_barrier_pressed() -> void:
-	var barrier_scene = preload("res://Scenes/barrier.tscn")
-	var barrier = barrier_scene.instantiate()
-	player.add_child(barrier)
-	barrier.position.z -= 3
-	barrier.position.y -= 1
-	shop_menu.shop(null)
-	player.placing_barrier = true
-	$CanvasLayer.visible = false
+	if main.barrier_counter < 8:
+		var barrier_scene = preload("res://Scenes/barrier.tscn")
+		var barrier = barrier_scene.instantiate()
+		player.add_child(barrier)
+		barrier.position.z -= 3
+		barrier.position.y -= 1
+		shop_menu.shop(null)
+		player.placing_barrier = true
+		$CanvasLayer.visible = false
 	
 func menu():
 	$CanvasLayer.visible = !$CanvasLayer.visible
@@ -52,23 +56,24 @@ func menu():
 
 
 func _on_barrel_pressed() -> void:
-	var barrel_scene = preload("res://Scenes/barrel.tscn")
-	var barrel = barrel_scene.instantiate()
-	player.add_child(barrel)
-	barrel.position.z -= 3
-	barrel.position.y -= 1
-	shop_menu.shop(null)
-	player.placing_barrier = true
-	$CanvasLayer.visible = false
-	
-func _on_friend_pressed() -> void:
-	if main.friend_counter < 4:
-		main.friend_counter += 1
-		
-		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
+	if main.barrel_counter < 2:
+		var barrel_scene = preload("res://Scenes/barrel.tscn")
+		var barrel = barrel_scene.instantiate()
+		player.add_child(barrel)
+		barrel.position.z -= 3
+		barrel.position.y -= 1
+		shop_menu.shop(null)
+		player.placing_barrier = true
+		$CanvasLayer.visible = false
 
 
 func _on_next_wave_pressed() -> void:
 	main.next_wave()
 	$CanvasLayer.visible = false
 	shop_menu.shop(null)
+	
+func update_barriers(num):
+	$CanvasLayer/BarrierCounter.text = str(num) + "/8"
+
+func update_barrels(num):
+	$CanvasLayer/BarrelCounter.text = str(num) + "/2"

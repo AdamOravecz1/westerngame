@@ -259,6 +259,22 @@ text = "[Q] to rotate left            [E] to rotate right
                 [Enter] to place down
                      [Shift] to cancel"
 
+[node name="OutOfBounds" type="Label" parent="CanvasLayer" unique_id=1353789107]
+modulate = Color(1, 0, 0, 0)
+offset_left = 516.0
+offset_top = 144.0
+offset_right = 627.0
+offset_bottom = 167.0
+text = "Out of bounds"
+
+[node name="Overlap" type="Label" parent="CanvasLayer" unique_id=1084650938]
+modulate = Color(1, 0, 0, 0)
+offset_left = 452.0
+offset_top = 144.0
+offset_right = 694.0
+offset_bottom = 167.0
+text = "Overlaps with another obstacle"
+
 [connection signal="body_entered" from="HideArea" to="." method="_on_hide_area_body_entered"]
 [connection signal="body_exited" from="HideArea" to="." method="_on_hide_area_body_exited"]
 [connection signal="body_entered" from="HideArea2" to="." method="_on_hide_area_2_body_entered"]

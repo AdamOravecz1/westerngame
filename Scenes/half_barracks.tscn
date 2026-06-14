@@ -66,21 +66,9 @@ grow_vertical = 2
 layout_mode = 2
 text = "Upgrade"
 
-[node name="Friend" type="Button" parent="CanvasLayer/VBoxContainer" index="1" unique_id=279052257]
-layout_mode = 2
-text = "Friend"
-
-[node name="FriendCounter" type="Label" parent="CanvasLayer" index="1" unique_id=1219197653]
-offset_left = 629.0
-offset_top = 330.0
-offset_right = 669.0
-offset_bottom = 353.0
-text = "0"
-
 [node name="Building" type="AudioStreamPlayer3D" parent="." index="19" unique_id=1320650546]
 stream = ExtResource("3_gdokk")
 
 [node name="FriendWavePoint" type="Node3D" parent="." index="20" unique_id=227088053]
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Friend" to="." method="_on_friend_pressed"]

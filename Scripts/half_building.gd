@@ -11,6 +11,7 @@ func _ready() -> void:
 		await get_tree().process_frame
 		main.barracks += 1
 		main.friend_wave_point = $FriendWavePoint.global_position
+		main.friend_counter = 1
 	if name == "HalfSaloon":
 		main.saloon += 1
 	if name == "HalfStore":
@@ -23,6 +24,8 @@ func _ready() -> void:
 	if name == "HalfBlackSmith":
 		await get_tree().process_frame
 		player.unlock_shotgun()
+	if name == "HalfCarpenter":
+		main.carpenter = self
 
 	nav_mesh.bake_navigation_mesh()
 	await nav_mesh.bake_finished
@@ -85,26 +88,21 @@ func _on_upgrade_pressed() -> void:
 
 
 func _on_barrier_pressed() -> void:
-	var barrier_scene = preload("res://Scenes/barrier.tscn")
-	var barrier = barrier_scene.instantiate()
-	player.add_child(barrier)
-	barrier.position.z -= 3
-	barrier.position.y -= 1
-	shop_menu.shop(null)
-	player.placing_barrier = true
-	$CanvasLayer.visible = false
-
-	
-
-
-func _on_friend_pressed() -> void:
-	if main.friend_counter < 2:
-		main.friend_counter += 1
-		$CanvasLayer/FriendCounter.text = str(main.friend_counter)
-		
+	if main.barrier_counter < 4:
+		var barrier_scene = preload("res://Scenes/barrier.tscn")
+		var barrier = barrier_scene.instantiate()
+		player.add_child(barrier)
+		barrier.position.z -= 3
+		barrier.position.y -= 1
+		shop_menu.shop(null)
+		player.placing_barrier = true
+		$CanvasLayer.visible = false
 
 
 func _on_next_wave_pressed() -> void:
 	main.next_wave()
 	$CanvasLayer.visible = false
 	shop_menu.shop(null)
+
+func update_barriers(num):
+	$CanvasLayer/BarrierCounter.text = str(num) + "/4"

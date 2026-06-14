@@ -166,6 +166,13 @@ text = "Upgrade"
 layout_mode = 2
 text = "Barrier"
 
+[node name="BarrierCounter" type="Label" parent="CanvasLayer" index="1" unique_id=1985880621]
+offset_left = 624.0
+offset_top = 330.0
+offset_right = 664.0
+offset_bottom = 353.0
+text = "0/4"
+
 [node name="Building" type="AudioStreamPlayer3D" parent="." index="90" unique_id=982239197]
 stream = ExtResource("3_vfbg3")
 

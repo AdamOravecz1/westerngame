@@ -75,6 +75,13 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve3D" id="Curve3D_jkdf5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="Main" type="Node3D" unique_id=1161211106 groups=["Main"]]
 script = ExtResource("1_ynf5e")
 
@@ -89,7 +96,7 @@ light_energy = 1.5
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1839764911 instance=ExtResource("1_jjgbg")]
-transform = Transform3D(0.89941293, 0, -0.43709993, 0, 1, 0, 0.43709993, 0, 0.89941293, -5.654583, 1.0874374, -30.443607)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0864449, 1.0874374, -21.388075)
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1471223616]
 layers = 262144
@@ -570,3 +577,34 @@ curve = SubResource("Curve3D_fdnlq")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1379338336]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13.21, 0, 0)
+
+[node name="CameraPath" type="Path3D" parent="." unique_id=1164433125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.086, 1.702, -21.2)
+curve = SubResource("Curve3D_jkdf5")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="CameraPath" unique_id=424171063]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 10, 0)
+progress = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPath/PathFollow3D" unique_id=1886247649]
+transform = Transform3D(-5.21253e-16, -1.192488e-08, -1, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, 1.1924881e-08, 0, 0, 0)
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1364718044]
+
+[node name="Start" type="Button" parent="CanvasLayer" unique_id=1008193746]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -48.0
+offset_right = 79.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]

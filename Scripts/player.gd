@@ -4,14 +4,14 @@ extends CharacterBody3D
 var dynamite_scene = preload("res://Scenes/dynamite.tscn")
 var dynamite_fitted_scene = preload("res://Scenes/dynamite_fitted_image.tscn")
 
-@export var speed: float = 6.0
+@export var speed: float = 0.0
 @export var mouse_sensitivity: float = 0.002
 @export var gravity: float = 9.81
 @export var terminal_velocity: float = 55.0
 @export var jump_velocity: float = 4.5
 
 @export var health := 100
-var money := 0
+var money := 100
 
 var duck := false
 @onready var capsule: CapsuleShape3D = $CollisionShape3D.shape
@@ -79,13 +79,21 @@ var paused = false
 
 func _ready():
 	add_to_group("friend")
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	RefreshBulletCount()
 	RefreshShotgunCount()
 	RefreshSniperCount()
 	RefreshDynamiteCount()
-
+	await get_tree().create_timer(1).timeout
+	in_shop = true
+	
+func start():
+	$CanvasLayer.visible = true
+	in_shop = false
+	speed = 6.0
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Camera3D.current = true
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and not in_shop:
@@ -171,8 +179,6 @@ func _physics_process(delta: float) -> void:
 			switch_weapon(-(selected_weapon-2))
 		if Input.is_action_just_pressed("four") and not switching_weapon and not reloading and sniper in weapons:
 			switch_weapon(-(selected_weapon-3))
-		
-
 
 		
 		#Reload

@@ -121,6 +121,7 @@ collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1758497960]
+visible = false
 
 [node name="BulletCount" type="Label" parent="CanvasLayer" unique_id=2048875500]
 offset_top = 45.0
