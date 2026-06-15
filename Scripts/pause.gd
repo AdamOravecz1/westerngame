@@ -3,13 +3,14 @@ extends Control
 @onready var music = $NinePatchRect/VBoxContainer/Music
 @onready var sfx = $NinePatchRect/VBoxContainer/Sound
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var main = get_tree().get_first_node_in_group("Main")
 
 var health_bar = true
 
 var full_screen = false
 
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not player.in_shop:
 		player.pause()
 		
 
@@ -38,3 +39,10 @@ func _on_full_screen_pressed() -> void:
 func _on_quit_pressed() -> void:
 
 	get_tree().quit()
+
+
+func _on_return_pressed() -> void:
+	if player.speed != 0:
+		player.pause()
+	else:
+		main.back()

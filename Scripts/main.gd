@@ -119,3 +119,27 @@ func _on_start_pressed() -> void:
 	tween.tween_property($CameraPath/PathFollow3D, "progress_ratio", 0, 2)
 	await tween.finished
 	player.start()
+	$Pause.queue_free()
+
+
+func _on_settings_pressed() -> void:
+	$CanvasLayer/VBoxContainer.visible = false
+	$Pause.visible = true
+	
+func back():
+	$CanvasLayer/VBoxContainer.visible = true
+	$Pause.visible = false
+	
+func win():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	player.in_shop = true
+	$CanvasLayer/Restart.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1), 0.5)
+	tween.tween_property($CanvasLayer/Death, "modulate", Color(1,1,1,1), 0.5)
+	tween.tween_property($CanvasLayer/Restart, "modulate", Color(1,1,1,1), 0.5)
+	await tween.finished
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()

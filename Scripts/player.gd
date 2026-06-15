@@ -85,7 +85,7 @@ func _ready():
 	RefreshShotgunCount()
 	RefreshSniperCount()
 	RefreshDynamiteCount()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(.2).timeout
 	in_shop = true
 	
 func start():
@@ -105,19 +105,19 @@ func _unhandled_input(event):
 
 	
 func pause():
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
+	get_tree().paused = !paused
+
+
+	cocked = paused
+	paused = not paused
 	
-		get_tree().paused = !paused
-
-
-		cocked = paused
-		paused = not paused
-		
-		$CanvasLayer/Pause.visible = paused
+	$CanvasLayer/Pause.visible = paused
 
 
 func _physics_process(delta: float) -> void:
@@ -214,7 +214,7 @@ func _physics_process(delta: float) -> void:
 
 
 		# Fire
-		if Input.is_action_just_pressed("fire") and not placing_barrier:
+		if Input.is_action_just_pressed("fire") and not placing_barrier and speed != 0:
 			# Revolver
 			if cocked and not cocking and not reloading and not switching_weapon and weapons[selected_weapon] == revolver:
 				revolver.fire()

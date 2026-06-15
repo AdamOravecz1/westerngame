@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://c6bf3pgtoio6t" path="res://3D/Rock.blend" id="11_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://8rqjynmsxt0b" path="res://Scenes/foundation.tscn" id="12_hibaj"]
+[ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="14_jkdf5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1bgf"]
 load_path = "res://.godot/imported/rocky_trail_02_diff_4k.png-a26d9c8dd1a9f0a128aef54229b0721a.s3tc.ctex"
@@ -592,19 +593,79 @@ current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1364718044]
 
-[node name="Start" type="Button" parent="CanvasLayer" unique_id=1008193746]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1504405631]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.5
-offset_top = -48.0
-offset_right = 79.5
-offset_bottom = 48.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Start" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1008193746]
+layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Start"
 
-[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2029046287]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=324922304]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 367.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Victory" type="Label" parent="CanvasLayer" unique_id=1247662285]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -91.0
+offset_right = 71.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "You Win"
+
+[node name="Restart" type="Button" parent="CanvasLayer" unique_id=843320131]
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -15.5
+offset_right = 32.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="Pause" parent="." unique_id=1418893572 instance=ExtResource("14_jkdf5")]
+visible = false
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Restart" to="." method="_on_restart_pressed"]
