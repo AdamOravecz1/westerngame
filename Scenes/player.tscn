@@ -147,12 +147,13 @@ theme_override_font_sizes/font_size = 64
 text = "0/0"
 
 [node name="MoneyCount" type="Label" parent="CanvasLayer" unique_id=983202933]
-offset_left = 1055.0
+offset_left = 1039.0
 offset_top = -10.0
-offset_right = 1153.0
+offset_right = 1137.0
 offset_bottom = 169.0
 theme_override_font_sizes/font_size = 64
 text = "0"
+horizontal_alignment = 2
 
 [node name="DynamiteContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1697684939]
 offset_top = 134.0
