@@ -29,6 +29,15 @@ var duck_height := 1.8
 @export var zoom_speed := 10.0
 @export var throw_force: float = 10.0
 
+@export var sway_amount := 0.05
+@export var sway_speed := 8.0
+
+var sway_time := 0.0
+var sway_offset := Vector3.ZERO
+var sway_strength := 0.0
+
+var cross_hair_start_position := Vector2.ZERO
+
 var recoil_offset := 0.0 
 var cocked := true
 var cocking := false
@@ -50,14 +59,17 @@ var dynamite_indicator_targets: Array = []
 var dynamite_indicator_close_targets: Array = []
 var indicators := {} 
 
-@onready var camera: Camera3D = $Camera3D
-@onready var revolver: Node3D = $Camera3D/Revolver
-@onready var shotgun: Node3D = $Camera3D/Shotgun
-@onready var sniper: Node3D = $Camera3D/Sniper
+@onready var weapon_sway: Node3D = $Camera3D/WeaponSway
 
-@onready var revolver_ray: RayCast3D = $Camera3D/RevolverRay
-@onready var shotgun_rays: Node3D = $Camera3D/ShotgunRays
-@onready var bowie_knife: Node3D = $Camera3D/BowieKnife
+@onready var camera: Camera3D = $Camera3D
+@onready var revolver: Node3D = $Camera3D/WeaponSway/Revolver
+@onready var shotgun: Node3D = $Camera3D/WeaponSway/Shotgun
+@onready var sniper: Node3D = $Camera3D/WeaponSway/Sniper
+@onready var cross_hair: TextureRect = $CanvasLayer/CrossHair
+
+@onready var revolver_ray: RayCast3D = $Camera3D/WeaponSway/RevolverRay
+@onready var shotgun_rays: Node3D = $Camera3D/WeaponSway/ShotgunRays
+@onready var bowie_knife: Node3D = $Camera3D/WeaponSway/BowieKnife
 
 @onready var bullet_count: Label = $CanvasLayer/BulletCount
 @onready var shotgun_count: Label = $CanvasLayer/ShotgunCount
@@ -79,6 +91,8 @@ var paused = false
 
 func _ready():
 	add_to_group("friend")
+	cross_hair_start_position = cross_hair.position
+	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	money_count.text = str(money)
 	RefreshBulletCount()
@@ -307,19 +321,20 @@ func _physics_process(delta: float) -> void:
 		if velocity.y < 0:
 			velocity.y = 0
 
+
 	# Interact
-	if $Camera3D/InteractRay.get_collider() and not in_shop and not placing_barrier and not main.in_combat:
-		if $Camera3D/InteractRay.get_collider().name == "Foundation" or $Camera3D/InteractRay.get_collider().name.begins_with("Menu"):
+	if $Camera3D/WeaponSway/InteractRay.get_collider() and not in_shop and not placing_barrier and not main.in_combat:
+		if $Camera3D/WeaponSway/InteractRay.get_collider().name == "Foundation" or $Camera3D/WeaponSway/InteractRay.get_collider().name.begins_with("Menu"):
 			$CanvasLayer/InteractIndicator.visible = true
 	else:
 		$CanvasLayer/InteractIndicator.visible = false
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name == "Foundation" and not placing_barrier and not main.in_combat:
-		$CanvasLayer/ShopMenu.shop($Camera3D/InteractRay.get_collider().get_parent())
+	if Input.is_action_just_pressed("interact") and $Camera3D/WeaponSway/InteractRay.get_collider() and $Camera3D/WeaponSway/InteractRay.get_collider().name == "Foundation" and not placing_barrier and not main.in_combat:
+		$CanvasLayer/ShopMenu.shop($Camera3D/WeaponSway/InteractRay.get_collider().get_parent())
 		velocity.x = 0
 		velocity.z = 0
 		
-	if Input.is_action_just_pressed("interact") and $Camera3D/InteractRay.get_collider() and $Camera3D/InteractRay.get_collider().name.begins_with("Menu") and not placing_barrier and not main.in_combat:
-		$Camera3D/InteractRay.get_collider().get_parent().menu()
+	if Input.is_action_just_pressed("interact") and $Camera3D/WeaponSway/InteractRay.get_collider() and $Camera3D/WeaponSway/InteractRay.get_collider().name.begins_with("Menu") and not placing_barrier and not main.in_combat:
+		$Camera3D/WeaponSway/InteractRay.get_collider().get_parent().menu()
 		velocity.x = 0
 		velocity.z = 0
 
@@ -327,8 +342,35 @@ func _physics_process(delta: float) -> void:
 	recoil_offset = lerp(recoil_offset, 0.0, recoil_return_speed)
 	camera.rotation.x = pitch + recoil_offset
 	
-
+	update_weapon_sway(delta)
 	move_and_slide()
+	
+
+
+	
+func update_weapon_sway(delta):
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var moving := horizontal_speed > 0.1 and is_on_floor()
+
+	var target_strength := 1.0 if moving else 0.0
+
+	# Smoothly start/stop the sway
+	sway_strength = move_toward(sway_strength, target_strength, delta * 5.0)
+
+	if sway_strength > 0.001:
+		sway_time += delta * sway_speed
+
+		sway_offset.x = sin(sway_time) * sway_amount * sway_strength
+		sway_offset.y = sin(sway_time * 2.0) * sway_amount * 0.5 * sway_strength
+	else:
+		sway_offset = Vector3.ZERO
+
+	$Camera3D/WeaponSway.position = sway_offset
+	
+	cross_hair.position = cross_hair_start_position + Vector2(
+		sway_offset.x * 1000.0,
+		sway_offset.y * 1000.0
+	)
 
 func RefreshBulletCount():
 	bullet_count.text = str(free_bullets) + "/" + str(chamber.reduce(func(a, b): return a + b, 0))
@@ -399,12 +441,13 @@ func AddBullets(level):
 func AddDynamite():
 	dynamite_amount += 1
 	RefreshDynamiteCount()
-	
+
+
 	
 func switch_weapon(dir):
 	switching_weapon = true
 	var tween_up = get_tree().create_tween()
-	tween_up.tween_property(weapons[selected_weapon], "position", $Camera3D/OffWeaponPos.position, 0.5)
+	tween_up.tween_property(weapons[selected_weapon], "position", $Camera3D/WeaponSway/OffWeaponPos.position, 0.5)
 	await tween_up.finished
 	weapons[selected_weapon].visible = false
 	selected_weapon += dir
@@ -413,7 +456,7 @@ func switch_weapon(dir):
 
 	weapons[selected_weapon].visible = true
 	var tween_down = get_tree().create_tween()
-	tween_down.tween_property(weapons[selected_weapon], "position", $Camera3D/OnWeaponPos.position, 0.5)
+	tween_down.tween_property(weapons[selected_weapon], "position", $Camera3D/WeaponSway/OnWeaponPos.position, 0.5)
 	await tween_down.finished
 	switching_weapon = false
 	DisplayCorrectAmmoType()

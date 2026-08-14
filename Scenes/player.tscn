@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://o7yr4us8c52x" path="res://Scenes/revolver.tscn" id="3_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://bd164iyxft216" path="res://Scenes/sniper.tscn" id="5_3smsa"]
-[ext_resource type="Texture2D" uid="uid://c0rt7aswv06o3" path="res://Pictures/CrossHair.png" id="7_8erm5"]
+[ext_resource type="Texture2D" uid="uid://ct6y4xsqabotp" path="res://Pictures/CrossHair2.png" id="6_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://byspcepwidmfx" path="res://Scenes/shop_menu.tscn" id="8_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
@@ -30,91 +30,93 @@ shape = SubResource("CapsuleShape3D_f60y1")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1360806820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615, 0.188)
 
-[node name="BowieKnife" parent="Camera3D" unique_id=1852882668 instance=ExtResource("2_fkybt")]
+[node name="WeaponSway" type="Node3D" parent="Camera3D" unique_id=670320020]
+
+[node name="BowieKnife" parent="Camera3D/WeaponSway" unique_id=1852882668 instance=ExtResource("2_fkybt")]
 visible = false
 
-[node name="Revolver" parent="Camera3D" unique_id=1277603588 instance=ExtResource("3_ukyrk")]
+[node name="Revolver" parent="Camera3D/WeaponSway" unique_id=1277603588 instance=ExtResource("3_ukyrk")]
 transform = Transform3D(5.840526e-08, -0.3, -7.905332e-10, -0.005235465, -2.2884943e-10, -0.29995432, 0.29995432, 5.8410162e-08, -0.005235465, 0, -0.24221116, -0.88699996)
 
-[node name="Shotgun" parent="Camera3D" unique_id=2090931400 instance=ExtResource("4_x3wgy")]
+[node name="Shotgun" parent="Camera3D/WeaponSway" unique_id=2090931400 instance=ExtResource("4_x3wgy")]
 transform = Transform3D(-3.715468e-08, 0, 0.85, 0, 0.85, 0, -0.85, 0, -3.715468e-08, 0.5996585, -0.77516735, 1.5794208)
 visible = false
 
-[node name="Sniper" parent="Camera3D" unique_id=1649247906 instance=ExtResource("5_3smsa")]
+[node name="Sniper" parent="Camera3D/WeaponSway" unique_id=1649247906 instance=ExtResource("5_3smsa")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5996585, -0.77516735, 1.5794208)
 visible = false
 
-[node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=252026844]
+[node name="InteractRay" type="RayCast3D" parent="Camera3D/WeaponSway" unique_id=252026844]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 visible = false
 target_position = Vector3(0, -2, 0)
 collision_mask = 4
 
-[node name="OffWeaponPos" type="Node3D" parent="Camera3D" unique_id=94063624]
+[node name="OffWeaponPos" type="Node3D" parent="Camera3D/WeaponSway" unique_id=94063624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5996585, -0.77516735, 1.5794208)
 
-[node name="OnWeaponPos" type="Node3D" parent="Camera3D" unique_id=300782017]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.228, -0.907)
+[node name="OnWeaponPos" type="Node3D" parent="Camera3D/WeaponSway" unique_id=300782017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.22799999, -0.90699995)
 
-[node name="RevolverRay" type="RayCast3D" parent="Camera3D" unique_id=501013745]
+[node name="RevolverRay" type="RayCast3D" parent="Camera3D/WeaponSway" unique_id=501013745]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
 visible = false
 target_position = Vector3(0, -100, 0)
 collision_mask = 19
 collide_with_areas = true
 
-[node name="ShotgunRays" type="Node3D" parent="Camera3D" unique_id=783050845]
+[node name="ShotgunRays" type="Node3D" parent="Camera3D/WeaponSway" unique_id=783050845]
 visible = false
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=491160468]
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=491160468]
 target_position = Vector3(0, 3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D2" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1752851805]
+[node name="RayCast3D2" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=1752851805]
 target_position = Vector3(0, -3, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D3" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1895390111]
+[node name="RayCast3D3" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=1895390111]
 target_position = Vector3(0, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D4" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=217107288]
+[node name="RayCast3D4" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=217107288]
 target_position = Vector3(3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D5" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=768826949]
+[node name="RayCast3D5" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=768826949]
 target_position = Vector3(-3, 0, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D6" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1992157228]
+[node name="RayCast3D6" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=1992157228]
 target_position = Vector3(-2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D7" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1444421905]
+[node name="RayCast3D7" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=1444421905]
 target_position = Vector3(-2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D8" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=574325105]
+[node name="RayCast3D8" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=574325105]
 target_position = Vector3(2.12, 2.12, -100)
 collision_mask = 19
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="RayCast3D9" type="RayCast3D" parent="Camera3D/ShotgunRays" unique_id=1185732446]
+[node name="RayCast3D9" type="RayCast3D" parent="Camera3D/WeaponSway/ShotgunRays" unique_id=1185732446]
 target_position = Vector3(2.12, -2.12, -100)
 collision_mask = 19
 collide_with_areas = true
@@ -185,7 +187,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_8erm5")
+texture = ExtResource("6_f1ek2")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1851047938]
 modulate = Color(1, 1, 1, 0)
