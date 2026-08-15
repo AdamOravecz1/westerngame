@@ -6,12 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://xnjbmhq8u41t" path="res://Scenes/shotgun.tscn" id="4_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://bd164iyxft216" path="res://Scenes/sniper.tscn" id="5_3smsa"]
 [ext_resource type="Texture2D" uid="uid://ct6y4xsqabotp" path="res://Pictures/CrossHair2.png" id="6_f1ek2"]
+[ext_resource type="Shader" uid="uid://dfjva35tkilc1" path="res://Shaders/Pain.tres" id="6_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://byspcepwidmfx" path="res://Scenes/shop_menu.tscn" id="8_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 radius = 0.41259766
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gymyn"]
+shader = ExtResource("6_tx1dd")
+shader_parameter/intensity = 0.0
+shader_parameter/blood_color = Color(0.8, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fd4e3"]
 radius = 6.0
@@ -123,7 +129,15 @@ collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1758497960]
-visible = false
+
+[node name="Pain" type="ColorRect" parent="CanvasLayer" unique_id=975669922]
+material = SubResource("ShaderMaterial_gymyn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="BulletCount" type="Label" parent="CanvasLayer" unique_id=2048875500]
 offset_top = 45.0

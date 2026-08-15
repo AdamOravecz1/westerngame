@@ -462,8 +462,8 @@ func switch_weapon(dir):
 	DisplayCorrectAmmoType()
 	
 	
-func take_damage(enemy_position):
-	health -= 5
+func take_damage(enemy_position, damage:float = 5.0):
+	health -= damage
 	$CanvasLayer/HealthBar.value = health
 	var indicator := Sprite2D.new()
 	indicator.texture = preload("res://Pictures/DamageIndicator.png") 
@@ -478,15 +478,24 @@ func take_damage(enemy_position):
 	tween.tween_callback(indicator.queue_free)
 	$Damage_Indicator_LookAt.look_at(enemy_position, Vector3.UP)
 	indicator.rotation = -$Damage_Indicator_LookAt.rotation.y
+
+	var health_percent = health / 100.0
+
+	var effect_strength = clamp((0.5 - health_percent) / 0.5, 0.0, 1.0)
+
+	$CanvasLayer/Pain.material.set_shader_parameter("intensity", effect_strength)
+	
 	if health <= 0:
 		death()
 	
 func AddHealth(amount):
-	if health + amount > 100:
-		health += amount
-	else:
-		health = 100
+	health = min(health + amount, 100)
 	$CanvasLayer/HealthBar.value = health
+
+	var health_percent = health / 100.0
+	var effect_strength = clamp((0.5 - health_percent) / 0.5, 0.0, 1.0)
+
+	$CanvasLayer/Pain.material.set_shader_parameter("intensity", effect_strength)
 
 func _on_dynamite_close_body_entered(body: Node3D) -> void:
 	dynamite_indicator_targets.append(body)
@@ -534,6 +543,7 @@ func death():
 	tween.tween_property($CanvasLayer/Death, "modulate", Color(1,1,1,1), 0.5)
 	tween.tween_property($CanvasLayer/Restart, "modulate", Color(1,1,1,1), 0.5)
 	await tween.finished
+	$CanvasLayer/Pain.material.set_shader_parameter("intensity", 0)
 
 
 func _on_restart_pressed() -> void:
