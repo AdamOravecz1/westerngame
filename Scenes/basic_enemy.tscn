@@ -22,5 +22,3 @@ offset_bottom = 40.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1107694457]
 path_desired_distance = 0.25
-debug_enabled = true
-debug_path_custom_color = Color(1, 0, 0, 1)
