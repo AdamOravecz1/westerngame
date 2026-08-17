@@ -1,5 +1,7 @@
 extends Node3D
 
+var next_pressed := 0
+
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 var barrier_scene = preload("res://Scenes/barrier.tscn")
@@ -143,3 +145,24 @@ func win():
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_tutorial_pressed() -> void:
+	$CanvasLayer/VBoxContainer.visible = false
+	$CanvasLayer/Tutorial.visible = true
+	$CanvasLayer/Next.visible = true
+
+
+func _on_next_pressed() -> void:
+	next_pressed += 1
+	if next_pressed == 1:
+		$CanvasLayer/Tutorial/TextureRect.visible = false
+		$CanvasLayer/Tutorial/TextureRect2.visible = true
+	if next_pressed == 2:
+		$CanvasLayer/Tutorial/TextureRect2.visible = false
+		$CanvasLayer/Tutorial/TextureRect3.visible = true
+	if next_pressed == 3:
+		$CanvasLayer/Tutorial.visible = false
+		$CanvasLayer/Next.visible = false
+		$CanvasLayer/VBoxContainer.visible = true
+		next_pressed == 0

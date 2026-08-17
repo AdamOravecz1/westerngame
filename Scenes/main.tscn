@@ -13,7 +13,10 @@
 [ext_resource type="AudioStream" uid="uid://55i6l1om2rih" path="res://Music/Song1.wav" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://c6bf3pgtoio6t" path="res://3D/Rock.blend" id="11_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://8rqjynmsxt0b" path="res://Scenes/foundation.tscn" id="12_hibaj"]
+[ext_resource type="Texture2D" uid="uid://c4ncvts51wgkc" path="res://Pictures/Tutorial1.png" id="14_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="14_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://cdt4pfd5sw3kc" path="res://Pictures/Tutorial2.png" id="15_b3802"]
+[ext_resource type="Texture2D" uid="uid://da3hngypo8oel" path="res://Pictures/Tutorial3.png" id="16_fevyy"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1bgf"]
 load_path = "res://.godot/imported/rocky_trail_02_diff_4k.png-a26d9c8dd1a9f0a128aef54229b0721a.s3tc.ctex"
@@ -568,6 +571,7 @@ shape = SubResource("WorldBoundaryShape3D_344ge")
 debug_color = Color(0.972549, 0, 0.43529412, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=750209788]
+process_mode = 3
 stream = ExtResource("10_hptm8")
 autoplay = true
 bus = &"Music"
@@ -605,6 +609,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Start" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1008193746]
 layout_mode = 2
@@ -615,6 +620,11 @@ text = "Start"
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Settings"
+
+[node name="Tutorial" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=82606930]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "How to play"
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=324922304]
 modulate = Color(1, 1, 1, 0)
@@ -663,9 +673,50 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Restart"
 
+[node name="Tutorial" type="CenterContainer" parent="CanvasLayer" unique_id=505961883]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=1738785101]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 2
+texture = ExtResource("14_h1bgf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=291939023]
+visible = false
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 2
+texture = ExtResource("15_b3802")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=1191463389]
+visible = false
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 2
+texture = ExtResource("16_fevyy")
+expand_mode = 1
+
+[node name="Next" type="Button" parent="CanvasLayer" unique_id=559998992]
+visible = false
+offset_left = 962.0
+offset_top = 531.0
+offset_right = 1044.0
+offset_bottom = 584.0
+theme_override_font_sizes/font_size = 32
+text = "Next
+"
+
 [node name="Pause" parent="." unique_id=1418893572 instance=ExtResource("14_jkdf5")]
 visible = false
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="CanvasLayer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Next" to="." method="_on_next_pressed"]
