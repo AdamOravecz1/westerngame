@@ -112,8 +112,24 @@ grow_vertical = 2
 layout_mode = 2
 text = "Upgrade"
 
+[node name="HoverRect" type="ColorRect" parent="CanvasLayer" index="1" unique_id=638718605]
+visible = false
+offset_left = 678.0
+offset_top = 242.0
+offset_right = 836.0
+offset_bottom = 370.0
+color = Color(0, 0, 0, 0.6039216)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HoverRect" index="0" unique_id=1130615389]
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 129.0
+text = "Unlocks shotgun"
+
 [node name="Building" type="AudioStreamPlayer3D" parent="." index="14" unique_id=1325533582]
 transform = Transform3D(3.673371, 0, -1.583144, 0, 4, 0, 1.583144, 0, 3.673371, 18.531704, 0, 6.1087074)
 stream = ExtResource("3_ic0pq")
 
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]

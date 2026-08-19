@@ -49,9 +49,36 @@ text = "Mine"
 layout_mode = 2
 text = "Saloon"
 
+[node name="HoverRect" type="ColorRect" parent="." unique_id=609670305]
+visible = false
+layout_mode = 0
+offset_left = 678.0
+offset_top = 242.0
+offset_right = 836.0
+offset_bottom = 370.0
+color = Color(0, 0, 0, 0.6039216)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HoverRect" unique_id=2104247544]
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 129.0
+text = "Unlocks shotgun"
+
+[connection signal="mouse_entered" from="VBoxContainer/BlackSmith" to="." method="_on_black_smith_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/BlackSmith" to="." method="_on_black_smith_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/BlackSmith" to="." method="_on_black_smith_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Store" to="." method="_on_store_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Store" to="." method="_on_store_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Store" to="." method="_on_store_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Carpenter" to="." method="_on_carpenter_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Carpenter" to="." method="_on_carpenter_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Carpenter" to="." method="_on_carpenter_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Barracks" to="." method="_on_barracks_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Barracks" to="." method="_on_barracks_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Barracks" to="." method="_on_barracks_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Mine" to="." method="_on_mine_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Mine" to="." method="_on_mine_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Mine" to="." method="_on_mine_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Saloon" to="." method="_on_saloon_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Saloon" to="." method="_on_saloon_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Saloon" to="." method="_on_saloon_pressed"]

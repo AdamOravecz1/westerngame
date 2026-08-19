@@ -173,8 +173,24 @@ offset_right = 664.0
 offset_bottom = 353.0
 text = "0/4"
 
+[node name="HoverRect" type="ColorRect" parent="CanvasLayer" index="2" unique_id=2018556542]
+visible = false
+offset_left = 678.0
+offset_top = 242.0
+offset_right = 836.0
+offset_bottom = 370.0
+color = Color(0, 0, 0, 0.6039216)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HoverRect" index="0" unique_id=1198171404]
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 129.0
+text = "Unlocks shotgun"
+
 [node name="Building" type="AudioStreamPlayer3D" parent="." index="90" unique_id=982239197]
 stream = ExtResource("3_vfbg3")
 
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Barrier" to="." method="_on_barrier_pressed"]
