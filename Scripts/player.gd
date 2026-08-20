@@ -92,6 +92,10 @@ var paused = false
 func _ready():
 	add_to_group("friend")
 	cross_hair_start_position = cross_hair.position
+	var interact_event = InputMap.action_get_events("interact")[0]
+	var interact_key = interact_event.as_text().trim_suffix(" - Physical")
+
+	$CanvasLayer/InteractIndicator.text = "Press [%s] to open shop" % interact_key
 	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	money_count.text = str(money)
@@ -548,3 +552,9 @@ func death():
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	
+func change_interact_label():
+	var interact_event = InputMap.action_get_events("interact")[0]
+	var interact_key = interact_event.as_text().trim_suffix(" - Physical")
+
+	$CanvasLayer/InteractIndicator.text = "Press [%s] to open shop" % interact_key

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dq5yalt60caio"]
+
+[ext_resource type="Script" uid="uid://baho7v4m7o32d" path="res://Scripts/input_settings.gd" id="1_irrcc"]
+[ext_resource type="PackedScene" uid="uid://cqhttpq308vq0" path="res://Scenes/input_button.tscn" id="2_sjbpd"]
+
+[node name="InputSettings" type="Control" unique_id=665140443]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_irrcc")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=590627614]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = -262.0
+offset_right = 403.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=964057890]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1947379764]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1512091840]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1976838488]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" unique_id=704419531 instance=ExtResource("2_sjbpd")]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=144008459]
+layout_mode = 2
+focus_mode = 0
+text = "Reset to default"
+
+[node name="Return" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=951554365]
+layout_mode = 2
+text = "Return"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qktlg0swcp4t"]
 
 [ext_resource type="Script" uid="uid://dyjorqen3hsxj" path="res://Scripts/pause.gd" id="1_o80xk"]
+[ext_resource type="PackedScene" uid="uid://dq5yalt60caio" path="res://Scenes/input_settings.tscn" id="2_l2mpd"]
 
 [node name="Pause" type="Control" unique_id=1568950384 groups=["Pause"]]
 process_mode = 3
@@ -56,6 +57,10 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 
+[node name="Input" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=275541138]
+layout_mode = 2
+text = "Input"
+
 [node name="FullScreen" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=406705407]
 layout_mode = 2
 text = "Full Screen"
@@ -68,8 +73,13 @@ text = "Return"
 layout_mode = 2
 text = "Quit"
 
+[node name="InputSettings" parent="." unique_id=665140443 instance=ExtResource("2_l2mpd")]
+visible = false
+layout_mode = 1
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/Sound" to="." method="_on_sound_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Input" to="." method="_on_input_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/FullScreen" to="." method="_on_full_screen_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

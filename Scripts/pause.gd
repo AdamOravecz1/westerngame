@@ -46,3 +46,17 @@ func _on_return_pressed() -> void:
 		player.pause()
 	else:
 		main.back()
+
+func _on_input_pressed() -> void:
+	$NinePatchRect.visible = false
+	$InputSettings.visible = true
+	
+func close_input_settings():
+	$InputSettings.hide()
+	$NinePatchRect.show()
+
+	var node = $NinePatchRect
+
+	while node:
+		print(node.name, " visible = ", node.visible)
+		node = node.get_parent()
