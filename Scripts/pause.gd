@@ -12,6 +12,7 @@ var full_screen = false
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not player.in_shop:
 		player.pause()
+
 		
 
 func _ready():

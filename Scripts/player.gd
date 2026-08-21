@@ -128,14 +128,13 @@ func pause():
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 	get_tree().paused = !paused
-
 
 	cocked = paused
 	paused = not paused
 	
-	$CanvasLayer/Pause.visible = paused
+	get_tree().get_first_node_in_group("Pause").visible = paused
+
 
 
 func _physics_process(delta: float) -> void:
@@ -282,6 +281,8 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("duck") and not placing_barrier and not duck:
 			duck = true
 			speed = 3.0
+			sway_amount -= 0.02
+			sway_speed -= 4
 
 			var tween = get_tree().create_tween()
 			tween.tween_property($Camera3D, "position:y", 0.1, 0.15)
@@ -294,6 +295,9 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_just_released("duck") and not placing_barrier and duck:
 			duck = false
 			speed = 6.0
+			
+			sway_amount += 0.02
+			sway_speed += 4
 
 			var tween = get_tree().create_tween()
 			tween.tween_property($Camera3D, "position:y", 0.615, 0.15)

@@ -712,7 +712,7 @@ theme_override_font_sizes/font_size = 32
 text = "Next
 "
 
-[node name="Pause" parent="." unique_id=1418893572 instance=ExtResource("14_jkdf5")]
+[node name="Pause" parent="CanvasLayer" unique_id=1418893572 instance=ExtResource("14_jkdf5")]
 visible = false
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]

@@ -116,21 +116,20 @@ func add_barrel(num):
 
 
 func _on_start_pressed() -> void:
-	$CanvasLayer.visible = false
+	$CanvasLayer/VBoxContainer.visible = false
 	var tween = get_tree().create_tween()
 	tween.tween_property($CameraPath/PathFollow3D, "progress_ratio", 0, 2)
 	await tween.finished
 	player.start()
-	$Pause.queue_free()
 
 
 func _on_settings_pressed() -> void:
 	$CanvasLayer/VBoxContainer.visible = false
-	$Pause.visible = true
+	$CanvasLayer/Pause.visible = true
 	
 func back():
 	$CanvasLayer/VBoxContainer.visible = true
-	$Pause.visible = false
+	$CanvasLayer/Pause.visible = false
 	
 func win():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

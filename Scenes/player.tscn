@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ct6y4xsqabotp" path="res://Pictures/CrossHair2.png" id="6_f1ek2"]
 [ext_resource type="Shader" uid="uid://dfjva35tkilc1" path="res://Shaders/Pain.tres" id="6_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://byspcepwidmfx" path="res://Scenes/shop_menu.tscn" id="8_f1ek2"]
-[ext_resource type="PackedScene" uid="uid://qktlg0swcp4t" path="res://Scenes/pause.tscn" id="8_qqcod"]
 [ext_resource type="AudioStream" uid="uid://o8m1q2v0jn3k" path="res://Sounds/st3-footstep-sfx-323056.wav" id="13_ukyrk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
@@ -250,9 +249,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Restart"
-
-[node name="Pause" parent="CanvasLayer" unique_id=1933569389 instance=ExtResource("8_qqcod")]
-visible = false
 
 [node name="ShopMenu" parent="CanvasLayer" unique_id=756853650 instance=ExtResource("8_f1ek2")]
 visible = false
