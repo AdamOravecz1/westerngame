@@ -48,7 +48,7 @@ func _on_bite_timeout() -> void:
 	$BasicDog/AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await get_tree().create_timer(0.4, false).timeout
 	if biting:
-		player.take_damage(global_position)
+		player.take_damage(global_position, 10)
 	$Sounds/Bite.play()
 	
 func delete_after_death():

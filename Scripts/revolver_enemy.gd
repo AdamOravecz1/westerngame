@@ -35,6 +35,11 @@ func _physics_process(delta):
 			target_enemy = enemy
 		elif enemy.health <= 0:
 			target_enemy = null
+			
+
+	if len(get_tree().get_nodes_in_group(looking_for)) <= 0:
+		target_enemy = null
+
 
 	if target_enemy == null:
 		return
@@ -272,7 +277,7 @@ func shoot_gun():
 		i.emitting = true
 	$Sounds/FireSound.play()
 	if gun_ray.get_collider() == player:
-		player.take_damage(global_position)
+		player.take_damage(global_position, 10)
 	elif gun_ray.get_collider().has_method("hit"):
 		gun_ray.get_collider().hit(1, gun_ray.get_collision_point())
 	print(gun_ray.get_collider())

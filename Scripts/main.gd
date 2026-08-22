@@ -29,11 +29,16 @@ var wave_loading := false
 var in_combat := false
 var enemie_order := [
 	[enemy_scene],
+	[enemy_scene, dog_scene],
 	[enemy_scene, enemy_scene],
-	[dog_scene, dog_scene, dog_scene],
 	[enemy_scene, dog_scene, dog_scene],
 	[enemy_scene, enemy_scene, dog_scene],
+	[enemy_scene, enemy_scene, enemy_scene],
+	[enemy_scene, enemy_scene, dog_scene, dog_scene],
 	[enemy_scene, enemy_scene, enemy_scene, dog_scene, dog_scene],
+	[enemy_scene, enemy_scene, enemy_scene, enemy_scene],
+	[enemy_scene, enemy_scene, enemy_scene, dog_scene, dog_scene, dog_scene],
+	[enemy_scene, enemy_scene, enemy_scene, enemy_scene, enemy_scene, dog_scene, dog_scene],
 	[boss_scene]
 ]
 
@@ -47,7 +52,8 @@ func _process(delta: float) -> void:
 	
 func next_wave():
 	if wave_counter == len(enemie_order):
-		print("win")
+		win()
+		return
 	in_combat = true
 	wave_loading = true
 	for i in get_tree().get_nodes_in_group("barrel"):
@@ -132,14 +138,16 @@ func back():
 	$CanvasLayer/Pause.visible = false
 	
 func win():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	player.in_shop = true
 	$CanvasLayer/Restart.visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1), 0.5)
-	tween.tween_property($CanvasLayer/Death, "modulate", Color(1,1,1,1), 0.5)
+	tween.tween_property($CanvasLayer/Victory, "modulate", Color(1,1,1,1), 0.5)
 	tween.tween_property($CanvasLayer/Restart, "modulate", Color(1,1,1,1), 0.5)
 	await tween.finished
+	player.get_node("CanvasLayer/Pain").material.set_shader_parameter("intensity", 0)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	player.in_shop = true
 
 
 func _on_restart_pressed() -> void:

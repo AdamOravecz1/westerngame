@@ -11,7 +11,7 @@ var dynamite_fitted_scene = preload("res://Scenes/dynamite_fitted_image.tscn")
 @export var jump_velocity: float = 4.5
 
 @export var health := 100
-var money := 100
+var money := 0
 
 var duck := false
 @onready var capsule: CapsuleShape3D = $CollisionShape3D.shape
@@ -138,9 +138,6 @@ func pause():
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		death()
-	
 	# Dynamite indicator 
 	# Create missing indicators
 	for target in dynamite_indicator_targets:
@@ -414,34 +411,34 @@ func AddMoney(amount):
 
 func AddBullets(level):
 	if level == 1:
+		if free_bullets + 3 < 30:
+			free_bullets += 3
+		else:
+			free_bullets = 30
+		RefreshBulletCount()
+		if free_shotgun + 2 < 30:
+			free_shotgun += 2
+		else: 
+			free_shotgun = 30
+		RefreshShotgunCount()
+		if free_sniper + 2 < 30:
+			free_sniper += 2
+		else:
+			free_sniper = 30
+		RefreshSniperCount()
+	elif level == 2:
 		if free_bullets + 6 < 30:
 			free_bullets += 6
 		else:
 			free_bullets = 30
 		RefreshBulletCount()
-		if free_shotgun + 6 < 30:
-			free_shotgun += 6
+		if free_shotgun + 4 < 30:
+			free_shotgun += 4
 		else: 
 			free_shotgun = 30
 		RefreshShotgunCount()
-		if free_sniper + 5 < 30:
-			free_sniper += 5
-		else:
-			free_sniper = 30
-		RefreshSniperCount()
-	elif level == 2:
-		if free_bullets + 12 < 30:
-			free_bullets += 12
-		else:
-			free_bullets = 30
-		RefreshBulletCount()
-		if free_shotgun + 12 < 30:
-			free_shotgun += 12
-		else: 
-			free_shotgun = 30
-		RefreshShotgunCount()
-		if free_sniper + 10 < 30:
-			free_sniper += 10
+		if free_sniper + 4 < 30:
+			free_sniper += 4
 		else:
 			free_sniper = 30
 		RefreshSniperCount()

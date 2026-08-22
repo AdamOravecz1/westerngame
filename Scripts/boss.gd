@@ -149,7 +149,7 @@ func shoot_gun():
 		i.emitting = true
 	$Sounds/FireSound.play()
 	if gun_ray.get_collider() == player:
-		player.take_damage(global_position)
+		player.take_damage(global_position, 20)
 	elif gun_ray.get_collider() and gun_ray.get_collider().has_method("hit"):
 		gun_ray.get_collider().hit(1, gun_ray.get_collision_point())
 	animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

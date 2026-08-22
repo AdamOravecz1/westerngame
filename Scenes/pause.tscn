@@ -59,7 +59,7 @@ step = 0.01
 
 [node name="Input" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=275541138]
 layout_mode = 2
-text = "Input"
+text = "Controls"
 
 [node name="FullScreen" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=406705407]
 layout_mode = 2

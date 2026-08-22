@@ -12,6 +12,7 @@ func _ready() -> void:
 	looking_for = "enemy"
 	
 func _process(delta: float) -> void:
+
 	if target_enemy == null:
 
 		var current = animation_tree.get("parameters/Blend3/blend_amount")
